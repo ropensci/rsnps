@@ -14,3 +14,4 @@ Imports:
 Collate:
     'genotypes.R'
     'users.R'
+    'allgensnp.R'

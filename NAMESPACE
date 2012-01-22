@@ -1,2 +1,4 @@
+export(allgensnp)
+export(genotypes)
 export(users)
 import(RJSONIO)

@@ -10,7 +10,11 @@ genotypes <-
   
 function(df = FALSE, url = "http://opensnp.org/snps/json/") 
 {
-  users_ <- fromJSON(url)
+  args <- list()
+  
+  out <- 
+    
+  genotypes_ <- fromJSON(out)
   if(df == FALSE){users_} else
   {
     lengths <- laply(users_, function(x) length(unlist(x)))
@@ -27,3 +31,10 @@ function(df = FALSE, url = "http://opensnp.org/snps/json/")
 }
 # http://opensnp.org/snps/json/$snpname/$userid.json
 # http://opensnp.org/snps/json/rs9939609/1.json
+
+
+# args <- list(spname = 'rs9939609', userid = '1.json')
+# 
+# fromJSON(getForm("http://opensnp.org/snps/json/",
+#         .params = args))
+# fromJSON('http://opensnp.org/snps/json/rs9939609/1.json')
