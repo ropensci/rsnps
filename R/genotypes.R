@@ -1,28 +1,14 @@
-#'  THIS FUNCTION DOESN'T WORK YET.......
-#'  THIS FUNCTION DOESN'T WORK YET.......
-#'  THIS FUNCTION DOESN'T WORK YET.......
-#'  THIS FUNCTION DOESN'T WORK YET.......
-#'  THIS FUNCTION DOESN'T WORK YET.......
-#'  THIS FUNCTION DOESN'T WORK YET.......
-#'
 #' Get genotype data for one or multiple users.
 #' @import RJSONIO
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
 #' @return List of openSNP users, their ID numbers, and XX if available.
 #' @export 
 #' @examples \dontrun{
-#' # just the list
-#' data <- users(df=FALSE)
-#' data 
-#' 
-#' # get a data.frame of the users data
-#' data <- users(df=TRUE)
-#' data[[1]] # users with links to genome data
-#' data[[2]] # users without links to genome data
+#' genotypes(df=TRUE)
 #' }
-users <- 
+genotypes <- 
   
-function(df = FALSE, url = "http://opensnp.org/snps/json/rs9939609/1.json") 
+function(df = FALSE, url = "http://opensnp.org/snps/json/") 
 {
   users_ <- fromJSON(url)
   if(df == FALSE){users_} else
@@ -39,4 +25,5 @@ function(df = FALSE, url = "http://opensnp.org/snps/json/rs9939609/1.json")
     list(withlinks, withoutlinks)
   }
 }
+# http://opensnp.org/snps/json/$snpname/$userid.json
 # http://opensnp.org/snps/json/rs9939609/1.json
