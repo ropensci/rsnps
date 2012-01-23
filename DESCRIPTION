@@ -8,10 +8,15 @@ Author: Scott Chamberlain
 Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
 URL: https://github.com/ropensci/ropensnp
 Depends:
-    RJSONIO
+    RJSONIO,
+    plyr,
+    stringr
 Imports:
-    RJSONIO
+    RJSONIO,
+    plyr,
+    stringr
 Collate:
     'genotypes.R'
     'users.R'
     'allgensnp.R'
+    'phenotypes.R'

@@ -1,5 +1,5 @@
 #' Get openSNP users.
-#' @import RJSONIO
+#' @import RJSONIO plyr
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
 #' @return List of openSNP users, their ID numbers, and XX if available.
 #' @export 
@@ -15,7 +15,8 @@
 #' }
 users <- 
 
-function(df = FALSE, url = "http://opensnp.org/users.json") 
+function(df = FALSE, 
+         url = "http://opensnp.org/users.json") 
 {
   users_ <- fromJSON(url)
   if(df == FALSE){users_} else

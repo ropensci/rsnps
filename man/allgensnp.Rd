@@ -6,12 +6,16 @@
     url = "http://opensnp.org/snps/")
 }
 \arguments{
+  \item{snp}{SNP name.}
+
   \item{df}{Return data.frame (TRUE) or not (FALSE) -
   default = FALSE.}
+
+  \item{url}{Base URL for API method; leave unchanged.}
 }
 \value{
-  List of openSNP users, their ID numbers, and XX if
-  available.
+  List of genotypes for all users at a certain SNP, or
+  data.frame
 }
 \description{
   Get genotype data for one or multiple users.

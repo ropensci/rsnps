@@ -1,4 +1,7 @@
 export(allgensnp)
 export(genotypes)
+export(phenotypes)
 export(users)
 import(RJSONIO)
+import(plyr)
+import(stringr)

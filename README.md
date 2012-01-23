@@ -1,6 +1,6 @@
 # `ropensnp`
 
-Install using `install_github` within Hadley's devtools package.
+Install using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
 
 ```R
 install.packages("devtools")

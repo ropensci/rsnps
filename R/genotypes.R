@@ -1,40 +1,37 @@
 #' Get genotype data for one or multiple users.
-#' @import RJSONIO
+#' @import RJSONIO plyr stringr
+#' @param snp SNP name.
+#' @param userid ID of openSNP user. 
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
-#' @return List of openSNP users, their ID numbers, and XX if available.
+#' @param url Base URL for API method; leave unchanged. 
+#' @return List (or data.frame) of genotypes for specified user(s) at a certain SNP.
 #' @export 
 #' @examples \dontrun{
-#' genotypes(df=TRUE)
+#' genotypes(snp='rs9939609', userid=1)
+#' genotypes('rs9939609', userid='1,6,8', df=TRUE)
+#' genotypes('rs9939609', userid='1-8', df=FALSE)
 #' }
 genotypes <- 
   
-function(df = FALSE, url = "http://opensnp.org/snps/json/") 
+function(snp = NA, userid = NA, df = FALSE,
+         url = "http://opensnp.org/snps/json/") 
 {
-  args <- list()
-  
-  out <- 
-    
-  genotypes_ <- fromJSON(out)
-  if(df == FALSE){users_} else
+  url2 <- paste(url, snp, "/", userid, '.json', sep='')
+  genotypes_ <- fromJSON(url2)
+
+  if(df == TRUE)
   {
-    lengths <- laply(users_, function(x) length(unlist(x)))
-    getdffive <- function(x) {
-      if(length(unlist(x)) == 5) data.frame(x)
+    if(length(str_split(userid, '[-,]')[[1]]) == 1){genotypes_} else{
+    getdfseven <- function(x) {
+      if(length(unlist(x)) == 7) t(data.frame(unlist(x)))
     }
-    getdftwo <- function(x) {
-      if(length(unlist(x)) == 2) data.frame(x[1:2])
+    df <- ldply(genotypes_, getdfseven)
+    names(df) <- c("snp_name","snp_chromosome","snp_position","user_name",
+                  "user_id","genotype_id","genotype")
+    df
     }
-    withlinks <- ldply(users_, getdffive)
-    withoutlinks <- ldply(users_, getdftwo)
-    list(withlinks, withoutlinks)
-  }
+  } else
+    {genotypes_}
 }
 # http://opensnp.org/snps/json/$snpname/$userid.json
 # http://opensnp.org/snps/json/rs9939609/1.json
-
-
-# args <- list(spname = 'rs9939609', userid = '1.json')
-# 
-# fromJSON(getForm("http://opensnp.org/snps/json/",
-#         .params = args))
-# fromJSON('http://opensnp.org/snps/json/rs9939609/1.json')
