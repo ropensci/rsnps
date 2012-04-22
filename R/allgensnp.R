@@ -1,4 +1,5 @@
 #' Get genotype data for one or multiple users.
+#'
 #' @import RJSONIO plyr
 #' @param snp SNP name. 
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
@@ -9,10 +10,7 @@
 #' allgensnp('rs7412')
 #' allgensnp('rs7412', df=TRUE)
 #' }
-allgensnp <- 
-  
-function(snp = NA, df = FALSE, 
-         url = "http://opensnp.org/snps/") 
+allgensnp <- function(snp = NA, df = FALSE, url = "http://opensnp.org/snps/") 
 {
   out <- fromJSON(paste(url, snp, '.json', sep=''))
   if(df == TRUE)

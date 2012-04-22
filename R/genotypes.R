@@ -1,4 +1,5 @@
 #' Get genotype data for one or multiple users.
+#'
 #' @import RJSONIO plyr stringr
 #' @param snp SNP name.
 #' @param userid ID of openSNP user. 
@@ -11,9 +12,7 @@
 #' genotypes('rs9939609', userid='1,6,8', df=TRUE)
 #' genotypes('rs9939609', userid='1-8', df=FALSE)
 #' }
-genotypes <- 
-  
-function(snp = NA, userid = NA, df = FALSE,
+genotypes <- function(snp = NA, userid = NA, df = FALSE,
          url = "http://opensnp.org/snps/json/") 
 {
   url2 <- paste(url, snp, "/", userid, '.json', sep='')

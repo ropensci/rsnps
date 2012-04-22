@@ -1,4 +1,5 @@
 #' Get phenotype data for one or multiple users.
+#'
 #' @import RJSONIO
 #' @param userid ID of openSNP user. 
 #' @param url Base URL for API method; leave unchanged. 
@@ -9,9 +10,7 @@
 #' phenotypes(userid='1,6,8')
 #' phenotypes(userid='1-8')
 #' }
-phenotypes <-   
-function(userid = NA,
-         url = "http://opensnp.org/phenotypes/json/") 
+phenotypes <- function(userid = NA, url = "http://opensnp.org/phenotypes/json/") 
 {
   url2 <- paste(url, userid, '.json', sep='')
   fromJSON(url2)

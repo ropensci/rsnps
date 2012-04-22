@@ -1,4 +1,5 @@
 #' Get openSNP users.
+#'
 #' @import RJSONIO plyr
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
 #' @return List of openSNP users, their ID numbers, and XX if available.
@@ -13,10 +14,7 @@
 #' data[[1]] # users with links to genome data
 #' data[[2]] # users without links to genome data
 #' }
-users <- 
-
-function(df = FALSE, 
-         url = "http://opensnp.org/users.json") 
+users <- function(df = FALSE, url = "http://opensnp.org/users.json") 
 {
   users_ <- fromJSON(url)
   if(df == FALSE){users_} else
