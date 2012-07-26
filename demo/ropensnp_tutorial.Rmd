@@ -1,0 +1,56 @@
+The `ropensnp` package interacts with the API services of [OpenSNP](http://opensnp.org/). No API key is needed. 
+
+This tutorial will go through three use cases to demonstrate the kinds of things possible in `ropensnp`.
+
++ Get genotype data for all users at a particular snp.
++ Get genotype data for one or multiple users.
++ Get phenotype data for one or multiple users.
++ Get openSNP user information.
+
+***
+### Load package from GitHub
+```{r loadpacakge}
+# install_github("ropensnp", "ropensci")
+library(ropensnp)
+```
+
+***
+
+#### Get genotype data for all users at a particular snp.
+```{r allgensnp}
+head( allgensnp('rs7412', df=TRUE) )
+```
+
+***
+
+#### Get genotype data for one or multiple users.
+```{r genotypes}
+genotypes(snp='rs9939609', userid=1)
+genotypes('rs9939609', userid='1,6,8', df=TRUE)
+```
+
+***
+
+### Get phenotype data for one or multiple users.
+```{r phenotypes}
+phenotypes(userid='1,6,8', df=TRUE)
+head( phenotypes(userid='1-8', df=TRUE)[[1]] )
+
+library(plyr)
+head( ldply(phenotypes(userid='1-8', df=TRUE)) )
+```
+
+
+***
+
+### Get openSNP user information.
+```{r users}
+# just the list
+data <- users(df=FALSE)
+data[1:2]
+
+# get a data.frame of the users data
+data <- users(df=TRUE)
+head( data[[1]] ) # users with links to genome data
+head( data[[2]] ) # users without links to genome data
+```

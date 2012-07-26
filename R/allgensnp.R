@@ -1,4 +1,4 @@
-#' Get genotype data for one or multiple users.
+#' Get genotype data for all users at a particular snp.
 #'
 #' @import RJSONIO plyr
 #' @param snp SNP name. 
@@ -12,6 +12,7 @@
 #' }
 allgensnp <- function(snp = NA, df = FALSE, url = "http://opensnp.org/snps/") 
 {
+	message(paste(url, snp, '.json', sep=''))
   out <- fromJSON(paste(url, snp, '.json', sep=''))
   if(df == TRUE)
     {
@@ -22,4 +23,3 @@ allgensnp <- function(snp = NA, df = FALSE, url = "http://opensnp.org/snps/")
     } else
     {out}
 }
-# http://opensnp.org/snps/rs7412.json

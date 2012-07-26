@@ -10,12 +10,13 @@
 #' @examples \dontrun{
 #' genotypes(snp='rs9939609', userid=1)
 #' genotypes('rs9939609', userid='1,6,8', df=TRUE)
-#' genotypes('rs9939609', userid='1-8', df=FALSE)
+#' genotypes('rs9939609', userid='1-2', df=FALSE)
 #' }
 genotypes <- function(snp = NA, userid = NA, df = FALSE,
          url = "http://opensnp.org/snps/json/") 
 {
   url2 <- paste(url, snp, "/", userid, '.json', sep='')
+  message(url2)
   genotypes_ <- fromJSON(url2)
 
   if(df == TRUE)
@@ -32,5 +33,3 @@ genotypes <- function(snp = NA, userid = NA, df = FALSE,
   } else
     {genotypes_}
 }
-# http://opensnp.org/snps/json/$snpname/$userid.json
-# http://opensnp.org/snps/json/rs9939609/1.json

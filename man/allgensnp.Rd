@@ -1,6 +1,6 @@
 \name{allgensnp}
 \alias{allgensnp}
-\title{Get genotype data for one or multiple users.}
+\title{Get genotype data for all users at a particular snp.}
 \usage{
   allgensnp(snp = NA, df = FALSE,
     url = "http://opensnp.org/snps/")
@@ -18,7 +18,7 @@
   data.frame
 }
 \description{
-  Get genotype data for one or multiple users.
+  Get genotype data for all users at a particular snp.
 }
 \examples{
 \dontrun{
