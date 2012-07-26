@@ -20,3 +20,4 @@ Collate:
     'users.R'
     'allgensnp.R'
     'phenotypes.R'
+    'fetch_genotypes.R'

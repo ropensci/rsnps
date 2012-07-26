@@ -26,14 +26,15 @@ head( allgensnp('rs7412', df=TRUE) )
 #### Get genotype data for one or multiple users.
 ```{r genotypes}
 genotypes(snp='rs9939609', userid=1)
-genotypes('rs9939609', userid='1,6,8', df=TRUE)
+head( genotypes('rs9939609', userid='1,6,8', df=TRUE) )
 ```
 
 ***
 
 ### Get phenotype data for one or multiple users.
 ```{r phenotypes}
-phenotypes(userid='1,6,8', df=TRUE)
+dat <- phenotypes(userid='1,6,8', df=TRUE)
+lapply(dat, head)
 head( phenotypes(userid='1-8', df=TRUE)[[1]] )
 
 library(plyr)
@@ -53,4 +54,15 @@ data[1:2]
 data <- users(df=TRUE)
 head( data[[1]] ) # users with links to genome data
 head( data[[2]] ) # users without links to genome data
+```
+
+
+***
+
+### Download genotype data for a user from 23andme or other repo.
+```{r fetch_genotypes}
+data <- users(df=TRUE) # get a data.frame of the users data
+head( data[[1]] ) # users with links to genome data
+mydata <- fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], rows=15)
+mydata
 ```
