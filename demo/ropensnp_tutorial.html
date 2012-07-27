@@ -191,6 +191,10 @@ hljs.initHighlightingOnLoad();
 <li>Get openSNP user information.</li>
 </ul>
 
+<pre><code class="r"># set global chunk options: images will be 5x5 inches
+opts_chunk$set(results = &quot;asis&quot;)
+</code></pre>
+
 <hr/>
 
 <h3>Load package from GitHub</h3>
@@ -215,21 +219,20 @@ library(ropensnp)
 <pre><code class="r">head(allgensnp(&quot;rs7412&quot;, df = TRUE))
 </code></pre>
 
-<pre><code>##   snp_name snp_chromosome snp_position        user_name user_id
-## 1   rs7412             19     50103919 Bastian Greshake       1
-## 2   rs7412             19     50103919     Nash Parovoz       6
-## 3   rs7412             19     50103919         Samantha       8
-## 4   rs7412             19     50103919             Svan      10
-## 5   rs7412             19     50103919 Daniel Goldowitz      11
-## 6   rs7412             19     50103919            sagan      13
-##   genotype_id genotype
-## 1           9       CC
-## 2           5       CC
-## 3           2       CC
-## 4           3       CC
-## 5         176       CC
-## 6           4       CC
-</code></pre>
+<p>snp_name snp_chromosome snp_position        user_name user_id<br/>
+1   rs7412             19     50103919 Bastian Greshake       1<br/>
+2   rs7412             19     50103919     Nash Parovoz       6<br/>
+3   rs7412             19     50103919         Samantha       8<br/>
+4   rs7412             19     50103919             Svan      10<br/>
+5   rs7412             19     50103919 Daniel Goldowitz      11<br/>
+6   rs7412             19     50103919            sagan      13<br/>
+  genotype_id genotype<br/>
+1           9       CC<br/>
+2           5       CC<br/>
+3           2       CC<br/>
+4           3       CC<br/>
+5         176       CC<br/>
+6           4       CC</p>
 
 <hr/>
 
@@ -238,51 +241,51 @@ library(ropensnp)
 <pre><code class="r">genotypes(snp = &quot;rs9939609&quot;, userid = 1)
 </code></pre>
 
-<pre><code>## $snp
-##        name  chromosome    position 
-## &quot;rs9939609&quot;        &quot;16&quot;  &quot;52378028&quot; 
-## 
-## $user
-## $user$name
-## [1] &quot;Bastian Greshake&quot;
-## 
-## $user$id
-## [1] 1
-## 
-## $user$genotypes
-## $user$genotypes[[1]]
-## $user$genotypes[[1]]$genotype_id
-## [1] 9
-## 
-## $user$genotypes[[1]]$local_genotype
-## [1] &quot;AT&quot;
-## 
-## 
-## 
-## 
+<p>$snp<br/>
+       name  chromosome    position <br/>
+&ldquo;rs9939609&rdquo;        &ldquo;16&rdquo;  &ldquo;52378028&rdquo; </p>
+
+<p>$user<br/>
+$user$name<br/>
+[1] &ldquo;Bastian Greshake&rdquo;</p>
+
+<p>$user$id<br/>
+[1] 1</p>
+
+<p>$user$genotypes<br/>
+$user$genotypes[[1]]<br/>
+$user$genotypes[[1]]$genotype_id<br/>
+[1] 9</p>
+
+<p>$user$genotypes[[1]]$local_genotype<br/>
+[1] &ldquo;AT&rdquo;</p>
+
+<pre><code class="r">head(genotypes(&quot;rs9939609&quot;, userid = &quot;1,6,8&quot;, df = TRUE))
 </code></pre>
 
-<pre><code class="r">genotypes(&quot;rs9939609&quot;, userid = &quot;1,6,8&quot;, df = TRUE)
-</code></pre>
-
-<pre><code>##    snp_name snp_chromosome snp_position        user_name user_id
-## 1 rs9939609             16     52378028 Bastian Greshake       1
-## 2 rs9939609             16     52378028     Nash Parovoz       6
-## 3 rs9939609             16     52378028         Samantha       8
-##   genotype_id genotype
-## 1           9       AT
-## 2           5       AT
-## 3           2       TT
-</code></pre>
+<p>snp_name snp_chromosome snp_position        user_name user_id<br/>
+1 rs9939609             16     52378028 Bastian Greshake       1<br/>
+2 rs9939609             16     52378028     Nash Parovoz       6<br/>
+3 rs9939609             16     52378028         Samantha       8<br/>
+  genotype_id genotype<br/>
+1           9       AT<br/>
+2           5       AT<br/>
+3           2       TT</p>
 
 <hr/>
 
 <h3>Get phenotype data for one or multiple users.</h3>
 
-<pre><code class="r">phenotypes(userid = &quot;1,6,8&quot;, df = TRUE)
+<pre><code class="r">dat &lt;- phenotypes(userid = &quot;1,6,8&quot;, df = TRUE)
 </code></pre>
 
 <pre><code>## Error: unused argument(s) (df = TRUE)
+</code></pre>
+
+<pre><code class="r">lapply(dat, head)
+</code></pre>
+
+<pre><code>## Error: object &#39;dat&#39; not found
 </code></pre>
 
 <pre><code class="r">head(phenotypes(userid = &quot;1-8&quot;, df = TRUE)[[1]])
@@ -308,29 +311,25 @@ data &lt;- users(df = FALSE)
 data[1:2]
 </code></pre>
 
-<pre><code>## [[1]]
-## [[1]]$name
-## [1] &quot;gigatwo&quot;
-## 
-## [[1]]$id
-## [1] 31
-## 
-## [[1]]$genotypes
-## list()
-## 
-## 
-## [[2]]
-## [[2]]$name
-## [1] &quot;Dan Fornika&quot;
-## 
-## [[2]]$id
-## [1] 21
-## 
-## [[2]]$genotypes
-## list()
-## 
-## 
-</code></pre>
+<p>[[1]]<br/>
+[[1]]$name<br/>
+[1] &ldquo;gigatwo&rdquo;</p>
+
+<p>[[1]]$id<br/>
+[1] 31</p>
+
+<p>[[1]]$genotypes<br/>
+list()</p>
+
+<p>[[2]]<br/>
+[[2]]$name<br/>
+[1] &ldquo;Dan Fornika&rdquo;</p>
+
+<p>[[2]]$id<br/>
+[1] 21</p>
+
+<p>[[2]]$genotypes<br/>
+list()</p>
 
 <pre><code class="r">
 # get a data.frame of the users data
@@ -338,32 +337,71 @@ data &lt;- users(df = TRUE)
 head(data[[1]])  # users with links to genome data
 </code></pre>
 
-<pre><code>##           name  id genotypes.id genotypes.filetype
-## 1     Samantha   8            2            23andme
-## 2 Nash Parovoz   6            5            23andme
-## 3         Svan  10            3            23andme
-## 4    Mom to AG 387          173            23andme
-## 5 R.M. Holston  22            8            23andme
-## 6   Little bit  14            6            23andme
-##                    genotypes.download_url
-## 1     http://opensnp.org/data/8.23andme.2
-## 2     http://opensnp.org/data/6.23andme.5
-## 3    http://opensnp.org/data/10.23andme.3
-## 4 http://opensnp.org/data/387.23andme.173
-## 5    http://opensnp.org/data/22.23andme.8
-## 6    http://opensnp.org/data/14.23andme.6
+<pre><code>      name  id genotypes.id genotypes.filetype
 </code></pre>
+
+<p>1     Samantha   8            2            23andme<br/>
+2 Nash Parovoz   6            5            23andme<br/>
+3         Svan  10            3            23andme<br/>
+4    Mom to AG 387          173            23andme<br/>
+5 R.M. Holston  22            8            23andme<br/>
+6   Little bit  14            6            23andme<br/>
+                   genotypes.download_url<br/>
+1     <a href="http://opensnp.org/data/8.23andme.2">http://opensnp.org/data/8.23andme.2</a><br/>
+2     <a href="http://opensnp.org/data/6.23andme.5">http://opensnp.org/data/6.23andme.5</a><br/>
+3    <a href="http://opensnp.org/data/10.23andme.3">http://opensnp.org/data/10.23andme.3</a><br/>
+4 <a href="http://opensnp.org/data/387.23andme.173">http://opensnp.org/data/387.23andme.173</a><br/>
+5    <a href="http://opensnp.org/data/22.23andme.8">http://opensnp.org/data/22.23andme.8</a><br/>
+6    <a href="http://opensnp.org/data/14.23andme.6">http://opensnp.org/data/14.23andme.6</a></p>
 
 <pre><code class="r">head(data[[2]])  # users without links to genome data
 </code></pre>
 
-<pre><code>##               name  id
-## 1          gigatwo  31
-## 2      Dan Fornika  21
-## 3      Anu Acharya 385
-## 4 richard randazzo   9
-## 5 Martin Rodriguez 386
-## 6       mrrredith   29
+<pre><code>          name  id
+</code></pre>
+
+<p>1          gigatwo  31<br/>
+2      Dan Fornika  21<br/>
+3      Anu Acharya 385<br/>
+4 richard randazzo   9<br/>
+5 Martin Rodriguez 386<br/>
+6       mrrredith   29</p>
+
+<hr/>
+
+<h3>Download genotype data for a user from 23andme or other repo.</h3>
+
+<pre><code class="r">data &lt;- users(df = TRUE)  # get a data.frame of the users data
+head(data[[1]])  # users with links to genome data
+</code></pre>
+
+<pre><code>      name  id genotypes.id genotypes.filetype
+</code></pre>
+
+<p>1     Samantha   8            2            23andme<br/>
+2 Nash Parovoz   6            5            23andme<br/>
+3         Svan  10            3            23andme<br/>
+4    Mom to AG 387          173            23andme<br/>
+5 R.M. Holston  22            8            23andme<br/>
+6   Little bit  14            6            23andme<br/>
+                   genotypes.download_url<br/>
+1     <a href="http://opensnp.org/data/8.23andme.2">http://opensnp.org/data/8.23andme.2</a><br/>
+2     <a href="http://opensnp.org/data/6.23andme.5">http://opensnp.org/data/6.23andme.5</a><br/>
+3    <a href="http://opensnp.org/data/10.23andme.3">http://opensnp.org/data/10.23andme.3</a><br/>
+4 <a href="http://opensnp.org/data/387.23andme.173">http://opensnp.org/data/387.23andme.173</a><br/>
+5    <a href="http://opensnp.org/data/22.23andme.8">http://opensnp.org/data/22.23andme.8</a><br/>
+6    <a href="http://opensnp.org/data/14.23andme.6">http://opensnp.org/data/14.23andme.6</a></p>
+
+<pre><code class="r">mydata &lt;- fetch_genotypes(url = data[[1]][1, &quot;genotypes.download_url&quot;], rows = 15)
+</code></pre>
+
+<pre><code>## Error: could not find function &quot;fetch_genotypes&quot;
+</code></pre>
+
+<pre><code class="r">mydata
+</code></pre>
+
+<pre><code>## Error: object &#39;mydata&#39; not found
 </code></pre>
 
 </body>

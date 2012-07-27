@@ -21,3 +21,6 @@ Collate:
     'allgensnp.R'
     'phenotypes.R'
     'fetch_genotypes.R'
+    'allphenotypes.R'
+    'annotations.R'
+    'phenotypes_byid.R'

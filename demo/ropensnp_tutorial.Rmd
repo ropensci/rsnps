@@ -18,7 +18,7 @@ library(ropensnp)
 
 #### Get genotype data for all users at a particular snp.
 ```{r allgensnp}
-head( allgensnp('rs7412', df=TRUE) )
+head( allgensnp('rs7412', df=TRUE)[,1:4] ) # minimal output to pretty presentation
 ```
 
 ***
@@ -26,7 +26,7 @@ head( allgensnp('rs7412', df=TRUE) )
 #### Get genotype data for one or multiple users.
 ```{r genotypes}
 genotypes(snp='rs9939609', userid=1)
-head( genotypes('rs9939609', userid='1,6,8', df=TRUE) )
+head( genotypes('rs9939609', userid='1,6,8', df=TRUE)[,1:4] )
 ```
 
 ***
@@ -52,7 +52,7 @@ data[1:2]
 
 # get a data.frame of the users data
 data <- users(df=TRUE)
-head( data[[1]] ) # users with links to genome data
+head( data[[1]][,c(1,5)] ) # users with links to genome data
 head( data[[2]] ) # users without links to genome data
 ```
 
@@ -62,7 +62,6 @@ head( data[[2]] ) # users without links to genome data
 ### Download genotype data for a user from 23andme or other repo.
 ```{r fetch_genotypes}
 data <- users(df=TRUE) # get a data.frame of the users data
-head( data[[1]] ) # users with links to genome data
 mydata <- fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], rows=15)
 mydata
 ```

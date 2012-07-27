@@ -1,6 +1,6 @@
 #' Get phenotype data for one or multiple users.
 #'
-#' @import RJSONIO
+#' @import RJSONIO plyr
 #' @param userid ID of openSNP user. 
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
 #' @param url Base URL for API method; leave unchanged. 
