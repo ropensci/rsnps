@@ -23,7 +23,7 @@
 allphenotypes <- function(df = FALSE, 
 	url = "http://opensnp.org/phenotypes.json") 
 {
-	out <- parsed_content(GET(url))
+	out <- content(GET(url))
 	if(df == TRUE){
 		ldply(out, function(x) data.frame(do.call(cbind, x)))
 	} else
@@ -31,6 +31,7 @@ allphenotypes <- function(df = FALSE,
 			myfunc <- function(x) str_replace_all(x, "\\(|\\)", "")
 			out <- llply(out, function(y) llply(y, myfunc))
 			temp <- llply(out, function(x) data.frame(do.call(cbind, x)))
+			cs <- str_replace_all(sapply(out, function(x) x$characteristic), '\\(|\\)', '')
 			names(temp) <- cs
 			temp
 		}

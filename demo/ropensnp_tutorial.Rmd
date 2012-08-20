@@ -65,3 +65,40 @@ data <- users(df=TRUE) # get a data.frame of the users data
 mydata <- fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], rows=15)
 mydata
 ```
+
+
+***
+
+### Get all known variations and all users sharing that phenotype for one phenotype(-ID).
+```{r phenotypes_byid}
+phenotypes_byid(phenotypeid=12, return_ = 'desc')
+phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
+phenotypes_byid(phenotypeid=12, return_ = 'users')[1:3,]
+```
+
+
+***
+
+### Get all SNPedia/PLos/Mendeley-annotations for a specific SNP.
+```{r annotations}
+annotations(snp = 'rs7903146', output = 'metadata') # get just the metadata
+annotations(snp = 'rs7903146', output = 'plos')[,c(1,4)] # just from plos
+annotations(snp = 'rs7903146', output = 'snpedia') # just from snpedia
+dat <- annotations(snp = 'rs7903146', output = 'all') # get all annotations
+str(dat)
+```
+
+
+***
+
+### Get all phenotypes, their variations, and how many users have data available for a given phenotype.
+```{r allphenotypes}
+# Get all data
+head( allphenotypes(df = TRUE) )
+
+# Output a list, then call the characterisitc of interest by 'id' or 'characteristic'
+datalist <- allphenotypes()
+names(datalist)[1:4] # get list of all characteristics you can call, just a sample here
+head( datalist[["ADHD"]] ) # get data.frame for 'ADHD'
+datalist[c("mouth size","SAT Writing")] # get data.frame for 'ADHD'
+```
