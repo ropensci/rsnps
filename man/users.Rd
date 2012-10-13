@@ -7,6 +7,8 @@
 \arguments{
   \item{df}{Return data.frame (TRUE) or not (FALSE) -
   default = FALSE.}
+
+  \item{url}{Base URL for API method; leave unchanged.}
 }
 \value{
   List of openSNP users, their ID numbers, and XX if

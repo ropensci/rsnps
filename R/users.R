@@ -2,6 +2,7 @@
 #'
 #' @import RJSONIO plyr
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
+#' @param url Base URL for API method; leave unchanged. 
 #' @return List of openSNP users, their ID numbers, and XX if available.
 #' @export 
 #' @examples \dontrun{

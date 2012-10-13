@@ -2,9 +2,8 @@
 \alias{phenotypes}
 \title{Get phenotype data for one or multiple users.}
 \usage{
-  phenotypes(phenotypeid = NA,
-    return_ = c("description", "knownvars", "users"),
-    url = "http://opensnp.org/phenotypes/json/variations/")
+  phenotypes(userid = NA, df = FALSE,
+    url = "http://opensnp.org/phenotypes/json/")
 }
 \arguments{
   \item{userid}{ID of openSNP user.}

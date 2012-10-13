@@ -11,6 +11,8 @@
   known_variations can take multiple values, so the other
   columns id, characteristic, and number_of_users are
   replicated in the data.frame. (default = FALSE)}
+
+  \item{url}{Base URL for API method; leave unchanged.}
 }
 \value{
   Data.frame of results.
