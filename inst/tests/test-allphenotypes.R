@@ -7,10 +7,10 @@ test_that("allphenotypes returns the correct class", {
 })
 
 test_that("allphenotypes returns the correct dims for data.frame", {
-	expect_that(length(allphenotypes()), equals(109))
-	expect_that(nrow(allphenotypes()[["ADHD"]]), equals(8))
+	expect_that(ncol(allphenotypes()[["ADHD"]]), equals(4))
 })
 
 test_that("allphenotypes returns the correct value", {
-	expect_that(as.character(allphenotypes()[["ADHD"]][7,3]), equals("Diagnosed as not having but with some signs"))
+	expect_that(as.character(allphenotypes()[["ADHD"]][7,3]), 
+							equals("Diagnosed as not having but with some signs"))
 })

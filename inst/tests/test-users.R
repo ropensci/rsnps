@@ -5,7 +5,7 @@ data <- users(df=TRUE)
  
 test_that("users returns the correct class", {
 	expect_that(users(df=FALSE), is_a("list"))
-	expect_that(users(df=TRUE), is_a("data.frame"))
+	expect_that(users(df=TRUE), is_a("list"))
 })
 
 test_that("users returns the correct dims for data.frame", {

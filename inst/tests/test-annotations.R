@@ -9,11 +9,10 @@ test_that("annotations returns the correct class", {
 })
 
 test_that("annotations returns the correct dims for data.frame", {
-	expect_that(nrow(annotations(snp = 'rs7903146', output = 'plos')), equals(6))
-	expect_that(nrow(annotations(snp = 'rs7903146', output = 'snpedia')), equals(3))
+	expect_that(ncol(annotations(snp = 'rs7903146', output = 'plos')), equals(6))
+	expect_that(ncol(annotations(snp = 'rs7903146', output = 'snpedia')), equals(2))
 })
 
 test_that("annotations returns the correct value", {
-	expect_that(as.character(annotations(snp = 'rs7903146', output = 'plos')[1,6]), matches("10.1371/journal.pone.0017978"))
-	expect_that(as.character(annotations(snp = 'rs7903146', output = 'all')[30,10]), matches("normal form"))
+	expect_that(grepl("10.1371/journal",as.character(annotations(snp = 'rs7903146', output = 'plos')[1,6])), is_true())
 })
