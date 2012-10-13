@@ -1,11 +1,11 @@
 Package: ropensnp
-Version: 0.0-1
-Date: 2012-2-13
-Description: A programmatic interface to openSNP data.
-Title: Interface to openSNOP API methods
-License: BSD
-Author: Scott Chamberlain
-Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
+Version: 0.0.1
+Date: 2012-10-13
+Description: A programmatic interface to openSNP.org data.
+Title: Interface to OpenSNP API methods
+License: C00
+Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
+    email = "myrmecocystus@gmail.com"))
 URL: https://github.com/ropensci/ropensnp
 Imports:
     RJSONIO,
