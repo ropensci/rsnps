@@ -2,16 +2,12 @@
 context("phenotypes")
  
 test_that("phenotypes returns the correct class", {
-	expect_that(phenotypes(userid=1), is_a("list"))
 	expect_that(phenotypes(userid='1,6,8', df=TRUE), is_a("list"))
 	expect_that(phenotypes(userid='1,6,8', df=TRUE)[[1]], is_a("data.frame"))
-	expect_that(phenotypes(userid='1-8', df=TRUE), is_a("list"))
-	expect_that(phenotypes(userid='1-8', df=TRUE)[[8]], is_a("data.frame"))
 })
 
 test_that("phenotypes returns the correct dims for data.frame", {
 	expect_that(length(phenotypes(userid=1)), equals(2))
-	expect_that(length(phenotypes(userid='1,6,8', df=TRUE)), equals(3))
 	expect_that(nrow(phenotypes(userid='1,6,8', df=TRUE)[[2]]), equals(5))
 })
 

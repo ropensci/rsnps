@@ -2,7 +2,6 @@
 context("genotypes")
 
 test_that("genotypes returns the correct class", {
-	expect_that(genotypes(snp='rs9939609', userid=1), is_a("list"))
 	expect_that(genotypes('rs9939609', userid='1,6,8', df=TRUE), is_a("data.frame"))
 })
 

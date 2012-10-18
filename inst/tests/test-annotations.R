@@ -2,14 +2,11 @@
 context("annotations")
 
 test_that("annotations returns the correct class", {
-	expect_that(annotations(snp = 'rs7903146', output = 'metadata'), is_a("data.frame"))
-	expect_that(annotations(snp = 'rs7903146', output = 'plos'), is_a("data.frame"))
 	expect_that(annotations(snp = 'rs7903146', output = 'snpedia'), is_a("data.frame"))
 	expect_that(annotations(snp = 'rs7903146', output = 'all'), is_a("data.frame"))
 })
 
 test_that("annotations returns the correct dims for data.frame", {
-	expect_that(ncol(annotations(snp = 'rs7903146', output = 'plos')), equals(6))
 	expect_that(ncol(annotations(snp = 'rs7903146', output = 'snpedia')), equals(2))
 })
 
