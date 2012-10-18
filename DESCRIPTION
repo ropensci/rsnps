@@ -13,7 +13,8 @@ Imports:
     stringr,
     httr
 Suggests:
-    testthat
+    testthat,
+    rjson
 Collate:
     'genotypes.R'
     'users.R'
