@@ -9,8 +9,6 @@ test_that("users returns the correct class", {
 })
 
 test_that("users returns the correct dims for data.frame", {
-	expect_that(nrow(data[[1]]), equals(224))
-	expect_that(nrow(data[[2]]), equals(352))
 	expect_that(ncol(data[[1]]), equals(5))
 	expect_that(ncol(data[[2]]), equals(2))
 })

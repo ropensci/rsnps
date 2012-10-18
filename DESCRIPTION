@@ -1,9 +1,9 @@
 Package: ropensnp
 Version: 0.0.1
-Date: 2012-10-13
+Date: 2012-10-17
 Description: A programmatic interface to openSNP.org data.
 Title: Interface to OpenSNP API methods
-License: C00
+License: CC0
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 URL: https://github.com/ropensci/ropensnp
@@ -12,6 +12,8 @@ Imports:
     plyr,
     stringr,
     httr
+Suggests:
+    testthat
 Collate:
     'genotypes.R'
     'users.R'

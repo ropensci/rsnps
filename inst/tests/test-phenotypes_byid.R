@@ -8,7 +8,7 @@ test_that("phenotypes_byid returns the correct class", {
 })
 
 test_that("phenotypes_byid returns the correct dims for data.frame", {
-	expect_that(nrow(phenotypes_byid(phenotypeid=12, return_ = 'users')), equals(56))
+	expect_that(ncol(phenotypes_byid(phenotypeid=12, return_ = 'users')), equals(2))
 })
 
 test_that("phenotypes_byid returns the correct value", {
