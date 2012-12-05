@@ -1,3 +1,12 @@
+ropensnp 0.0.2
+===============
+
+BUG FIXES
+
+* fixed errors on certain R and OS versions.
+* fixed errors in test suite.
+
+
 ropensnp 0.0.1
 ===============
 

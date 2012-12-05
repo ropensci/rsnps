@@ -1,6 +1,13 @@
 # `ropensnp`
 
-Install using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
+Install the stable CRAN version by
+
+```R
+install.packages("ropensnp")
+require(ropensnp)
+```
+
+Install development versions using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
 
 ```R
 install.packages("devtools")

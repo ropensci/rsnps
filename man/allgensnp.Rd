@@ -22,7 +22,7 @@
 }
 \examples{
 \dontrun{
-allgensnp('rs7412')
+allgensnp(snp='rs7412')
 allgensnp('rs7412', df=TRUE)
 }
 }

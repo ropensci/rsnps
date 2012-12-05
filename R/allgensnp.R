@@ -7,7 +7,7 @@
 #' @return List of genotypes for all users at a certain SNP, or data.frame
 #' @export 
 #' @examples \dontrun{
-#' allgensnp('rs7412')
+#' allgensnp(snp='rs7412')
 #' allgensnp('rs7412', df=TRUE)
 #' }
 allgensnp <- function(snp = NA, df = FALSE, url = "http://opensnp.org/snps/") 

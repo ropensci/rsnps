@@ -8,7 +8,3 @@ test_that("allgensnp returns the correct class", {
 test_that("allgensnp returns the correct dims for data.frame", {
 	expect_that(ncol(allgensnp('rs9939609', df=TRUE)), equals(7))
 })
-
-test_that("allgensnp returns the correct value", {
-	expect_that(head(allgensnp('rs9939609', df=TRUE))[5,6], equals("176"))
-})
