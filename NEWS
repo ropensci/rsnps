@@ -1,0 +1,23 @@
+ropensnp 0.0.3
+===============
+
+BUG FIXES
+
+* removed /tests folder in root so that tests are run on CRAN servers, but are still used locally for development. This way temporary web API outages shouldn't affect CRAN tests. 
+
+
+ropensnp 0.0.2
+===============
+
+BUG FIXES
+
+* fixed errors on certain R and OS versions.
+* fixed errors in test suite.
+
+
+ropensnp 0.0.1
+===============
+
+NEW FEATURES 
+
+* released to CRAN
