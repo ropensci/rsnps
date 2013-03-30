@@ -1,2 +1,2 @@
 library(testthat)
-test_package("ropensnp")
+test_package("rsnps")

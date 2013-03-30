@@ -1,5 +1,5 @@
-Package: ropensnp
-Version: 0.0.3
+Package: rsnps
+Version: 0.0.4
 Date: 2013-03-01
 Description: A programmatic interface to openSNP.org data.
 Title: Interface to OpenSNP API methods
@@ -12,7 +12,9 @@ Imports:
     RJSONIO,
     plyr,
     stringr,
-    httr
+    httr,
+    RCurl,
+    XML
 Suggests:
     roxygen2,
     testthat,
@@ -26,3 +28,6 @@ Collate:
     'allphenotypes.R'
     'annotations.R'
     'phenotypes_byid.R'
+    'LDSearch.R'
+    'NCBI_snp_query.R'
+    'utils.R'
