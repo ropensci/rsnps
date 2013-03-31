@@ -109,6 +109,15 @@ LDSearch <- function( SNPs,
   
   ## error checking
   
+  ## ensure these are rs numbers of the form rs[0-9]+
+  tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
+  if( any( sapply( tmp, length ) == 0 ) ) {
+    stop("not all items supplied are prefixed with 'rs';\n",
+         "you must supply rs numbers and they should be prefixed with ", 
+         "'rs', e.g. rs420358")
+  }
+  
+  
   ## RSquaredLimit
   if( RSquaredLimit < 0 || RSquaredLimit > 1 ) {
     stop("RSquaredLimit must be between 0 and 1")

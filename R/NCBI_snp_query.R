@@ -35,12 +35,21 @@
 #' }
 #' @seealso \url{http://www.ncbi.nlm.nih.gov/projects/SNP/}
 #' @examples \dontrun{
-#' ## an example with both merged SNPs, non-SNV SNPs, regular SNPs, and
-#' ## SNPs not found
-#' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715")
+#' ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
+#' ## SNPs not found, microsatellite
+#' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' NCBI_snp_query(SNPs)
+#' NCBI_snp_query("123456") ##invalid: must prefix with 'rs'
 #' }
 NCBI_snp_query <- function(SNPs) {
+  
+  ## ensure these are rs numbers of the form rs[0-9]+
+  tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
+  if( any( sapply( tmp, length ) == 0 ) ) {
+    stop("not all items supplied are prefixed with 'rs';\n",
+         "you must supply rs numbers and they should be prefixed with ", 
+         "'rs', e.g. rs420358")
+  }
   
   query <- "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=snp&mode=xml&id="
   query <- paste( sep='', query, paste( SNPs, collapse="," ) )
@@ -75,6 +84,10 @@ NCBI_snp_query <- function(SNPs) {
     
     my_list <- xml_list[[i]]
     my_chr <- tryget(my_list$Assembly$Component$.attrs["chromosome"])
+    if( is.null(my_chr) ) {
+      my_chr <- NA
+      warning("No chromosomal information for ", SNPs[i], "; may be unmapped")
+    }
     my_snp <- tryget( my_list$.attrs["rsId"] )
     if( !is.na(my_snp) ) {
       my_snp <- paste( sep='', "rs", my_snp )
@@ -85,6 +98,7 @@ NCBI_snp_query <- function(SNPs) {
     my_snpClass <- tryget(my_list$.attrs["snpClass"])
     
     my_gene <- tryget( my_list$Assembly$Component$MapLoc$FxnSet['symbol'] )
+    if( is.null(my_gene) ) my_gene <- NA
     alleles <- my_list$Ss$Sequence$Observed
     
     ## handle true SNPs
@@ -117,6 +131,7 @@ NCBI_snp_query <- function(SNPs) {
         my_list$Assembly$Component$MapLoc["physMapInt"]
       }
     )
+    if( is.null( my_pos ) ) my_pos <- NA
     
     dat <- data.frame(
       Query = SNPs[i],
