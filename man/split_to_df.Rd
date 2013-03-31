@@ -1,8 +1,8 @@
-\name{str_split}
-\alias{str_split}
+\name{split_to_df}
+\alias{split_to_df}
 \title{Split a Vector of Strings Following a Regular Structure}
 \usage{
-  str_split(x, sep, fixed = FALSE, perl = TRUE,
+  split_to_df(x, sep, fixed = FALSE, perl = TRUE,
     useBytes = FALSE, names = NULL)
 }
 \arguments{

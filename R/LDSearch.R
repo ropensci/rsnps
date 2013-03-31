@@ -13,6 +13,7 @@
 #' Information on the 1000 Genomes populations:
 #' \url{http://www.1000genomes.org/category/frequently-asked-questions/population}
 #' 
+#' @import RCurl XML
 #' @param SNPs A vector of SNPs (rs numbers).
 #' @param dataset The dataset to query. Must be one of: \itemize{
 #'   \item{\code{rel21: }}{HapMap Release 21}
@@ -108,6 +109,15 @@ LDSearch <- function( SNPs,
   
   ## error checking
   
+  ## ensure these are rs numbers of the form rs[0-9]+
+  tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
+  if( any( sapply( tmp, length ) == 0 ) ) {
+    stop("not all items supplied are prefixed with 'rs';\n",
+         "you must supply rs numbers and they should be prefixed with ", 
+         "'rs', e.g. rs420358")
+  }
+  
+  
   ## RSquaredLimit
   if( RSquaredLimit < 0 || RSquaredLimit > 1 ) {
     stop("RSquaredLimit must be between 0 and 1")
@@ -177,7 +187,7 @@ LDSearch <- function( SNPs,
     tmp <- tmp[ -bad_lines ]
   }
   
-  out <- str_split( tmp, sep="\t", fixed=TRUE )
+  out <- split_to_df( tmp, sep="\t", fixed=TRUE )
   names( out ) <- unlist( unclass( out[1,] ) )
   out <- out[2:nrow(out),]
   
