@@ -50,7 +50,7 @@ flip <- function( SNP, sep="", outSep=sep ) {
 #' character-by-character.
 #' @param names optional: a vector of names to pass to the returned \code{data.frame}.
 #' @seealso \code{\link{strsplit}}
-str_split <- function(x, sep, fixed=FALSE, perl=TRUE, useBytes=FALSE, names=NULL) {
+split_to_df <- function(x, sep, fixed=FALSE, perl=TRUE, useBytes=FALSE, names=NULL) {
   
   x <- as.character(x)
   

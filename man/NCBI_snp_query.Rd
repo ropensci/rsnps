@@ -43,10 +43,11 @@
 }
 \examples{
 \dontrun{
-## an example with both merged SNPs, non-SNV SNPs, regular SNPs, and
-## SNPs not found
-SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715")
+## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
+## SNPs not found, microsatellite
+SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 NCBI_snp_query(SNPs)
+NCBI_snp_query("123456") ##invalid: must prefix with 'rs'
 }
 }
 \seealso{
