@@ -3,7 +3,8 @@
 ## UPDATE! 
 We just changed this repo to `rsnps` from `ropensnp`, and haven't yet updated the CRAN version. But you can install from GitHub. 
 
-## Install development versions using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
+## Install 
+Install the development versions using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
 
 ```R
 install.packages("devtools")
