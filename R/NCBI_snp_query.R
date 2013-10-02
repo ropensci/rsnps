@@ -80,7 +80,8 @@ NCBI_snp_query <- function(SNPs) {
   
   out <- NULL
   
-  for( i in 1:(length(xml_list)-1) ) {
+#   for( i in 1:(length(xml_list)-1) ) {
+  for( i in seq_along(SNPs) ) {
     
     my_list <- xml_list[[i]]
     my_chr <- tryget(my_list$Assembly$Component$.attrs["chromosome"])

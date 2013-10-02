@@ -1,0 +1,124 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{An R Markdown Vignette made with knitr}
+-->
+
+rsnps tutorial
+==========
+
+### Install and load library
+
+```{r install, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+install_github("rsnps", "ropensci")
+```
+
+
+```{r install, message=FALSE, warning=FALSE}
+library(rsnps)
+```
+
+### Get genotype data for all users at a particular snp.
+
+```{r allgensnp, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+allgensnp(snp='rs7412')
+allgensnp('rs7412', df=TRUE)
+```
+
+### Get all phenotypes, their variations, and how many users have data available for a given phenotype.
+
+Get all data
+
+```{r allphenotypes1, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+allphenotypes(df = TRUE)
+```
+
+Output a list, then call the characterisitc of interest by 'id' or 'characteristic'
+ 
+```{r allphenotypes2, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+datalist <- allphenotypes()
+names(datalist) # get list of all characteristics you can call
+datalist[["ADHD"]] # get data.frame for 'ADHD'
+datalist[c("mouth size","SAT Writing")] # get data.frame for 'ADHD' 
+```
+
+### Get annotations for a given snp.
+
+Get just the metadata
+
+```{r annotations1, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+annotations(snp = 'rs7903146', output = 'metadata')
+```
+
+Just from PLOS journals
+
+```{r annotations2, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+annotations(snp = 'rs7903146', output = 'plos')
+```
+
+Just from SNPedia
+
+```{r annotations3, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+annotations(snp = 'rs7903146', output = 'snpedia')
+```
+
+Get all annotations
+
+```{r annotations4, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+annotations(snp = 'rs7903146', output = 'all')
+```
+
+### Download genotype data for a user from 23andme or other repo.
+
+```{r allgensnp, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+data <- users(df=TRUE)
+head( data[[1]] ) # users with links to genome data
+fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], rows=15)
+```
+
+### Get genotype data for one or multiple users.
+
+```{r genotypes, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+genotypes(snp='rs9939609', userid=1)
+genotypes('rs9939609', userid='1,6,8', df=TRUE)
+genotypes('rs9939609', userid='1-2', df=FALSE)
+```
+
+### Get phenotype data for one or multiple users.
+
+```{r phenotypes, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+phenotypes(userid=1)
+phenotypes(userid='1,6,8', df=TRUE)
+phenotypes(userid='1-8', df=TRUE)
+```
+
+### Get all known variations and all users sharing that phenotype for one phenotype(-ID).
+
+```{r phenotypes_byid, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+phenotypes_byid(phenotypeid=12, return_ = 'desc')
+phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
+phenotypes_byid(phenotypeid=12, return_ = 'users')
+```
+
+### Get openSNP users.
+
+```{r users, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+data <- users(df=FALSE)
+data[1:2]
+```
+
+### Search for SNPs in Linkage Disequilibrium with a set of SNPs 
+
+```{r LDSearch, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+LDSearch("rs420358")
+```
+
+### Query NCBI's dbSNP for information on a set of SNPs
+
+An example with both merged SNPs, non-SNV SNPs, regular SNPs, SNPs not found, microsatellite
+
+```{r phenotypes_byid, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
+NCBI_snp_query(snps)
+```

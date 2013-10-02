@@ -18,4 +18,5 @@
 \description{
   Swap Elements in a Vector
 }
+\keyword{internal}
 

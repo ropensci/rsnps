@@ -4,6 +4,8 @@
 #' @param from A vector of elements to map from.
 #' @param to A vector of elements to map to.
 #' @param ... Optional arguments passed to \code{\link{match}}.
+#' @export
+#' @keywords internal
 swap <- function( vec, from, to=names(from), ... ) {
   tmp <- to[ match( vec, from, ... ) ]
   tmp[ is.na(tmp) ] <- vec[ is.na(tmp) ]
@@ -16,6 +18,8 @@ swap <- function( vec, from, to=names(from), ... ) {
 #' @param SNP A vector of genotypes for a particular locus.
 #' @param sep The separator between each allele.
 #' @param outSep The output separator to use.
+#' @export
+#' @keywords internal
 flip <- function( SNP, sep="", outSep=sep ) {
   
   base1 <- c("A","C","G","T")
@@ -50,6 +54,8 @@ flip <- function( SNP, sep="", outSep=sep ) {
 #' character-by-character.
 #' @param names optional: a vector of names to pass to the returned \code{data.frame}.
 #' @seealso \code{\link{strsplit}}
+#' @export
+#' @keywords internal
 split_to_df <- function(x, sep, fixed=FALSE, perl=TRUE, useBytes=FALSE, names=NULL) {
   
   x <- as.character(x)
@@ -77,6 +83,10 @@ split_to_df <- function(x, sep, fixed=FALSE, perl=TRUE, useBytes=FALSE, names=NU
   return(tmp)
 }
 
+#' Tryget
+#' 
+#' @export
+#' @keywords internal
 tryget <- function(x) {
   return( tryCatch( return(x), error=function(e) return(NA) ) )
 }

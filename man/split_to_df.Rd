@@ -35,4 +35,5 @@
 \seealso{
   \code{\link{strsplit}}
 }
+\keyword{internal}
 

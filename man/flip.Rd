@@ -14,4 +14,5 @@
 \description{
   Given a set of genotypes, flip them.
 }
+\keyword{internal}
 
