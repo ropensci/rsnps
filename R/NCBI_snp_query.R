@@ -56,16 +56,31 @@ NCBI_snp_query <- function(SNPs) {
   
   xml <- getURL( query )
   xml_parsed <- xmlInternalTreeParse( xml )
-  xml_list <- xmlToList( xml_parsed )
+  xml_list_ <- xmlToList( xml_parsed )
+  
+  ## we don't need the last element; it's just metadata
+  xml_list <- xml_list_[ 1:(length(xml_list_)-1) ]
   
   ## Check which rs numbers were found, and warn if one was not found
+  ## one thing that makes our life difficult: there can be multiple
+  ## XML entries with the same name. make sure we go through all of them
   found_snps <- unname( unlist( sapply( xml_list, function(x) {
+    
     ## check if the SNP is either in the current rsId, or the merged SNP list
-    possible_names <- c( tryget( x$.attrs["rsId"] ),
-                         tryget( x$MergeHistory )
-                       )
+    attr_rsIds <- tryget( x$.attrs["rsId"] )
+    
+    merge_indices <- which( names(x) == "MergeHistory" )
+    if (length(merge_indices)) {
+      merge_rsIds <- sapply(x[merge_indices], "[[", "rsId")
+    } else {
+      merge_rsIds <- NULL
+    }
+    
+    possible_names <- c(attr_rsIds, merge_rsIds)
     return(possible_names)
+    
   }) ) )
+  
   found_snps <- found_snps[ !is.na(found_snps) ]
   found_snps <- paste( sep='', "rs", found_snps )
   
@@ -75,12 +90,11 @@ NCBI_snp_query <- function(SNPs) {
             )
   }
   SNPs <- SNPs[ SNPs %in% found_snps ]
-  ## The length of the xml list is equal to (num SNPs) + 1, as the last entry
-  ## is the schema location. So we iterate through items 1 to (n-1).'
   
-  out <- NULL
+  out <- as.data.frame( matrix(0, nrow=length(SNPs), ncol=10) )
+  names(out) <- c("Query", "Chromosome", "Marker", "Class", "Gene", "Alleles",
+    "Major", "Minor", "MAF", "BP")
   
-#   for( i in 1:(length(xml_list)-1) ) {
   for( i in seq_along(SNPs) ) {
     
     my_list <- xml_list[[i]]
@@ -134,22 +148,16 @@ NCBI_snp_query <- function(SNPs) {
     )
     if( is.null( my_pos ) ) my_pos <- NA
     
-    dat <- data.frame(
-      Query = SNPs[i],
-      Chromosome = as.integer(my_chr),
-      Marker = my_snp,
-      Class = unname(my_snpClass),
-      Gene = unname(my_gene),
-      Alleles = unname(alleles),
-      Major = unname(my_major),
-      Minor = unname(my_minor),
-      MAF = as.numeric(my_freq),
-      BP = as.integer(my_pos),
-      stringsAsFactors=FALSE
+    out[i, ] <- c( 
+      SNPs[i], as.integer(my_chr), my_snp, unname(my_snpClass),
+      unname(my_gene), unname(alleles), unname(my_major), unname(my_minor),
+      as.numeric(my_freq), as.integer(my_pos)
     )
     
-    out <- rbind( out, dat )      
-    
+  }
+  
+  for (nm in c("MAF", "BP")) {
+    out[, nm] <- as.numeric( out[, nm] )
   }
   
   return(out)
@@ -157,4 +165,5 @@ NCBI_snp_query <- function(SNPs) {
   ## NCBI limits to a maximum of 1 query per three seconds; we
   ## ensure that this limit is adhered to
   Sys.sleep(3)
+  
 }
