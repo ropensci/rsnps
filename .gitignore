@@ -1,1 +1,6 @@
+.gitignore
+.git
 .DS_Store
+.Rproj.user
+rsnps.Rproj
+.Rhistory
