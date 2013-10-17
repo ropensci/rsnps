@@ -6,7 +6,7 @@ We just changed this repo to `rsnps` from `ropensnp`, and haven't yet updated th
 ## Install 
 Install the development versions using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
 
-```R
+```coffee
 install.packages("devtools")
 require(devtools)
 install_github("rsnps", "rOpenSci")
@@ -26,8 +26,8 @@ See blog post about their API [here](http://opensnp.wordpress.com/2012/01/18/som
 
 
 + The Broad Institute SNP Annotation and Proxy Search
-	+ See \url{http://www.broadinstitute.org/mpg/snap/index.php} for more details
+	+ See [http://www.broadinstitute.org/mpg/snap/index.php](http://www.broadinstitute.org/mpg/snap/index.php) for more details
 
-
+---
 
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
