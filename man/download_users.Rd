@@ -1,0 +1,34 @@
+\name{download_users}
+\alias{download_users}
+\title{Download openSNP user files.}
+\usage{
+  download_users(name = NULL, id = NULL, dir = "~/")
+}
+\arguments{
+  \item{name}{User name}
+
+  \item{id}{User id}
+
+  \item{dir}{Directory to save file to}
+}
+\value{
+  File downloaded to directory you specify (or default),
+  nothing returned in R.
+}
+\description{
+  Download openSNP user files.
+}
+\examples{
+\dontrun{
+# Download a single user file, by id
+download_users(id = 14)
+
+# Download a single user file, by user name
+download_users(name = 'kevinmcc')
+
+# Download many user files
+lapply(c(14,22), function(x) download_users(id=x))
+read_users(id=14, nrows=5)
+}
+}
+

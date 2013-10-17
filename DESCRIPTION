@@ -34,3 +34,4 @@ Collate:
     'LDSearch.R'
     'NCBI_snp_query.R'
     'utils.R'
+    'download_users.R'
