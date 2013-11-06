@@ -23,8 +23,9 @@ This set of functions/package will access data from:
 	+ Relavant functions:
 		+ `allgensnp`, `allphenotypes`, `annotations`, `download_users`, `fetch_genotypes`, `genotypes`, `phenotypes`, `phenotypes_byid`, `users`
 
+
 + The Broad Institute SNP Annotation and Proxy Search
-	+ See \url{http://www.broadinstitute.org/mpg/snap/index.php} for more details
+	+ See [http://www.broadinstitute.org/mpg/snap/index.php](http://www.broadinstitute.org/mpg/snap/index.php) for more details
 	+ Relavant functions:
 		+ `LDSearch`
 
