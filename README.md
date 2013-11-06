@@ -7,7 +7,7 @@ rsnps
 ## Install 
 Install the development versions using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
 
-```R
+```coffee
 install.packages("devtools")
 require(devtools)
 install_github("rsnps", "rOpenSci")
@@ -31,7 +31,7 @@ This set of functions/package will access data from:
 		+ `LDSearch`
 
 + NCBI's dbSNP SNP database
-	+ See \url{http://www.ncbi.nlm.nih.gov/snp} for more details
+	+ See [http://www.ncbi.nlm.nih.gov/snp](http://www.ncbi.nlm.nih.gov/snp) for more details
 	+ Relavant functions:
 		+ `NCBI_snp_query`
 
