@@ -1,4 +1,5 @@
-# `rsnps`
+rsnps
+=======
 
 ## NOTE
 `rsnps` used to be `ropensnp` - we haven't yet updated the CRAN version. But you can install from GitHub. 
@@ -39,3 +40,7 @@ This set of functions/package will access data from:
 ```coffee
 "coming soon..."
 ```
+
+---
+
+[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
