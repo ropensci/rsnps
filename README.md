@@ -1,6 +1,8 @@
 rsnps
 =======
 
+[![Build Status](https://api.travis-ci.org/ropensci/rsnps.png)](https://travis-ci.org/ropensci/rsnps)
+
 ## NOTE
 `rsnps` used to be `ropensnp` - we haven't yet updated the CRAN version. But you can install from GitHub. 
 
