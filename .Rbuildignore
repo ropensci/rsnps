@@ -4,3 +4,4 @@
 ^\.Rproj\.user$
 README.md
 .travis.yml
+tests/test-all.R

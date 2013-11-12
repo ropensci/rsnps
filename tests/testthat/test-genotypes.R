@@ -10,5 +10,6 @@ test_that("genotypes returns the correct dims for data.frame", {
 })
 
 test_that("genotypes returns the correct value", {
-	expect_that(genotypes('rs9939609', userid='1,6,8', df=TRUE)[2,4], matches("Nash Parovoz"))
+	expect_that(as.character(genotypes('rs9939609', userid='1,6,8', df=TRUE)[2,4]), 
+              matches("Nash Parovoz"))
 })
