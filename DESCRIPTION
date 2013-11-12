@@ -1,6 +1,6 @@
 Package: rsnps
 Version: 0.0.5
-Date: 2013-10-02
+Date: 2013-11-11
 Description: A programmatic interface to various SNP datasets.
 Title: Interface to SNP data on the web.
 License: CC0

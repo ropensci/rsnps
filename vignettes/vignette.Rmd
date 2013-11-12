@@ -1,0 +1,6 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{rsnps vignette}
+-->
+
+Check out the vignette for the rsnps package at [http://ropensci.org/tutorials/rsnps_tutorial.html](http://ropensci.org/tutorials/rsnps_tutorial.html)

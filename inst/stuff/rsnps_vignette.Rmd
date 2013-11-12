@@ -1,12 +1,20 @@
 <!--
 %\VignetteEngine{knitr}
-%\VignetteIndexEntry{An R Markdown Vignette made with knitr}
+%\VignetteIndexEntry{rsnps vignette}
 -->
 
 rsnps tutorial
 ==========
 
 ### Install and load library
+
+When available on CRAN
+
+```{r install, eval=FALSE}
+install.packages("rsnps")
+```
+
+Or get from Github
 
 ```{r install, eval=FALSE}
 install.packages("devtools")
