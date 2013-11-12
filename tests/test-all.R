@@ -1,2 +1,2 @@
 library(testthat)
-test_check("rsnps")
+test_package("rsnps")
