@@ -97,7 +97,9 @@
 #' \item \code{BP_NCBI:} The chromosomal position, in base pairs, of the marker, 
 #' as aligned with the current genome used by dbSNP.
 #' }
-#' @examples \dontrun{LDSearch("rs420358")}
+#' @examples \dontrun{
+#' LDSearch("rs420358")
+#' }
 #' @export
 LDSearch <- function( SNPs,
                       dataset="onekgpilot",

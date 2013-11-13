@@ -4,8 +4,7 @@
 		available for a given phenotype.}
 \usage{
   annotations(snp = NA,
-    output = c("all", "plos", "mendeley", "snpedia", "metadata"),
-    url = "http://opensnp.org/snps/json/annotation/")
+    output = c("all", "plos", "mendeley", "snpedia", "metadata"))
 }
 \arguments{
   \item{snp}{SNP name.}
@@ -14,8 +13,6 @@
   annotations from (options are: 'plos', 'mendeley',
   'snpedia', 'metadata'). 'metadata' gives the metadata for
   the response.}
-
-  \item{url}{Base URL for API method; leave unchanged.}
 }
 \value{
   Data.frame of results.

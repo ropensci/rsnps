@@ -2,8 +2,7 @@
 \alias{genotypes}
 \title{Get genotype data for one or multiple users.}
 \usage{
-  genotypes(snp = NA, userid = NA, df = FALSE,
-    url = "http://opensnp.org/snps/json/")
+  genotypes(snp = NA, userid = NA, df = FALSE)
 }
 \arguments{
   \item{snp}{SNP name.}
@@ -12,8 +11,6 @@
 
   \item{df}{Return data.frame (TRUE) or not (FALSE) -
   default = FALSE.}
-
-  \item{url}{Base URL for API method; leave unchanged.}
 }
 \value{
   List (or data.frame) of genotypes for specified user(s)

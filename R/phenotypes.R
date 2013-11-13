@@ -3,7 +3,6 @@
 #' @import RJSONIO plyr
 #' @param userid ID of openSNP user. 
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
-#' @param url Base URL for API method; leave unchanged. 
 #' @return List of phenotypes for specified user(s).
 #' @export 
 #' @examples \dontrun{
@@ -15,9 +14,9 @@
 #' library(plyr)
 #' ldply(phenotypes(userid='1-8', df=TRUE))
 #' }
-phenotypes <- function(userid = NA, df = FALSE, 
-			url = "http://opensnp.org/phenotypes/json/") 
+phenotypes <- function(userid = NA, df = FALSE)
 {
+  url = "http://opensnp.org/phenotypes/json/"
   url2 <- paste(url, userid, '.json', sep='')
   message(url2)
   out <- fromJSON(url2)
@@ -25,7 +24,7 @@ phenotypes <- function(userid = NA, df = FALSE,
   outdf <- list()
   if(df == TRUE)
   {
-  	for(i in 1:length(out)) {
+  	for(i in seq_along(out)) {
   		if( class(try(out[[i]][[2]], silent=T)) == "try-error"){
   			df <- data.frame("no data", "no data", "no data")
   			names(df) <- c("phenotype","phenotypeID","variation")

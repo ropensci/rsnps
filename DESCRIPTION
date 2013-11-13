@@ -1,8 +1,11 @@
 Package: rsnps
 Version: 0.0.5
-Date: 2013-11-11
-Description: A programmatic interface to various SNP datasets.
-Title: Interface to SNP data on the web.
+Date: 2013-11-13
+Description: This package is a programmatic interface to various SNP datasets
+    on the web: openSNP, NBCI's dbSNP database, and Broad Institute SNP
+    Annotation and Proxy Search. This package started as a library to
+    interact with openSNP alone, so most functions deal with openSNP.
+Title: Get SNP (Single-Nucleotide Polymorphism) data on the web.
 License: CC0
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),

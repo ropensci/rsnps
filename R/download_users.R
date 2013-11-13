@@ -36,8 +36,8 @@ download_users <- function(name = NULL, id = NULL, dir = "~/")
   dir2 <- paste(dir, fileend, '.txt', sep="")
   download.file(fileurl, dir2)
   
-  assign(as.character(meta[,1]), dir2, envir = rsnps:::rsnpsCache) # name
-  assign(as.character(meta[,2]), dir2, envir = rsnps:::rsnpsCache) # id
+  assign(as.character(meta[,1]), dir2, envir = rsnps::rsnpsCache) # name
+  assign(as.character(meta[,2]), dir2, envir = rsnps::rsnpsCache) # id
   
   message(sprintf("File downloaded - saved to %s", dir2))
 }
@@ -72,7 +72,7 @@ read_users <- function(name = NULL, id = NULL, path = NULL, ...)
     dir <- path
   } else
   {
-    cache <- mget(ls(rsnps:::rsnpsCache), envir=rsnps:::rsnpsCache)
+    cache <- mget(ls(rsnps::rsnpsCache), envir=rsnps::rsnpsCache)
     by <- compact(list(name=name, id=id))
     dir <- cache[names(cache) %in% by[[1]]][[1]]
   }
@@ -82,5 +82,7 @@ read_users <- function(name = NULL, id = NULL, path = NULL, ...)
   dat
 }
 
-# rsnps environment
+#' rsnps environment
+#' @export
+#' @keywords internal
 rsnpsCache <- new.env(hash=TRUE)
