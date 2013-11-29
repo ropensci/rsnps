@@ -132,4 +132,32 @@ $variation
 
 ---
 
+Please report any issues or bugs](https://github.com/ropensci/rsnps/issues).
+
+License: CC0
+
+This package is part of the [rOpenSci](http://ropensci.org/packages) project.
+
+To cite package `rsnps` in publications use:
+
+```coffee
+To cite package ‘rsnps’ in publications use:
+
+  Scott Chamberlain and Kevin Ushey (2013). rsnps: Get SNP
+  (Single-Nucleotide Polymorphism) data on the web.. R package version
+  0.0.5. https://github.com/ropensci/rsnps
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {rsnps: Get SNP (Single-Nucleotide Polymorphism) data on the web.},
+    author = {Scott Chamberlain and Kevin Ushey},
+    year = {2013},
+    note = {R package version 0.0.5},
+    url = {https://github.com/ropensci/rsnps},
+  }
+```
+
+Get citation information for `rsnps` in R doing `citation(package = 'rsnps')`
+
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
