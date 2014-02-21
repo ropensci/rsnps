@@ -6,7 +6,7 @@ Description: This package is a programmatic interface to various SNP datasets
     Annotation and Proxy Search. This package started as a library to
     interact with openSNP alone, so most functions deal with openSNP.
 Title: Get SNP (Single-Nucleotide Polymorphism) data on the web.
-License: MIT + file LICENSE 
+License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"),
@@ -15,7 +15,6 @@ Authors@R: c(
 URL: https://github.com/ropensci/rsnps
 BugReports: https://github.com/ropensci/rsnps/issues
 Imports:
-    RJSONIO,
     plyr,
     stringr,
     httr,

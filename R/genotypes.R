@@ -1,6 +1,6 @@
 #' Get genotype data for one or multiple users.
 #'
-#' @import RJSONIO plyr stringr
+#' @import httr plyr stringr
 #' @param snp SNP name.
 #' @param userid ID of openSNP user. 
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
