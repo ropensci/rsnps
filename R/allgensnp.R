@@ -18,7 +18,6 @@ allgensnp <- function(snp = NA, df = FALSE)
   res <- GET(url2)
   stop_for_status(res)
   out <- content(res)
-  #   out <- fromJSON(paste(url, snp, '.json', sep=''))
   if(df == TRUE)
   {
     df <- ldply(out, function(x) t(data.frame(unlist(x), stringsAsFactors = FALSE)))

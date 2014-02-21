@@ -1,6 +1,6 @@
 #' Get openSNP users.
 #'
-#' @import RJSONIO plyr
+#' @import httr plyr
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
 #' @return List of openSNP users, their ID numbers, and XX if available.
 #' @export 
@@ -14,19 +14,22 @@
 #' data[[1]] # users with links to genome data
 #' data[[2]] # users without links to genome data
 #' }
+
 users <- function(df = FALSE) 
 {
   url = "http://opensnp.org/users.json"
-  users_ <- fromJSON(url)
-  if(df == FALSE){users_} else
+  res <- GET(url)
+  stop_for_status(res)
+  users_ <- content(res)
+  if(!df){ users_ } else
   {
     lengths <- laply(users_, function(x) length(unlist(x)))
     getdffive <- function(x) {
-      if(length(unlist(x)) == 5) data.frame(x)
-      }
+      if(length(unlist(x)) == 5) data.frame(x, stringsAsFactors = FALSE)
+    }
     getdftwo <- function(x) {
-      if(length(unlist(x)) == 2) data.frame(x[1:2])
-      }
+      if(length(unlist(x)) == 2) data.frame(x[1:2], stringsAsFactors = FALSE)
+    }
     withlinks <- ldply(users_, getdffive)
     withoutlinks <- ldply(users_, getdftwo)
     list(withlinks, withoutlinks)
