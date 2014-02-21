@@ -2,7 +2,7 @@
 \alias{phenotypes}
 \title{Get phenotype data for one or multiple users.}
 \usage{
-  phenotypes(userid = NA, df = FALSE)
+phenotypes(userid = NA, df = FALSE)
 }
 \arguments{
   \item{userid}{ID of openSNP user.}
@@ -11,10 +11,10 @@
   default = FALSE.}
 }
 \value{
-  List of phenotypes for specified user(s).
+List of phenotypes for specified user(s).
 }
 \description{
-  Get phenotype data for one or multiple users.
+Get phenotype data for one or multiple users.
 }
 \examples{
 \dontrun{

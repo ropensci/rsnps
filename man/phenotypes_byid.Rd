@@ -2,8 +2,8 @@
 \alias{phenotypes_byid}
 \title{Get all known variations and all users sharing that phenotype for one phenotype(-ID).}
 \usage{
-  phenotypes_byid(phenotypeid = NA,
-    return_ = c("description", "knownvars", "users"))
+phenotypes_byid(phenotypeid = NA, return_ = c("description", "knownvars",
+  "users"))
 }
 \arguments{
   \item{phenotypeid}{ID of openSNP phenotype.}
@@ -12,13 +12,13 @@
   default = FALSE.}
 }
 \value{
-  List of description of phenotype, list of known variants,
-  or data.frame of variants for each user with that
-  phenotype.
+List of description of phenotype, list of known variants,
+or data.frame of variants for each user with that
+phenotype.
 }
 \description{
-  Get all known variations and all users sharing that
-  phenotype for one phenotype(-ID).
+Get all known variations and all users sharing that
+phenotype for one phenotype(-ID).
 }
 \examples{
 \dontrun{

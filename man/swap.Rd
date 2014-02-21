@@ -2,7 +2,7 @@
 \alias{swap}
 \title{Swap Elements in a Vector}
 \usage{
-  swap(vec, from, to = names(from), ...)
+swap(vec, from, to = names(from), ...)
 }
 \arguments{
   \item{vec}{A character vector, or vector coercable to
@@ -16,7 +16,7 @@
   \code{\link{match}}.}
 }
 \description{
-  Swap Elements in a Vector
+Swap Elements in a Vector
 }
 \keyword{internal}
 

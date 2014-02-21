@@ -3,7 +3,7 @@
 \title{Get all phenotypes, their variations, and how many users have data
 		available for a given phenotype.}
 \usage{
-  allphenotypes(df = FALSE)
+allphenotypes(df = FALSE)
 }
 \arguments{
   \item{df}{Return a data.frame of all data. The column
@@ -12,12 +12,12 @@
   replicated in the data.frame. (default = FALSE)}
 }
 \value{
-  Data.frame of results.
+Data.frame of results.
 }
 \description{
-  Either return data.frame with all results, or output a
-  list, then call the charicteristic by id (paramater =
-  "id") or name (paramater = "characteristic").
+Either return data.frame with all results, or output a
+list, then call the charicteristic by id (paramater = "id")
+or name (paramater = "characteristic").
 }
 \examples{
 \dontrun{

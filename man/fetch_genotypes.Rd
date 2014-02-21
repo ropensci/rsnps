@@ -2,7 +2,7 @@
 \alias{fetch_genotypes}
 \title{Download genotype data for a user from 23andme or other repo.}
 \usage{
-  fetch_genotypes(url = url, rows = NULL)
+fetch_genotypes(url = url, rows = NULL)
 }
 \arguments{
   \item{url}{URL for the download. See example below of
@@ -12,11 +12,11 @@
   a glimpse of the data.}
 }
 \value{
-  Dataset for a single user.
+Dataset for a single user.
 }
 \description{
-  Download genotype data for a user from 23andme or other
-  repo.
+Download genotype data for a user from 23andme or other
+repo.
 }
 \examples{
 \dontrun{

@@ -2,10 +2,10 @@
 \alias{tryget}
 \title{Tryget}
 \usage{
-  tryget(x)
+tryget(x)
 }
 \description{
-  Tryget
+Tryget
 }
 \keyword{internal}
 

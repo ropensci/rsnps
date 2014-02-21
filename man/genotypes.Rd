@@ -2,7 +2,7 @@
 \alias{genotypes}
 \title{Get genotype data for one or multiple users.}
 \usage{
-  genotypes(snp = NA, userid = NA, df = FALSE)
+genotypes(snp = NA, userid = NA, df = FALSE)
 }
 \arguments{
   \item{snp}{SNP name.}
@@ -13,11 +13,11 @@
   default = FALSE.}
 }
 \value{
-  List (or data.frame) of genotypes for specified user(s)
-  at a certain SNP.
+List (or data.frame) of genotypes for specified user(s) at
+a certain SNP.
 }
 \description{
-  Get genotype data for one or multiple users.
+Get genotype data for one or multiple users.
 }
 \examples{
 \dontrun{

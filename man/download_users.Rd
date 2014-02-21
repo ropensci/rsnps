@@ -2,7 +2,7 @@
 \alias{download_users}
 \title{Download openSNP user files.}
 \usage{
-  download_users(name = NULL, id = NULL, dir = "~/")
+download_users(name = NULL, id = NULL, dir = "~/")
 }
 \arguments{
   \item{name}{User name}
@@ -12,11 +12,11 @@
   \item{dir}{Directory to save file to}
 }
 \value{
-  File downloaded to directory you specify (or default),
-  nothing returned in R.
+File downloaded to directory you specify (or default),
+nothing returned in R.
 }
 \description{
-  Download openSNP user files.
+Download openSNP user files.
 }
 \examples{
 \dontrun{

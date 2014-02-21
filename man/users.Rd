@@ -2,18 +2,18 @@
 \alias{users}
 \title{Get openSNP users.}
 \usage{
-  users(df = FALSE)
+users(df = FALSE)
 }
 \arguments{
   \item{df}{Return data.frame (TRUE) or not (FALSE) -
   default = FALSE.}
 }
 \value{
-  List of openSNP users, their ID numbers, and XX if
-  available.
+List of openSNP users, their ID numbers, and XX if
+available.
 }
 \description{
-  Get openSNP users.
+Get openSNP users.
 }
 \examples{
 \dontrun{

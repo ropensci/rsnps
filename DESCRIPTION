@@ -25,16 +25,3 @@ Suggests:
     roxygen2,
     testthat,
     rjson
-Collate:
-    'genotypes.R'
-    'users.R'
-    'allgensnp.R'
-    'phenotypes.R'
-    'fetch_genotypes.R'
-    'allphenotypes.R'
-    'annotations.R'
-    'phenotypes_byid.R'
-    'LDSearch.R'
-    'NCBI_snp_query.R'
-    'utils.R'
-    'download_users.R'

@@ -2,8 +2,8 @@
 \alias{split_to_df}
 \title{Split a Vector of Strings Following a Regular Structure}
 \usage{
-  split_to_df(x, sep, fixed = FALSE, perl = TRUE,
-    useBytes = FALSE, names = NULL)
+split_to_df(x, sep, fixed = FALSE, perl = TRUE, useBytes = FALSE,
+  names = NULL)
 }
 \arguments{
   \item{x}{a vector of strings.}
@@ -25,15 +25,14 @@
   returned \code{data.frame}.}
 }
 \description{
-  This function takes a vector of strings following a
-  regular structure, and converts that vector into a
-  \code{data.frame}, split on that delimiter. A nice
-  wrapper to \code{\link{strsplit}}, essentially - the
-  primary bonus is the automatic coersion to a
-  \code{data.frame}.
+This function takes a vector of strings following a regular
+structure, and converts that vector into a
+\code{data.frame}, split on that delimiter. A nice wrapper
+to \code{\link{strsplit}}, essentially - the primary bonus
+is the automatic coersion to a \code{data.frame}.
 }
 \seealso{
-  \code{\link{strsplit}}
+\code{\link{strsplit}}
 }
 \keyword{internal}
 

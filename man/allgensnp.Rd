@@ -2,7 +2,7 @@
 \alias{allgensnp}
 \title{Get genotype data for all users at a particular snp.}
 \usage{
-  allgensnp(snp = NA, df = FALSE)
+allgensnp(snp = NA, df = FALSE)
 }
 \arguments{
   \item{snp}{SNP name.}
@@ -11,11 +11,11 @@
   default = FALSE.}
 }
 \value{
-  List of genotypes for all users at a certain SNP, or
-  data.frame
+List of genotypes for all users at a certain SNP, or
+data.frame
 }
 \description{
-  Get genotype data for all users at a particular snp.
+Get genotype data for all users at a particular snp.
 }
 \examples{
 \dontrun{

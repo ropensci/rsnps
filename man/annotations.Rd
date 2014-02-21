@@ -3,8 +3,8 @@
 \title{Get all phenotypes, their variations, and how many users have data
 		available for a given phenotype.}
 \usage{
-  annotations(snp = NA,
-    output = c("all", "plos", "mendeley", "snpedia", "metadata"))
+annotations(snp = NA, output = c("all", "plos", "mendeley", "snpedia",
+  "metadata"))
 }
 \arguments{
   \item{snp}{SNP name.}
@@ -15,12 +15,12 @@
   the response.}
 }
 \value{
-  Data.frame of results.
+Data.frame of results.
 }
 \description{
-  Either return data.frame with all results, or output a
-  list, then call the charicteristic by id (paramater =
-  "id") or name (paramater = "characteristic").
+Either return data.frame with all results, or output a
+list, then call the charicteristic by id (paramater = "id")
+or name (paramater = "characteristic").
 }
 \examples{
 \dontrun{
