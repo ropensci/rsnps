@@ -12,7 +12,7 @@ allphenotypes(df = FALSE)
   replicated in the data.frame. (default = FALSE)}
 }
 \value{
-Data.frame of results.
+Data.frame of results, or list if df=FALSE
 }
 \description{
 Either return data.frame with all results, or output a

@@ -8,7 +8,8 @@
 #' @param df Return a data.frame of all data. The column known_variations 
 #' 		can take multiple values, so the other columns id, characteristic, and 
 #' 		number_of_users are replicated in the data.frame. (default = FALSE)
-#' @return Data.frame of results.
+#' @return Data.frame of results, or list if df=FALSE
+#' @export 
 #' @examples \dontrun{
 #' # Get all data
 #' allphenotypes(df = TRUE)
@@ -19,20 +20,22 @@
 #' datalist[["ADHD"]] # get data.frame for 'ADHD'
 #' datalist[c("mouth size","SAT Writing")] # get data.frame for 'ADHD' 
 #' }
-#' @export 
+
 allphenotypes <- function(df = FALSE) 
 {
-	url = "http://opensnp.org/phenotypes.json"
-	out <- content(GET(url))
-	if(df == TRUE){
-		ldply(out, function(x) data.frame(do.call(cbind, x)))
-	} else
-		{
-			myfunc <- function(x) str_replace_all(x, "\\(|\\)", "")
-			out <- llply(out, function(y) llply(y, myfunc))
-			temp <- llply(out, function(x) data.frame(do.call(cbind, x)))
-			cs <- str_replace_all(sapply(out, function(x) x$characteristic), '\\(|\\)', '')
-			names(temp) <- cs
-			temp
-		}
+  url = "http://opensnp.org/phenotypes.json"
+  res <- GET(url)
+  stop_for_status(res)
+  out <- content(res)
+  if(df == TRUE){
+    ldply(out, function(x) data.frame(do.call(cbind, x), stringsAsFactors = FALSE))
+  } else
+  {
+    myfunc <- function(x) str_replace_all(x, "\\(|\\)", "")
+    out <- llply(out, function(y) llply(y, myfunc))
+    temp <- llply(out, function(x) data.frame(do.call(cbind, x), stringsAsFactors = FALSE))
+    cs <- str_replace_all(sapply(out, function(x) x$characteristic), '\\(|\\)', '')
+    names(temp) <- cs
+    temp
+  }
 }
