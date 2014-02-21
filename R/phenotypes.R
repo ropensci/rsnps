@@ -1,6 +1,6 @@
 #' Get phenotype data for one or multiple users.
 #'
-#' @import RJSONIO plyr
+#' @import httr plyr
 #' @param userid ID of openSNP user. 
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
 #' @return List of phenotypes for specified user(s).
@@ -12,40 +12,51 @@
 #' 
 #' # coerce to data.frame
 #' library(plyr)
-#' ldply(phenotypes(userid='1-8', df=TRUE))
+#' df <- ldply(phenotypes(userid='1-8', df=TRUE))
+#' head(df); tail(df)
 #' }
+
 phenotypes <- function(userid = NA, df = FALSE)
 {
   url = "http://opensnp.org/phenotypes/json/"
   url2 <- paste(url, userid, '.json', sep='')
   message(url2)
-  out <- fromJSON(url2)
+  res <- GET(url2)
+  stop_for_status(res)
+  out <- content(res)
   
-  outdf <- list()
-  if(df == TRUE)
-  {
-  	for(i in seq_along(out)) {
-  		if( class(try(out[[i]][[2]], silent=T)) == "try-error"){
-  			df <- data.frame("no data", "no data", "no data")
-  			names(df) <- c("phenotype","phenotypeID","variation")
-  			outdf[[paste("no info on user", i, sep="_")]] <- df
-  			} else
-  		{
-  			if( length(out[[i]][[2]]) == 0){
-  				df <- data.frame("no data", "no data", "no data")
-  				names(df) <- c("phenotype","phenotypeID","variation")
-  				outdf[[ out[[i]][[1]][["name"]] ]] <- df
-  			} else
-  				{
-  					df <- ldply(out[[i]][[2]], function(x) as.data.frame(x))
-  					names(df) <- c("phenotype","phenotypeID","variation")
-  					outdf[[ out[[i]][[1]][["name"]] ]] <- df
-  				}
-  		}
-  	}
-  	outdf
-  } else
-  	{out}
+  userid <- gsub("-", ",", userid)
+  
+  if(df) {
+    if(length(str_split(userid, ",")[[1]]) == 1){
+      tmp <- ldply(out[[2]], data.frame, stringsAsFactors=FALSE)
+      names(tmp) <- c("phenotype","phenotypeID","variation")
+      tmp
+    } else
+    {
+      outdf <- list()
+      for(i in seq_along(out)) {
+        if( class(try(out[[i]][[2]], silent=T)) == "try-error"){
+          df <- data.frame("no data", "no data", "no data")
+          names(df) <- c("phenotype","phenotypeID","variation")
+          outdf[[paste("no info on user", i, sep="_")]] <- df
+        } else
+        {
+          if( length(out[[i]][[2]]) == 0){
+            df <- data.frame("no data", "no data", "no data")
+            names(df) <- c("phenotype","phenotypeID","variation")
+            outdf[[ out[[i]][[1]][["name"]] ]] <- df
+          } else
+          {
+            df <- ldply(out[[i]][[2]], data.frame, stringsAsFactors=FALSE)
+            names(df) <- c("phenotype","phenotypeID","variation")
+            outdf[[ out[[i]][[1]][["name"]] ]] <- df
+          }
+        }
+      }
+      outdf
+    }
+  } else { out }
 }
 # outdf <- list()
 # x <- 1

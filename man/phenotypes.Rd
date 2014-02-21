@@ -24,7 +24,8 @@ phenotypes(userid='1-8', df=TRUE)
 
 # coerce to data.frame
 library(plyr)
-ldply(phenotypes(userid='1-8', df=TRUE))
+df <- ldply(phenotypes(userid='1-8', df=TRUE))
+head(df); tail(df)
 }
 }
 
