@@ -12,5 +12,5 @@ test_that("phenotypes_byid returns the correct dims for data.frame", {
 
 test_that("phenotypes_byid returns the correct value", {
 	expect_that(phenotypes_byid(phenotypeid=12, return_ = 'knownvars')$known_variations[1:2], 
-							equals(c("Red","Blonde")))
+							equals(list("Red","Blonde")))
 })

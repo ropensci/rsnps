@@ -4,7 +4,6 @@
 ^\.Rproj\.user$
 README.md
 .travis.yml
-tests/test-all.R
 travis-tool.sh
 Makefile
 vignettes/margins.sty
