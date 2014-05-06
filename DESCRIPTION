@@ -1,6 +1,6 @@
 Package: rsnps
-Version: 0.1.0
-Date: 2014-02-21
+Version: 0.1.2
+Date: 2014-05-06
 Description: This package is a programmatic interface to various SNP datasets
     on the web: openSNP, NBCI's dbSNP database, and Broad Institute SNP
     Annotation and Proxy Search. This package started as a library to
@@ -19,7 +19,8 @@ Imports:
     stringr,
     httr,
     RCurl,
-    XML
+    XML,
+    jsonlite
 Suggests:
     roxygen2,
     testthat,

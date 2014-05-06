@@ -4,7 +4,7 @@
 #' Either return data.frame with all results, or output a list, then call 
 #' 		the charicteristic by id (paramater = "id") or name (paramater = "characteristic").
 #'
-#' @import httr plyr stringr
+#' @import httr plyr stringr jsonlite
 #' @param df Return a data.frame of all data. The column known_variations 
 #' 		can take multiple values, so the other columns id, characteristic, and 
 #' 		number_of_users are replicated in the data.frame. (default = FALSE)
@@ -26,15 +26,17 @@ allphenotypes <- function(df = FALSE)
   url = "http://opensnp.org/phenotypes.json"
   res <- GET(url)
   stop_for_status(res)
-  out <- content(res)
+  out <- content(res, as = "text")
+  out <- fromJSON(out, simplifyVector = FALSE)
   if(df == TRUE){
     ldply(out, function(x) data.frame(do.call(cbind, x), stringsAsFactors = FALSE))
   } else
   {
-    myfunc <- function(x) str_replace_all(x, "\\(|\\)", "")
-    out <- llply(out, function(y) llply(y, myfunc))
-    temp <- llply(out, function(x) data.frame(do.call(cbind, x), stringsAsFactors = FALSE))
-    cs <- str_replace_all(sapply(out, function(x) x$characteristic), '\\(|\\)', '')
+#     myfunc <- function(x) str_replace_all(x, "\\(|\\)", "")
+#     out <- 
+#       lapply(out, function(y) lapply(y, myfunc))
+    temp <- lapply(out, function(x) data.frame(do.call(cbind, x), stringsAsFactors = FALSE))
+    cs <- str_trim(str_replace_all(sapply(out, function(x) x$characteristic), '\\(|\\)', ''), side = "both")
     names(temp) <- cs
     temp
   }
