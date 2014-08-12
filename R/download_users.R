@@ -34,14 +34,19 @@ download_users <- function(name = NULL, id = NULL, dir = "~/")
   }
   fileend <- strsplit(fileurl, "/")[[1]][length(strsplit(fileurl, "/")[[1]])]
   dir2 <- paste(dir, fileend, '.txt', sep="")
-  download.file(fileurl, dir2)
-  
+  get_write(fileurl, dir2)
+
   assign(as.character(meta[,1]), dir2, envir = rsnps::rsnpsCache) # name
   assign(as.character(meta[,2]), dir2, envir = rsnps::rsnpsCache) # id
   
   message(sprintf("File downloaded - saved to %s", dir2))
 }
 
+get_write <- function(x, y){
+  res <- GET(x)
+  txt <- content(res, as = "text")
+  write(txt, file = y)
+}
 
 #' Read in openSNP user files from local storage.
 #'
