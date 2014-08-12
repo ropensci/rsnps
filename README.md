@@ -2,11 +2,12 @@ rsnps
 =======
 
 [![Build Status](https://api.travis-ci.org/ropensci/rsnps.png)](https://travis-ci.org/ropensci/rsnps)
+[![Build status](https://ci.appveyor.com/api/projects/status/d2lv98726u6t9ut5/branch/master)](https://ci.appveyor.com/project/sckott/rsnps/branch/master)
 
 ## NOTE
 `rsnps` used to be `ropensnp`
 
-## Install 
+## Install
 Install the development versions using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
 
 ```coffee
@@ -17,7 +18,7 @@ require(rsnps)
 ```
 
 ## Data sources
-This set of functions/package accesses data from: 
+This set of functions/package accesses data from:
 
 + openSNP.org
 	+ [Their website](http://opensnp.org/)
@@ -39,7 +40,7 @@ This set of functions/package accesses data from:
 
 ## Quick start
 
-### Search for SNPs in Linkage Disequilibrium 
+### Search for SNPs in Linkage Disequilibrium
 
 Using the Broad Institute data
 

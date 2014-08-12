@@ -7,3 +7,4 @@ README.md
 travis-tool.sh
 Makefile
 vignettes/margins.sty
+^appveyor\.yml$
