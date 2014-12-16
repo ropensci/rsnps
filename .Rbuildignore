@@ -8,3 +8,5 @@ travis-tool.sh
 Makefile
 vignettes/margins.sty
 ^appveyor\.yml$
+cran-comments.md
+test-all.R
