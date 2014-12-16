@@ -118,6 +118,8 @@ Information on the 1000 Genomes populations:
 \examples{
 \dontrun{
 LDSearch("rs420358")
+LDSearch('rs2836443')
+LDSearch('rs113196607')
 }
 }
 

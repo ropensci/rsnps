@@ -13,6 +13,7 @@
 #' Information on the 1000 Genomes populations:
 #' \url{http://www.1000genomes.org/category/frequently-asked-questions/population}
 #' 
+#' @export
 #' @import RCurl XML
 #' @param SNPs A vector of SNPs (rs numbers).
 #' @param dataset The dataset to query. Must be one of: \itemize{
@@ -99,8 +100,10 @@
 #' }
 #' @examples \dontrun{
 #' LDSearch("rs420358")
+#' LDSearch('rs2836443')
+#' LDSearch('rs113196607')
 #' }
-#' @export
+
 LDSearch <- function( SNPs,
                       dataset="onekgpilot",
                       panel="CEU",
