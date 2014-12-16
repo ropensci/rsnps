@@ -40,6 +40,12 @@
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' NCBI_snp_query(SNPs)
 #' NCBI_snp_query("123456") ##invalid: must prefix with 'rs'
+#' NCBI_snp_query("rs420358")
+#' NCBI_snp_query("rs332") # warning that its merged into another, try that
+#' NCBI_snp_query("rs121909001") 
+#' NCBI_snp_query("rs1837253")
+#' NCBI_snp_query("rs1209415715") # warning that no data available, returns 0 length data.frame
+#' NCBI_snp_query("rs111068718") # warning that chromosomal information may be unmapped
 #' }
 NCBI_snp_query <- function(SNPs) {
   
