@@ -52,7 +52,7 @@ NCBI_snp_query(SNPs)
 NCBI_snp_query("123456") ##invalid: must prefix with 'rs'
 }
 }
-\seealso{
+\references{
 \url{http://www.ncbi.nlm.nih.gov/projects/SNP/}
 }
 

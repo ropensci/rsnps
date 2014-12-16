@@ -33,7 +33,7 @@
 #' \item \code{BP:} The chromosomal position, in base pairs, of the marker, 
 #' as aligned with the current genome used by dbSNP.
 #' }
-#' @seealso \url{http://www.ncbi.nlm.nih.gov/projects/SNP/}
+#' @references \url{http://www.ncbi.nlm.nih.gov/projects/SNP/}
 #' @examples \dontrun{
 #' ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
 #' ## SNPs not found, microsatellite
