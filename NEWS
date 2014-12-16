@@ -1,3 +1,12 @@
+rsnps 0.1.4
+===============
+
+MINOR IMPROVEMENTS
+
+* Moved examples around, some now in `\donttest` so that functionality can be checked with `--run-donttest`. 
+* Bugs fixed in `LDSearch()`, which were actually bugs in `NCBI_snp_query()`. (#9)
+* Added additional tests for `LDSearch()` and `NCBI_snp_query()`.
+
 rsnps 0.1.0
 ===============
 
