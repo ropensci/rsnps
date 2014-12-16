@@ -26,6 +26,11 @@ Get all known variations and all users sharing that phenotype for one phenotype(
 phenotypes_byid(phenotypeid=12, return_ = 'desc')
 phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
 phenotypes_byid(phenotypeid=12, return_ = 'users')
+
+# pass on curl options
+library("httr")
+phenotypes_byid(phenotypeid=12, return_ = 'desc', config=c(verbose(), timeout(1)))
+phenotypes_byid(phenotypeid=12, return_ = 'desc', config=verbose())
 }
 }
 

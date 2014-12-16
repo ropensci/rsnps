@@ -11,6 +11,11 @@
 #' phenotypes_byid(phenotypeid=12, return_ = 'desc')
 #' phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
 #' phenotypes_byid(phenotypeid=12, return_ = 'users')
+#' 
+#' # pass on curl options
+#' library("httr")
+#' phenotypes_byid(phenotypeid=12, return_ = 'desc', config=c(verbose(), timeout(1)))
+#' phenotypes_byid(phenotypeid=12, return_ = 'desc', config=verbose())
 #' }
 
 phenotypes_byid <- function(phenotypeid = NA, return_ = c('description','knownvars','users'), ...)
