@@ -28,7 +28,7 @@ in the function download_users, and then searches against those variables for th
 path to the file saved. Alternatively, you can supply the path.
 }
 \examples{
-\donttest{
+\dontrun{
 dat <- read_users(name = "kevinmcc")
 head(dat)
 dat <- read_users(id = 285)
