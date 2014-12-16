@@ -122,18 +122,25 @@ NCBI_snp_query <- function(SNPs) {
       if( tmp[2] != "forward" ) {
         tmp[1] <- flip( tmp[1], sep="/" )
       }
-      alleles_split <- unlist( strsplit( tmp[1], "/" ) )
+      alleles_split <- strsplit( tmp[1], "/" )[[1]]
       
       ## check which of the two alleles grabbed is actually the minor allele
       ## we might have to 'flip' the minor allele if there is no match
       maf_allele <- my_list$Frequency['allele']
+      if(is.null(maf_allele)){
+        maf_allele <- alleles <- strsplit(my_list$Sequence$Observed, "/")[[1]]
+        my_major <- alleles[1]
+        my_minor <- alleles[2]
+        my_freq <- NA
+      } else {
+        my_minor <- alleles_split[ maf_allele == alleles_split ]
+        my_major <- alleles_split[ maf_allele != alleles_split ]        
+        my_freq <- my_list$Frequency["freq"]
+      }
       if( all(maf_allele != alleles_split) ) {
         maf_allele <- swap( maf_allele, c("A", "C", "G", "T"), c("T", "G", "C", "A") )
       }
-      
-      my_minor <- alleles_split[ maf_allele == alleles_split ]
-      my_major <- alleles_split[ maf_allele != alleles_split ]
-      my_freq <- my_list$Frequency["freq"]      
+
     } else { ## handle the others in a generic way; maybe specialize later
       my_minor <- NA
       my_major <- NA
@@ -150,7 +157,7 @@ NCBI_snp_query <- function(SNPs) {
     
     out[i, ] <- c( 
       SNPs[i], as.integer(my_chr), my_snp, unname(my_snpClass),
-      unname(my_gene), unname(alleles), unname(my_major), unname(my_minor),
+      unname(my_gene), paste0(unname(alleles),collapse=","), unname(my_major), unname(my_minor),
       as.numeric(my_freq), as.integer(my_pos)
     )
     
