@@ -15,7 +15,7 @@ Default is 10 rows.}
 \item{filepath}{If none is given the file is saved to a temporary file, which will
 be lost after your session is closed. Save to a file if you want to access it later.}
 
-\item{...}{Further args passed on to download.file}
+\item{...}{Further args passed on to \code{\link{download.file}}}
 }
 \value{
 Dataset for a single user.

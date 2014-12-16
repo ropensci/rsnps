@@ -5,12 +5,14 @@
 \title{Get all phenotypes, their variations, and how many users have data
 		available for a given phenotype.}
 \usage{
-allphenotypes(df = FALSE)
+allphenotypes(df = FALSE, ...)
 }
 \arguments{
 \item{df}{Return a data.frame of all data. The column known_variations
 can take multiple values, so the other columns id, characteristic, and
 number_of_users are replicated in the data.frame. (default = FALSE)}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
 }
 \value{
 Data.frame of results, or list if df=FALSE

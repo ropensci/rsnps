@@ -3,6 +3,7 @@
 #' @import httr plyr
 #' @param userid ID of openSNP user. 
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
+#' @param ... Curl options passed on to \code{\link[httr]{GET}}.
 #' @return List of phenotypes for specified user(s).
 #' @export 
 #' @examples \dontrun{
@@ -14,14 +15,19 @@
 #' library(plyr)
 #' df <- ldply(phenotypes(userid='1-8', df=TRUE))
 #' head(df); tail(df)
+#' 
+#' # pass on curl options
+#' library("httr")
+#' phenotypes(1, config=c(verbose(), timeout(1)))
+#' phenotypes(1, config=verbose())
 #' }
 
-phenotypes <- function(userid = NA, df = FALSE)
+phenotypes <- function(userid = NA, df = FALSE, ...)
 {
   url = "http://opensnp.org/phenotypes/json/"
   url2 <- paste(url, userid, '.json', sep='')
   message(url2)
-  res <- GET(url2)
+  res <- GET(url2, ...)
   stop_for_status(res)
   out <- content(res)
   

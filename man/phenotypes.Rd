@@ -4,12 +4,14 @@
 \alias{phenotypes}
 \title{Get phenotype data for one or multiple users.}
 \usage{
-phenotypes(userid = NA, df = FALSE)
+phenotypes(userid = NA, df = FALSE, ...)
 }
 \arguments{
 \item{userid}{ID of openSNP user.}
 
 \item{df}{Return data.frame (TRUE) or not (FALSE) - default = FALSE.}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
 }
 \value{
 List of phenotypes for specified user(s).
@@ -27,6 +29,11 @@ phenotypes(userid='1-8', df=TRUE)
 library(plyr)
 df <- ldply(phenotypes(userid='1-8', df=TRUE))
 head(df); tail(df)
+
+# pass on curl options
+library("httr")
+phenotypes(1, config=c(verbose(), timeout(1)))
+phenotypes(1, config=verbose())
 }
 }
 

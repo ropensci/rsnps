@@ -5,12 +5,14 @@
 \title{Get all known variations and all users sharing that phenotype for one phenotype(-ID).}
 \usage{
 phenotypes_byid(phenotypeid = NA, return_ = c("description", "knownvars",
-  "users"))
+  "users"), ...)
 }
 \arguments{
 \item{phenotypeid}{ID of openSNP phenotype.}
 
 \item{return_}{Return data.frame (TRUE) or not (FALSE) - default = FALSE.}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
 }
 \value{
 List of description of phenotype, list of known variants, or data.frame

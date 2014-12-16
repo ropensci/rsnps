@@ -4,10 +4,12 @@
 \alias{users}
 \title{Get openSNP users.}
 \usage{
-users(df = FALSE)
+users(df = FALSE, ...)
 }
 \arguments{
 \item{df}{Return data.frame (TRUE) or not (FALSE) - default = FALSE.}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
 }
 \value{
 List of openSNP users, their ID numbers, and XX if available.

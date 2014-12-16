@@ -9,6 +9,7 @@
 #' @param output Name the source or sources you want annotations from (options 
 #' 		are: 'plos', 'mendeley', 'snpedia', 'metadata'). 'metadata' gives the 
 #' 		metadata for the response.
+#' @param ... Curl options passed on to \code{\link[httr]{GET}}.
 #' @return Data.frame of results.
 #' @examples \dontrun{
 #' # Get all data
@@ -18,12 +19,12 @@
 #' annotations(snp = 'rs7903146', output = 'all') # get all annotations
 #' }
 #' @export 
-annotations <- function(snp = NA, output = c('all','plos','mendeley','snpedia','metadata')) 
+annotations <- function(snp = NA, output = c('all','plos','mendeley','snpedia','metadata'), ...) 
 {
   url = "http://opensnp.org/snps/json/annotation/"
   url2 <- paste(url, snp, '.json', sep='')
   message(url2)
-  res <- GET(url2)
+  res <- GET(url2, ...)
   stop_for_status(res)
   out <- content(res)
   source_ <- match.arg(output, c('all','plos','mendeley','snpedia','metadata'), FALSE)

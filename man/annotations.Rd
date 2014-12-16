@@ -6,7 +6,7 @@
 		available for a given phenotype.}
 \usage{
 annotations(snp = NA, output = c("all", "plos", "mendeley", "snpedia",
-  "metadata"))
+  "metadata"), ...)
 }
 \arguments{
 \item{snp}{SNP name.}
@@ -14,6 +14,8 @@ annotations(snp = NA, output = c("all", "plos", "mendeley", "snpedia",
 \item{output}{Name the source or sources you want annotations from (options
 are: 'plos', 'mendeley', 'snpedia', 'metadata'). 'metadata' gives the
 metadata for the response.}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
 }
 \value{
 Data.frame of results.

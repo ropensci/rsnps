@@ -3,6 +3,7 @@
 #' @param name User name
 #' @param id User id
 #' @param dir Directory to save file to
+#' @param ... Curl options passed on to \code{\link[httr]{GET}}.
 #' @return File downloaded to directory you specify (or default), nothing returned
 #' in R.
 #' @export
@@ -17,7 +18,7 @@
 #' lapply(c(14,22), function(x) download_users(id=x))
 #' read_users(id=14, nrows=5)
 #' }
-download_users <- function(name = NULL, id = NULL, dir = "~/")
+download_users <- function(name = NULL, id = NULL, dir = "~/", ...)
 {
   if(is.null(name) && is.null(id))
     stop("You must specify one of name or id")
@@ -34,7 +35,7 @@ download_users <- function(name = NULL, id = NULL, dir = "~/")
   }
   fileend <- strsplit(fileurl, "/")[[1]][length(strsplit(fileurl, "/")[[1]])]
   dir2 <- paste(dir, fileend, '.txt', sep="")
-  get_write(fileurl, dir2)
+  get_write(fileurl, dir2, ...)
 
   assign(as.character(meta[,1]), dir2, envir = rsnps::rsnpsCache) # name
   assign(as.character(meta[,2]), dir2, envir = rsnps::rsnpsCache) # id
@@ -42,8 +43,8 @@ download_users <- function(name = NULL, id = NULL, dir = "~/")
   message(sprintf("File downloaded - saved to %s", dir2))
 }
 
-get_write <- function(x, y){
-  res <- GET(x)
+get_write <- function(x, y, ...){
+  res <- GET(x, ...)
   txt <- content(res, as = "text")
   write(txt, file = y)
 }

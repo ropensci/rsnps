@@ -4,12 +4,14 @@
 \alias{allgensnp}
 \title{Get genotype data for all users at a particular snp.}
 \usage{
-allgensnp(snp = NA, df = FALSE)
+allgensnp(snp = NA, df = FALSE, ...)
 }
 \arguments{
 \item{snp}{SNP name.}
 
 \item{df}{Return data.frame (TRUE) or not (FALSE) - default = FALSE.}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
 }
 \value{
 List of genotypes for all users at a certain SNP, or data.frame

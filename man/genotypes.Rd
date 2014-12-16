@@ -4,7 +4,7 @@
 \alias{genotypes}
 \title{Get genotype data for one or multiple users.}
 \usage{
-genotypes(snp = NA, userid = NA, df = FALSE)
+genotypes(snp = NA, userid = NA, df = FALSE, ...)
 }
 \arguments{
 \item{snp}{SNP name.}
@@ -12,6 +12,8 @@ genotypes(snp = NA, userid = NA, df = FALSE)
 \item{userid}{ID of openSNP user.}
 
 \item{df}{Return data.frame (TRUE) or not (FALSE) - default = FALSE.}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
 }
 \value{
 List (or data.frame) of genotypes for specified user(s) at a certain SNP.

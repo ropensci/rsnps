@@ -4,7 +4,7 @@
 \alias{download_users}
 \title{Download openSNP user files.}
 \usage{
-download_users(name = NULL, id = NULL, dir = "~/")
+download_users(name = NULL, id = NULL, dir = "~/", ...)
 }
 \arguments{
 \item{name}{User name}
@@ -12,6 +12,8 @@ download_users(name = NULL, id = NULL, dir = "~/")
 \item{id}{User id}
 
 \item{dir}{Directory to save file to}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
 }
 \value{
 File downloaded to directory you specify (or default), nothing returned

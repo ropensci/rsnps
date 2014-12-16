@@ -8,6 +8,7 @@
 #' @param df Return a data.frame of all data. The column known_variations 
 #' 		can take multiple values, so the other columns id, characteristic, and 
 #' 		number_of_users are replicated in the data.frame. (default = FALSE)
+#' @param ... Curl options passed on to \code{\link[httr]{GET}}.   	
 #' @return Data.frame of results, or list if df=FALSE
 #' @export 
 #' @examples \dontrun{
@@ -21,10 +22,10 @@
 #' datalist[c("mouth size","SAT Writing")] # get data.frame for 'ADHD' 
 #' }
 
-allphenotypes <- function(df = FALSE) 
+allphenotypes <- function(df = FALSE, ...)
 {
   url = "http://opensnp.org/phenotypes.json"
-  res <- GET(url)
+  res <- GET(url, ...)
   stop_for_status(res)
   out <- content(res, as = "text")
   out <- fromJSON(out, simplifyVector = FALSE)
