@@ -5,6 +5,8 @@
 #' of SNPs submitted.
 #' 
 #' @param SNPs A vector of SNPs (rs numbers).
+#' @param ... Further named parameters passed on to \code{\link[httr]{config}} to debug curl.
+#' See examples.
 #' @export
 #' @return A dataframe with columns:
 #' \itemize{
@@ -34,6 +36,10 @@
 #' as aligned with the current genome used by dbSNP.
 #' }
 #' @references \url{http://www.ncbi.nlm.nih.gov/projects/SNP/}
+#' @details Note that you are limited in the number of SNPs you pass in to one request because
+#' URLs can only be so long. Around 600 is likely the max you can pass in, though may be somewhat
+#' more. Break up your vector of SNP codes into pieces of 600 or less and do repeated requests 
+#' to get all data.
 #' @examples \dontrun{
 #' ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
 #' ## SNPs not found, microsatellite
@@ -46,8 +52,17 @@
 #' NCBI_snp_query("rs1837253")
 #' NCBI_snp_query("rs1209415715") # warning that no data available, returns 0 length data.frame
 #' NCBI_snp_query("rs111068718") # warning that chromosomal information may be unmapped
+#' 
+#' NCBI_snp_query(SNPs='rs9970807')$BP
+#' 
+#' # Curl debugging
+#' NCBI_snp_query("rs121909001")
+#' library("httr")
+#' NCBI_snp_query("rs121909001", config=verbose())
+#' snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
+#' NCBI_snp_query(snps, config=progress())
 #' }
-NCBI_snp_query <- function(SNPs) {
+NCBI_snp_query <- function(SNPs, ...) {
   
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
@@ -57,10 +72,14 @@ NCBI_snp_query <- function(SNPs) {
          "'rs', e.g. rs420358")
   }
   
-  query <- "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=snp&mode=xml&id="
-  query <- paste( sep='', query, paste( SNPs, collapse="," ) )
+  # query <- "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=snp&mode=xml&id="
+  # query <- paste( sep='', query, paste( SNPs, collapse="," ) )
   
-  xml <- getURL( query )
+  url <- "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+  res <- GET(url, query = list(db = 'snp', mode = 'xml', id = paste( SNPs, collapse=",")), ...)
+  stop_for_status(res)
+  xml <- content(res, "text")
+  # xml <- getURL( query )
   xml_parsed <- xmlInternalTreeParse( xml )
   xml_list_ <- xmlToList( xml_parsed )
   
