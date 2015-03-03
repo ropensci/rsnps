@@ -5,6 +5,7 @@ rsnps
 
 [![Build Status](https://api.travis-ci.org/ropensci/rsnps.png)](https://travis-ci.org/ropensci/rsnps)
 [![Build status](https://ci.appveyor.com/api/projects/status/d2lv98726u6t9ut5/branch/master)](https://ci.appveyor.com/project/sckott/rsnps/branch/master)
+[![Coverage Status](https://coveralls.io/repos/ropensci/rsnps/badge.svg)](https://coveralls.io/r/ropensci/rsnps)
 
 ## NOTE
 
