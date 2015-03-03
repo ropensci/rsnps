@@ -35,7 +35,7 @@ devtools::install_github("ropensci/rsnps")
 library(rsnps)
 ```
 
-## OpenSNP data 
+## OpenSNP data
 
 ### All Genotypes
 
@@ -69,13 +69,13 @@ datalist <- allphenotypes()
 Get a list of all characteristics you can call
 
 ```{r}
-names(datalist)[1:10] 
+names(datalist)[1:10]
 ```
 
 Get data.frame for _ADHD_
 
 ```{r}
-datalist[["ADHD"]] 
+datalist[["ADHD"]]
 ```
 
 Get data.frame for _mouth size_ and _SAT Writing_
@@ -95,7 +95,7 @@ annotations(snp = 'rs7903146', output = 'metadata')
 Just from PLOS journals
 
 ```{r annotations2}
-annotations(snp = 'rs7903146', output = 'plos')[c(1:10),]
+annotations(snp = 'rs7903146', output = 'plos')[c(1:2),]
 ```
 
 Just from SNPedia
@@ -107,10 +107,10 @@ annotations(snp = 'rs7903146', output = 'snpedia')
 Get all annotations
 
 ```{r annotations4}
-annotations(snp = 'rs7903146', output = 'all')[1:10,]
+annotations(snp = 'rs7903146', output = 'all')[1:5,]
 ```
 
-### Download 
+### Download
 
 Download genotype data for a user from 23andme or other repo. (not evaluated in this example)
 
