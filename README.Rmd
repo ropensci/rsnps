@@ -92,7 +92,7 @@ out$phenotypes$`Hair Type`
 
 ## Meta
 
-* Please report any issues or bugs](https://github.com/ropensci/rsnsps/issues).
+* Please [report any issues or bugs](https://github.com/ropensci/rsnsps/issues).
 * License: MIT
 * Get citation information for `rsnsps` in R doing `citation(package = 'rsnsps')`
 
