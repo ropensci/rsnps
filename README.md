@@ -78,32 +78,41 @@ head(tmp)
 ```
 #> $rs420358
 #>        Proxy      SNP Distance RSquared DPrime GeneVariant GeneName
-#> 4   rs420358 rs420358       NA    1.000  1.000  INTERGENIC      N/A
-#> 5   rs442418 rs420358       NA    1.000  1.000  INTERGENIC      N/A
-#> 8   rs718223 rs420358       NA    1.000  1.000  INTERGENIC      N/A
-#> 6   rs453604 rs420358       NA    1.000  1.000  INTERGENIC      N/A
-#> 3   rs372946 rs420358       NA    0.943  1.000  INTERGENIC      N/A
-#> 1 rs10889290 rs420358       NA    0.800  1.000  INTERGENIC      N/A
-#> 2 rs10889291 rs420358       NA    0.800  1.000  INTERGENIC      N/A
-#> 7  rs4660403 rs420358       NA    0.800  1.000  INTERGENIC      N/A
+#> 4   rs420358 rs420358        0    1.000  1.000  INTERGENIC      N/A
+#> 5   rs442418 rs420358      122    1.000  1.000  INTERGENIC      N/A
+#> 8   rs718223 rs420358     1168    1.000  1.000  INTERGENIC      N/A
+#> 6   rs453604 rs420358     2947    1.000  1.000  INTERGENIC      N/A
+#> 3   rs372946 rs420358      -70    0.943  1.000  INTERGENIC      N/A
+#> 1 rs10889290 rs420358     3987    0.800  1.000  INTERGENIC      N/A
+#> 2 rs10889291 rs420358     4334    0.800  1.000  INTERGENIC      N/A
+#> 7  rs4660403 rs420358     7021    0.800  1.000  INTERGENIC      N/A
 #>   GeneDescription Major Minor   MAF NObserved Chromosome_NCBI Marker_NCBI
-#> 4             N/A     C     A 0.167       120              NA          NA
-#> 5             N/A     C     T 0.167       120              NA          NA
-#> 8             N/A     A     G 0.167       120              NA          NA
-#> 6             N/A     A     G 0.167       120              NA          NA
-#> 3             N/A     G     C 0.175       120              NA          NA
-#> 1             N/A     G     A 0.200       120              NA          NA
-#> 2             N/A     C     T 0.200       120              NA          NA
-#> 7             N/A     A     G 0.200       120              NA          NA
-#>   Class_NCBI Gene_NCBI Alleles_NCBI Major_NCBI Minor_NCBI MAF_NCBI BP_NCBI
-#> 4         NA        NA           NA         NA         NA       NA      NA
-#> 5         NA        NA           NA         NA         NA       NA      NA
-#> 8         NA        NA           NA         NA         NA       NA      NA
-#> 6         NA        NA           NA         NA         NA       NA      NA
-#> 3         NA        NA           NA         NA         NA       NA      NA
-#> 1         NA        NA           NA         NA         NA       NA      NA
-#> 2         NA        NA           NA         NA         NA       NA      NA
-#> 7         NA        NA           NA         NA         NA       NA      NA
+#> 4             N/A     C     A 0.167       120               1    rs420358
+#> 5             N/A     C     T 0.167       120               1    rs442418
+#> 8             N/A     A     G 0.167       120               1    rs718223
+#> 6             N/A     A     G 0.167       120               1    rs453604
+#> 3             N/A     G     C 0.175       120               1    rs372946
+#> 1             N/A     G     A 0.200       120               1  rs10889290
+#> 2             N/A     C     T 0.200       120               1  rs10889291
+#> 7             N/A     A     G 0.200       120               1   rs4660403
+#>   Class_NCBI Gene_NCBI Alleles_NCBI Major_NCBI Minor_NCBI MAF_NCBI
+#> 4        snp      <NA>          G,T          G          T       NA
+#> 5        snp      <NA>          A/G          A          G   0.0723
+#> 8        snp      <NA>          A/G          A          G   0.0723
+#> 6        snp      <NA>          A/G          A          G   0.0727
+#> 3        snp      <NA>          C,G          C          G       NA
+#> 1        snp      <NA>          A/G          G          A   0.0841
+#> 2        snp      <NA>          C/T          C          T   0.0839
+#> 7        snp      <NA>          A/G          A          G   0.0827
+#>    BP_NCBI
+#> 4 40341238
+#> 5 40341360
+#> 8 40342406
+#> 6 40344185
+#> 3 40341168
+#> 1 40345225
+#> 2 40345572
+#> 7 40348259
 ```
 
 ### Using NCBI dbSNP data
@@ -165,8 +174,8 @@ out$phenotypes$`Hair Type`
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropensci/rsnsps/issues).
+* Please [report any issues or bugs](https://github.com/ropensci/rsnps/issues).
 * License: MIT
-* Get citation information for `rsnsps` in R doing `citation(package = 'rsnsps')`
+* Get citation information for `rsnsps` in R doing `citation(package = 'rsnps')`
 
 [![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)

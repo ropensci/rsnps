@@ -3,8 +3,8 @@ Title: Get SNP (Single-Nucleotide Polymorphism) Data on the Web
 Description: A programmatic interface to various SNP datasets
     on the web: openSNP, NBCI's dbSNP database, and Broad Institute SNP
     Annotation and Proxy Search. Functions are included for searching for
-    SNPs for the Broad Institute and NCBI. For OpenSNP, functions are 
-    included for getting SNPs, and data for genotypes, phenotypes, 
+    SNPs for the Broad Institute and NCBI. For OpenSNP, functions are
+    included for getting SNPs, and data for genotypes, phenotypes,
     annotations, and bulk downloads of data by user.
 Version: 0.1.6
 Date: 2015-03-03
