@@ -5,6 +5,7 @@ MINOR IMPROVEMENTS
 
 * All examples now in `\dontrun`. (#11)
 * Added additional tests for `LDSearch()` and `NCBI_snp_query()`.
+* Added a vignette.
 
 BUG FIXES
 

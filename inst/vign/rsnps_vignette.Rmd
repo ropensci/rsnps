@@ -1,12 +1,21 @@
 <!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{rsnps vignette}
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{rsnps tutorial}
 -->
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
 
 rsnps tutorial
 ==========
 
-### Install and load library
+## Install and load library
 
 When available on CRAN
 
@@ -18,116 +27,173 @@ Or get from Github
 
 ```{r installgithub, eval=FALSE}
 install.packages("devtools")
-library(devtools)
-install_github("rsnps", "ropensci")
+devtools::install_github("ropensci/rsnps")
 ```
 
 
-```{r load, message=FALSE, warning=FALSE}
+```{r load}
 library(rsnps)
 ```
 
-### Get genotype data for all users at a particular snp.
+## OpenSNP data 
 
-```{r allgensnp, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+### All Genotypes
+
+Get genotype data for all users at a particular SNP
+
+```{r allgensnp}
 allgensnp(snp='rs7412')[1:3]
+```
+
+```{r}
 allgensnp('rs7412', df=TRUE)[1:10,]
 ```
 
-### Get all phenotypes, their variations, and how many users have data available for a given phenotype.
+
+### All Phenotypes
+
+Get all phenotypes, their variations, and how many users have data available for a given phenotype
 
 Get all data
 
-```{r allphenotypes1, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+```{r allphenotypes1}
 allphenotypes(df = TRUE)[1:10,]
 ```
 
 Output a list, then call the characterisitc of interest by 'id' or 'characteristic'
- 
-```{r allphenotypes2, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+
+```{r allphenotypes2}
 datalist <- allphenotypes()
-names(datalist)[1:10] # get list of all characteristics you can call
-datalist[["ADHD"]] # get data.frame for 'ADHD'
-datalist[c("mouth size","SAT Writing")] # get data.frame for 'ADHD' 
 ```
 
-### Get annotations for a given snp.
+Get a list of all characteristics you can call
+
+```{r}
+names(datalist)[1:10] 
+```
+
+Get data.frame for _ADHD_
+
+```{r}
+datalist[["ADHD"]] 
+```
+
+Get data.frame for _mouth size_ and _SAT Writing_
+
+```{r}
+datalist[c("mouth size","SAT Writing")]
+```
+
+### Annotations
 
 Get just the metadata
 
-```{r annotations1, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+```{r annotations1}
 annotations(snp = 'rs7903146', output = 'metadata')
 ```
 
 Just from PLOS journals
 
-```{r annotations2, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+```{r annotations2}
 annotations(snp = 'rs7903146', output = 'plos')[c(1:10),]
 ```
 
 Just from SNPedia
 
-```{r annotations3, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+```{r annotations3}
 annotations(snp = 'rs7903146', output = 'snpedia')
 ```
 
 Get all annotations
 
-```{r annotations4, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+```{r annotations4}
 annotations(snp = 'rs7903146', output = 'all')[1:10,]
 ```
 
-### Download genotype data for a user from 23andme or other repo.
+### Download 
 
-```{r fetch_genotypes, warning=FALSE, message=FALSE, comment=NA, eval=FALSE}
+Download genotype data for a user from 23andme or other repo. (not evaluated in this example)
+
+```{r fetch_genotypes, eval=FALSE}
 data <- users(df=TRUE)
-head( data[[1]] ) # users with links to genome data
+head( data[[1]] )
 fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], rows=15)
 ```
 
-### Get genotype data for one or multiple users.
+### Genotype user data
 
-```{r genotypes, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+Genotype data for one or multiple users
+
+```{r}
 genotypes(snp='rs9939609', userid=1)
+```
+
+```{r}
 genotypes('rs9939609', userid='1,6,8', df=TRUE)
+```
+
+```{r}
 genotypes('rs9939609', userid='1-2', df=FALSE)
 ```
 
-### Get phenotype data for one or multiple users.
+### Phenotype user data
 
-```{r phenotypes, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+Get phenotype data for one or multiple users
+
+```{r}
 phenotypes(userid=1)$phenotypes[1:3]
+```
+
+
+```{r}
 phenotypes(userid='1,6,8', df=TRUE)[[1]][1:10,]
+```
+
+```{r}
 out <- phenotypes(userid='1-8', df=TRUE)
 lapply(out, head)
 ```
 
-### Get all known variations and all users sharing that phenotype for one phenotype(-ID).
+### All known variations
 
-```{r phenotypes_byid, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+Get all known variations and all users sharing that phenotype for one phenotype(-ID).
+
+```{r}
 phenotypes_byid(phenotypeid=12, return_ = 'desc')
+```
+
+```{r}
 phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
+```
+
+```{r}
 phenotypes_byid(phenotypeid=12, return_ = 'users')[1:10,]
 ```
 
-### Get openSNP users.
+### OpenSNP users
 
-```{r users, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+```{r}
 data <- users(df=FALSE)
 data[1:2]
 ```
 
-### Search for SNPs in Linkage Disequilibrium with a set of SNPs 
+## NCBI SNP data
 
-```{r LDSearch, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+### LDSearch
+
+Search for SNPs in Linkage Disequilibrium with a set of SNPs
+
+```{r}
 LDSearch("rs420358")
 ```
 
-### Query NCBI's dbSNP for information on a set of SNPs
+### dbSNP
+
+Query NCBI's dbSNP for information on a set of SNPs
 
 An example with both merged SNPs, non-SNV SNPs, regular SNPs, SNPs not found, microsatellite
 
-```{r NCBI_snp_query, warning=FALSE, message=FALSE, comment=NA, cache=TRUE}
+```{r}
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 NCBI_snp_query(snps)
 ```
