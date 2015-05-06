@@ -4,7 +4,7 @@
 \name{rsnpsCache}
 \alias{rsnpsCache}
 \title{rsnps environment}
-\format{\preformatted{<environment: 0x10a124ad0> 
+\format{\preformatted{<environment: 0x107eca950> 
 }}
 \usage{
 rsnpsCache

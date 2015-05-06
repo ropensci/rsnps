@@ -29,7 +29,25 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   stop_for_status(res)
   tmp <- content(res, "text")
   tmpsplit <- strsplit(tmp, "\n\n")[[1]]
-  return( structure(setNames(lapply(tmpsplit, parse_data), SNPs), class = "dbsnp") )
+  dat <- setNames(lapply(tmpsplit, parse_data), SNPs)
+  dfs <- list()
+  for (i in seq_along(dat)) {
+    z <- dat[[i]]
+    ctg <- z$ctg
+    dfs[[i]] <- data.frame(query = names(dat[i]), 
+                           marker = z$rs$snp,
+                           organism = rn(z$rs$organism), 
+                           chromsome = rn(ctg$chromosome),
+                           assembly = rn(ctg$groupLabel),
+                           alleles = rn(z$snp$observed),
+                           minor = rn(z$gmaf$allele),
+                           maf = rn(z$gmaf$freq),
+                           bp = rn(ctg$physmapInt),
+                           stringsAsFactors = FALSE)
+  }
+  dfs <- do.call("rbind.data.frame", dfs)
+  row.names(dfs) <- NULL
+  return( structure(list(summary = dfs, data = dat), class = "dbsnp") )
   Sys.sleep(0.33)
 }
 
@@ -38,24 +56,7 @@ print.dbsnp <- function(x, ...) {
   cat("<dbsnp>", sep = "\n")
   cat(sprintf("   SNPs: %s", paste0(names(x), collapse = ", ")), sep = "\n")
   cat("   Summary:", sep = "\n")
-  dfs <- list()
-  for (i in seq_along(x)) {
-    z <- x[[i]]
-    ctg <- z$ctg
-    dfs[[i]] <- data.frame(query = names(x[i]), 
-               marker = z$rs$snp,
-               organism = rn(z$rs$organism), 
-               chromsome = rn(ctg$chromosome),
-               assembly = rn(ctg$groupLabel),
-               alleles = rn(z$snp$observed),
-               minor = rn(z$gmaf$allele),
-               maf = rn(z$gmaf$freq),
-               BP = rn(ctg$physmapInt),
-               stringsAsFactors = FALSE)
-  }
-  dfs <- do.call("rbind.data.frame", dfs)
-  row.names(dfs) <- NULL
-  print(dfs)
+  print(x$summary)
 }
 
 rn <- function(x) {

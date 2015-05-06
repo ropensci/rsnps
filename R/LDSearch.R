@@ -104,7 +104,7 @@
 #' LDSearch('rs113196607')
 #' }
 
-LDSearch <- function( SNPs,
+LDSearch <- function(SNPs,
                       dataset="onekgpilot",
                       panel="CEU",
                       RSquaredLimit=0.8,
@@ -116,29 +116,28 @@ LDSearch <- function( SNPs,
   
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
-  if( any( sapply( tmp, length ) == 0 ) ) {
+  if ( any( sapply( tmp, length ) == 0 ) ) {
     stop("not all items supplied are prefixed with 'rs';\n",
          "you must supply rs numbers and they should be prefixed with ", 
          "'rs', e.g. rs420358")
   }
   
-  
   ## RSquaredLimit
-  if( RSquaredLimit < 0 || RSquaredLimit > 1 ) {
+  if ( RSquaredLimit < 0 || RSquaredLimit > 1 ) {
     stop("RSquaredLimit must be between 0 and 1")
   }
   
   ## distanceLimit
-  if( is.character(distanceLimit) ) {
+  if ( is.character(distanceLimit) ) {
     n <- nchar(distanceLimit)
-    stopifnot( substring( distanceLimit, n-1, n ) == "kb" )
+    stopifnot( substring( distanceLimit, n - 1, n ) == "kb" )
     distanceLimit <- as.integer( gsub("kb", "", distanceLimit) )
   }
   
   valid_distances <- c(0, 10, 25, 50, 100, 250, 500)
-  if( !(distanceLimit %in% valid_distances) ) {
+  if ( !(distanceLimit %in% valid_distances) ) {
     stop("invalid distanceLimit. distanceLimit must be one of: ", 
-         paste( valid_distances, collapse=", " )
+         paste( valid_distances, collapse = ", ")
     )
   }  
   
@@ -170,25 +169,25 @@ LDSearch <- function( SNPs,
                       includeQuerySNP_query,
                       submit_query )
   
-  query <- paste( sep="", query_start, query_end )
+  query <- paste( sep = "", query_start, query_end )
   
-  if( !quiet ) cat("Querying SNAP...\n")
+  if ( !quiet ) cat("Querying SNAP...\n")
   dat <- getURL( query )
   
   ## check for validation error
-  if( length( grep( "validation error", dat ) ) > 0 ) {
+  if ( length( grep( "validation error", dat ) ) > 0 ) {
     stop(dat)
   }
   
   ## search through for missing SNPs and remove them from output
   tmp <- unlist( strsplit( dat, "\r\n", fixed=TRUE ) )
   warning_SNPs <- grep( "WARNING", tmp, value=TRUE )
-  for( line in warning_SNPs ) {
+  for (line in warning_SNPs ) {
     warning( line )
   }
   
   bad_lines <- grep( "WARNING", tmp )
-  if( length( bad_lines ) > 0 ) {
+  if ( length( bad_lines ) > 0 ) {
     tmp <- tmp[ -bad_lines ]
   }
   
@@ -197,11 +196,11 @@ LDSearch <- function( SNPs,
   out <- out[2:nrow(out),]
   
   out_split <- split(out, out$SNP)
-  for( i in 1:length(out_split) ) {
+  for (i in 1:length(out_split) ) {
     rownames( out_split[[i]] ) <- 1:nrow( out_split[[i]] )
   }
   
-  if( !quiet )
+  if ( !quiet )
     cat("Querying NCBI for up-to-date SNP annotation information...\n")
   
   ## query NCBI for additional SNP information
@@ -209,31 +208,27 @@ LDSearch <- function( SNPs,
   
   ## get all the proxy SNP information in one query
   proxy_SNPs <- unique( unname( unlist( sapply( out_split, "[", "Proxy" ) ) ) )
-  ncbi_info <- NCBI_snp_query(proxy_SNPs)
-  names(ncbi_info) <- paste( sep='', names(ncbi_info), "_NCBI")
+  ncbi_info <- NCBI_snp_query2(proxy_SNPs)$summary
+  names(ncbi_info) <- paste(sep = '', names(ncbi_info), "_NCBI")
   
   ## quick function for adding NCBI info to SNPs queried
   add_ncbi_info <- function(x) {
     x$ORDER <- 1:nrow(x)
     x <- merge( x, ncbi_info, 
-                by.x="Proxy", by.y="Query_NCBI",
-                all.x=TRUE
+                by.x = "Proxy", by.y = "query_NCBI",
+                all.x = TRUE
     )
     x <- x[ order( x$ORDER ), ]
     x <- x[ !(names(x) %in% "ORDER") ]
     x$Distance[ x$Distance == 0 ] <- NA
-    x$Distance <- x$BP - rep( x$BP[1], nrow(x) )
-    x <- x[ order( x$RSquared, decreasing=TRUE ), ]
-    
-    return(x)
-    
+    # x$Distance <- x$bp_NCBI - rep( x$bp_NCBI[1], nrow(x) )
+    x[ order( x$RSquared, decreasing = TRUE ), ]
   }
   
-  out <- lapply( out_split, add_ncbi_info )
+  out <- lapply(out_split, add_ncbi_info)
   
-  if( !quiet )
+  if (!quiet )
     on.exit( cat("Done!\n") )
   
   return( out )
-  
 }
