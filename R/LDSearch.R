@@ -221,7 +221,7 @@ LDSearch <- function(SNPs,
     x <- x[ order( x$ORDER ), ]
     x <- x[ !(names(x) %in% "ORDER") ]
     x$Distance[ x$Distance == 0 ] <- NA
-    # x$Distance <- x$bp_NCBI - rep( x$bp_NCBI[1], nrow(x) )
+    x$Distance <- x$bp_NCBI - rep( x$bp_NCBI[1], nrow(x) )
     x[ order( x$RSquared, decreasing = TRUE ), ]
   }
   

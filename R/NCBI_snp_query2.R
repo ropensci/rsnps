@@ -47,6 +47,7 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   }
   dfs <- do.call("rbind.data.frame", dfs)
   row.names(dfs) <- NULL
+  dfs$bp <- as.numeric(dfs$bp)
   return( structure(list(summary = dfs, data = dat), class = "dbsnp") )
   Sys.sleep(0.33)
 }
@@ -71,7 +72,7 @@ parse_data <- function(x) {
   bits <- strsplit(x, "\n")[[1]]
   rs <- pull_vars(rs_vars, "rs", bits)
   ss <- pull_vars(ss_vars, "ss", bits, multi = TRUE)
-  snp <- pull_vars(SNP_vars, "SNP", bits)
+  snp <- pull_vars(var_set = SNP_vars, line_start = "SNP", line = bits)
   clinsig <- pull_vars(CLINSIG_vars, "CLINSIG", bits)
   gmaf <- pull_vars(GMAF_vars, "GMAF", bits)
   ctg <- pull_vars(CTG_vars, "CTG", bits, TRUE)
@@ -137,27 +138,30 @@ SNP_vars <- list("observed" = "alleles=",
                  "validProbMin" = "min_prob=",
                  "validProbMax" = "max_prob=",
                  "validation" = "suspect=",
-                 "AlleleOrigin" = c('unknown',
-                                    'germline',
-                                    'somatic',
-                                    'inherited',
-                                    'paternal',
-                                    'maternal',
-                                    'de-novo',
-                                    'bipaternal',
-                                    'unipaternal',
-                                    'not-tested',
-                                    'tested-inconclusive'),
-                 "snpType" = c('notwithdrawn',
-                               'artifact',
-                               'gene-duplication',
-                               'duplicate-submission',
-                               'notspecified',
-                               'ambiguous-location;',
-                               'low-map-quality')
-)
+                 "AlleleOrigin_unknown" = 'unknown',
+                 "AlleleOrigin_germline" = 'germline',
+                 "AlleleOrigin_somatic" = 'somatic',
+                 "AlleleOrigin_inherited" = 'inherited',
+                 "AlleleOrigin_paternal" = 'paternal',
+                 "AlleleOrigin_maternal" = 'maternal',
+                 "AlleleOrigin_de-novo" = 'de-novo',
+                 "AlleleOrigin_bipaternal" = 'bipaternal',
+                 "AlleleOrigin_unipaternal" = 'unipaternal',
+                 "AlleleOrigin_not-tested" = 'not-tested',
+                 "AlleleOrigin_tested-inconclusive" = 'tested-inconclusive',
+                 "snpType_notwithdrawn" = 'notwithdrawn',
+                 "snpType_artifact" = 'artifact',
+                 "snpType_gene-duplication" = 'gene-duplication',
+                 "snpType_duplicate-submission" = 'duplicate-submission',
+                 "snpType_notspecified" = 'notspecified',
+                 "snpType_ambiguous-location" = 'ambiguous-location',
+                 "snpType_low-map-quality" = 'low-map-quality')
 
-CLINSIG_vars <- list("ClinicalSignificance" = c('probable-pathogenic', 'pathogenic', 'other'))
+CLINSIG_vars <- list(
+  "ClinicalSignificance" = 'probable-pathogenic',
+  "ClinicalSignificance" = 'pathogenic',
+  "ClinicalSignificance" = 'other'
+)
 
 GMAF_vars = list("allele" = "allele=",
                  "sampleSize" = "count=",
