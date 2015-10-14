@@ -1,12 +1,11 @@
 #' Get genotype data for one or multiple users.
 #'
-#' @import httr plyr stringr
 #' @param snp SNP name.
-#' @param userid ID of openSNP user. 
+#' @param userid ID of openSNP user.
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}.
 #' @return List (or data.frame) of genotypes for specified user(s) at a certain SNP.
-#' @export 
+#' @export
 #' @examples \dontrun{
 #' genotypes(snp='rs9939609', userid=1)
 #' genotypes('rs9939609', userid='1,6,8', df=TRUE)
@@ -21,7 +20,7 @@ genotypes <- function(snp = NA, userid = NA, df = FALSE, ...)
   res <- GET(url2, ...)
   stop_for_status(res)
   genotypes_ <- content(res)
-  
+
   if(df)
   {
     if(length(str_split(userid, '[-,]')[[1]]) == 1){ genotypes_ } else{

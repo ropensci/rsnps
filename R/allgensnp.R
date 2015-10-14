@@ -1,11 +1,11 @@
 #' Get genotype data for all users at a particular snp.
 #'
-#' @import httr plyr
-#' @param snp SNP name. 
+#' @export
+#' @param snp SNP name.
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}.
 #' @return List of genotypes for all users at a certain SNP, or data.frame
-#' @export 
+#'
 #' @examples \dontrun{
 #' allgensnp(snp='rs7412')
 #' allgensnp('rs7412', df=TRUE)

@@ -1,20 +1,19 @@
 #' Search for SNPs in Linkage Disequilibrium with a set of SNPs
-#' 
-#' This function queries the SNP Annotation and Proxy tool (SNAP) for SNPs 
+#'
+#' This function queries the SNP Annotation and Proxy tool (SNAP) for SNPs
 #' in high linkage disequilibrium with a set of SNPs, and also merges in
 #' up-to-date SNP annotation information available from NCBI.
-#' 
-#' For more details, please see 
+#'
+#' For more details, please see
 #' \url{http://www.broadinstitute.org/mpg/snap/ldsearch.php}.
-#' 
+#'
 #' Information on the HapMap populations:
 #' \url{http://ccr.coriell.org/Sections/Collections/NHGRI/hapmap.aspx?PgId=266&coll=HG}
-#' 
+#'
 #' Information on the 1000 Genomes populations:
 #' \url{http://www.1000genomes.org/category/frequently-asked-questions/population}
-#' 
+#'
 #' @export
-#' @import RCurl XML
 #' @param SNPs A vector of SNPs (rs numbers).
 #' @param dataset The dataset to query. Must be one of: \itemize{
 #'   \item{\code{rel21: }}{HapMap Release 21}
@@ -22,7 +21,7 @@
 #'   \item{\code{hapmap3r2: }}{HapMap 3 (release 2)}
 #'   \item{\code{onekgpilot: }}{1000 Genomes Pilot 1}
 #'   }
-#' @param panel The panel to use from the queried data set. 
+#' @param panel The panel to use from the queried data set.
 #' Must be one of: \itemize{
 #'  \item{\code{CEU}}
 #'  \item{\code{YRI}}
@@ -55,12 +54,12 @@
 #' \itemize{
 #' \item{\code{Proxy:} The proxy SNP matched to the queried SNP.}
 #' \item{\code{SNP:} The SNP queried.}
-#' \item{\code{Distance:} The distance, in base pairs, between the queried SNP 
+#' \item{\code{Distance:} The distance, in base pairs, between the queried SNP
 #' and the proxy SNP. This distance is calculated according to up-to-date position
 #' information returned from NCBI.}
 #' \item{\code{RSquared:} The measure of LD between the SNP and the proxy.}
 #' \item{\code{DPrime:} Another measure of LD between the SNP and the proxy.}
-#' \item{\code{GeneVariant:} Present if \code{GeneCruiser} is \code{TRUE}. 
+#' \item{\code{GeneVariant:} Present if \code{GeneCruiser} is \code{TRUE}.
 #' This will identify where the SNP lies relative to its 'parent' SNP.}
 #' \item{\code{GeneName:} Present if \code{GeneCruiser} is \code{TRUE}.
 #' If the proxy SNP found lies within a gene, the name of that
@@ -95,7 +94,7 @@
 #' given it is an SNV; otherwise, \code{NA}.
 #' \item \code{MAF_NCBI:} The minor allele frequency of the SNP, given it is an SNV.
 #' This is drawn from the current global reference population used by NCBI.
-#' \item \code{BP_NCBI:} The chromosomal position, in base pairs, of the marker, 
+#' \item \code{BP_NCBI:} The chromosomal position, in base pairs, of the marker,
 #' as aligned with the current genome used by dbSNP.
 #' }
 #' @examples \dontrun{
@@ -111,38 +110,38 @@ LDSearch <- function(SNPs,
                       distanceLimit=500,
                       GeneCruiser=TRUE,
                       quiet=FALSE ) {
-  
+
   ## error checking
-  
+
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
   if ( any( sapply( tmp, length ) == 0 ) ) {
     stop("not all items supplied are prefixed with 'rs';\n",
-         "you must supply rs numbers and they should be prefixed with ", 
+         "you must supply rs numbers and they should be prefixed with ",
          "'rs', e.g. rs420358")
   }
-  
+
   ## RSquaredLimit
   if ( RSquaredLimit < 0 || RSquaredLimit > 1 ) {
     stop("RSquaredLimit must be between 0 and 1")
   }
-  
+
   ## distanceLimit
   if ( is.character(distanceLimit) ) {
     n <- nchar(distanceLimit)
     stopifnot( substring( distanceLimit, n - 1, n ) == "kb" )
     distanceLimit <- as.integer( gsub("kb", "", distanceLimit) )
   }
-  
+
   valid_distances <- c(0, 10, 25, 50, 100, 250, 500)
   if ( !(distanceLimit %in% valid_distances) ) {
-    stop("invalid distanceLimit. distanceLimit must be one of: ", 
+    stop("invalid distanceLimit. distanceLimit must be one of: ",
          paste( valid_distances, collapse = ", ")
     )
-  }  
-  
+  }
+
   distanceLimit_bp <- as.integer( distanceLimit * 1E3 )
-  
+
   query_start <- "http://www.broadinstitute.org/mpg/snap/ldsearch.php?"
   SNP_query <- paste( sep="", "snpList=", paste(SNPs, collapse=",") )
   dataset_query <- paste( sep="", "hapMapRelease=", dataset )
@@ -156,8 +155,8 @@ LDSearch <- function(SNPs,
     columnList_query <- paste( sep="", "columnList[]=DP,MAF")
   }
   includeQuerySNP_query <- "includeQuerySnp=on"
-  submit_query <- paste( sep="", "submit=search" )  
-  
+  submit_query <- paste( sep="", "submit=search" )
+
   query_end <- paste( sep="&",
                       SNP_query,
                       dataset_query,
@@ -168,53 +167,53 @@ LDSearch <- function(SNPs,
                       columnList_query,
                       includeQuerySNP_query,
                       submit_query )
-  
+
   query <- paste( sep = "", query_start, query_end )
-  
+
   if ( !quiet ) cat("Querying SNAP...\n")
   dat <- getURL( query )
-  
+
   ## check for validation error
   if ( length( grep( "validation error", dat ) ) > 0 ) {
     stop(dat)
   }
-  
+
   ## search through for missing SNPs and remove them from output
   tmp <- unlist( strsplit( dat, "\r\n", fixed=TRUE ) )
   warning_SNPs <- grep( "WARNING", tmp, value=TRUE )
   for (line in warning_SNPs ) {
     warning( line )
   }
-  
+
   bad_lines <- grep( "WARNING", tmp )
   if ( length( bad_lines ) > 0 ) {
     tmp <- tmp[ -bad_lines ]
   }
-  
+
   out <- split_to_df( tmp, sep="\t", fixed=TRUE )
   names( out ) <- unlist( unclass( out[1,] ) )
   out <- out[2:nrow(out),]
-  
+
   out_split <- split(out, out$SNP)
   for (i in 1:length(out_split) ) {
     rownames( out_split[[i]] ) <- 1:nrow( out_split[[i]] )
   }
-  
+
   if ( !quiet )
     cat("Querying NCBI for up-to-date SNP annotation information...\n")
-  
+
   ## query NCBI for additional SNP information
   SNP_info <- vector("list", length(out_split))
-  
+
   ## get all the proxy SNP information in one query
   proxy_SNPs <- unique( unname( unlist( sapply( out_split, "[", "Proxy" ) ) ) )
   ncbi_info <- NCBI_snp_query2(proxy_SNPs)$summary
   names(ncbi_info) <- paste(sep = '', names(ncbi_info), "_NCBI")
-  
+
   ## quick function for adding NCBI info to SNPs queried
   add_ncbi_info <- function(x) {
     x$ORDER <- 1:nrow(x)
-    x <- merge( x, ncbi_info, 
+    x <- merge( x, ncbi_info,
                 by.x = "Proxy", by.y = "query_NCBI",
                 all.x = TRUE
     )
@@ -224,11 +223,11 @@ LDSearch <- function(SNPs,
     x$Distance <- x$bp_NCBI - rep( x$bp_NCBI[1], nrow(x) )
     x[ order( x$RSquared, decreasing = TRUE ), ]
   }
-  
+
   out <- lapply(out_split, add_ncbi_info)
-  
+
   if (!quiet )
     on.exit( cat("Done!\n") )
-  
+
   return( out )
 }

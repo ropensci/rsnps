@@ -1,21 +1,21 @@
 #' Get phenotype data for one or multiple users.
 #'
-#' @import httr plyr
-#' @param userid ID of openSNP user. 
+#' @export
+#' @param userid ID of openSNP user.
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}.
 #' @return List of phenotypes for specified user(s).
-#' @export 
+#'
 #' @examples \dontrun{
 #' phenotypes(userid=1)
 #' phenotypes(userid='1,6,8', df=TRUE)
 #' phenotypes(userid='1-8', df=TRUE)
-#' 
+#'
 #' # coerce to data.frame
 #' library(plyr)
 #' df <- ldply(phenotypes(userid='1-8', df=TRUE))
 #' head(df); tail(df)
-#' 
+#'
 #' # pass on curl options
 #' library("httr")
 #' phenotypes(1, config=c(verbose(), timeout(1)))
@@ -30,9 +30,9 @@ phenotypes <- function(userid = NA, df = FALSE, ...)
   res <- GET(url2, ...)
   stop_for_status(res)
   out <- content(res)
-  
+
   userid <- gsub("-", ",", userid)
-  
+
   if(df) {
     if(length(str_split(userid, ",")[[1]]) == 1){
       tmp <- ldply(out[[2]], data.frame, stringsAsFactors=FALSE)

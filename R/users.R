@@ -1,22 +1,21 @@
 #' Get openSNP users.
 #'
-#' @import httr plyr
+#' @export
 #' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}.
 #' @return List of openSNP users, their ID numbers, and XX if available.
-#' @export 
 #' @examples \dontrun{
 #' # just the list
 #' data <- users(df=FALSE)
-#' data 
-#' 
+#' data
+#'
 #' # get a data.frame of the users data
 #' data <- users(df=TRUE)
 #' data[[1]] # users with links to genome data
 #' data[[2]] # users without links to genome data
 #' }
 
-users <- function(df = FALSE, ...) 
+users <- function(df = FALSE, ...)
 {
   url = "http://opensnp.org/users.json"
   res <- GET(url, ...)
