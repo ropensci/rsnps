@@ -5,7 +5,7 @@
 \title{Search for SNPs in Linkage Disequilibrium with a set of SNPs}
 \usage{
 LDSearch(SNPs, dataset = "onekgpilot", panel = "CEU", RSquaredLimit = 0.8,
-  distanceLimit = 500, GeneCruiser = TRUE, quiet = FALSE)
+  distanceLimit = 500, GeneCruiser = TRUE, quiet = FALSE, ...)
 }
 \arguments{
 \item{SNPs}{A vector of SNPs (rs numbers).}
@@ -48,6 +48,8 @@ GeneCruiser for each SNP. This can slow the query down substantially.}
 
 \item{quiet}{boolean; if \code{TRUE} progress updates are written to the
 console.}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}}
 }
 \value{
 A list of data frames, one for each SNP queried, containing

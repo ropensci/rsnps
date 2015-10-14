@@ -48,6 +48,7 @@
 #' GeneCruiser for each SNP. This can slow the query down substantially.
 #' @param quiet boolean; if \code{TRUE} progress updates are written to the
 #' console.
+#' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #' @return A list of data frames, one for each SNP queried, containing
 #' information about the SNPs found to be in LD with that SNP. A description
 #' of the columns follows:
@@ -109,7 +110,7 @@ LDSearch <- function(SNPs,
                       RSquaredLimit=0.8,
                       distanceLimit=500,
                       GeneCruiser=TRUE,
-                      quiet=FALSE ) {
+                      quiet=FALSE, ...) {
 
   ## error checking
 
@@ -171,7 +172,10 @@ LDSearch <- function(SNPs,
   query <- paste( sep = "", query_start, query_end )
 
   if ( !quiet ) cat("Querying SNAP...\n")
-  dat <- getURL( query )
+  # dat <- getURL( query )
+  dat_tmp <- GET(query, ...)
+  stop_for_status(dat_tmp)
+  dat <- content(dat_tmp)
 
   ## check for validation error
   if ( length( grep( "validation error", dat ) ) > 0 ) {

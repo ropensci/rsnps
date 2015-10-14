@@ -20,7 +20,6 @@ Imports:
     plyr,
     stringr,
     httr,
-    RCurl,
     XML,
     jsonlite
 Suggests:

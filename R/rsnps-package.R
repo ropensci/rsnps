@@ -7,7 +7,6 @@
 #' @importFrom httr GET content stop_for_status
 #' @importFrom plyr ldply llply laply compact
 #' @importFrom stringr str_split str_replace_all str_trim
-#' @importFrom RCurl getURL
 #' @importFrom XML xmlInternalTreeParse xmlToList 
 #' @importFrom jsonlite fromJSON
 #' @name rsnps-package
