@@ -6,7 +6,7 @@
 #' @examples \dontrun{
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' NCBI_snp_query2(SNPs)
-#' NCBI_snp_query2("123456") ## invalid: must prefix with 'rs'
+#' # NCBI_snp_query2("123456") ## invalid: must prefix with 'rs'
 #' NCBI_snp_query2("rs420358")
 #' NCBI_snp_query2("rs332") # warning, merged into new one
 #' NCBI_snp_query2("rs121909001") 
@@ -27,7 +27,7 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   url <- "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
   res <- GET(url, query = list(db = 'snp', retmode = 'flt', rettype = 'flt', id = paste( SNPs, collapse = ",")), ...)
   stop_for_status(res)
-  tmp <- content(res, "text")
+  tmp <- content(res, "text", encoding = "UTF-8")
   tmpsplit <- strsplit(tmp, "\n\n")[[1]]
   dat <- setNames(lapply(tmpsplit, parse_data), SNPs)
   dfs <- list()

@@ -112,19 +112,17 @@ LDSearch <- function(SNPs,
                       GeneCruiser=TRUE,
                       quiet=FALSE, ...) {
 
-  ## error checking
-
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
   if ( any( sapply( tmp, length ) == 0 ) ) {
     stop("not all items supplied are prefixed with 'rs';\n",
          "you must supply rs numbers and they should be prefixed with ",
-         "'rs', e.g. rs420358")
+         "'rs', e.g. rs420358", call. = FALSE)
   }
 
   ## RSquaredLimit
   if ( RSquaredLimit < 0 || RSquaredLimit > 1 ) {
-    stop("RSquaredLimit must be between 0 and 1")
+    stop("RSquaredLimit must be between 0 and 1", call. = FALSE)
   }
 
   ## distanceLimit
@@ -137,56 +135,31 @@ LDSearch <- function(SNPs,
   valid_distances <- c(0, 10, 25, 50, 100, 250, 500)
   if ( !(distanceLimit %in% valid_distances) ) {
     stop("invalid distanceLimit. distanceLimit must be one of: ",
-         paste( valid_distances, collapse = ", ")
-    )
+         paste( valid_distances, collapse = ", "), call. = FALSE)
   }
 
-  distanceLimit_bp <- as.integer( distanceLimit * 1E3 )
-
-  query_start <- "http://www.broadinstitute.org/mpg/snap/ldsearch.php?"
-  SNP_query <- paste( sep="", "snpList=", paste(SNPs, collapse=",") )
-  dataset_query <- paste( sep="", "hapMapRelease=", dataset )
-  panel_query <- paste( sep="", "hapMapPanel=", panel )
-  RSquaredLimit_query <- paste( sep="", "RSquaredLimit=", RSquaredLimit )
-  distanceLimit_query <- paste( sep="", "distanceLimit=", distanceLimit_bp )
-  downloadType_query <- paste( sep="", "downloadType=file" )
-  if( GeneCruiser ) {
-    columnList_query <- paste( sep="", "columnList[]=DP,GA,MAF")
-  } else {
-    columnList_query <- paste( sep="", "columnList[]=DP,MAF")
-  }
-  includeQuerySNP_query <- "includeQuerySnp=on"
-  submit_query <- paste( sep="", "submit=search" )
-
-  query_end <- paste( sep="&",
-                      SNP_query,
-                      dataset_query,
-                      panel_query,
-                      RSquaredLimit_query,
-                      distanceLimit_query,
-                      downloadType_query,
-                      columnList_query,
-                      includeQuerySNP_query,
-                      submit_query )
-
-  query <- paste( sep = "", query_start, query_end )
+  url <- "http://www.broadinstitute.org/mpg/snap/ldsearch.php"
+  columnList_query <- if (GeneCruiser) "DP,GA,MAF" else "DP,MAF"
+  args <- rsnps_comp(list(snpList = paste(SNPs, collapse = ","), hapMapRelease = dataset,
+      hapMapPanel = panel, RSquaredLimit = RSquaredLimit, 
+      distanceLimit = as.integer( distanceLimit * 1E3 ), downloadType = "file",
+      includeQuerySnp = "on", submit = "search", `columnList[]` = columnList_query))
 
   if ( !quiet ) cat("Querying SNAP...\n")
-  # dat <- getURL( query )
-  dat_tmp <- GET(query, ...)
+  dat_tmp <- GET(url, query = args, ...)
   stop_for_status(dat_tmp)
-  dat <- content(dat_tmp)
+  dat <- content(dat_tmp, "text", encoding = "UTF-8")
 
   ## check for validation error
   if ( length( grep( "validation error", dat ) ) > 0 ) {
-    stop(dat)
+    stop(dat, call. = FALSE)
   }
 
   ## search through for missing SNPs and remove them from output
-  tmp <- unlist( strsplit( dat, "\r\n", fixed=TRUE ) )
-  warning_SNPs <- grep( "WARNING", tmp, value=TRUE )
+  tmp <- unlist( strsplit( dat, "\r\n", fixed = TRUE ) )
+  warning_SNPs <- grep( "WARNING", tmp, value = TRUE )
   for (line in warning_SNPs ) {
-    warning( line )
+    warning( line, call. = FALSE )
   }
 
   bad_lines <- grep( "WARNING", tmp )
@@ -194,7 +167,7 @@ LDSearch <- function(SNPs,
     tmp <- tmp[ -bad_lines ]
   }
 
-  out <- split_to_df( tmp, sep="\t", fixed=TRUE )
+  out <- split_to_df( tmp, sep = "\t", fixed = TRUE )
   names( out ) <- unlist( unclass( out[1,] ) )
   out <- out[2:nrow(out),]
 
@@ -203,8 +176,9 @@ LDSearch <- function(SNPs,
     rownames( out_split[[i]] ) <- 1:nrow( out_split[[i]] )
   }
 
-  if ( !quiet )
+  if ( !quiet ) {
     cat("Querying NCBI for up-to-date SNP annotation information...\n")
+  }
 
   ## query NCBI for additional SNP information
   SNP_info <- vector("list", length(out_split))
@@ -230,8 +204,9 @@ LDSearch <- function(SNPs,
 
   out <- lapply(out_split, add_ncbi_info)
 
-  if (!quiet )
+  if (!quiet ) {
     on.exit( cat("Done!\n") )
+  }
 
   return( out )
 }

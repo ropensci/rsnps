@@ -94,3 +94,5 @@ tryget <- function(x) {
 strtrim <- function(str) {
   gsub("^\\s+|\\s+$", "", str)
 }
+
+rsnps_comp <- function(x) Filter(Negate(is.null), x)
