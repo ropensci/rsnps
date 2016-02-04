@@ -175,6 +175,12 @@ LDSearch <- function(SNPs,
   for (i in 1:length(out_split) ) {
     rownames( out_split[[i]] ) <- 1:nrow( out_split[[i]] )
   }
+  
+  # check whether any real data or not
+  if (all(unlist(out_split$SNP[1,], use.names = FALSE) %in% names(out_split$SNP)) && 
+      NROW(out_split$SNP) == 1) {
+    stop("no valid data found", call. = FALSE)
+  }
 
   if ( !quiet ) {
     cat("Querying NCBI for up-to-date SNP annotation information...\n")
