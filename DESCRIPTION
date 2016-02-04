@@ -27,3 +27,4 @@ Suggests:
     testthat,
     rjson,
     knitr
+RoxygenNote: 5.0.1
