@@ -21,7 +21,9 @@ Imports:
     stringr,
     httr (>= 1.0.0),
     XML,
-    jsonlite
+    jsonlite,
+    stats,
+    methods
 Suggests:
     testthat,
     rjson,
