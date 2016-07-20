@@ -2,7 +2,12 @@
 #' 
 #' @export
 #' @param SNPs A vector of SNPs (rs numbers).
-#' @param ... Further named parameters passed on to \code{\link[httr]{config}} to debug curl.
+#' @param ... Further named parameters passed on to 
+#' \code{\link[httr]{config}} to debug curl.
+#' 
+#' @importFrom stats setNames
+#' @importFrom methods is
+#' 
 #' @examples \dontrun{
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' NCBI_snp_query2(SNPs)
@@ -25,7 +30,8 @@ NCBI_snp_query2 <- function(SNPs, ...) {
          "'rs', e.g. rs420358")
   }
   url <- "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
-  res <- GET(url, query = list(db = 'snp', retmode = 'flt', rettype = 'flt', id = paste( SNPs, collapse = ",")), ...)
+  res <- GET(url, query = list(db = 'snp', retmode = 'flt', rettype = 'flt', 
+                               id = paste( SNPs, collapse = ",")), ...)
   stop_for_status(res)
   tmp <- content(res, "text", encoding = "UTF-8")
   tmpsplit <- strsplit(tmp, "\n\n")[[1]]
@@ -88,7 +94,8 @@ pull_line <- function(var_set, x) {
     if (is(var_set[[j]], "numeric")) {
       line_set[[ names(var_set[j]) ]] <- strtrim(x[ var_set[[j]] ])
     } else if (is(var_set[[j]], "character")) {
-      line_set[[ names(var_set[j]) ]] <- strtrim(sub(var_set[[j]], "", grep(var_set[[j]], x, value = TRUE)))
+      line_set[[ names(var_set[j]) ]] <- strtrim(sub(
+        var_set[[j]], "", grep(var_set[[j]], x, value = TRUE)))
     }
   }
   line_set[vapply(line_set, length, numeric(1)) == 0] <- NULL

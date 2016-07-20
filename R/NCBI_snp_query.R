@@ -73,7 +73,8 @@ NCBI_snp_query <- function(SNPs, ...) {
   }
 
   url <- "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
-  res <- GET(url, query = list(db = 'snp', mode = 'xml', id = paste( SNPs, collapse=",")), ...)
+  res <- GET(url, query = list(db = 'snp', mode = 'xml', 
+                               id = paste( SNPs, collapse=",")), ...)
   stop_for_status(res)
   xml <- content(res, "text")
   xml_parsed <- xmlInternalTreeParse( xml )
@@ -177,7 +178,7 @@ NCBI_snp_query <- function(SNPs, ...) {
     if( is.null( my_pos ) ) my_pos <- NA
 
     out[i, ] <- c(
-      SNPs[i], as.integer(my_chr), my_snp, unname(my_snpClass),
+      SNPs[i], my_chr, my_snp, unname(my_snpClass),
       unname(my_gene), paste0(unname(alleles),collapse=","), unname(my_major), unname(my_minor),
       as.numeric(my_freq), as.integer(my_pos)
     )
