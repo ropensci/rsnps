@@ -6,13 +6,13 @@ Description: A programmatic interface to various SNP datasets
     SNPs for the Broad Institute and NCBI. For OpenSNP, functions are
     included for getting SNPs, and data for genotypes, phenotypes,
     annotations, and bulk downloads of data by user.
-Version: 0.1.8.9500
+Version: 0.1.8.9550
 License: MIT + file LICENSE
 Authors@R: c(
-    person("Scott", "Chamberlain", role = c("aut", "cre"),
-    email = "myrmecocystus@gmail.com"),
-    person("Kevin", "Ushey", role = "aut",
-    email = "kevinushey@gmail.com"))
+    person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
+    person("Kevin", "Ushey", role = "aut", email = "kevinushey@gmail.com"),
+    person("Hao", "Zhu", role = "ctb")
+    )
 URL: https://github.com/ropensci/rsnps
 BugReports: https://github.com/ropensci/rsnps/issues
 VignetteBuilder: knitr

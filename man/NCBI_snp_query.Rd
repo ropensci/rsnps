@@ -38,7 +38,9 @@ given it is an SNV; otherwise, \code{NA}.
 \item \code{MAF:} The minor allele frequency of the SNP, given it is an SNV.
 This is drawn from the current global reference population used by NCBI.
 \item \code{BP:} The chromosomal position, in base pairs, of the marker,
-as aligned with the current genome used by dbSNP.
+as aligned with the current genome used by dbSNP. we add 1 to the base 
+pair position in the BP column in the output data.frame to agree with 
+what the dBSNP website has.
 }
 }
 \description{
