@@ -176,6 +176,10 @@ NCBI_snp_query <- function(SNPs, ...) {
       }
     )
     if( is.null( my_pos ) ) my_pos <- NA
+    # Based one NCBI's response, the position data in their XML API output 
+    # should be off by one when compared to web display. So we add one here
+    # to make them equivalent 
+    if(is.numeric(my_pos))my_pos <- my_pos + 1
 
     out[i, ] <- c(
       SNPs[i], my_chr, my_snp, unname(my_snpClass),
