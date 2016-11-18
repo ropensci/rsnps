@@ -1,27 +1,43 @@
-rsnps 0.1.6
-===============
+rsnps 0.2.0
+===========
 
-MINOR IMPROVEMENTS
+### MINOR IMPROVEMENTS
+
+* xxx (#xx)
+* xxx (#xx)
+* xxx (#xx)
+
+### BUG FIXES
+
+* xxx (#xx)
+* xxx (#xx)
+* xxx (#xx)
+
+
+rsnps 0.1.6
+===========
+
+### MINOR IMPROVEMENTS
 
 * All examples now in `\dontrun`. (#11)
 * Added additional tests for `LDSearch()` and `NCBI_snp_query()`.
 * Added a vignette.
 
-BUG FIXES
+### BUG FIXES
 
 * Bugs fixed in `LDSearch()`, which were actually bugs in `NCBI_snp_query()`. (#9)
 * Bug fixed in `NCBI_snp_query()` as chromosome might also be "X". 
 
 rsnps 0.1.0
-===============
+===========
 
-NEW FEATURES 
+### NEW FEATURES 
 
 * Bug fixes to all openSNP functions.
 
 rsnps 0.0.5
-===============
+===========
 
-NEW FEATURES 
+### NEW FEATURES 
 
 * released to CRAN
