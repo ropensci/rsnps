@@ -23,5 +23,4 @@ test_that("LDSearch fails well - only one bad snp, no good ones", {
 
 test_that("LDSearch fails well - one bad snp + other good ones", {
   expect_warning(LDSearch(c('rs2836443', "rs121909001"), quiet = TRUE), "No matching proxy snps found")
-  expect_that(suppressWarnings(LDSearch(c('rs2836443', "rs121909001"), quiet = TRUE)), not(throws_error()))
 })
