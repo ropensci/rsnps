@@ -96,3 +96,5 @@ strtrim <- function(str) {
 }
 
 rsnps_comp <- function(x) Filter(Negate(is.null), x)
+
+osnp_base <- function() "https://opensnp.org/"

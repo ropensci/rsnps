@@ -21,8 +21,8 @@ Get genotype data for all users at a particular snp.
 }
 \examples{
 \dontrun{
-allgensnp(snp='rs7412')
-allgensnp('rs7412', df=TRUE)
+allgensnp(snp = 'rs7412')
+allgensnp('rs7412', df = TRUE)
 }
 }
 

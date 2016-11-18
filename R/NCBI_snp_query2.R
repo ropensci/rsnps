@@ -29,7 +29,7 @@ NCBI_snp_query2 <- function(SNPs, ...) {
          "you must supply rs numbers and they should be prefixed with ",
          "'rs', e.g. rs420358")
   }
-  url <- "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+  url <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
   res <- GET(url, query = list(db = 'snp', retmode = 'flt', rettype = 'flt', 
                                id = paste( SNPs, collapse = ",")), ...)
   stop_for_status(res)

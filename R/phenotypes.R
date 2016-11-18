@@ -22,10 +22,8 @@
 #' phenotypes(1, config=verbose())
 #' }
 
-phenotypes <- function(userid = NA, df = FALSE, ...)
-{
-  url = "http://opensnp.org/phenotypes/json/"
-  url2 <- paste(url, userid, '.json', sep='')
+phenotypes <- function(userid = NA, df = FALSE, ...) {
+  url2 <- paste0(paste0(osnp_base(), "phenotypes/json/"), userid, '.json')
   message(url2)
   res <- GET(url2, ...)
   stop_for_status(res)
@@ -33,28 +31,25 @@ phenotypes <- function(userid = NA, df = FALSE, ...)
 
   userid <- gsub("-", ",", userid)
 
-  if(df) {
-    if(length(str_split(userid, ",")[[1]]) == 1){
-      tmp <- ldply(out[[2]], data.frame, stringsAsFactors=FALSE)
+  if (df) {
+    if(length(str_split(userid, ",")[[1]]) == 1) {
+      tmp <- ldply(out[[2]], data.frame, stringsAsFactors=  FALSE)
       names(tmp) <- c("phenotype","phenotypeID","variation")
       tmp
-    } else
-    {
+    } else {
       outdf <- list()
-      for(i in seq_along(out)) {
-        if( class(try(out[[i]][[2]], silent=T)) == "try-error"){
+      for (i in seq_along(out)) {
+        if ( class(try(out[[i]][[2]], silent = TRUE)) == "try-error"){
           df <- data.frame("no data", "no data", "no data")
           names(df) <- c("phenotype","phenotypeID","variation")
-          outdf[[paste("no info on user", i, sep="_")]] <- df
-        } else
-        {
-          if( length(out[[i]][[2]]) == 0){
+          outdf[[paste("no info on user", i, sep = "_")]] <- df
+        } else {
+          if (length(out[[i]][[2]]) == 0) {
             df <- data.frame("no data", "no data", "no data")
             names(df) <- c("phenotype","phenotypeID","variation")
             outdf[[ out[[i]][[1]][["name"]] ]] <- df
-          } else
-          {
-            df <- ldply(out[[i]][[2]], data.frame, stringsAsFactors=FALSE)
+          } else {
+            df <- ldply(out[[i]][[2]], data.frame, stringsAsFactors = FALSE)
             names(df) <- c("phenotype","phenotypeID","variation")
             outdf[[ out[[i]][[1]][["name"]] ]] <- df
           }
@@ -62,11 +57,7 @@ phenotypes <- function(userid = NA, df = FALSE, ...)
       }
       outdf
     }
-  } else { out }
+  } else { 
+    out 
+  }
 }
-# outdf <- list()
-# x <- 1
-# df <- ldply(out[[x]][[2]], function(x) as.data.frame(x))
-# names(df) <- c("phenotype","phenotypeID","variation")
-# outdf[["adfsd"]] <- df
-# outdf[[ out[[1]][[1]][["name"]] ]] <- df

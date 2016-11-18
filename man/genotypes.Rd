@@ -16,7 +16,8 @@ genotypes(snp = NA, userid = NA, df = FALSE, ...)
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
 }
 \value{
-List (or data.frame) of genotypes for specified user(s) at a certain SNP.
+List (or data.frame) of genotypes for specified user(s) at a 
+certain SNP.
 }
 \description{
 Get genotype data for one or multiple users.

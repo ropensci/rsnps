@@ -77,7 +77,7 @@ NCBI_snp_query <- function(SNPs, ...) {
          "'rs', e.g. rs420358", call. = FALSE)
   }
 
-  url <- "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+  url <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
   res <- GET(url, query = list(db = 'snp', mode = 'xml', 
                                id = paste( SNPs, collapse = ",")), ...)
   stop_for_status(res)

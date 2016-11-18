@@ -7,17 +7,19 @@
 fetch_genotypes(url, rows = 100, filepath = NULL, quiet = TRUE, ...)
 }
 \arguments{
-\item{url}{(character) URL for the download. See example below of function use.}
+\item{url}{(character) URL for the download. See example below of 
+function use.}
 
-\item{rows}{(integer) Number of rows to read in. Useful for getting a glimpse of 
-the data. Negative and other invalid values are ignored, giving back all data. 
-Default: 100}
+\item{rows}{(integer) Number of rows to read in. Useful for getting a 
+glimpse of  the data. Negative and other invalid values are ignored, 
+giving back all data.  Default: 100}
 
-\item{filepath}{(character) If none is given the file is saved to a temporary file, 
-which will be lost after your session is closed. Save to a file if you want to 
-access it later.}
+\item{filepath}{(character) If none is given the file is saved to a 
+temporary file,  which will be lost after your session is closed. Save 
+to a file if you want to  access it later.}
 
-\item{quiet}{(logical) Should download progress be suppressed. Default: \code{TRUE}}
+\item{quiet}{(logical) Should download progress be suppressed. Default: 
+\code{TRUE}}
 
 \item{...}{Further args passed on to \code{\link{download.file}}}
 }
@@ -34,10 +36,10 @@ data.frame for a single user, with four columns:
 Download genotype data for a user
 }
 \details{
-Beware, not setting the rows parameter means that you download the entire
-file, which can be large (e.g., 15MB), and so take a while to download depending
-on your connection speed. Therefore, rows is set to 10 by default to sort of 
-protect the user. 
+Beware, not setting the rows parameter means that you download 
+the entire file, which can be large (e.g., 15MB), and so take a while 
+to download depending on your connection speed. Therefore, rows is set to 
+10 by default to sort of protect the user. 
 
 Internally, we use \code{\link{download.file}} to download each file, then 
 \code{\link{read.table}} to read the file to a data.frame.
@@ -47,7 +49,8 @@ Internally, we use \code{\link{download.file}} to download each file, then
 # get a data.frame of the users data
 data <- users(df = TRUE)
 head( data[[1]] ) # users with links to genome data
-mydata <- fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], file="~/myfile.txt")
+mydata <- fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], 
+  file="~/myfile.txt")
 
 # see some data right away
 mydata

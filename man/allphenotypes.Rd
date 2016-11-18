@@ -19,14 +19,16 @@ Data.frame of results, or list if df=FALSE
 }
 \description{
 Either return data.frame with all results, or output a list, then call
-		the charicteristic by id (paramater = "id") or name (paramater = "characteristic").
+		the charicteristic by id (paramater = "id") or name (paramater = 
+		"characteristic").
 }
 \examples{
 \dontrun{
 # Get all data
 allphenotypes(df = TRUE)
 
-# Output a list, then call the characterisitc of interest by 'id' or 'characteristic'
+# Output a list, then call the characterisitc of interest by 'id' or 
+# 'characteristic'
 datalist <- allphenotypes()
 names(datalist) # get list of all characteristics you can call
 datalist[["ADHD"]] # get data.frame for 'ADHD'

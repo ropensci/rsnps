@@ -82,7 +82,7 @@ information is generated, for column \code{MAF}.}
 has been merged, the up-to-date name of the marker is returned here, and
 a warning is issued.
 \item \code{Class_NCBI:} The marker's 'class'. See
-\url{http://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass}
+\url{https://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass}
 for more details.
 \item \code{Gene_NCBI:} If the marker lies within a gene (either within the exon
 or introns of a gene), the name of that gene is returned here; otherwise,
@@ -109,13 +109,13 @@ up-to-date SNP annotation information available from NCBI.
 }
 \details{
 For more details, please see
-\url{http://www.broadinstitute.org/mpg/snap/ldsearch.php}.
+\url{http://archive.broadinstitute.org/mpg/snap/ldsearch.php}.
 
 Information on the HapMap populations:
-\url{http://ccr.coriell.org/Sections/Collections/NHGRI/hapmap.aspx?PgId=266&coll=HG}
+\url{https://catalog.coriell.org/0/Sections/Collections/NHGRI/hapmap.aspx?PgId=266&coll=HG}
 
 Information on the 1000 Genomes populations:
-\url{http://www.1000genomes.org/category/frequently-asked-questions/population}
+\url{http://www.internationalgenome.org/category/population}
 }
 \examples{
 \dontrun{
