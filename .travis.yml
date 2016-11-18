@@ -5,9 +5,6 @@ cache: packages
 after_success:
  - Rscript -e 'covr::codecov()'
 
-before_script:
- - sudo apt-get install poppler-utils
-
 notifications:
   email:
     on_success: change
