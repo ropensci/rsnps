@@ -42,8 +42,8 @@
 #' }
 fetch_genotypes <- function(url, rows = 100, filepath = NULL, quiet = TRUE, ...) {
   if (is.null(filepath)) filepath <- tempfile(fileext = ".txt")
-  download.file(url, destfile = filepath, quiet = quiet, ...)
-  df <- read.table(filepath, sep = "\t", nrows = rows, header = FALSE, 
+  utils::download.file(url, destfile = filepath, quiet = quiet, ...)
+  df <- utils::read.table(filepath, sep = "\t", nrows = rows, header = FALSE, 
                    comment.char = "#", stringsAsFactors = FALSE)
-  setNames(df, c("rsid", "chromsome", "position", "genotype"))
+  stats::setNames(df, c("rsid", "chromsome", "position", "genotype"))
 }

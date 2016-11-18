@@ -16,7 +16,7 @@ download_users(name = NULL, id = NULL, dir = "~/", ...)
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
 }
 \value{
-File downloaded to directory you specify (or default), nothing 
+File downloaded to directory you specify (or default), nothing
 returned in R.
 }
 \description{

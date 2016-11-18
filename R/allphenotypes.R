@@ -2,7 +2,7 @@
 #' 		available for a given phenotype.
 #'
 #' Either return data.frame with all results, or output a list, then call
-#' 		the charicteristic by id (paramater = "id") or name (paramater = 
+#' 		the charicteristic by id (paramater = "id") or name (paramater =
 #' 		"characteristic").
 #'
 #' @export
@@ -15,7 +15,7 @@
 #' # Get all data
 #' allphenotypes(df = TRUE)
 #'
-#' # Output a list, then call the characterisitc of interest by 'id' or 
+#' # Output a list, then call the characterisitc of interest by 'id' or
 #' # 'characteristic'
 #' datalist <- allphenotypes()
 #' names(datalist) # get list of all characteristics you can call
@@ -27,12 +27,12 @@ allphenotypes <- function(df = FALSE, ...) {
   res <- GET(paste0(osnp_base(), "phenotypes.json"), ...)
   stop_for_status(res)
   out <- cuf8(res)
-  out <- fromJSON(out, simplifyVector = FALSE)
+  out <- jsonlite::fromJSON(out, simplifyVector = FALSE)
   if (df) {
-    ldply(out, function(x) data.frame(do.call(cbind, x), 
+    ldply(out, function(x) data.frame(do.call(cbind, x),
                                       stringsAsFactors = FALSE))
   } else {
-    temp <- lapply(out, function(x) data.frame(do.call(cbind, x), 
+    temp <- lapply(out, function(x) data.frame(do.call(cbind, x),
                                                stringsAsFactors = FALSE))
     cs <- str_trim(
       str_replace_all(

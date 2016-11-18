@@ -5,8 +5,8 @@
 #' of SNPs submitted.
 #'
 #' @param SNPs A vector of SNPs (rs numbers).
-#' @param ... Further named parameters passed on to \code{\link[httr]{config}} to debug curl.
-#' See examples.
+#' @param ... Further named parameters passed on to \code{\link[httr]{config}} 
+#' to debug curl. See examples.
 #' @export
 #' @return A dataframe with columns:
 #' \itemize{
@@ -40,10 +40,10 @@
 #' 
 #' @references \url{http://www.ncbi.nlm.nih.gov/projects/SNP/}
 #' 
-#' @details Note that you are limited in the number of SNPs you pass in to one request because
-#' URLs can only be so long. Around 600 is likely the max you can pass in, though may be somewhat
-#' more. Break up your vector of SNP codes into pieces of 600 or less and do repeated requests
-#' to get all data.
+#' @details Note that you are limited in the number of SNPs you pass in to one 
+#' request because URLs can only be so long. Around 600 is likely the max you 
+#' can pass in, though may be somewhat more. Break up your vector of SNP 
+#' codes into pieces of 600 or less and do repeated requests to get all data.
 #' 
 #' @examples \dontrun{
 #' ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
@@ -55,8 +55,10 @@
 #' NCBI_snp_query("rs332") # warning that its merged into another, try that
 #' NCBI_snp_query("rs121909001")
 #' NCBI_snp_query("rs1837253")
-#' NCBI_snp_query("rs1209415715") # warning that no data available, returns 0 length data.frame
-#' NCBI_snp_query("rs111068718") # warning that chromosomal information may be unmapped
+#' # warning that no data available, returns 0 length data.frame
+#' NCBI_snp_query("rs1209415715")
+#' # warning that chromosomal information may be unmapped 
+#' NCBI_snp_query("rs111068718") 
 #'
 #' NCBI_snp_query(SNPs='rs9970807')$BP
 #'
@@ -192,7 +194,8 @@ NCBI_snp_query <- function(SNPs, ...) {
 
     out[i, ] <- c(
       SNPs[i], my_chr, my_snp, unname(my_snpClass),
-      unname(my_gene), paste0(unname(alleles), collapse = ","), unname(my_major), unname(my_minor),
+      unname(my_gene), paste0(unname(alleles), collapse = ","), 
+      unname(my_major), unname(my_minor),
       as.numeric(my_freq), as.integer(my_pos)
     )
 

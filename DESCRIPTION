@@ -23,12 +23,10 @@ Imports:
     stringr,
     httr (>= 1.2.0),
     XML,
-    jsonlite,
-    stats,
-    methods
+    jsonlite
 Suggests:
+    roxygen (>= 5.0.1),
     testthat,
-    rjson,
     knitr,
     covr
 RoxygenNote: 5.0.1

@@ -5,7 +5,7 @@
 #' @param id User id
 #' @param dir Directory to save file to
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}.
-#' @return File downloaded to directory you specify (or default), nothing 
+#' @return File downloaded to directory you specify (or default), nothing
 #' returned in R.
 #' @examples \dontrun{
 #' # Download a single user file, by id
@@ -50,19 +50,19 @@ get_write <- function(x, y, ...){
 
 #' Read in openSNP user files from local storage.
 #'
-#' Beware, these tables can be large. Check your RAM before executing. Or 
-#' possibly read in a subset of the data. This function reads in the 
+#' Beware, these tables can be large. Check your RAM before executing. Or
+#' possibly read in a subset of the data. This function reads in the
 #' whole kitten kaboodle.
 #'
 #' @export
 #' @param name User name
 #' @param id User id
 #' @param path Path to file to read from.
-#' @param ... Parameters passed on to read.table.
+#' @param ... Parameters passed on to \code{\link{read.table}}
 #' @details
-#' If you specify a name or id, this function reads environment variables 
-#' written in the function download_users, and then searches against those 
-#' variables for the path to the file saved. Alternatively, you can supply 
+#' If you specify a name or id, this function reads environment variables
+#' written in the function download_users, and then searches against those
+#' variables for the path to the file saved. Alternatively, you can supply
 #' the path.
 #' @return A data.frame.
 #' @examples \dontrun{
@@ -83,7 +83,7 @@ read_users <- function(name = NULL, id = NULL, path = NULL, ...) {
     dir <- cache[names(cache) %in% by[[1]]][[1]]
   }
   message(sprintf("Reading data from %s", dir))
-  dat <- read.table(dir, skip = 14, ...)
+  dat <- utils::read.table(dir, skip = 14, ...)
   names(dat) <- c('rsid','chromsome','position','genotype')
   dat
 }

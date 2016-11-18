@@ -5,9 +5,6 @@
 #' @param ... Further named parameters passed on to 
 #' \code{\link[httr]{config}} to debug curl.
 #' 
-#' @importFrom stats setNames
-#' @importFrom methods is
-#' 
 #' @examples \dontrun{
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' NCBI_snp_query2(SNPs)
@@ -35,7 +32,7 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   stop_for_status(res)
   tmp <- cuf8(res)
   tmpsplit <- strsplit(tmp, "\n\n")[[1]]
-  dat <- setNames(lapply(tmpsplit, parse_data), SNPs)
+  dat <- stats::setNames(lapply(tmpsplit, parse_data), SNPs)
   dfs <- list()
   for (i in seq_along(dat)) {
     z <- dat[[i]]
@@ -91,9 +88,9 @@ parse_data <- function(x) {
 pull_line <- function(var_set, x) {
   line_set <- list()
   for (j in seq_along(var_set)) {
-    if (is(var_set[[j]], "numeric")) {
+    if (inherits(var_set[[j]], "numeric")) {
       line_set[[ names(var_set[j]) ]] <- strtrim(x[ var_set[[j]] ])
-    } else if (is(var_set[[j]], "character")) {
+    } else if (inherits(var_set[[j]], "character")) {
       line_set[[ names(var_set[j]) ]] <- strtrim(sub(
         var_set[[j]], "", grep(var_set[[j]], x, value = TRUE)))
     }

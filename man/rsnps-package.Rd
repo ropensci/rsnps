@@ -6,7 +6,7 @@
 \alias{rsnps-package}
 \title{Get SNP (Single-Nucleotide Polymorphism) Data on the Web}
 \description{
-This package gives you access to data from OpenSNP (https://opensnp.org) 
+This package gives you access to data from OpenSNP (https://opensnp.org)
 via their API (https://opensnp.org/faq#api).
 }
 \author{

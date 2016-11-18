@@ -9,8 +9,8 @@ NCBI_snp_query(SNPs, ...)
 \arguments{
 \item{SNPs}{A vector of SNPs (rs numbers).}
 
-\item{...}{Further named parameters passed on to \code{\link[httr]{config}} to debug curl.
-See examples.}
+\item{...}{Further named parameters passed on to \code{\link[httr]{config}} 
+to debug curl. See examples.}
 }
 \value{
 A dataframe with columns:
@@ -49,10 +49,10 @@ dbSNP build and latest reference genome for information on the vector
 of SNPs submitted.
 }
 \details{
-Note that you are limited in the number of SNPs you pass in to one request because
-URLs can only be so long. Around 600 is likely the max you can pass in, though may be somewhat
-more. Break up your vector of SNP codes into pieces of 600 or less and do repeated requests
-to get all data.
+Note that you are limited in the number of SNPs you pass in to one 
+request because URLs can only be so long. Around 600 is likely the max you 
+can pass in, though may be somewhat more. Break up your vector of SNP 
+codes into pieces of 600 or less and do repeated requests to get all data.
 }
 \examples{
 \dontrun{
@@ -65,8 +65,10 @@ NCBI_snp_query("rs420358")
 NCBI_snp_query("rs332") # warning that its merged into another, try that
 NCBI_snp_query("rs121909001")
 NCBI_snp_query("rs1837253")
-NCBI_snp_query("rs1209415715") # warning that no data available, returns 0 length data.frame
-NCBI_snp_query("rs111068718") # warning that chromosomal information may be unmapped
+# warning that no data available, returns 0 length data.frame
+NCBI_snp_query("rs1209415715")
+# warning that chromosomal information may be unmapped 
+NCBI_snp_query("rs111068718") 
 
 NCBI_snp_query(SNPs='rs9970807')$BP
 
