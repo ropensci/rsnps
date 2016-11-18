@@ -25,7 +25,7 @@ Imports:
     XML,
     jsonlite
 Suggests:
-    roxygen (>= 5.0.1),
+    roxygen2 (>= 5.0.1),
     testthat,
     knitr,
     covr
