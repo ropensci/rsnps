@@ -13,5 +13,7 @@ This package gives you access to data from OpenSNP (http://opensnp.org/) via the
 Scott Chamberlain \email{myrmecocystus@gmail.com}
 
 Kevin Ushey \email{kevinushey@gmail.com}
+
+Hao Zhu \email{haozhu233@gmail.com}
 }
 
