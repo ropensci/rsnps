@@ -28,7 +28,7 @@ phenotypes_byid <- function(phenotypeid = NA,
   message(url2)
   res <- GET(url2, ...)
   stop_for_status(res)
-  out <- content(res)
+  out <- cuf8(res)
 
   return_2 <- match.arg(return_, c('description','knownvars','users'), FALSE)
 

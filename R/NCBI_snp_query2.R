@@ -33,7 +33,7 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   res <- GET(url, query = list(db = 'snp', retmode = 'flt', rettype = 'flt', 
                                id = paste( SNPs, collapse = ",")), ...)
   stop_for_status(res)
-  tmp <- content(res, "text", encoding = "UTF-8")
+  tmp <- cuf8(res)
   tmpsplit <- strsplit(tmp, "\n\n")[[1]]
   dat <- setNames(lapply(tmpsplit, parse_data), SNPs)
   dfs <- list()

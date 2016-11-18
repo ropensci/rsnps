@@ -1,10 +1,28 @@
-I have read and agree to the the CRAN policies at http://cran.r-project.org/web/packages/policies.html
+## Test environments
 
-R CMD CHECK passed on my local OS X install on R 3.1.2 and R development 
-version, Ubuntu running on Travis-CI, and Win builder.
+* local OS X install, R 3.3.2
+* ubuntu 12.04 (on travis-ci), R 3.3.2
+* win-builder (devel and release)
+* R-hub (xxx)
 
-This submission is in response to the request from Brian Ripley about 
-fixing problems with examples wrapped in \donttest. I have moved all
-examples to be wrapped in \dontrun because all call web APIs.
+## R CMD check results
 
-Thanks! Scott Chamberlain
+0 errors | 0 warnings | 1 note
+
+   License components with restrictions and base license permitting such:
+     MIT + file LICENSE
+   File 'LICENSE':
+     YEAR: 2016
+     COPYRIGHT HOLDER: Scott Chamberlain
+
+## Reverse dependencies
+
+There are no reverse dependencies.
+
+---
+
+This version includes many bug fixes, fixes for changed URLs for web 
+services, and some minor improvements outlined in NEWS.md.
+
+Thanks!
+Scott Chamberlain

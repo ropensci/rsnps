@@ -26,7 +26,7 @@
 allphenotypes <- function(df = FALSE, ...) {
   res <- GET(paste0(osnp_base(), "phenotypes.json"), ...)
   stop_for_status(res)
-  out <- content(res, as = "text")
+  out <- cuf8(res)
   out <- fromJSON(out, simplifyVector = FALSE)
   if (df) {
     ldply(out, function(x) data.frame(do.call(cbind, x), 

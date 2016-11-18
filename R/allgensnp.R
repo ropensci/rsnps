@@ -16,8 +16,8 @@ allgensnp <- function(snp = NA, df = FALSE, ...) {
   message(url2)
   res <- GET(url2, ...)
   stop_for_status(res)
-  out <- content(res)
-  if (df == TRUE) {
+  out <- cuf8(res)
+  if (df) {
     df <- ldply(out, function(x) t(data.frame(unlist(x), 
                                               stringsAsFactors = FALSE)))
     names(df) <- c("snp_name","snp_chromosome","snp_position","user_name",

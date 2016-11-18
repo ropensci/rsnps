@@ -27,25 +27,27 @@ phenotypes <- function(userid = NA, df = FALSE, ...) {
   message(url2)
   res <- GET(url2, ...)
   stop_for_status(res)
-  out <- content(res)
+  out <- cuf8(res)
 
   userid <- gsub("-", ",", userid)
 
   if (df) {
-    if(length(str_split(userid, ",")[[1]]) == 1) {
-      tmp <- ldply(out[[2]], data.frame, stringsAsFactors=  FALSE)
+    if (length(str_split(userid, ",")[[1]]) == 1) {
+      tmp <- ldply(out[[2]], data.frame, stringsAsFactors = FALSE)
       names(tmp) <- c("phenotype","phenotypeID","variation")
       tmp
     } else {
       outdf <- list()
       for (i in seq_along(out)) {
-        if ( class(try(out[[i]][[2]], silent = TRUE)) == "try-error"){
-          df <- data.frame("no data", "no data", "no data")
+        if ( class(try(out[[i]][[2]], silent = TRUE)) == "try-error") {
+          df <- data.frame("no data", "no data", "no data", 
+                           stringsAsFactors = FALSE)
           names(df) <- c("phenotype","phenotypeID","variation")
           outdf[[paste("no info on user", i, sep = "_")]] <- df
         } else {
           if (length(out[[i]][[2]]) == 0) {
-            df <- data.frame("no data", "no data", "no data")
+            df <- data.frame("no data", "no data", "no data", 
+                             stringsAsFactors = FALSE)
             names(df) <- c("phenotype","phenotypeID","variation")
             outdf[[ out[[i]][[1]][["name"]] ]] <- df
           } else {

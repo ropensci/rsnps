@@ -44,7 +44,7 @@ download_users <- function(name = NULL, id = NULL, dir = "~/", ...) {
 
 get_write <- function(x, y, ...){
   res <- GET(x, ...)
-  txt <- content(res, as = "text")
+  txt <- cuf8(res)
   write(txt, file = y)
 }
 

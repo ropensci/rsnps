@@ -81,7 +81,7 @@ NCBI_snp_query <- function(SNPs, ...) {
   res <- GET(url, query = list(db = 'snp', mode = 'xml', 
                                id = paste( SNPs, collapse = ",")), ...)
   stop_for_status(res)
-  xml <- content(res, "text")
+  xml <- cuf8(res)
   xml_parsed <- xmlInternalTreeParse( xml )
   xml_list_ <- xmlToList( xml_parsed )
 

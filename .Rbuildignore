@@ -1,5 +1,4 @@
 .gitignore
-.git
 ^.*\.Rproj$
 ^\.Rproj\.user$
 README.Rmd
@@ -10,3 +9,4 @@ vignettes/margins.sty
 ^appveyor\.yml$
 cran-comments.md
 inst/vign/cache
+^cran-comments\.md$

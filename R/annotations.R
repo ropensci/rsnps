@@ -33,7 +33,7 @@ annotations <- function(snp = NA,
   message(url)
   res <- GET(url, ...)
   stop_for_status(res)
-  out <- content(res)
+  out <- cuf8(res)
   source_ <- match.arg(output, c('all','plos','mendeley','snpedia','metadata'), 
                        FALSE)
 

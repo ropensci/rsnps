@@ -148,7 +148,7 @@ LDSearch <- function(SNPs,
   if ( !quiet ) cat("Querying SNAP...\n")
   dat_tmp <- GET(url, query = args, ...)
   stop_for_status(dat_tmp)
-  dat <- content(dat_tmp, "text", encoding = "UTF-8")
+  dat <- cuf8(dat_tmp)
 
   ## check for validation error
   if ( length( grep( "validation error", dat ) ) > 0 ) {
