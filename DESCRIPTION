@@ -29,5 +29,6 @@ Imports:
 Suggests:
     testthat,
     rjson,
-    knitr
+    knitr,
+    covr
 RoxygenNote: 5.0.1

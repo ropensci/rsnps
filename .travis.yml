@@ -1,8 +1,6 @@
 language: r
-
-r_github_packages:
- - jimhester/robustr
- - jimhester/covr
+sudo: false
+cache: packages
 
 after_success:
  - Rscript -e 'covr::codecov()'
