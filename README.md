@@ -9,11 +9,33 @@ rsnps
 [![cran version](http://www.r-pkg.org/badges/version/rsnps)](https://cran.r-project.org/package=rsnps)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rsnps?color=E664A4)](https://github.com/metacran/cranlogs.app)
 
-__2015-09-15 UPDATE: Opensnp.org API is down, has been for about a week or so, we're awaiting a fix from Opensnp team__
-
 ## NOTE
 
 `rsnps` used to be `ropensnp`
+
+
+## Data sources
+
+This set of functions/package accesses data from:
+
++ openSNP.org
+	+ <https://opensnp.org>
+	+ See documentation on the openSNP API <https://opensnp.org/faq#api>
+	+ See blog post about their API <http://opensnp.wordpress.com/2012/01/18/some-progress-on-the-api-json-endpoints>
+	+ Relavant functions:
+		+ `allgensnp()`, `allphenotypes()`, `annotations()`, `download_users()`, 
+		`fetch_genotypes()`, `genotypes()`, `phenotypes()`, `phenotypes_byid()`, `users()`
+
++ The Broad Institute SNP Annotation and Proxy Search
+	+ See <http://www.broadinstitute.org/mpg/snap/index.php> for more details
+	+ Relavant functions:
+		+ `ld_search()`
+
++ NCBI's dbSNP SNP database
+	+ See <https://www.ncbi.nlm.nih.gov/snp> for more details
+	+ Relavant functions:
+		+ `ncbi_snp_query()`
+		+ `ncbi_snp_query2()`
 
 ## Install
 
@@ -37,31 +59,7 @@ devtools::install_github("ropensci/rsnps")
 library("rsnps")
 ```
 
-## Data sources
-
-This set of functions/package accesses data from:
-
-+ openSNP.org
-	+ [Their website](http://opensnp.org/)
-	+ See documentation on the openSNP API [here](http://opensnp.org/faq#api) and [here](https://github.com/gedankenstuecke/snpr/wiki/JSON-API).
-	+ See blog post about their API [here](http://opensnp.wordpress.com/2012/01/18/some-progress-on-the-api-json-endpoints/).
-	+ Relavant functions:
-		+ `allgensnp`, `allphenotypes`, `annotations`, `download_users`, `fetch_genotypes`, `genotypes`, `phenotypes`, `phenotypes_byid`, `users`
-
-
-+ The Broad Institute SNP Annotation and Proxy Search
-	+ See [http://www.broadinstitute.org/mpg/snap/index.php](http://www.broadinstitute.org/mpg/snap/index.php) for more details
-	+ Relavant functions:
-		+ `LDSearch`
-
-+ NCBI's dbSNP SNP database
-	+ See [http://www.ncbi.nlm.nih.gov/snp](http://www.ncbi.nlm.nih.gov/snp) for more details
-	+ Relavant functions:
-		+ `NCBI_snp_query`
-
-## Quick start
-
-### Search for SNPs in Linkage Disequilibrium
+## Search for SNPs in Linkage Disequilibrium
 
 Using the Broad Institute data
 
@@ -111,7 +109,7 @@ head(tmp)
 #> 7               1     GRCh38.p2          A/G          G   0.0827 40348260
 ```
 
-### Using NCBI dbSNP data
+## Using NCBI dbSNP data
 
 
 ```r
@@ -125,14 +123,14 @@ ncbi_snp_query(SNPs)
 #> 2    rs420358          1    rs420358            snp <NA>       G,T     G
 #> 3   rs1837253          5   rs1837253            snp <NA>       C/T     C
 #> 4 rs111068718       <NA> rs111068718 microsatellite <NA> (GT)21/24  <NA>
-#>   Minor    MAF        BP
-#> 1  <NA>     NA 117559593
-#> 2     T     NA  40341239
-#> 3     T 0.3822 111066174
-#> 4  <NA>     NA        NA
+#>   Minor    MAF        BP AncestralAllele
+#> 1  <NA>     NA 117559593            <NA>
+#> 2     T     NA  40341239     T,T,T,T,T,T
+#> 3     T 0.3822 111066174     T,T,T,T,T,T
+#> 4  <NA>     NA        NA            <NA>
 ```
 
-### Using openSNP data
+## Using openSNP data
 
 `genotypes()` function
 
@@ -173,5 +171,7 @@ out$phenotypes$`Hair Type`
 * Please [report any issues or bugs](https://github.com/ropensci/rsnps/issues).
 * License: MIT
 * Get citation information for `rsnsps` in R doing `citation(package = 'rsnps')`
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). 
+By participating in this project you agree to abide by its terms.
 
-[![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
