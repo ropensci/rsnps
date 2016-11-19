@@ -1,12 +1,13 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{rsnps tutorial}
+%\VignetteEncoding{UTF-8}
 -->
 
 
 
 rsnps tutorial
-==========
+==============
 
 ## Install and load library
 
@@ -54,15 +55,15 @@ allgensnp(snp='rs7412')[1:3]
 #> 
 #> [[1]]$user
 #> [[1]]$user$name
-#> [1] "R.M. Holston"
+#> [1] "JS"
 #> 
 #> [[1]]$user$id
-#> [1] 22
+#> [1] 5450
 #> 
 #> [[1]]$user$genotypes
 #> [[1]]$user$genotypes[[1]]
 #> [[1]]$user$genotypes[[1]]$genotype_id
-#> [1] 8
+#> [1] 3948
 #> 
 #> [[1]]$user$genotypes[[1]]$local_genotype
 #> [1] "CC"
@@ -85,15 +86,15 @@ allgensnp(snp='rs7412')[1:3]
 #> 
 #> [[2]]$user
 #> [[2]]$user$name
-#> [1] "Mom to AG"
+#> [1] "Stinky Jerome"
 #> 
 #> [[2]]$user$id
-#> [1] 387
+#> [1] 5443
 #> 
 #> [[2]]$user$genotypes
 #> [[2]]$user$genotypes[[1]]
 #> [[2]]$user$genotypes[[1]]$genotype_id
-#> [1] 173
+#> [1] 3943
 #> 
 #> [[2]]$user$genotypes[[1]]$local_genotype
 #> [1] "CC"
@@ -116,40 +117,34 @@ allgensnp(snp='rs7412')[1:3]
 #> 
 #> [[3]]$user
 #> [[3]]$user$name
-#> [1] "Dan Bolser"
+#> [1] "Brittany"
 #> 
 #> [[3]]$user$id
-#> [1] 254
+#> [1] 5386
 #> 
 #> [[3]]$user$genotypes
-#> list()
+#> [[3]]$user$genotypes[[1]]
+#> [[3]]$user$genotypes[[1]]$genotype_id
+#> [1] 3900
+#> 
+#> [[3]]$user$genotypes[[1]]$local_genotype
+#> [1] "CC"
 ```
 
 
 ```r
 allgensnp('rs7412', df=TRUE)[1:10,]
-#>    snp_name snp_chromosome snp_position         user_name user_id genotype_id genotype   NA   NA   NA
-#> 1    rs7412             19     44908822      R.M. Holston      22           8       CC <NA> <NA> <NA>
-#> 2    rs7412             19     44908822         Mom to AG     387         173       CC <NA> <NA> <NA>
-#> 3    rs7412             19     44908822        Dan Bolser     254        <NA>     <NA> <NA> <NA> <NA>
-#> 4    rs7412             19     44908822                Lb      14           6       CC <NA> <NA> <NA>
-#> 5    rs7412             19     44908822 Glenn Allen Nolen      19           7       CC <NA> <NA> <NA>
-#> 6    rs7412             19     44908822          kevinmcc     285         118       CC <NA> <NA> <NA>
-#> 7    rs7412             19     44908822            Sigrid     569         260       CC <NA> <NA> <NA>
-#> 8    rs7412             19     44908822        Razib Khan      33          12       CT <NA> <NA> <NA>
-#> 9    rs7412             19     44908822             sagan      13           4       CC <NA> <NA> <NA>
-#> 10   rs7412             19     44908822   William Vencill     581         266       CC <NA> <NA> <NA>
-#>      NA   NA   NA   NA   NA   NA   NA   NA
-#> 1  <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>
-#> 2  <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>
-#> 3  <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>
-#> 4  <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>
-#> 5  <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>
-#> 6  <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>
-#> 7  <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>
-#> 8  <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>
-#> 9  <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>
-#> 10 <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>
+#>    snp_name snp_chromosome snp_position      user_name user_id genotype_id genotype
+#> 1    rs7412             19     44908822             JS    5450        3948       CC
+#> 2    rs7412             19     44908822  Stinky Jerome    5443        3943       CC
+#> 3    rs7412             19     44908822       Brittany    5386        3900       CC
+#> 4    rs7412             19     44908822         andorp    5385        3899       CC
+#> 5    rs7412             19     44908822          isaac    5383        3897       CC
+#> 6    rs7412             19     44908822     Li Xinquan    5382        3896       CC
+#> 7    rs7412             19     44908822 Kimberly Clark    5380        3894       CC
+#> 8    rs7412             19     44908822        christi    5379        3893       CC
+#> 9    rs7412             19     44908822    Phil Shirts    5378        3891       CC
+#> 10   rs7412             19     44908822    Jeff Wright    5376        3890       CC
 ```
 
 
@@ -163,16 +158,16 @@ Get all data
 ```r
 allphenotypes(df = TRUE)[1:10,]
 #>    id characteristic                   known_variations number_of_users
-#> 1   1      Eye color                              Brown             672
-#> 2   1      Eye color                        Brown-green             672
-#> 3   1      Eye color                         Blue-green             672
-#> 4   1      Eye color                          Blue-grey             672
-#> 5   1      Eye color                              Green             672
-#> 6   1      Eye color                               Blue             672
-#> 7   1      Eye color                              Hazel             672
-#> 8   1      Eye color                              Mixed             672
-#> 9   1      Eye color                          Gray-blue             672
-#> 10  1      Eye color Blue-grey; broken amber collarette             672
+#> 1   1      Eye color                              Brown            1004
+#> 2   1      Eye color                        Brown-green            1004
+#> 3   1      Eye color                         Blue-green            1004
+#> 4   1      Eye color                          Blue-grey            1004
+#> 5   1      Eye color                              Green            1004
+#> 6   1      Eye color                               Blue            1004
+#> 7   1      Eye color                              Hazel            1004
+#> 8   1      Eye color                              Mixed            1004
+#> 9   1      Eye color                          Gray-blue            1004
+#> 10  1      Eye color Blue-grey; broken amber collarette            1004
 ```
 
 Output a list, then call the characterisitc of interest by 'id' or 'characteristic'
@@ -187,9 +182,8 @@ Get a list of all characteristics you can call
 
 ```r
 names(datalist)[1:10]
-#>  [1] "Eye color"           "Handedness"          "Height"              "Sex"                
-#>  [5] "Hair Color"          "Tongue roller"       "Colour Blindness"    "Hair Type"          
-#>  [9] "Lactose intolerance" "Astigmatism"
+#>  [1] "Eye color"                        "Lactose intolerance"              "Handedness"                       "white skin"                       "Ability to find a bug in openSNP"
+#>  [6] "Beard Color"                      "Hair Color"                       "Ability to Tan"                   "Height"                           "Hair Type"
 ```
 
 Get data.frame for _ADHD_
@@ -198,15 +192,15 @@ Get data.frame for _ADHD_
 ```r
 datalist[["ADHD"]]
 #>   id characteristic                            known_variations number_of_users
-#> 1 29           ADHD                                       False             167
-#> 2 29           ADHD                                        True             167
-#> 3 29           ADHD              Undiagnosed, but probably true             167
-#> 4 29           ADHD                                          No             167
-#> 5 29           ADHD                                         Yes             167
-#> 6 29           ADHD                               Not diagnosed             167
-#> 7 29           ADHD Diagnosed as not having but with some signs             167
-#> 8 29           ADHD                                 Mthfr c677t             167
-#> 9 29           ADHD                                   Rs1801260             167
+#> 1 29           ADHD                                       False             232
+#> 2 29           ADHD                                        True             232
+#> 3 29           ADHD              Undiagnosed, but probably true             232
+#> 4 29           ADHD                                          No             232
+#> 5 29           ADHD                                         Yes             232
+#> 6 29           ADHD                               Not diagnosed             232
+#> 7 29           ADHD Diagnosed as not having but with some signs             232
+#> 8 29           ADHD                                 Mthfr c677t             232
+#> 9 29           ADHD                                   Rs1801260             232
 ```
 
 Get data.frame for _mouth size_ and _SAT Writing_
@@ -215,26 +209,29 @@ Get data.frame for _mouth size_ and _SAT Writing_
 ```r
 datalist[c("mouth size","SAT Writing")]
 #> $`mouth size`
-#>    id characteristic known_variations number_of_users
-#> 1 120     mouth size           Medium              98
-#> 2 120     mouth size            Small              98
-#> 3 120     mouth size            Large              98
+#>    id characteristic     known_variations number_of_users
+#> 1 120     mouth size               Medium             150
+#> 2 120     mouth size                Small             150
+#> 3 120     mouth size                Large             150
+#> 4 120     mouth size Slightly wide mouth              150
 #> 
 #> $`SAT Writing`
 #>    id characteristic                                        known_variations number_of_users
-#> 1  41    SAT Writing                                                     750              66
-#> 2  41    SAT Writing                                      Tested before 2005              66
-#> 3  41    SAT Writing                                                     800              66
-#> 4  41    SAT Writing                                     Country with no sat              66
-#> 5  41    SAT Writing                                                     N/a              66
-#> 6  41    SAT Writing                                 Never & have ba & above              66
-#> 7  41    SAT Writing                                                     720              66
-#> 8  41    SAT Writing                         Did well - don't remember score              66
-#> 9  41    SAT Writing                                                     511              66
-#> 10 41    SAT Writing                                                     700              66
-#> 11 41    SAT Writing                                                     760              66
-#> 12 41    SAT Writing                                                     780              66
-#> 13 41    SAT Writing Not part of sat when i took test in august 1967 at uiuc              66
+#> 1  41    SAT Writing                                                     750              87
+#> 2  41    SAT Writing                                      Tested before 2005              87
+#> 3  41    SAT Writing                                                     800              87
+#> 4  41    SAT Writing                                     Country with no sat              87
+#> 5  41    SAT Writing                                                     N/a              87
+#> 6  41    SAT Writing                                 Never & have ba & above              87
+#> 7  41    SAT Writing                                                     720              87
+#> 8  41    SAT Writing                         Did well - don't remember score              87
+#> 9  41    SAT Writing                                                     511              87
+#> 10 41    SAT Writing                                                     700              87
+#> 11 41    SAT Writing                                                     760              87
+#> 12 41    SAT Writing                                                     780              87
+#> 13 41    SAT Writing Not part of sat when i took test in august 1967 at uiuc              87
+#> 14 41    SAT Writing                                 Not part of sat in 1961              87
+#> 15 41    SAT Writing                                                     620              87
 ```
 
 ### Annotations
@@ -255,18 +252,12 @@ Just from PLOS journals
 
 ```r
 annotations(snp = 'rs7903146', output = 'plos')[c(1:2),]
-#>                author
-#> 1 Marguerite R. Irvin
-#> 2        Huixiao Hong
-#>                                                                                                                                            title
-#> 1 Genome-Wide Detection of Allele Specific Copy Number Variation Associated with Insulin Resistance in African Americans from the HyperGEN Study
-#> 2                                                     Technical Reproducibility of Genotyping SNP Arrays Used in Genome-Wide Association Studies
-#>       publication_date number_of_readers                                            url
-#> 1 2011-08-25T00:00:00Z              2509 http://dx.doi.org/10.1371/journal.pone.0024052
-#> 2 2012-09-07T00:00:00Z              3052 http://dx.doi.org/10.1371/journal.pone.0044483
-#>                            doi
-#> 1 10.1371/journal.pone.0024052
-#> 2 10.1371/journal.pone.0044483
+#>                   author                                                                                                                                    title
+#> 1        Maggie C. Y. Ng Meta-Analysis of Genome-Wide Association Studies in African Americans Provides Insights into the Genetic Architecture of Type 2 Diabetes
+#> 2 André Gustavo P. Sousa                                  Genetic Variants of Diabetes Risk and Incident Cardiovascular Events in Chronic Coronary Artery Disease
+#>           publication_date number_of_readers                                            url                          doi
+#> 1 2014-08-07T00:00:00.000Z              7783 http://dx.doi.org/10.1371/journal.pgen.1004517 10.1371/journal.pgen.1004517
+#> 2 2011-01-20T00:00:00.000Z              2080 http://dx.doi.org/10.1371/journal.pone.0016341 10.1371/journal.pone.0016341
 ```
 
 Just from SNPedia
@@ -274,14 +265,10 @@ Just from SNPedia
 
 ```r
 annotations(snp = 'rs7903146', output = 'snpedia')
-#>                                               url
-#> 1 http://www.snpedia.com/index.php/Rs7903146(C;C)
-#> 2 http://www.snpedia.com/index.php/Rs7903146(C;T)
-#> 3 http://www.snpedia.com/index.php/Rs7903146(T;T)
-#>                                                            summary
-#> 1 Normal (lower) risk of Type 2 Diabetes and Gestational Diabetes.
-#> 2     1.4x increased risk for diabetes (and perhaps colon cancer).
-#> 3                            2x increased risk for Type-2 diabetes
+#>                                               url                                                          summary
+#> 1 http://www.snpedia.com/index.php/Rs7903146(C;C) Normal (lower) risk of Type 2 Diabetes and Gestational Diabetes.
+#> 2 http://www.snpedia.com/index.php/Rs7903146(C;T)     1.4x increased risk for diabetes (and perhaps colon cancer).
+#> 3 http://www.snpedia.com/index.php/Rs7903146(T;T)                            2x increased risk for Type-2 diabetes
 ```
 
 Get all annotations
@@ -289,42 +276,24 @@ Get all annotations
 
 ```r
 annotations(snp = 'rs7903146', output = 'all')[1:5,]
-#>        .id                      author
-#> 1 mendeley        Dhanasekaran Bodhini
-#> 2 mendeley Ludmila Alves Sanches Dutra
-#> 3 mendeley               Thomas Hansen
-#> 4 mendeley    Laura J Rasmussen-Torvik
-#> 5 mendeley                      Yu Yan
-#>                                                                                                                                                                           title
-#> 1                                        The rs12255372(G/T) and rs7903146(C/T) polymorphisms of the TCF7L2 gene are associated with type 2 diabetes mellitus in Asian Indians.
-#> 2                                                            Allele-specific PCR assay to genotype SNP rs7903146 in TCF7L2 gene for rapid screening of diabetes susceptibility.
-#> 3                                                                                               At-Risk Variant in TCF7L2 for Type II Diabetes Increases Risk of Schizophrenia.
-#> 4                                           Preliminary report: No association between TCF7L2 rs7903146 and euglycemic-clamp-derived insulin sensitivity in a mixed-age cohort.
-#> 5 The transcription factor 7-like 2 (TCF7L2) polymorphism may be associated with focal arteriolar narrowing in Caucasians with hypertension or without diabetes: the ARIC Study
-#>   publication_year number_of_readers open_access
-#> 1             2007                 8       FALSE
-#> 2             2008                 5       FALSE
-#> 3             2011                 1       FALSE
-#> 4             2009                 3       FALSE
-#> 5             2010                 5        TRUE
-#>                                                                                                                                                                      url
-#> 1                               http://www.mendeley.com/research/rs12255372-g-t-rs7903146-c-t-polymorphisms-tcf7l2-gene-associated-type-2-diabetes-mellitus-asian-ind-1/
-#> 2                     http://www.mendeley.com/research/allelespecific-pcr-assay-to-genotype-snp-rs7903146-in-tcf7l2-gene-for-rapid-screening-of-diabetes-susceptibility/
-#> 3                                                                  http://www.mendeley.com/research/atrisk-variant-tcf7l2-type-ii-diabetes-increases-risk-schizophrenia/
-#> 4                   http://www.mendeley.com/research/preliminary-report-association-between-tcf7l2-rs7903146-euglycemicclampderived-insulin-sensitivity-mixedage-cohort/
-#> 5 http://www.mendeley.com/research/transcription-factor-7like-2-tcf7l2-polymorphism-associated-focal-arteriolar-narrowing-caucasians-hypertension-diabetes-aric-study-7/
-#>                              doi publication_date summary first_author pubmed_link journal trait pvalue
-#> 1                           none             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
-#> 2                           none             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
-#> 3 10.1016/j.biopsych.2011.01.031             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
-#> 4                           none             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
-#> 5         10.1186/1472-6823-10-9             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
-#>   pvalue_description confidence_interval
-#> 1               <NA>                <NA>
-#> 2               <NA>                <NA>
-#> 3               <NA>                <NA>
-#> 4               <NA>                <NA>
-#> 5               <NA>                <NA>
+#>        .id              author                                                                                                                              title publication_year
+#> 1 mendeley           T E Meyer                                                Diabetes genes and prostate cancer in the Atherosclerosis Risk in Communities study             2010
+#> 2 mendeley      Camilla Cervin                                                        Diabetes in Adults , Type 1 Diabetes , and Type 2 Diabetes GENETICS OF LADA             2008
+#> 3 mendeley Nicholette D Palmer                                Association of TCF7L2 gene polymorphisms with reduced acute insulin response in Hispanic Americans.             2008
+#> 4 mendeley      Ashis K Mondal                  Genotype and tissue-specific effects on alternative splicing of the transcription factor 7-like 2 gene in humans.             2010
+#> 5 mendeley        Julian Munoz Polymorphism in the transcription factor 7-like 2 (TCF7L2) gene is associated with reduced insulin secretion in nondiabetic women.             2006
+#>   number_of_readers open_access                                                                                                                                    url
+#> 1                 3        TRUE                              http://www.mendeley.com/research/diabetes-genes-prostate-cancer-atherosclerosis-risk-communities-study-4/
+#> 2                 2       FALSE                                        http://www.mendeley.com/research/diabetes-adults-type-1-diabetes-type-2-diabetes-genetics-lada/
+#> 3                 8       FALSE              http://www.mendeley.com/research/association-tcf7l2-gene-polymorphisms-reduced-acute-insulin-response-hispanic-americans/
+#> 4                13        TRUE        http://www.mendeley.com/research/genotype-tissuespecific-effects-alternative-splicing-transcription-factor-7like-2-gene-humans/
+#> 5                10        TRUE http://www.mendeley.com/research/polymorphism-transcription-factor-7like-2-tcf7l2-gene-associated-reduced-insulin-secretion-nondiabet/
+#>                                              doi publication_date summary first_author pubmed_link journal trait pvalue pvalue_description confidence_interval
+#> 1 19/2/558 [pii]\\r10.1158/1055-9965.EPI-09-0902             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA               <NA>                <NA>
+#> 2                         10.2337/db07-0299.Leif             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA               <NA>                <NA>
+#> 3                           10.1210/jc.2007-1225             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA               <NA>                <NA>
+#> 4                           10.1210/jc.2009-2064             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA               <NA>                <NA>
+#> 5                              10.2337/db06-0574             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA               <NA>                <NA>
 ```
 
 ### Download
@@ -530,12 +499,12 @@ lapply(out, head)
 #> 
 #> $`Samantha B. Clark`
 #>             phenotype phenotypeID                   variation
-#> 1          Handedness           3                 left-handed
-#> 2 Lactose intolerance           2          lactose-intolerant
-#> 3           Eye color           1                       Brown
-#> 4      Ability to Tan          14                         Yes
-#> 5 Nicotine dependence          20 ex-smoker, 7 cigarettes/day
-#> 6          Hair Color          13                       brown
+#> 1  Mother's eye color         494                       Brown
+#> 2          Handedness           3                 left-handed
+#> 3 Lactose intolerance           2          lactose-intolerant
+#> 4           Eye color           1                       Brown
+#> 5      Ability to Tan          14                         Yes
+#> 6 Nicotine dependence          20 ex-smoker, 7 cigarettes/day
 ```
 
 ### All known variations
@@ -627,33 +596,37 @@ phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
 #> 
 #> $known_variations[[23]]
 #> [1] "Black with few red hairs"
+#> 
+#> $known_variations[[24]]
+#> [1] "Black, graying"
+#> 
+#> $known_variations[[25]]
+#> [1] "Red, moustache still is, beard mostly white"
+#> 
+#> $known_variations[[26]]
+#> [1] "Blonde/brown-some black-and red on chin-all starting to gray"
+#> 
+#> $known_variations[[27]]
+#> [1] "Dark brown"
+#> 
+#> $known_variations[[28]]
+#> [1] "Every possible color, most hair shafts have more than one color at different points along the shaft"
 ```
 
 
 ```r
 phenotypes_byid(phenotypeid=12, return_ = 'users')[1:10,]
-#>    user_id
-#> 1       22
-#> 2        1
-#> 3       26
-#> 4       10
-#> 5       14
-#> 6       42
-#> 7       45
-#> 8       16
-#> 9        8
-#> 10     661
-#>                                                                                              variation
-#> 1                                                                                                  Red
-#> 2                                                                                               Blonde
-#> 3                                                                                            red-brown
-#> 4  Red-Blonde-Brown-Black(in diferent parts i have different color,for example near the lips blond-red
-#> 5                                                                                      No beard-female
-#> 6                                                                                          Brown-black
-#> 7  Red-Blonde-Brown-Black(in diferent parts i have different color,for example near the lips blond-red
-#> 8                                                                                         blonde-brown
-#> 9                                                                                      No beard-female
-#> 10                                                                                         Brown-black
+#>    user_id                                                                                           variation
+#> 1       22                                                                                                 Red
+#> 2        1                                                                                              Blonde
+#> 3       26                                                                                           red-brown
+#> 4       10 Red-Blonde-Brown-Black(in diferent parts i have different color,for example near the lips blond-red
+#> 5       14                                                                                     No beard-female
+#> 6       42                                                                                         Brown-black
+#> 7       45 Red-Blonde-Brown-Black(in diferent parts i have different color,for example near the lips blond-red
+#> 8       16                                                                                        blonde-brown
+#> 9        8                                                                                     No beard-female
+#> 10     661                                                                                         Brown-black
 ```
 
 ### OpenSNP users
@@ -686,44 +659,35 @@ data[1:2]
 
 ## NCBI SNP data
 
-### LDSearch
+### ld_search
 
 Search for SNPs in Linkage Disequilibrium with a set of SNPs
 
 
 ```r
-LDSearch("rs420358")
+ld_search("rs420358")
 #> Querying SNAP...
 #> Querying NCBI for up-to-date SNP annotation information...
 #> Done!
 #> $rs420358
-#>        Proxy      SNP Distance RSquared DPrime GeneVariant GeneName GeneDescription Major Minor   MAF
-#> 4   rs420358 rs420358        0    1.000  1.000  INTERGENIC      N/A             N/A     C     A 0.167
-#> 5   rs442418 rs420358      122    1.000  1.000  INTERGENIC      N/A             N/A     C     T 0.167
-#> 8   rs718223 rs420358     1168    1.000  1.000  INTERGENIC      N/A             N/A     A     G 0.167
-#> 6   rs453604 rs420358     2947    1.000  1.000  INTERGENIC      N/A             N/A     A     G 0.167
-#> 3   rs372946 rs420358      -70    0.943  1.000  INTERGENIC      N/A             N/A     G     C 0.175
-#> 1 rs10889290 rs420358     3987    0.800  1.000  INTERGENIC      N/A             N/A     G     A 0.200
-#> 2 rs10889291 rs420358     4334    0.800  1.000  INTERGENIC      N/A             N/A     C     T 0.200
-#> 7  rs4660403 rs420358     7021    0.800  1.000  INTERGENIC      N/A             N/A     A     G 0.200
-#>   NObserved Chromosome_NCBI Marker_NCBI Class_NCBI Gene_NCBI Alleles_NCBI Major_NCBI Minor_NCBI MAF_NCBI
-#> 4       120               1    rs420358        snp      <NA>          G,T          G          T       NA
-#> 5       120               1    rs442418        snp      <NA>          A/G          A          G   0.0723
-#> 8       120               1    rs718223        snp      <NA>          A/G          A          G   0.0723
-#> 6       120               1    rs453604        snp      <NA>          A/G          A          G   0.0727
-#> 3       120               1    rs372946        snp      <NA>          C,G          C          G       NA
-#> 1       120               1  rs10889290        snp      <NA>          A/G          G          A   0.0841
-#> 2       120               1  rs10889291        snp      <NA>          C/T          C          T   0.0839
-#> 7       120               1   rs4660403        snp      <NA>          A/G          A          G   0.0827
-#>    BP_NCBI
-#> 4 40341238
-#> 5 40341360
-#> 8 40342406
-#> 6 40344185
-#> 3 40341168
-#> 1 40345225
-#> 2 40345572
-#> 7 40348259
+#>        Proxy      SNP Distance RSquared DPrime GeneVariant GeneName GeneDescription Major Minor   MAF NObserved marker_NCBI organism_NCBI chromosome_NCBI assembly_NCBI alleles_NCBI
+#> 4   rs420358 rs420358        0    1.000  1.000  INTERGENIC      N/A             N/A     C     A 0.167       120    rs420358  Homo sapiens               1     GRCh38.p2          G/T
+#> 5   rs442418 rs420358      122    1.000  1.000  INTERGENIC      N/A             N/A     C     T 0.167       120    rs442418  Homo sapiens               1     GRCh38.p2          A/G
+#> 8   rs718223 rs420358     1168    1.000  1.000  INTERGENIC      N/A             N/A     A     G 0.167       120    rs718223  Homo sapiens               1     GRCh38.p2          A/G
+#> 6   rs453604 rs420358     2947    1.000  1.000  INTERGENIC      N/A             N/A     A     G 0.167       120    rs453604  Homo sapiens               1     GRCh38.p2          A/G
+#> 3   rs372946 rs420358      -70    0.943  1.000  INTERGENIC      N/A             N/A     G     C 0.175       120    rs372946  Homo sapiens               1     GRCh38.p2          C/G
+#> 1 rs10889290 rs420358     3987    0.800  1.000  INTERGENIC      N/A             N/A     G     A 0.200       120  rs10889290  Homo sapiens               1     GRCh38.p2          A/G
+#> 2 rs10889291 rs420358     4334    0.800  1.000  INTERGENIC      N/A             N/A     C     T 0.200       120  rs10889291  Homo sapiens               1     GRCh38.p2          C/T
+#> 7  rs4660403 rs420358     7021    0.800  1.000  INTERGENIC      N/A             N/A     A     G 0.200       120   rs4660403  Homo sapiens               1     GRCh38.p2          A/G
+#>   minor_NCBI maf_NCBI  bp_NCBI
+#> 4       <NA>     <NA> 40341239
+#> 5          T   0.0723 40341361
+#> 8          G   0.0723 40342407
+#> 6          G   0.0727 40344186
+#> 3       <NA>     <NA> 40341169
+#> 1          A   0.0841 40345226
+#> 2          T   0.0839 40345573
+#> 7          G   0.0827 40348260
 ```
 
 ### dbSNP
@@ -735,10 +699,10 @@ An example with both merged SNPs, non-SNV SNPs, regular SNPs, SNPs not found, mi
 
 ```r
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-NCBI_snp_query(snps)
-#>         Query Chromosome      Marker          Class Gene   Alleles Major Minor    MAF        BP
-#> 1       rs332          7 rs121909001         in-del CFTR     -/TTT  <NA>  <NA>     NA 117559592
-#> 2    rs420358          1    rs420358            snp <NA>       G,T     G     T     NA  40341238
-#> 3   rs1837253          5   rs1837253            snp <NA>       C/T     C     T 0.3822 111066173
-#> 4 rs111068718       <NA> rs111068718 microsatellite <NA> (GT)21/24  <NA>  <NA>     NA        NA
+ncbi_snp_query(snps)
+#>         Query Chromosome      Marker          Class Gene   Alleles Major Minor    MAF        BP AncestralAllele
+#> 1       rs332          7 rs121909001         in-del CFTR     -/TTT  <NA>  <NA>     NA 117559593            <NA>
+#> 2    rs420358          1    rs420358            snp <NA>       G,T     G     T     NA  40341239     T,T,T,T,T,T
+#> 3   rs1837253          5   rs1837253            snp <NA>       C/T     C     T 0.3822 111066174     T,T,T,T,T,T
+#> 4 rs111068718       <NA> rs111068718 microsatellite <NA> (GT)21/24  <NA>  <NA>     NA        NA            <NA>
 ```

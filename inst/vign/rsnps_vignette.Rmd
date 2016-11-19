@@ -1,9 +1,10 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{rsnps tutorial}
+%\VignetteEncoding{UTF-8}
 -->
 
-```{r echo=FALSE}
+```{r eval=TRUE, echo=FALSE}
 knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
@@ -13,7 +14,7 @@ knitr::opts_chunk$set(
 ```
 
 rsnps tutorial
-==========
+==============
 
 ## Install and load library
 
@@ -179,12 +180,12 @@ data[1:2]
 
 ## NCBI SNP data
 
-### LDSearch
+### ld_search
 
 Search for SNPs in Linkage Disequilibrium with a set of SNPs
 
 ```{r}
-LDSearch("rs420358")
+ld_search("rs420358")
 ```
 
 ### dbSNP
@@ -195,5 +196,5 @@ An example with both merged SNPs, non-SNV SNPs, regular SNPs, SNPs not found, mi
 
 ```{r}
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-NCBI_snp_query(snps)
+ncbi_snp_query(snps)
 ```

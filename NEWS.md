@@ -24,9 +24,6 @@ works until the next CRAN release when it will be defunct (#33)
 * Fix to `fetch_genotypes()`, was failing sometimes when the commented
 metadata lines at top varied in length (#22)
 * Fix to `ld_search()` (#32)
-* xxx (#xx)
-* xxx (#xx)
-* xxx (#xx)
 
 
 rsnps 0.1.6

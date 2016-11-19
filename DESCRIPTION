@@ -1,5 +1,5 @@
 Package: rsnps
-Title: Get 'SNP' (Single-Nucleotide Polymorphism) Data on the Web
+Title: Get 'SNP' ('Single-Nucleotide' 'Polymorphism') Data on the Web
 Description: A programmatic interface to various 'SNP' 'datasets'
     on the web: 'OpenSNP' (<https://opensnp.org>), 'NBCIs' 'dbSNP' database 
     (<https://www.ncbi.nlm.nih.gov/projects/SNP>), and Broad Institute 'SNP'
