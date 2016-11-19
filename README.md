@@ -1,5 +1,5 @@
 rsnps
-=======
+=====
 
 
 
@@ -66,7 +66,7 @@ Using the Broad Institute data
 
 
 ```r
-tmp <- LDSearch("rs420358")
+tmp <- ld_search("rs420358")
 ```
 
 ```
@@ -90,33 +90,24 @@ head(tmp)
 #> 1 rs10889290 rs420358     3987    0.800  1.000  INTERGENIC      N/A
 #> 2 rs10889291 rs420358     4334    0.800  1.000  INTERGENIC      N/A
 #> 7  rs4660403 rs420358     7021    0.800  1.000  INTERGENIC      N/A
-#>   GeneDescription Major Minor   MAF NObserved Chromosome_NCBI Marker_NCBI
-#> 4             N/A     C     A 0.167       120               1    rs420358
-#> 5             N/A     C     T 0.167       120               1    rs442418
-#> 8             N/A     A     G 0.167       120               1    rs718223
-#> 6             N/A     A     G 0.167       120               1    rs453604
-#> 3             N/A     G     C 0.175       120               1    rs372946
-#> 1             N/A     G     A 0.200       120               1  rs10889290
-#> 2             N/A     C     T 0.200       120               1  rs10889291
-#> 7             N/A     A     G 0.200       120               1   rs4660403
-#>   Class_NCBI Gene_NCBI Alleles_NCBI Major_NCBI Minor_NCBI MAF_NCBI
-#> 4        snp      <NA>          G,T          G          T       NA
-#> 5        snp      <NA>          A/G          A          G   0.0723
-#> 8        snp      <NA>          A/G          A          G   0.0723
-#> 6        snp      <NA>          A/G          A          G   0.0727
-#> 3        snp      <NA>          C,G          C          G       NA
-#> 1        snp      <NA>          A/G          G          A   0.0841
-#> 2        snp      <NA>          C/T          C          T   0.0839
-#> 7        snp      <NA>          A/G          A          G   0.0827
-#>    BP_NCBI
-#> 4 40341238
-#> 5 40341360
-#> 8 40342406
-#> 6 40344185
-#> 3 40341168
-#> 1 40345225
-#> 2 40345572
-#> 7 40348259
+#>   GeneDescription Major Minor   MAF NObserved marker_NCBI organism_NCBI
+#> 4             N/A     C     A 0.167       120    rs420358  Homo sapiens
+#> 5             N/A     C     T 0.167       120    rs442418  Homo sapiens
+#> 8             N/A     A     G 0.167       120    rs718223  Homo sapiens
+#> 6             N/A     A     G 0.167       120    rs453604  Homo sapiens
+#> 3             N/A     G     C 0.175       120    rs372946  Homo sapiens
+#> 1             N/A     G     A 0.200       120  rs10889290  Homo sapiens
+#> 2             N/A     C     T 0.200       120  rs10889291  Homo sapiens
+#> 7             N/A     A     G 0.200       120   rs4660403  Homo sapiens
+#>   chromosome_NCBI assembly_NCBI alleles_NCBI minor_NCBI maf_NCBI  bp_NCBI
+#> 4               1     GRCh38.p2          G/T       <NA>     <NA> 40341239
+#> 5               1     GRCh38.p2          A/G          T   0.0723 40341361
+#> 8               1     GRCh38.p2          A/G          G   0.0723 40342407
+#> 6               1     GRCh38.p2          A/G          G   0.0727 40344186
+#> 3               1     GRCh38.p2          C/G       <NA>     <NA> 40341169
+#> 1               1     GRCh38.p2          A/G          A   0.0841 40345226
+#> 2               1     GRCh38.p2          C/T          T   0.0839 40345573
+#> 7               1     GRCh38.p2          A/G          G   0.0827 40348260
 ```
 
 ### Using NCBI dbSNP data
@@ -124,7 +115,7 @@ head(tmp)
 
 ```r
 SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-NCBI_snp_query(SNPs)
+ncbi_snp_query(SNPs)
 ```
 
 ```
@@ -134,9 +125,9 @@ NCBI_snp_query(SNPs)
 #> 3   rs1837253          5   rs1837253            snp <NA>       C/T     C
 #> 4 rs111068718       <NA> rs111068718 microsatellite <NA> (GT)21/24  <NA>
 #>   Minor    MAF        BP
-#> 1  <NA>     NA 117559592
-#> 2     T     NA  40341238
-#> 3     T 0.3822 111066173
+#> 1  <NA>     NA 117559593
+#> 2     T     NA  40341239
+#> 3     T 0.3822 111066174
 #> 4  <NA>     NA        NA
 ```
 

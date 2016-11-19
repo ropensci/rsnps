@@ -8,5 +8,5 @@ test_that("phenotypes returns the correct class", {
 
 	expect_that(df, is_a("list"))
 	expect_that(df[[1]], is_a("data.frame"))
-	expect_that(as.character(sm(phenotypes(userid=1))$user$name), equals("Bastian Greshake"))
+	expect_that(as.character(suppressMessages(phenotypes(userid=1))$user$name), equals("Bastian Greshake"))
 })

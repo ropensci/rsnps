@@ -2,9 +2,12 @@
 % Please edit documentation in R/NCBI_snp_query.R
 \name{NCBI_snp_query}
 \alias{NCBI_snp_query}
+\alias{ncbi_snp_query}
 \title{Query NCBI's dbSNP for information on a set of SNPs}
 \usage{
 NCBI_snp_query(SNPs, ...)
+
+ncbi_snp_query(SNPs, ...)
 }
 \arguments{
 \item{SNPs}{A vector of SNPs (rs numbers).}
@@ -54,33 +57,40 @@ request because URLs can only be so long. Around 600 is likely the max you
 can pass in, though may be somewhat more. Break up your vector of SNP 
 codes into pieces of 600 or less and do repeated requests to get all data.
 }
+\note{
+\code{ncbi_snp_query} is a synonym of \code{NCBI_snp_query} - we'll 
+make \code{NCBI_snp_query} defunct in the next version
+}
 \examples{
 \dontrun{
 ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
 ## SNPs not found, microsatellite
 SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-NCBI_snp_query(SNPs)
-# NCBI_snp_query("123456") ##invalid: must prefix with 'rs'
-NCBI_snp_query("rs420358")
-NCBI_snp_query("rs332") # warning that its merged into another, try that
-NCBI_snp_query("rs121909001")
-NCBI_snp_query("rs1837253")
+ncbi_snp_query(SNPs)
+# ncbi_snp_query("123456") ##invalid: must prefix with 'rs'
+ncbi_snp_query("rs420358")
+ncbi_snp_query("rs332") # warning that its merged into another, try that
+ncbi_snp_query("rs121909001")
+ncbi_snp_query("rs1837253")
 # warning that no data available, returns 0 length data.frame
-NCBI_snp_query("rs1209415715")
+ncbi_snp_query("rs1209415715")
 # warning that chromosomal information may be unmapped 
-NCBI_snp_query("rs111068718") 
+ncbi_snp_query("rs111068718") 
 
-NCBI_snp_query(SNPs='rs9970807')$BP
+ncbi_snp_query(SNPs='rs9970807')$BP
 
 # Curl debugging
-NCBI_snp_query("rs121909001")
+ncbi_snp_query("rs121909001")
 library("httr")
-NCBI_snp_query("rs121909001", config=verbose())
+ncbi_snp_query("rs121909001", config=verbose())
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-NCBI_snp_query(snps, config=progress())
+ncbi_snp_query(snps, config=progress())
 }
 }
 \references{
-\url{http://www.ncbi.nlm.nih.gov/projects/SNP/}
+\url{https://www.ncbi.nlm.nih.gov/projects/SNP/}
+}
+\seealso{
+\code{\link{ncbi_snp_query2}}
 }
 

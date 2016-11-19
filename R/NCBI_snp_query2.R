@@ -1,23 +1,34 @@
 #' Query NCBI's dbSNP for information on a set of SNPs
 #' 
+#' 
 #' @export
 #' @param SNPs A vector of SNPs (rs numbers).
 #' @param ... Further named parameters passed on to 
 #' \code{\link[httr]{config}} to debug curl.
 #' 
+#' @note \code{ncbi_snp_query2} is a synonym of \code{NCBI_snp_query2} - we'll 
+#' make \code{NCBI_snp_query2} defunct in the next version
+#' 
+#' @seealso \code{\link{ncbi_snp_query}}
+#' 
 #' @examples \dontrun{
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-#' NCBI_snp_query2(SNPs)
-#' # NCBI_snp_query2("123456") ## invalid: must prefix with 'rs'
-#' NCBI_snp_query2("rs420358")
-#' NCBI_snp_query2("rs332") # warning, merged into new one
-#' NCBI_snp_query2("rs121909001") 
-#' NCBI_snp_query2("rs1837253")
-#' NCBI_snp_query2("rs1209415715") # no data available
-#' NCBI_snp_query2("rs111068718") # chromosomal information may be unmapped
+#' ncbi_snp_query2(SNPs)
+#' # ncbi_snp_query2("123456") ## invalid: must prefix with 'rs'
+#' ncbi_snp_query2("rs420358")
+#' ncbi_snp_query2("rs332") # warning, merged into new one
+#' ncbi_snp_query2("rs121909001") 
+#' ncbi_snp_query2("rs1837253")
+#' ncbi_snp_query2("rs1209415715") # no data available
+#' ncbi_snp_query2("rs111068718") # chromosomal information may be unmapped
 #' }
 
 NCBI_snp_query2 <- function(SNPs, ...) {
+  if (grepl("NCBI", deparse(sys.call()))) {
+    .Deprecated("ncbi_snp_query2", package = "rsnps", 
+      "use ncbi_snp_query2 instead - NCBI_snp_query2 removed in next version")
+  }
+  
   tmp <- sapply( SNPs, function(x) { 
     grep( "^rs[0-9]+$", x) 
   })
@@ -54,6 +65,10 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   return( structure(list(summary = dfs, data = dat), class = "dbsnp") )
   Sys.sleep(0.33)
 }
+
+#' @export
+#' @rdname NCBI_snp_query2
+ncbi_snp_query2 <- NCBI_snp_query2
 
 #' @export
 print.dbsnp <- function(x, ...) {

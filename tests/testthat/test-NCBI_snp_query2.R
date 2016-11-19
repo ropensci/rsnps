@@ -1,9 +1,9 @@
-context("NCBI_snp_query2")
+context("ncbi_snp_query2")
 
-test_that("NCBI_snp_query2 works", {
+test_that("ncbi_snp_query2 works", {
   skip_on_cran()
 
-  aa <- NCBI_snp_query2("rs420358")
+  aa <- ncbi_snp_query2("rs420358")
 
   expect_is(aa, "dbsnp")
   expect_is(aa$summary, "data.frame")
@@ -15,11 +15,11 @@ test_that("NCBI_snp_query2 works", {
                              'assembly', 'alleles', 'minor', 'maf', 'bp'))
 })
 
-test_that("NCBI_snp_query2 - many snps at once works", {
+test_that("ncbi_snp_query2 - many snps at once works", {
   skip_on_cran()
 
   x <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-  aa <- NCBI_snp_query2(x)
+  aa <- ncbi_snp_query2(x)
 
   expect_is(aa, "dbsnp")
   expect_is(aa$summary, "data.frame")
@@ -32,10 +32,10 @@ test_that("NCBI_snp_query2 - many snps at once works", {
   expect_gt(NROW(aa$summary), 4)
 })
 
-test_that("NCBI_snp_query2 fails well", {
+test_that("ncbi_snp_query2 fails well", {
   skip_on_cran()
 
-  expect_error(NCBI_snp_query2(), "argument \"SNPs\" is missing")
-  expect_error(NCBI_snp_query2(5), "not all items supplied are prefixed")
-  expect_error(NCBI_snp_query2('ab5'), "not all items supplied are prefixed")
+  expect_error(ncbi_snp_query2(), "argument \"SNPs\" is missing")
+  expect_error(ncbi_snp_query2(5), "not all items supplied are prefixed")
+  expect_error(ncbi_snp_query2('ab5'), "not all items supplied are prefixed")
 })

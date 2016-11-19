@@ -2,10 +2,15 @@
 % Please edit documentation in R/LDSearch.R
 \name{LDSearch}
 \alias{LDSearch}
+\alias{ld_search}
 \title{Search for SNPs in Linkage Disequilibrium with a set of SNPs}
 \usage{
 LDSearch(SNPs, dataset = "onekgpilot", panel = "CEU", RSquaredLimit = 0.8,
   distanceLimit = 500, GeneCruiser = TRUE, quiet = FALSE, ...)
+
+ld_search(SNPs, dataset = "onekgpilot", panel = "CEU",
+  RSquaredLimit = 0.8, distanceLimit = 500, GeneCruiser = TRUE,
+  quiet = FALSE, ...)
 }
 \arguments{
 \item{SNPs}{A vector of SNPs (rs numbers).}
@@ -117,11 +122,15 @@ Information on the HapMap populations:
 Information on the 1000 Genomes populations:
 \url{http://www.internationalgenome.org/category/population}
 }
+\note{
+\code{ld_search} is a synonym of \code{LDSearch} - we'll make
+\code{LDSearch} defunct in the next version
+}
 \examples{
 \dontrun{
-LDSearch("rs420358")
-LDSearch('rs2836443')
-LDSearch('rs113196607')
+ld_search("rs420358")
+ld_search('rs2836443')
+ld_search('rs113196607')
 }
 }
 

@@ -13,6 +13,9 @@
 #' Information on the 1000 Genomes populations:
 #' \url{http://www.internationalgenome.org/category/population}
 #'
+#' @note \code{ld_search} is a synonym of \code{LDSearch} - we'll make
+#' \code{LDSearch} defunct in the next version
+#'
 #' @export
 #' @param SNPs A vector of SNPs (rs numbers).
 #' @param dataset The dataset to query. Must be one of: \itemize{
@@ -99,9 +102,9 @@
 #' as aligned with the current genome used by dbSNP.
 #' }
 #' @examples \dontrun{
-#' LDSearch("rs420358")
-#' LDSearch('rs2836443')
-#' LDSearch('rs113196607')
+#' ld_search("rs420358")
+#' ld_search('rs2836443')
+#' ld_search('rs113196607')
 #' }
 
 LDSearch <- function(SNPs,
@@ -111,6 +114,11 @@ LDSearch <- function(SNPs,
                       distanceLimit=500,
                       GeneCruiser=TRUE,
                       quiet=FALSE, ...) {
+
+  if (grepl("NCBI", deparse(sys.call()))) {
+    .Deprecated("ld_search", package = "rsnps",
+      "use ld_search instead - LDSearch removed in next version")
+  }
 
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
@@ -141,7 +149,7 @@ LDSearch <- function(SNPs,
   url <- "http://archive.broadinstitute.org/mpg/snap/ldsearch.php"
   columnList_query <- if (GeneCruiser) "DP,GA,MAF" else "DP,MAF"
   args <- rsnps_comp(list(snpList = paste(SNPs, collapse = ","), hapMapRelease = dataset,
-      hapMapPanel = panel, RSquaredLimit = RSquaredLimit, 
+      hapMapPanel = panel, RSquaredLimit = RSquaredLimit,
       distanceLimit = as.integer( distanceLimit * 1E3 ), downloadType = "file",
       includeQuerySnp = "on", submit = "search", `columnList[]` = columnList_query))
 
@@ -175,9 +183,9 @@ LDSearch <- function(SNPs,
   for (i in 1:length(out_split) ) {
     rownames( out_split[[i]] ) <- 1:nrow( out_split[[i]] )
   }
-  
+
   # check whether any real data or not
-  if (all(unlist(out_split$SNP[1,], use.names = FALSE) %in% names(out_split$SNP)) && 
+  if (all(unlist(out_split$SNP[1,], use.names = FALSE) %in% names(out_split$SNP)) &&
       NROW(out_split$SNP) == 1) {
     stop("no valid data found", call. = FALSE)
   }
@@ -191,7 +199,7 @@ LDSearch <- function(SNPs,
 
   ## get all the proxy SNP information in one query
   proxy_SNPs <- unique( unname( unlist( sapply( out_split, "[", "Proxy" ) ) ) )
-  ncbi_info <- NCBI_snp_query2(proxy_SNPs)$summary
+  ncbi_info <- ncbi_snp_query2(proxy_SNPs)$summary
   names(ncbi_info) <- paste(sep = '', names(ncbi_info), "_NCBI")
 
   ## quick function for adding NCBI info to SNPs queried
@@ -216,3 +224,7 @@ LDSearch <- function(SNPs,
 
   return( out )
 }
+
+#' @export
+#' @rdname LDSearch
+ld_search <- LDSearch

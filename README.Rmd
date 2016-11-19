@@ -1,5 +1,5 @@
 rsnps
-=======
+=====
 
 ```{r, eval=TRUE, echo=FALSE}
 knitr::opts_chunk$set(
@@ -68,7 +68,7 @@ This set of functions/package accesses data from:
 Using the Broad Institute data
 
 ```{r}
-tmp <- LDSearch("rs420358")
+tmp <- ld_search("rs420358")
 head(tmp)
 ```
 
@@ -76,7 +76,7 @@ head(tmp)
 
 ```{r}
 SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-NCBI_snp_query(SNPs)
+ncbi_snp_query(SNPs)
 ```
 
 ### Using openSNP data

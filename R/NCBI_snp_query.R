@@ -38,7 +38,12 @@
 #' what the dBSNP website has.
 #' }
 #' 
-#' @references \url{http://www.ncbi.nlm.nih.gov/projects/SNP/}
+#' @note \code{ncbi_snp_query} is a synonym of \code{NCBI_snp_query} - we'll 
+#' make \code{NCBI_snp_query} defunct in the next version
+#' 
+#' @seealso \code{\link{ncbi_snp_query2}}
+#' 
+#' @references \url{https://www.ncbi.nlm.nih.gov/projects/SNP/}
 #' 
 #' @details Note that you are limited in the number of SNPs you pass in to one 
 #' request because URLs can only be so long. Around 600 is likely the max you 
@@ -49,27 +54,31 @@
 #' ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
 #' ## SNPs not found, microsatellite
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-#' NCBI_snp_query(SNPs)
-#' # NCBI_snp_query("123456") ##invalid: must prefix with 'rs'
-#' NCBI_snp_query("rs420358")
-#' NCBI_snp_query("rs332") # warning that its merged into another, try that
-#' NCBI_snp_query("rs121909001")
-#' NCBI_snp_query("rs1837253")
+#' ncbi_snp_query(SNPs)
+#' # ncbi_snp_query("123456") ##invalid: must prefix with 'rs'
+#' ncbi_snp_query("rs420358")
+#' ncbi_snp_query("rs332") # warning that its merged into another, try that
+#' ncbi_snp_query("rs121909001")
+#' ncbi_snp_query("rs1837253")
 #' # warning that no data available, returns 0 length data.frame
-#' NCBI_snp_query("rs1209415715")
+#' ncbi_snp_query("rs1209415715")
 #' # warning that chromosomal information may be unmapped 
-#' NCBI_snp_query("rs111068718") 
+#' ncbi_snp_query("rs111068718") 
 #'
-#' NCBI_snp_query(SNPs='rs9970807')$BP
+#' ncbi_snp_query(SNPs='rs9970807')$BP
 #'
 #' # Curl debugging
-#' NCBI_snp_query("rs121909001")
+#' ncbi_snp_query("rs121909001")
 #' library("httr")
-#' NCBI_snp_query("rs121909001", config=verbose())
+#' ncbi_snp_query("rs121909001", config=verbose())
 #' snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-#' NCBI_snp_query(snps, config=progress())
+#' ncbi_snp_query(snps, config=progress())
 #' }
 NCBI_snp_query <- function(SNPs, ...) {
+  if (grepl("NCBI", deparse(sys.call()))) {
+    .Deprecated("ncbi_snp_query", package = "rsnps", 
+      "use ncbi_snp_query instead - NCBI_snp_query removed in next version")
+  }
 
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
@@ -211,3 +220,7 @@ NCBI_snp_query <- function(SNPs, ...) {
   ## ensure that this limit is adhered to
   Sys.sleep(3)
 }
+
+#' @export
+#' @rdname NCBI_snp_query
+ncbi_snp_query <- NCBI_snp_query
