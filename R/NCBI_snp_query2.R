@@ -40,7 +40,7 @@ NCBI_snp_query2 <- function(SNPs, ...) {
     dfs[[i]] <- data.frame(query = names(dat[i]), 
                            marker = z$rs$snp,
                            organism = rn(z$rs$organism), 
-                           chromsome = rn(ctg$chromosome),
+                           chromosome = rn(ctg$chromosome),
                            assembly = rn(ctg$groupLabel),
                            alleles = rn(z$snp$observed),
                            minor = rn(z$gmaf$allele),

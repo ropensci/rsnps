@@ -18,7 +18,7 @@ genotypes <- function(snp = NA, userid = NA, df = FALSE, ...) {
   message(url2)
   res <- GET(url2, ...)
   stop_for_status(res)
-  genotypes_ <- cuf8(res)
+  genotypes_ <- jsonlite::fromJSON(cuf8(res), FALSE)
 
   if (df) {
     if (length(str_split(userid, '[-,]')[[1]]) == 1) { 

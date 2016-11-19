@@ -32,7 +32,7 @@ head(df); tail(df)
 
 # pass on curl options
 library("httr")
-phenotypes(1, config=c(verbose(), timeout(1)))
+# phenotypes(1, config=c(verbose(), timeout(1)))
 phenotypes(1, config=verbose())
 }
 }

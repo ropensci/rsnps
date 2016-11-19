@@ -18,7 +18,7 @@
 users <- function(df = FALSE, ...) {
   res <- GET(paste0(osnp_base(), "users.json"), ...)
   stop_for_status(res)
-  users_ <- cuf8(res)
+  users_ <- jsonlite::fromJSON(cuf8(res), FALSE)
   if (!df) { 
     users_ 
   } else {

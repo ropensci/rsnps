@@ -18,7 +18,7 @@
 #'
 #' # pass on curl options
 #' library("httr")
-#' phenotypes(1, config=c(verbose(), timeout(1)))
+#' # phenotypes(1, config=c(verbose(), timeout(1)))
 #' phenotypes(1, config=verbose())
 #' }
 
@@ -27,7 +27,7 @@ phenotypes <- function(userid = NA, df = FALSE, ...) {
   message(url2)
   res <- GET(url2, ...)
   stop_for_status(res)
-  out <- cuf8(res)
+  out <- jsonlite::fromJSON(cuf8(res), FALSE)
 
   userid <- gsub("-", ",", userid)
 

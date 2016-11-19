@@ -31,9 +31,9 @@ annotations <- function(snp = NA,
   
   url <- paste0(osnp_base(), "snps/json/annotation/", snp, '.json')
   message(url)
-  res <- GET(url, ...)
-  stop_for_status(res)
-  out <- cuf8(res)
+  res <- httr::GET(url, ...)
+  httr::stop_for_status(res)
+  out <- jsonlite::fromJSON(cuf8(res), FALSE)
   source_ <- match.arg(output, c('all','plos','mendeley','snpedia','metadata'), 
                        FALSE)
 

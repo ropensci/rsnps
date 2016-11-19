@@ -10,13 +10,12 @@
 #' allgensnp(snp = 'rs7412')
 #' allgensnp('rs7412', df = TRUE)
 #' }
-
 allgensnp <- function(snp = NA, df = FALSE, ...) {
   url2 <- paste(osnp_base(), "snps/", snp, '.json', sep = '')
   message(url2)
   res <- GET(url2, ...)
   stop_for_status(res)
-  out <- cuf8(res)
+  out <- httr::content(res, encoding = "UTF-8")
   if (df) {
     df <- ldply(out, function(x) t(data.frame(unlist(x), 
                                               stringsAsFactors = FALSE)))

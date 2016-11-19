@@ -60,7 +60,7 @@ codes into pieces of 600 or less and do repeated requests to get all data.
 ## SNPs not found, microsatellite
 SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 NCBI_snp_query(SNPs)
-NCBI_snp_query("123456") ##invalid: must prefix with 'rs'
+# NCBI_snp_query("123456") ##invalid: must prefix with 'rs'
 NCBI_snp_query("rs420358")
 NCBI_snp_query("rs332") # warning that its merged into another, try that
 NCBI_snp_query("rs121909001")

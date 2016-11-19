@@ -31,9 +31,9 @@ the path.
 }
 \examples{
 \dontrun{
-dat <- read_users(name = "kevinmcc")
-head(dat)
-dat <- read_users(id = 285)
+# dat <- read_users(name = "kevinmcc")
+# head(dat)
+# dat <- read_users(id = 285)
 }
 }
 
