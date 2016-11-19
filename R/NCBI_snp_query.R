@@ -129,9 +129,9 @@ NCBI_snp_query <- function(SNPs, ...) {
   }
   SNPs <- SNPs[ SNPs %in% found_snps ]
 
-  out <- as.data.frame(matrix(0, nrow = length(SNPs), ncol = 10))
+  out <- as.data.frame(matrix(0, nrow = length(SNPs), ncol = 11))
   names(out) <- c("Query", "Chromosome", "Marker", "Class", "Gene", "Alleles",
-    "Major", "Minor", "MAF", "BP")
+    "Major", "Minor", "MAF", "BP", "AncestralAllele")
 
   for (i in seq_along(SNPs)) {
     my_list <- xml_list[[i]]
@@ -200,12 +200,17 @@ NCBI_snp_query <- function(SNPs, ...) {
     # to make them equivalent 
     #if (is.numeric(my_pos)) my_pos <- my_pos + 1
     my_pos <- as.integer(my_pos) + 1
+    
+    # Ancestral Allele
+    anc_all <- my_list$Sequence$.attrs['ancestralAllele']
+    anc_all <- if (is.na(anc_all)) NA else anc_all[[1]]
 
     out[i, ] <- c(
       SNPs[i], my_chr, my_snp, unname(my_snpClass),
       unname(my_gene), paste0(unname(alleles), collapse = ","), 
       unname(my_major), unname(my_minor),
-      as.numeric(my_freq), as.integer(my_pos)
+      as.numeric(my_freq), as.integer(my_pos),
+      anc_all
     )
 
   }
