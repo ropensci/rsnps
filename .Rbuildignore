@@ -11,3 +11,4 @@ cran-comments.md
 inst/vign/cache
 ^cran-comments\.md$
 ^CONDUCT\.md$
+revdep
