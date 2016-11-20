@@ -24,5 +24,7 @@ There are no reverse dependencies.
 This version includes many bug fixes, fixes for changed URLs for web 
 services, and some minor improvements outlined in NEWS.md.
 
+This is a resubmission of v0.2 with revdep/ removed.
+
 Thanks!
 Scott Chamberlain
