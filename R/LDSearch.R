@@ -115,7 +115,7 @@ LDSearch <- function(SNPs,
                       GeneCruiser=TRUE,
                       quiet=FALSE, ...) {
 
-  if (grepl("LDSearch", deparse(sys.call()))) {
+  if (grepl("LDSearch", paste(deparse(sys.call()), collapse = ""))) {
     .Deprecated("ld_search", package = "rsnps",
       "use ld_search instead - LDSearch removed in next version")
   }
