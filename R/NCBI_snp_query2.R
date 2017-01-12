@@ -43,13 +43,23 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   stop_for_status(res)
   tmp <- cuf8(res)
   tmpsplit <- strsplit(tmp, "\n\n")[[1]]
-  dat <- stats::setNames(lapply(tmpsplit, parse_data), SNPs)
+  tmpsplit <- tmpsplit[tmpsplit != ""]
+  dat <- lapply(tmpsplit, parse_data)
+  dat_names <- unlist(lapply(dat, function(x){x$rs$snp}))
+  names(dat) <- dat_names
+  if(length(setdiff(SNPs, dat_names)) != 0){
+    warning(paste0(
+      "Query results from SNPs ", 
+      paste0(setdiff(SNPs, dat_names), collapse = ", "),
+      " are empty."
+      ))
+  }
   dfs <- list()
   for (i in seq_along(dat)) {
     z <- dat[[i]]
     ctg <- z$ctg
     dfs[[i]] <- data.frame(query = names(dat[i]), 
-                           marker = z$rs$snp,
+                           marker = rn(z$rs$snp),
                            organism = rn(z$rs$organism), 
                            chromosome = rn(ctg$chromosome),
                            assembly = rn(ctg$groupLabel),
