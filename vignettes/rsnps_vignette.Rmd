@@ -711,8 +711,9 @@ ncbi_snp_query(snps)
 
 This uses the '2' form of the query, which includes build metadata.
 ```{r eval=TRUE}
+library(rsnps)
 data(Hg38toHg19.chain) 
-metadata(Hg38toHg19.chain)
+S4Vectors::metadata(Hg38toHg19.chain)
 snps <- c("rs6060535", "rs7001")
 ncbi_snp_query2( snps )
 # now query with conversion
