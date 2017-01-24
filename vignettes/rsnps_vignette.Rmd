@@ -706,3 +706,16 @@ ncbi_snp_query(snps)
 #> 3   rs1837253          5   rs1837253            snp <NA>       C/T     C     T 0.3822 111066174     T,T,T,T,T,T
 #> 4 rs111068718       <NA> rs111068718 microsatellite <NA> (GT)21/24  <NA>  <NA>     NA        NA            <NA>
 ```
+
+### Query with conversion of addresses from dbSNP GRCh38 (standard) to hg19 via liftOver
+
+This uses the '2' form of the query, which includes build metadata.
+```{r eval=TRUE}
+library(rsnps)
+data(Hg38toHg19.chain) 
+S4Vectors::metadata(Hg38toHg19.chain)
+snps <- c("rs6060535", "rs7001")
+ncbi_snp_query2( snps )
+# now query with conversion
+ncbi_snp_query2( snps, chain=Hg38toHg19.chain)
+```

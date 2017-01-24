@@ -39,3 +39,11 @@ test_that("ncbi_snp_query2 fails well", {
   expect_error(ncbi_snp_query2(5), "not all items supplied are prefixed")
   expect_error(ncbi_snp_query2('ab5'), "not all items supplied are prefixed")
 })
+
+test_that("ncbi_snp_query2 with chain succeeds", {
+  skip_on_cran()
+  data("Hg38toHg19.chain")
+  aa <- ncbi_snp_query2("rs6060535", chain=Hg38toHg19.chain)
+  expect_is(aa$summary, "data.frame")
+  expect_equal(aa$summary[,"bp"], 34235522)
+})

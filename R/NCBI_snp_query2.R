@@ -2,16 +2,31 @@
 #' 
 #' 
 #' @export
+#' @import GenomeInfoDb IRanges
+#' @importFrom methods is
+#' @importFrom rtracklayer liftOver
+#' @importFrom IRanges IRanges
+#' @importFrom GenomicRanges GRanges
+#' @importFrom GenomicRanges start
+#' @importFrom GenomeInfoDb "seqlevelsStyle<-"
 #' @param SNPs A vector of SNPs (rs numbers).
+#' @param chain an instance of rtracklayer 'Chain' from a UCSC liftOver chain file
+#' @param chainStyle a string indicating the GenomeInfoDb 'seqlevelsStyle' for chain chromosome tags
+#' @param chainAssembly a string indicating the build version for liftOver result
+#'
 #' @param ... Further named parameters passed on to 
 #' \code{\link[httr]{config}} to debug curl.
 #' 
 #' @note \code{ncbi_snp_query2} is a synonym of \code{NCBI_snp_query2} - we'll 
 #' make \code{NCBI_snp_query2} defunct in the next version
 #' 
-#' @seealso \code{\link{ncbi_snp_query}}
+#' @seealso \code{\link{ncbi_snp_query}}, \code{\link[rtracklayer]{liftOver}}
 #' 
-#' @examples \dontrun{
+#' @examples 
+#'   ncbi_snp_query2(c("rs6060535", "rs7001"))
+#'   data(Hg38toHg19.chain)
+#'   ncbi_snp_query2(c("rs6060535", "rs7001"), chain=Hg38toHg19.chain)
+#' \dontrun{
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' ncbi_snp_query2(SNPs)
 #' # ncbi_snp_query2("123456") ## invalid: must prefix with 'rs'
@@ -23,7 +38,8 @@
 #' ncbi_snp_query2("rs111068718") # chromosomal information may be unmapped
 #' }
 
-NCBI_snp_query2 <- function(SNPs, ...) {
+NCBI_snp_query2 <- function(SNPs, ..., chain=NULL, chainStyle="UCSC",
+    chainAssembly="hg19") {
   if (grepl("NCBI", deparse(sys.call()))) {
     .Deprecated("ncbi_snp_query2", package = "rsnps", 
       "use ncbi_snp_query2 instead - NCBI_snp_query2 removed in next version")
@@ -72,8 +88,15 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   dfs <- do.call("rbind.data.frame", dfs)
   row.names(dfs) <- NULL
   dfs$bp <- as.numeric(dfs$bp)
+  if (!is.null(chain) && is(chain, "Chain")) {
+      gr = GRanges(as.character(dfs$chromosome), IRanges(dfs$bp, width=1))
+      seqlevelsStyle(gr) = chainStyle
+      gr = unlist(liftOver(gr, chain))
+      dfs$bp <- as.numeric(start(gr))
+      dfs$assembly <- chainAssembly
+      }
   return( structure(list(summary = dfs, data = dat), class = "dbsnp") )
-  Sys.sleep(0.33)
+  Sys.sleep(0.33) 
 }
 
 #' @export

@@ -8,8 +8,10 @@ Description: A programmatic interface to various 'SNP' 'datasets'
     are included for searching for 'SNPs' for the Broad Institute and 'NCBI'.
     For 'OpenSNP', functions are included for getting 'SNPs', and data for
     'genotypes', 'phenotypes', annotations, and bulk downloads of data by user.
-Version: 0.2.0.9000
+Version: 0.2.0.9002
 License: MIT + file LICENSE
+Author: Scott Chamberlain
+Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
     person("Kevin", "Ushey", role = "aut", email = "kevinushey@gmail.com"),
@@ -18,15 +20,23 @@ Authors@R: c(
 URL: https://github.com/ropensci/rsnps
 BugReports: https://github.com/ropensci/rsnps/issues
 VignetteBuilder: knitr
+Depends: R (>= 2.10)
 Imports:
     plyr,
     stringr,
     httr (>= 1.2.0),
     XML,
-    jsonlite
+    jsonlite,
+    rtracklayer,
+    GenomicRanges,
+    GenomeInfoDb,
+    methods,
+    IRanges
 Suggests:
     roxygen2 (>= 5.0.1),
     testthat,
     knitr,
-    covr
+    covr,
+    S4Vectors,
+    AnnotationHub
 RoxygenNote: 5.0.1
