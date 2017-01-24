@@ -2,6 +2,8 @@
 #' 
 #' 
 #' @export
+#' @import GenomeInfoDb IRanges
+#' @importFrom methods is
 #' @importFrom rtracklayer liftOver
 #' @importFrom IRanges IRanges
 #' @importFrom GenomicRanges GRanges

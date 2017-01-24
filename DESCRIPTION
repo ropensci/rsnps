@@ -20,6 +20,7 @@ Authors@R: c(
 URL: https://github.com/ropensci/rsnps
 BugReports: https://github.com/ropensci/rsnps/issues
 VignetteBuilder: knitr
+Depends: R (>= 2.10)
 Imports:
     plyr,
     stringr,
@@ -28,7 +29,6 @@ Imports:
     jsonlite,
     rtracklayer,
     GenomicRanges,
-    S4Vectors,
     GenomeInfoDb,
     IRanges
 Suggests:
@@ -36,5 +36,6 @@ Suggests:
     testthat,
     knitr,
     covr,
+    S4Vectors,
     AnnotationHub
 RoxygenNote: 5.0.1
