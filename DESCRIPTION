@@ -30,6 +30,7 @@ Imports:
     rtracklayer,
     GenomicRanges,
     GenomeInfoDb,
+    methods,
     IRanges
 Suggests:
     roxygen2 (>= 5.0.1),
