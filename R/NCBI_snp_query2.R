@@ -38,16 +38,24 @@ NCBI_snp_query2 <- function(SNPs, ...) {
          "'rs', e.g. rs420358")
   }
   url <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
-  res <- GET(url, query = list(db = 'snp', retmode = 'flt', rettype = 'flt', 
-                               id = paste( SNPs, collapse = ",")), ...)
-  stop_for_status(res)
+  quer <- list(db = 'snp', retmode = 'flt', rettype = 'flt')
+  
+  if (length(SNPs) > 190) {
+    res <- httr::POST(url, query = quer, 
+                     body = list(id = paste(SNPs, collapse = ",")), ...)
+  } else {
+    quer$id <- paste(SNPs, collapse = ",")
+    res <- httr::GET(url, query = quer, ...)
+  }
+  
+  httr::stop_for_status(res)
   tmp <- cuf8(res)
   tmpsplit <- strsplit(tmp, "\n\n")[[1]]
   tmpsplit <- tmpsplit[tmpsplit != ""]
   dat <- lapply(tmpsplit, parse_data)
   dat_names <- unlist(lapply(dat, function(x){x$rs$snp}))
   names(dat) <- dat_names
-  if(length(setdiff(SNPs, dat_names)) != 0){
+  if (length(setdiff(SNPs, dat_names)) != 0) {
     warning(paste0(
       "Query results from SNPs ", 
       paste0(setdiff(SNPs, dat_names), collapse = ", "),
