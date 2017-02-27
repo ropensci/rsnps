@@ -162,6 +162,10 @@ LDSearch <- function(SNPs,
   if ( length( grep( "validation error", dat ) ) > 0 ) {
     stop(dat, call. = FALSE)
   }
+  
+  ## check for http errors in dat
+  if( length( grep("Error: Server returned HTTP response code:", dat) ) > 0 )
+    stop(dat, call. = FALSE)
 
   ## search through for missing SNPs and remove them from output
   tmp <- unlist( strsplit( dat, "\r\n", fixed = TRUE ) )
