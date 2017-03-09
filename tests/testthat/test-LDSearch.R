@@ -20,7 +20,8 @@ test_that("ld_search returns the correct data", {
 test_that("ld_search fails well - only one bad snp, no good ones", {
   skip_on_cran()
 
-  expect_is(tryCatch(ld_search(SNPs = "rs121913366", quiet = TRUE), warning = function(w) w), "warning")
+  expect_is(tryCatch(ld_search(SNPs = "rs121913366", quiet = TRUE), 
+                     warning = function(w) w), "warning")
   expect_error(suppressWarnings(ld_search(SNPs = "rs121913366", quiet = TRUE)),
                "no valid data found")
 })
@@ -28,5 +29,6 @@ test_that("ld_search fails well - only one bad snp, no good ones", {
 test_that("ld_search fails well - one bad snp + other good ones", {
   skip_on_cran()
 
-  expect_warning(ld_search(c('rs2836443', "rs121909001"), quiet = TRUE), "No matching proxy snps found")
+  expect_warning(ld_search(c('rs2836443', "rs121909001"), quiet = TRUE), 
+                 "No matching proxy snps found")
 })
