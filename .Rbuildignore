@@ -12,3 +12,5 @@ inst/vign/cache
 ^cran-comments\.md$
 ^CONDUCT\.md$
 revdep
+.github
+
