@@ -3,6 +3,12 @@
 #' This function queries NCBI's dbSNP for information related to the latest
 #' dbSNP build and latest reference genome for information on the vector
 #' of SNPs submitted.
+#' 
+#' This function currently pulling data for Assembly 38 - in particular
+#' note that if you think the BP position is wrong, that you may be 
+#' hoping for the BP position for a different Assembly. With ENTREZ
+#' we cannot specify which assembly to pull data from, so it's stuck 
+#' with 38.
 #'
 #' @param SNPs (character) A vector of SNPs (rs numbers).
 #' @param ... Further named parameters passed on to [httr::config()] 
@@ -35,7 +41,7 @@
 #' - BP: The chromosomal position, in base pairs, of the marker,
 #' as aligned with the current genome used by dbSNP. we add 1 to the base 
 #' pair position in the BP column in the output data.frame to agree with 
-#' what the dBSNP website has.
+#' what the dbSNP website has.
 #' 
 #' @seealso [ncbi_snp_query2()]
 #' 

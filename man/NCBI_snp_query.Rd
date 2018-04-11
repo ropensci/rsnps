@@ -40,7 +40,7 @@ This is drawn from the current global reference population used by NCBI.
 \item BP: The chromosomal position, in base pairs, of the marker,
 as aligned with the current genome used by dbSNP. we add 1 to the base
 pair position in the BP column in the output data.frame to agree with
-what the dBSNP website has.
+what the dbSNP website has.
 }
 }
 \description{
@@ -49,6 +49,12 @@ dbSNP build and latest reference genome for information on the vector
 of SNPs submitted.
 }
 \details{
+This function currently pulling data for Assembly 38 - in particular
+note that if you think the BP position is wrong, that you may be
+hoping for the BP position for a different Assembly. With ENTREZ
+we cannot specify which assembly to pull data from, so it's stuck
+with 38.
+
 Note that you are limited in the number of SNPs you pass in to one
 request because URLs can only be so long. Around 600 is likely the max you
 can pass in, though may be somewhat more. Break up your vector of SNP
