@@ -38,9 +38,6 @@
 #' what the dBSNP website has.
 #' }
 #' 
-#' @note \code{ncbi_snp_query} is a synonym of \code{NCBI_snp_query} - we'll 
-#' make \code{NCBI_snp_query} defunct in the next version
-#' 
 #' @seealso \code{\link{ncbi_snp_query2}}
 #' 
 #' @references \url{https://www.ncbi.nlm.nih.gov/projects/SNP/}
@@ -74,12 +71,7 @@
 #' snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' ncbi_snp_query(snps, config=progress())
 #' }
-NCBI_snp_query <- function(SNPs, ...) {
-  if (grepl("NCBI", deparse(sys.call()))) {
-    .Deprecated("ncbi_snp_query", package = "rsnps", 
-      "use ncbi_snp_query instead - NCBI_snp_query removed in next version")
-  }
-
+ncbi_snp_query <- function(SNPs, ...) {
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
   if (any(sapply( tmp, length ) == 0)) {
@@ -225,7 +217,3 @@ NCBI_snp_query <- function(SNPs, ...) {
   ## ensure that this limit is adhered to
   Sys.sleep(3)
 }
-
-#' @export
-#' @rdname NCBI_snp_query
-ncbi_snp_query <- NCBI_snp_query

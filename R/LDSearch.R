@@ -13,9 +13,6 @@
 #' Information on the 1000 Genomes populations:
 #' \url{http://www.internationalgenome.org/category/population}
 #'
-#' @note \code{ld_search} is a synonym of \code{LDSearch} - we'll make
-#' \code{LDSearch} defunct in the next version
-#'
 #' @export
 #' @param SNPs A vector of SNPs (rs numbers).
 #' @param dataset The dataset to query. Must be one of: \itemize{
@@ -63,14 +60,6 @@
 #' information returned from NCBI.}
 #' \item{\code{RSquared:} The measure of LD between the SNP and the proxy.}
 #' \item{\code{DPrime:} Another measure of LD between the SNP and the proxy.}
-#' \item{\code{GeneVariant:} Present if \code{GeneCruiser} is \code{TRUE}.
-#' This will identify where the SNP lies relative to its 'parent' SNP.}
-#' \item{\code{GeneName:} Present if \code{GeneCruiser} is \code{TRUE}.
-#' If the proxy SNP found lies within a gene, the name of that
-#' gene will be returned here. Otherwise, the field is \code{N/A}.}
-#' \item{\code{GeneDescription:} Present if \code{GeneCruiser} is \code{TRUE}. If
-#' the proxy SNP lies within a gene, information about that gene (as
-#' obtained from GeneCruiser) will be available here.}
 #' \item \code{Major:} The major allele, as reported by SNAP.
 #' \item \code{Minor:} The minor allele, as reported by SNAP.
 #' \item{\code{MAF:} The minor allele frequency corresponding to the reference
@@ -106,14 +95,8 @@
 #' ld_search('rs2836443')
 #' ld_search('rs113196607')
 #' }
-
-LDSearch <- function(SNPs, dataset = "onekgpilot", panel = "CEU",
+ld_search <- function(SNPs, dataset = "onekgpilot", panel = "CEU",
   RSquaredLimit = 0.8, distanceLimit = 500, quiet = FALSE, ...) {
-
-  if (grepl("LDSearch", paste(deparse(sys.call()), collapse = ""))) {
-    .Deprecated("ld_search", package = "rsnps",
-      "use ld_search instead - LDSearch removed in next version")
-  }
 
   if ("GeneCruiser" %in% names(list(...))) {
     stop("'GeneCruiser' no longer supported, the service is down")
@@ -146,7 +129,6 @@ LDSearch <- function(SNPs, dataset = "onekgpilot", panel = "CEU",
   }
 
   url <- "http://archive.broadinstitute.org/mpg/snap/ldsearch.php"
-  # columnList_query <- if (GeneCruiser) "DP,GA,MAF" else "DP,MAF"
   args <- rsnps_comp(list(snpList = paste(SNPs, collapse = ","), 
     hapMapRelease = dataset, hapMapPanel = panel, 
     RSquaredLimit = RSquaredLimit, 
@@ -230,7 +212,3 @@ LDSearch <- function(SNPs, dataset = "onekgpilot", panel = "CEU",
 
   return( out )
 }
-
-#' @export
-#' @rdname LDSearch
-ld_search <- LDSearch

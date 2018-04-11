@@ -6,9 +6,6 @@
 #' @param ... Further named parameters passed on to 
 #' \code{\link[httr]{config}} to debug curl.
 #' 
-#' @note \code{ncbi_snp_query2} is a synonym of \code{NCBI_snp_query2} - we'll 
-#' make \code{NCBI_snp_query2} defunct in the next version
-#' 
 #' @seealso \code{\link{ncbi_snp_query}}
 #' 
 #' @examples \dontrun{
@@ -22,13 +19,7 @@
 #' ncbi_snp_query2("rs1209415715") # no data available
 #' ncbi_snp_query2("rs111068718") # chromosomal information may be unmapped
 #' }
-
-NCBI_snp_query2 <- function(SNPs, ...) {
-  if (grepl("NCBI", deparse(sys.call()))) {
-    .Deprecated("ncbi_snp_query2", package = "rsnps", 
-      "use ncbi_snp_query2 instead - NCBI_snp_query2 removed in next version")
-  }
-  
+ncbi_snp_query2 <- function(SNPs, ...) {
   tmp <- sapply( SNPs, function(x) { 
     grep( "^rs[0-9]+$", x) 
   })
@@ -83,10 +74,6 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   return( structure(list(summary = dfs, data = dat), class = "dbsnp") )
   Sys.sleep(0.33)
 }
-
-#' @export
-#' @rdname NCBI_snp_query2
-ncbi_snp_query2 <- NCBI_snp_query2
 
 #' @export
 print.dbsnp <- function(x, ...) {
