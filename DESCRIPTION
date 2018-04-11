@@ -8,7 +8,7 @@ Description: A programmatic interface to various 'SNP' 'datasets'
     are included for searching for 'SNPs' for the Broad Institute and 'NCBI'.
     For 'OpenSNP', functions are included for getting 'SNPs', and data for
     'genotypes', 'phenotypes', annotations, and bulk downloads of data by user.
-Version: 0.2.0.9200
+Version: 0.2.1.9210
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
@@ -25,8 +25,6 @@ Imports:
     XML,
     jsonlite
 Suggests:
-    roxygen2 (>= 5.0.1),
     testthat,
-    knitr,
-    covr
-RoxygenNote: 5.0.1
+    knitr
+RoxygenNote: 6.0.1

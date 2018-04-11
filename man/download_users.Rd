@@ -35,4 +35,3 @@ lapply(c(14,22), function(x) download_users(id=x))
 read_users(id=14, nrows=5)
 }
 }
-

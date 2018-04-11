@@ -3,12 +3,15 @@ sudo: false
 cache: packages
 dist: trusty
 
+r_github_packages:
+  - jimhester/covr
+
 after_success:
- - Rscript -e 'covr::codecov()'
+  - Rscript -e 'covr::codecov()'
 
 notifications:
   email:
-    on_success: change
-    on_failure: change
+    on_success: never
+    on_failure: never
   slack:
     secure: Kq59sGf7KtBA91DkrFv7g8tn2TIrkaKk4HZ3xiSn/wm8W337ilpLie3go+i6iZ9hFwtZ22yl6pqgyuyZgn5qmr4PV2/pshvNyNS6M3m+veueXCnID2+rFXNEjvvAOn3zpDARSBXFWMs44y3doD+yQ4tYA3HUUaoJeH60is3LtD8=

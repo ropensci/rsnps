@@ -35,4 +35,3 @@ datalist[["ADHD"]] # get data.frame for 'ADHD'
 datalist[c("mouth size","SAT Writing")] # get data.frame for 'ADHD'
 }
 }
-

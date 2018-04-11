@@ -29,4 +29,3 @@ data[[1]] # users with links to genome data
 data[[2]] # users without links to genome data
 }
 }
-

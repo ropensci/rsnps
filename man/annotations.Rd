@@ -41,4 +41,3 @@ annotations(snp = 'rs7903146', output = 'snpedia')
 annotations(snp = 'rs7903146', output = 'all') 
 }
 }
-

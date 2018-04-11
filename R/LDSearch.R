@@ -47,11 +47,11 @@
 #' will be returned.
 #' @param distanceLimit The distance (in kilobases) upstream and downstream
 #' to search for SNPs in LD with each set of SNPs.
-#' @param GeneCruiser boolean; if \code{TRUE} we attempt to get gene info through
-#' GeneCruiser for each SNP. This can slow the query down substantially.
 #' @param quiet boolean; if \code{TRUE} progress updates are written to the
 #' console.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
+#' @note The \code{GeneCruiser} parameter is defunct, GeneCruiser service is 
+#' no longer available.
 #' @return A list of data frames, one for each SNP queried, containing
 #' information about the SNPs found to be in LD with that SNP. A description
 #' of the columns follows:
@@ -107,17 +107,16 @@
 #' ld_search('rs113196607')
 #' }
 
-LDSearch <- function(SNPs,
-                      dataset="onekgpilot",
-                      panel="CEU",
-                      RSquaredLimit=0.8,
-                      distanceLimit=500,
-                      GeneCruiser=TRUE,
-                      quiet=FALSE, ...) {
+LDSearch <- function(SNPs, dataset = "onekgpilot", panel = "CEU",
+  RSquaredLimit = 0.8, distanceLimit = 500, quiet = FALSE, ...) {
 
   if (grepl("LDSearch", paste(deparse(sys.call()), collapse = ""))) {
     .Deprecated("ld_search", package = "rsnps",
       "use ld_search instead - LDSearch removed in next version")
+  }
+
+  if ("GeneCruiser" %in% names(list(...))) {
+    stop("'GeneCruiser' no longer supported, the service is down")
   }
 
   ## ensure these are rs numbers of the form rs[0-9]+
@@ -147,11 +146,13 @@ LDSearch <- function(SNPs,
   }
 
   url <- "http://archive.broadinstitute.org/mpg/snap/ldsearch.php"
-  columnList_query <- if (GeneCruiser) "DP,GA,MAF" else "DP,MAF"
-  args <- rsnps_comp(list(snpList = paste(SNPs, collapse = ","), hapMapRelease = dataset,
-      hapMapPanel = panel, RSquaredLimit = RSquaredLimit,
-      distanceLimit = as.integer( distanceLimit * 1E3 ), downloadType = "file",
-      includeQuerySnp = "on", submit = "search", `columnList[]` = columnList_query))
+  # columnList_query <- if (GeneCruiser) "DP,GA,MAF" else "DP,MAF"
+  args <- rsnps_comp(list(snpList = paste(SNPs, collapse = ","), 
+    hapMapRelease = dataset, hapMapPanel = panel, 
+    RSquaredLimit = RSquaredLimit, 
+    distanceLimit = as.integer( distanceLimit * 1E3 ), 
+    downloadType = "file", includeQuerySnp = "on", submit = "search", 
+    `columnList[]` = "DP,MAF"))
 
   if ( !quiet ) cat("Querying SNAP...\n")
   dat_tmp <- GET(url, query = args, ...)
@@ -159,13 +160,14 @@ LDSearch <- function(SNPs,
   dat <- cuf8(dat_tmp)
 
   ## check for validation error
-  if ( length( grep( "validation error", dat ) ) > 0 ) {
+  if (length( grep( "validation error", dat ) ) > 0) {
     stop(dat, call. = FALSE)
   }
-  
+
   ## check for http errors in dat
-  if( length( grep("Error: Server returned HTTP response code:", dat) ) > 0 )
-    stop(dat, call. = FALSE)
+  if (length( grep("Error", dat) ) > 0) {
+    stop(stract_(dat, "Server.+"), call. = FALSE)
+  }
 
   ## search through for missing SNPs and remove them from output
   tmp <- unlist( strsplit( dat, "\r\n", fixed = TRUE ) )

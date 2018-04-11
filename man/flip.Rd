@@ -17,4 +17,3 @@ flip(SNP, sep = "", outSep = sep)
 Given a set of genotypes, flip them.
 }
 \keyword{internal}
-

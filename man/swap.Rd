@@ -19,4 +19,3 @@ swap(vec, from, to = names(from), ...)
 Swap Elements in a Vector
 }
 \keyword{internal}
-

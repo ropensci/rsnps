@@ -6,11 +6,10 @@
 \title{Search for SNPs in Linkage Disequilibrium with a set of SNPs}
 \usage{
 LDSearch(SNPs, dataset = "onekgpilot", panel = "CEU", RSquaredLimit = 0.8,
-  distanceLimit = 500, GeneCruiser = TRUE, quiet = FALSE, ...)
+  distanceLimit = 500, quiet = FALSE, ...)
 
 ld_search(SNPs, dataset = "onekgpilot", panel = "CEU",
-  RSquaredLimit = 0.8, distanceLimit = 500, GeneCruiser = TRUE,
-  quiet = FALSE, ...)
+  RSquaredLimit = 0.8, distanceLimit = 500, quiet = FALSE, ...)
 }
 \arguments{
 \item{SNPs}{A vector of SNPs (rs numbers).}
@@ -47,9 +46,6 @@ will be returned.}
 
 \item{distanceLimit}{The distance (in kilobases) upstream and downstream
 to search for SNPs in LD with each set of SNPs.}
-
-\item{GeneCruiser}{boolean; if \code{TRUE} we attempt to get gene info through
-GeneCruiser for each SNP. This can slow the query down substantially.}
 
 \item{quiet}{boolean; if \code{TRUE} progress updates are written to the
 console.}
@@ -125,6 +121,9 @@ Information on the 1000 Genomes populations:
 \note{
 \code{ld_search} is a synonym of \code{LDSearch} - we'll make
 \code{LDSearch} defunct in the next version
+
+The \code{GeneCruiser} parameter is defunct, GeneCruiser service is 
+no longer available.
 }
 \examples{
 \dontrun{
@@ -133,4 +132,3 @@ ld_search('rs2836443')
 ld_search('rs113196607')
 }
 }
-

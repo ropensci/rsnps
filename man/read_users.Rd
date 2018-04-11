@@ -36,4 +36,3 @@ the path.
 # dat <- read_users(id = 285)
 }
 }
-

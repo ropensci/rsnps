@@ -12,8 +12,8 @@
 #' @seealso \code{\link{ncbi_snp_query}}
 #' 
 #' @examples \dontrun{
-#' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-#' ncbi_snp_query2(SNPs)
+#' x <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
+#' ncbi_snp_query2(x)
 #' # ncbi_snp_query2("123456") ## invalid: must prefix with 'rs'
 #' ncbi_snp_query2("rs420358")
 #' ncbi_snp_query2("rs332") # warning, merged into new one

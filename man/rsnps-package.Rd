@@ -2,8 +2,8 @@
 % Please edit documentation in R/rsnps-package.R
 \docType{package}
 \name{rsnps-package}
-\alias{rsnps}
 \alias{rsnps-package}
+\alias{rsnps}
 \title{Get SNP (Single-Nucleotide Polymorphism) Data on the Web}
 \description{
 This package gives you access to data from OpenSNP (https://opensnp.org)
@@ -16,4 +16,3 @@ Kevin Ushey \email{kevinushey@gmail.com}
 
 Hao Zhu \email{haozhu233@gmail.com}
 }
-

@@ -93,4 +93,3 @@ ncbi_snp_query(snps, config=progress())
 \seealso{
 \code{\link{ncbi_snp_query2}}
 }
-

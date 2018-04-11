@@ -59,4 +59,3 @@ mydata
 read.table("~/myfile.txt", nrows=10)
 }
 }
-

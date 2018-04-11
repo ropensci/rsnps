@@ -10,4 +10,3 @@ tryget(x)
 Tryget
 }
 \keyword{internal}
-

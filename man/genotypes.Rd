@@ -29,4 +29,3 @@ genotypes('rs9939609', userid='1,6,8', df=TRUE)
 genotypes('rs9939609', userid='1-2', df=FALSE)
 }
 }
-

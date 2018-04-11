@@ -36,4 +36,3 @@ library("httr")
 phenotypes(1, config=verbose())
 }
 }
-
