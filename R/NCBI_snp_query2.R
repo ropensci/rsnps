@@ -3,8 +3,8 @@
 #' 
 #' @export
 #' @param SNPs A vector of SNPs (rs numbers).
-#' @param ... Further named parameters passed on to 
-#' [httr::config()] to debug curl.
+#' @param ... Further named parameters passed on to [httr::config()] to 
+#' debug curl
 #' 
 #' @seealso [ncbi_snp_query()]
 #' 

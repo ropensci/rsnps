@@ -24,6 +24,9 @@ Imports:
     plyr,
     stringr,
     httr (>= 1.2.0),
+    crul (>= 0.5.2),
+    data.table,
+    xml2,
     XML,
     jsonlite
 Suggests:
