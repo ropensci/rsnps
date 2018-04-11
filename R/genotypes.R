@@ -3,8 +3,8 @@
 #' @export
 #' @param snp SNP name.
 #' @param userid ID of openSNP user.
-#' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}.
+#' @param df Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
+#' @param ... Curl options passed on to [httr::GET()]
 #' @return List (or data.frame) of genotypes for specified user(s) at a 
 #' certain SNP.
 #' @examples \dontrun{

@@ -10,22 +10,22 @@
 #' temporary file,  which will be lost after your session is closed. Save 
 #' to a file if you want to  access it later.
 #' @param quiet (logical) Should download progress be suppressed. Default: 
-#' \code{TRUE}
-#' @param ... Further args passed on to \code{\link{download.file}}
+#' `TRUE`
+#' @param ... Further args passed on to [download.file()]
 #' @return data.frame for a single user, with four columns:
-#' \itemize{
-#'  \item rsid (character)
-#'  \item chromsome (integer)
-#'  \item position (integer)
-#'  \item genotype (character)
-#' }
+#' 
+#' - rsid (character)
+#' - chromsome (integer)
+#' - position (integer)
+#' - genotype (character)
+#' 
 #' @details Beware, not setting the rows parameter means that you download 
 #' the entire file, which can be large (e.g., 15MB), and so take a while 
 #' to download depending on your connection speed. Therefore, rows is set to 
 #' 10 by default to sort of protect the user. 
 #' 
-#' Internally, we use \code{\link{download.file}} to download each file, then 
-#' \code{\link{read.table}} to read the file to a data.frame.
+#' Internally, we use [download.file()] to download each file, then 
+#' [read.table()] to read the file to a data.frame.
 #' 
 #' @examples \dontrun{
 #' # get a data.frame of the users data

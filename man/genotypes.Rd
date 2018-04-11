@@ -11,12 +11,12 @@ genotypes(snp = NA, userid = NA, df = FALSE, ...)
 
 \item{userid}{ID of openSNP user.}
 
-\item{df}{Return data.frame (TRUE) or not (FALSE) - default = FALSE.}
+\item{df}{Return data.frame (\code{TRUE}) or not (\code{FALSE}). Default: \code{FALSE}}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
+\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
 }
 \value{
-List (or data.frame) of genotypes for specified user(s) at a 
+List (or data.frame) of genotypes for specified user(s) at a
 certain SNP.
 }
 \description{

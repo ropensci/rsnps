@@ -10,7 +10,7 @@
 #' @param output Name the source or sources you want annotations from (options
 #' 		are: 'plos', 'mendeley', 'snpedia', 'metadata'). 'metadata' gives the
 #' 		metadata for the response.
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}.
+#' @param ... Curl options passed on to [httr::GET()]
 #' @return Data.frame of results.
 #' @examples \dontrun{
 #' # Get all data

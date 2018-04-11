@@ -7,42 +7,42 @@
 fetch_genotypes(url, rows = 100, filepath = NULL, quiet = TRUE, ...)
 }
 \arguments{
-\item{url}{(character) URL for the download. See example below of 
+\item{url}{(character) URL for the download. See example below of
 function use.}
 
-\item{rows}{(integer) Number of rows to read in. Useful for getting a 
-glimpse of  the data. Negative and other invalid values are ignored, 
+\item{rows}{(integer) Number of rows to read in. Useful for getting a
+glimpse of  the data. Negative and other invalid values are ignored,
 giving back all data.  Default: 100}
 
-\item{filepath}{(character) If none is given the file is saved to a 
-temporary file,  which will be lost after your session is closed. Save 
+\item{filepath}{(character) If none is given the file is saved to a
+temporary file,  which will be lost after your session is closed. Save
 to a file if you want to  access it later.}
 
-\item{quiet}{(logical) Should download progress be suppressed. Default: 
+\item{quiet}{(logical) Should download progress be suppressed. Default:
 \code{TRUE}}
 
-\item{...}{Further args passed on to \code{\link{download.file}}}
+\item{...}{Further args passed on to \code{\link[=download.file]{download.file()}}}
 }
 \value{
 data.frame for a single user, with four columns:
 \itemize{
- \item rsid (character)
- \item chromsome (integer)
- \item position (integer)
- \item genotype (character)
+\item rsid (character)
+\item chromsome (integer)
+\item position (integer)
+\item genotype (character)
 }
 }
 \description{
 Download genotype data for a user
 }
 \details{
-Beware, not setting the rows parameter means that you download 
-the entire file, which can be large (e.g., 15MB), and so take a while 
-to download depending on your connection speed. Therefore, rows is set to 
-10 by default to sort of protect the user. 
+Beware, not setting the rows parameter means that you download
+the entire file, which can be large (e.g., 15MB), and so take a while
+to download depending on your connection speed. Therefore, rows is set to
+10 by default to sort of protect the user.
 
-Internally, we use \code{\link{download.file}} to download each file, then 
-\code{\link{read.table}} to read the file to a data.frame.
+Internally, we use \code{\link[=download.file]{download.file()}} to download each file, then
+\code{\link[=read.table]{read.table()}} to read the file to a data.frame.
 }
 \examples{
 \dontrun{

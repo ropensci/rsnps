@@ -2,7 +2,7 @@
 % Please edit documentation in R/phenotypes_byid.R
 \name{phenotypes_byid}
 \alias{phenotypes_byid}
-\title{Get all known variations and all users sharing that phenotype for 
+\title{Get all known variations and all users sharing that phenotype for
 one phenotype(-ID).}
 \usage{
 phenotypes_byid(phenotypeid = NA, return_ = c("description", "knownvars",
@@ -11,16 +11,16 @@ phenotypes_byid(phenotypeid = NA, return_ = c("description", "knownvars",
 \arguments{
 \item{phenotypeid}{ID of openSNP phenotype.}
 
-\item{return_}{Return data.frame (TRUE) or not (FALSE) - default = FALSE.}
+\item{return_}{Return data.frame (\code{TRUE}) or not (\code{FALSE}). Default: \code{FALSE}}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
+\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
 }
 \value{
-List of description of phenotype, list of known variants, or 
+List of description of phenotype, list of known variants, or
 data.frame of variants for each user with that phenotype.
 }
 \description{
-Get all known variations and all users sharing that phenotype for 
+Get all known variations and all users sharing that phenotype for
 one phenotype(-ID).
 }
 \examples{

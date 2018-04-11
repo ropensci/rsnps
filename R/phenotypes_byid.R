@@ -3,8 +3,8 @@
 #'
 #' @export
 #' @param phenotypeid ID of openSNP phenotype.
-#' @param return_ Return data.frame (TRUE) or not (FALSE) - default = FALSE.
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}.
+#' @param return_ Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
+#' @param ... Curl options passed on to [httr::GET()]
 #' @return List of description of phenotype, list of known variants, or 
 #' data.frame of variants for each user with that phenotype.
 #'

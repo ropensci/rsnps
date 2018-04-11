@@ -4,9 +4,9 @@
 #' @export
 #' @param SNPs A vector of SNPs (rs numbers).
 #' @param ... Further named parameters passed on to 
-#' \code{\link[httr]{config}} to debug curl.
+#' [httr::config()] to debug curl.
 #' 
-#' @seealso \code{\link{ncbi_snp_query}}
+#' @seealso [ncbi_snp_query()]
 #' 
 #' @examples \dontrun{
 #' x <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")

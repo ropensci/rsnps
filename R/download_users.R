@@ -4,7 +4,7 @@
 #' @param name User name
 #' @param id User id
 #' @param dir Directory to save file to
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}.
+#' @param ... Curl options passed on to [httr::GET()]
 #' @return File downloaded to directory you specify (or default), nothing
 #' returned in R.
 #' @examples \dontrun{

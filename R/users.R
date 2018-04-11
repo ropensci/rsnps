@@ -1,8 +1,8 @@
 #' Get openSNP users.
 #'
 #' @export
-#' @param df Return data.frame (TRUE) or not (FALSE) - default = FALSE.
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}.
+#' @param df Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
+#' @param ... Curl options passed on to [httr::GET()].
 #' @return List of openSNP users, their ID numbers, and XX if available.
 #' @examples \dontrun{
 #' # just the list

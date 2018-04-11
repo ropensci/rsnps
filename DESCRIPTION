@@ -19,6 +19,7 @@ Authors@R: c(
 URL: https://github.com/ropensci/rsnps
 BugReports: https://github.com/ropensci/rsnps/issues
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
 Imports:
     plyr,
     stringr,

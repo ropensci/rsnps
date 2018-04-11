@@ -9,8 +9,8 @@ ncbi_snp_query2(SNPs, ...)
 \arguments{
 \item{SNPs}{A vector of SNPs (rs numbers).}
 
-\item{...}{Further named parameters passed on to 
-\code{\link[httr]{config}} to debug curl.}
+\item{...}{Further named parameters passed on to
+\code{\link[httr:config]{httr::config()}} to debug curl.}
 }
 \description{
 Query NCBI's dbSNP for information on a set of SNPs
@@ -29,5 +29,5 @@ ncbi_snp_query2("rs111068718") # chromosomal information may be unmapped
 }
 }
 \seealso{
-\code{\link{ncbi_snp_query}}
+\code{\link[=ncbi_snp_query]{ncbi_snp_query()}}
 }

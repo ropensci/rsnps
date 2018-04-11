@@ -3,7 +3,7 @@
 \name{annotations}
 \alias{annotations}
 \title{Get all phenotypes, their variations, and how many users have data
-		available for a given phenotype.}
+available for a given phenotype.}
 \usage{
 annotations(snp = NA, output = c("all", "plos", "mendeley", "snpedia",
   "metadata"), ...)
@@ -15,15 +15,15 @@ annotations(snp = NA, output = c("all", "plos", "mendeley", "snpedia",
 are: 'plos', 'mendeley', 'snpedia', 'metadata'). 'metadata' gives the
 metadata for the response.}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
+\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
 }
 \value{
 Data.frame of results.
 }
 \description{
 Either return data.frame with all results, or output a list, then call
-		the charicteristic by id (paramater = "id") or 
-		name (paramater = "characteristic").
+the charicteristic by id (paramater = "id") or
+name (paramater = "characteristic").
 }
 \examples{
 \dontrun{

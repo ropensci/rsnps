@@ -4,7 +4,9 @@
 \alias{rsnps-defunct}
 \title{Defunct functions in rsnps}
 \description{
-- `LDSearch()`: Function name changed to [ld_search]
-- `NCBI_snp_query()`: Function name changed to [ncbi_snp_query]
-- `NCBI_snp_query2()`: Function name changed to [ncbi_snp_query2]
+\itemize{
+\item \code{LDSearch()}: Function name changed to \link{ld_search}
+\item \code{NCBI_snp_query()}: Function name changed to \link{ncbi_snp_query}
+\item \code{NCBI_snp_query2()}: Function name changed to \link{ncbi_snp_query2}
+}
 }

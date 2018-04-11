@@ -7,39 +7,39 @@
 ncbi_snp_query(SNPs, ...)
 }
 \arguments{
-\item{SNPs}{A vector of SNPs (rs numbers).}
+\item{SNPs}{(character) A vector of SNPs (rs numbers).}
 
-\item{...}{Further named parameters passed on to \code{\link[httr]{config}} 
+\item{...}{Further named parameters passed on to \code{\link[httr:config]{httr::config()}}
 to debug curl. See examples.}
 }
 \value{
 A dataframe with columns:
 \itemize{
-\item \code{Query:} The rs ID that was queried.
-\item \code{Chromosome:} The chromosome that the marker lies on.
-\item \code{Marker:} The name of the marker. If the rs ID queried
+\item Query: The rs ID that was queried.
+\item Chromosome: The chromosome that the marker lies on.
+\item Marker: The name of the marker. If the rs ID queried
 has been merged, the up-to-date name of the marker is returned here, and
 a warning is issued.
-\item \code{Class:} The marker's 'class'. See
+\item Class: The marker's 'class'. See
 \url{http://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass}
 for more details.
-\item \code{Gene:} If the marker lies within a gene (either within the exon
+\item Gene: If the marker lies within a gene (either within the exon
 or introns of a gene), the name of that gene is returned here; otherwise,
 \code{NA}. Note that
 the gene may not be returned if the marker lies too far upstream or downstream
 of the particular gene of interest.
-\item \code{Alleles:} The alleles associated with the SNP if it is a
+\item Alleles: The alleles associated with the SNP if it is a
 SNV; otherwise, if it is an INDEL, microsatellite, or other kind of
 polymorphism the relevant information will be available here.
-\item \code{Major:} The major allele of the SNP, on the forward strand,
+\item Major: The major allele of the SNP, on the forward strand,
 given it is an SNV; otherwise, \code{NA}.
-\item \code{Minor:} The minor allele of the SNP, on the forward strand,
+\item Minor: The minor allele of the SNP, on the forward strand,
 given it is an SNV; otherwise, \code{NA}.
-\item \code{MAF:} The minor allele frequency of the SNP, given it is an SNV.
+\item MAF: The minor allele frequency of the SNP, given it is an SNV.
 This is drawn from the current global reference population used by NCBI.
-\item \code{BP:} The chromosomal position, in base pairs, of the marker,
-as aligned with the current genome used by dbSNP. we add 1 to the base 
-pair position in the BP column in the output data.frame to agree with 
+\item BP: The chromosomal position, in base pairs, of the marker,
+as aligned with the current genome used by dbSNP. we add 1 to the base
+pair position in the BP column in the output data.frame to agree with
 what the dBSNP website has.
 }
 }
@@ -49,9 +49,9 @@ dbSNP build and latest reference genome for information on the vector
 of SNPs submitted.
 }
 \details{
-Note that you are limited in the number of SNPs you pass in to one 
-request because URLs can only be so long. Around 600 is likely the max you 
-can pass in, though may be somewhat more. Break up your vector of SNP 
+Note that you are limited in the number of SNPs you pass in to one
+request because URLs can only be so long. Around 600 is likely the max you
+can pass in, though may be somewhat more. Break up your vector of SNP
 codes into pieces of 600 or less and do repeated requests to get all data.
 }
 \examples{
@@ -84,5 +84,5 @@ ncbi_snp_query(snps, config=progress())
 \url{https://www.ncbi.nlm.nih.gov/projects/SNP/}
 }
 \seealso{
-\code{\link{ncbi_snp_query2}}
+\code{\link[=ncbi_snp_query2]{ncbi_snp_query2()}}
 }

@@ -7,10 +7,10 @@
 #'
 #' @export
 #' @param df Return a data.frame of all data. The column known_variations
-#' 		can take multiple values, so the other columns id, characteristic, and
-#' 		number_of_users are replicated in the data.frame. (default = FALSE)
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}.
-#' @return Data.frame of results, or list if df=FALSE
+#' can take multiple values, so the other columns id, characteristic, and
+#' number_of_users are replicated in the data.frame. Default: `FALSE`
+#' @param ... Curl options passed on to [httr::GET()]
+#' @return Data.frame of results, or list if `df=FALSE`
 #' @examples \dontrun{
 #' # Get all data
 #' allphenotypes(df = TRUE)

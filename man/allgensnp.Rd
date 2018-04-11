@@ -9,9 +9,9 @@ allgensnp(snp = NA, df = FALSE, ...)
 \arguments{
 \item{snp}{SNP name.}
 
-\item{df}{Return data.frame (TRUE) or not (FALSE) - default = FALSE.}
+\item{df}{Return data.frame (\code{TRUE}) or not (\code{FALSE}). Default: \code{FALSE}}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
+\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
 }
 \value{
 List of genotypes for all users at a certain SNP, or data.frame

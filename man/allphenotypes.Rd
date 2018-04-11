@@ -3,24 +3,24 @@
 \name{allphenotypes}
 \alias{allphenotypes}
 \title{Get all phenotypes, their variations, and how many users have data
-		available for a given phenotype.}
+available for a given phenotype.}
 \usage{
 allphenotypes(df = FALSE, ...)
 }
 \arguments{
 \item{df}{Return a data.frame of all data. The column known_variations
 can take multiple values, so the other columns id, characteristic, and
-number_of_users are replicated in the data.frame. (default = FALSE)}
+number_of_users are replicated in the data.frame. Default: \code{FALSE}}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}.}
+\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
 }
 \value{
-Data.frame of results, or list if df=FALSE
+Data.frame of results, or list if \code{df=FALSE}
 }
 \description{
 Either return data.frame with all results, or output a list, then call
-		the charicteristic by id (paramater = "id") or name (paramater =
-		"characteristic").
+the charicteristic by id (paramater = "id") or name (paramater =
+"characteristic").
 }
 \examples{
 \dontrun{

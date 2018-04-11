@@ -3,7 +3,7 @@
 #' @param vec A character vector, or vector coercable to character.
 #' @param from A vector of elements to map from.
 #' @param to A vector of elements to map to.
-#' @param ... Optional arguments passed to \code{\link{match}}.
+#' @param ... Optional arguments passed to [match()]
 #' @export
 #' @keywords internal
 swap <- function( vec, from, to=names(from), ... ) {
@@ -42,18 +42,18 @@ flip <- function( SNP, sep="", outSep=sep ) {
 #' Split a Vector of Strings Following a Regular Structure
 #'
 #' This function takes a vector of strings following a regular
-#' structure, and converts that vector into a \code{data.frame}, split
-#' on that delimiter. A nice wrapper to \code{\link{strsplit}}, essentially
-#' - the primary bonus is the automatic coersion to a \code{data.frame}.
+#' structure, and converts that vector into a `data.frame`, split
+#' on that delimiter. A nice wrapper to [strsplit()], essentially
+#' - the primary bonus is the automatic coersion to a `data.frame`.
 #' @param x a vector of strings.
-#' @param sep the delimiter / \code{\link{regex}} you wish to split your strings on.
-#' @param fixed logical. If \code{TRUE}, we match \code{sep} exactly;
+#' @param sep the delimiter / [regex] you wish to split your strings on.
+#' @param fixed logical. If `TRUE`, we match `sep` exactly;
 #' otherwise, we use regular expressions. Has priority over \code{perl}.
 #' @param perl logical. Should perl-compatible regexps be used?
-#' @param useBytes logical. If \code{TRUE}, matching is done byte-by-byte rather than
+#' @param useBytes logical. If `TRUE`, matching is done byte-by-byte rather than
 #' character-by-character.
-#' @param names optional: a vector of names to pass to the returned \code{data.frame}.
-#' @seealso \code{\link{strsplit}}
+#' @param names optional: a vector of names to pass to the returned `data.frame`.
+#' @seealso [strsplit()]
 #' @export
 #' @keywords internal
 split_to_df <- function(x, sep, fixed=FALSE, perl=TRUE, useBytes=FALSE, names=NULL) {
