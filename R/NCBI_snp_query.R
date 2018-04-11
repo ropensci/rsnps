@@ -167,9 +167,9 @@ ncbi_snp_query <- function(SNPs, ...) {
         my_major <- alleles_split[ maf_allele != alleles_split ]
         my_freq <- my_list$Frequency["freq"]
       }
-      if (all(maf_allele != alleles_split) ) {
-        maf_allele <- swap( maf_allele, c("A", "C", "G", "T"), c("T", "G", "C", "A") )
-      }
+      # if (all(!maf_allele %in% alleles_split)) {
+      #   maf_allele <- swap( maf_allele, c("A", "C", "G", "T"), c("T", "G", "C", "A") )
+      # }
 
     } else { 
       ## handle the others in a generic way; maybe specialize later

@@ -7,5 +7,5 @@ test_that("genotypes returns the correct class", {
 
 	expect_that(one, is_a("data.frame"))
 	expect_equal(NROW(one), 3)
-	expect_that(as.character(one[2,4]), matches("Nash Parovoz"))
+	expect_match(as.character(one[2,4]), "Nash Parovoz")
 })

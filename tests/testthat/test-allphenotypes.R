@@ -17,5 +17,5 @@ test_that("allphenotypes returns the correct value", {
 	skip_on_cran()
 
 	expect_that(as.character(allphenotypes()[["ADHD"]][7,3]),
-							equals("Diagnosed as not having but with some signs"))
+							equals("Mthfr c677t"))
 })
