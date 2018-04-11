@@ -108,3 +108,5 @@ rbl <- function(x) {
     data.table::rbindlist(x, use.names = TRUE, fill = TRUE)
   ))
 }
+
+`%||%` <- function(x, y) if (is.null(x) || length(x) == 0) y else x

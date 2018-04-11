@@ -23,8 +23,8 @@
 ncbi_snp_summary <- function(x, ...) {
   stopifnot(inherits(x, "character"))
   x <- gsub("^rs", "", x)
-  args <- list(db = 'snp', retmode = 'flt', rettype = 'flt', 
-    id = paste( x, collapse = ","))
+  args <- list(db = 'snp', retmode = 'flt', rettype = 'flt',
+    id = paste(x, collapse = ","))
   url <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
   cli <- crul::HttpClient$new(url = url, opts = list(...))
   res <- cli$get(query = args)
@@ -35,6 +35,12 @@ ncbi_snp_summary <- function(x, ...) {
   dats <- lapply(docsums, function(w) {
     items <- xml2::xml_find_all(w, "Item")
     unlist(lapply(items, make_named_list), FALSE)
+  })
+  dats <- lapply(dats, function(z) {
+    gn <- stract_(z$docsum, "GENE=[A-Za-z0-9]+:[0-9]+,?([A-Za-z0-9]+:[0-9]+)?")
+    gn <- sub("GENE=", "", gn)
+    z$gene2 <- gn %||% NA_character_
+    z
   })
   rbl(dats)
 }
