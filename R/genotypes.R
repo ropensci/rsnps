@@ -4,7 +4,7 @@
 #' @param snp SNP name.
 #' @param userid ID of openSNP user.
 #' @param df Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
-#' @param ... Curl options passed on to [httr::GET()]
+#' @param ... Curl options passed on to [crul::HttpClient]]
 #' @return List (or data.frame) of genotypes for specified user(s) at a 
 #' certain SNP.
 #' @examples \dontrun{
@@ -15,10 +15,8 @@
 
 genotypes <- function(snp = NA, userid = NA, df = FALSE, ...) {
   url2 <- paste0(paste0(osnp_base(), "snps/json/"), snp, "/", userid, '.json')
-  message(url2)
-  res <- GET(url2, ...)
-  stop_for_status(res)
-  genotypes_ <- jsonlite::fromJSON(cuf8(res), FALSE)
+  res <- os_GET(url2, list(), ...)
+  genotypes_ <- jsonlite::fromJSON(res, FALSE)
 
   if (df) {
     if (length(str_split(userid, '[-,]')[[1]]) == 1) { 

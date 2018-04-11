@@ -50,7 +50,7 @@ to search for SNPs in LD with each set of SNPs.}
 \item{quiet}{boolean; if \code{TRUE} progress updates are written to the
 console.}
 
-\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
 A list of data frames, one for each SNP queried, containing

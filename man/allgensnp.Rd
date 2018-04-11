@@ -4,24 +4,22 @@
 \alias{allgensnp}
 \title{Get genotype data for all users at a particular snp.}
 \usage{
-allgensnp(snp = NA, df = FALSE, ...)
+allgensnp(snp = NA, ...)
 }
 \arguments{
-\item{snp}{SNP name.}
+\item{snp}{(character) A SNP name}
 
-\item{df}{Return data.frame (\code{TRUE}) or not (\code{FALSE}). Default: \code{FALSE}}
-
-\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
-List of genotypes for all users at a certain SNP, or data.frame
+data.frame of genotypes for all users at a certain SNP
 }
 \description{
 Get genotype data for all users at a particular snp.
 }
 \examples{
 \dontrun{
-allgensnp(snp = 'rs7412')
-allgensnp('rs7412', df = TRUE)
+x <- allgensnp(snp = 'rs7412')
+head(x)
 }
 }

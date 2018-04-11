@@ -15,10 +15,10 @@ annotations(snp = NA, output = c("all", "plos", "mendeley", "snpedia",
 are: 'plos', 'mendeley', 'snpedia', 'metadata'). 'metadata' gives the
 metadata for the response.}
 
-\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
-Data.frame of results.
+data.frame of results
 }
 \description{
 Either return data.frame with all results, or output a list, then call

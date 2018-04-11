@@ -10,10 +10,9 @@
 #' we cannot specify which assembly to pull data from, so it's stuck 
 #' with 38.
 #'
-#' @param SNPs (character) A vector of SNPs (rs numbers).
-#' @param ... Further named parameters passed on to [httr::config()] 
-#' to debug curl. See examples.
 #' @export
+#' @param SNPs (character) A vector of SNPs (rs numbers).
+#' @param ... Curl options passed on to [crul::HttpClient]
 #' @return A dataframe with columns:
 #' 
 #' - Query: The rs ID that was queried.
@@ -71,10 +70,8 @@
 #'
 #' # Curl debugging
 #' ncbi_snp_query("rs121909001")
-#' library("httr")
-#' ncbi_snp_query("rs121909001", config=verbose())
+#' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-#' ncbi_snp_query(snps, config=progress())
 #' }
 ncbi_snp_query <- function(SNPs, ...) {
   ## ensure these are rs numbers of the form rs[0-9]+
@@ -86,12 +83,14 @@ ncbi_snp_query <- function(SNPs, ...) {
   }
 
   url <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
-  res <- GET(url, query = list(db = 'snp', mode = 'xml', 
-                               id = paste( SNPs, collapse = ",")), ...)
-  stop_for_status(res)
-  xml <- cuf8(res)
-  xml_parsed <- xmlInternalTreeParse( xml )
-  xml_list_ <- xmlToList( xml_parsed )
+  cli <- crul::HttpClient$new(url = url, opts = list(...))
+  res <- cli$get(query = list(db = 'snp', mode = 'xml', 
+    id = paste( SNPs, collapse = ",")))
+  res$raise_for_status()
+  xml <- res$parse("UTF-8")
+
+  xml_parsed <- XML::xmlInternalTreeParse(xml)
+  xml_list_ <- XML::xmlToList(xml_parsed)
 
   ## we don't need the last element; it's just metadata
   xml_list <- xml_list_[ 1:(length(xml_list_) - 1) ]
@@ -172,10 +171,6 @@ ncbi_snp_query <- function(SNPs, ...) {
         my_major <- alleles_split[ maf_allele != alleles_split ]
         my_freq <- my_list$Frequency["freq"]
       }
-      # if (all(!maf_allele %in% alleles_split)) {
-      #   maf_allele <- swap( maf_allele, c("A", "C", "G", "T"), c("T", "G", "C", "A") )
-      # }
-
     } else { 
       ## handle the others in a generic way; maybe specialize later
       my_minor <- NA
@@ -209,7 +204,6 @@ ncbi_snp_query <- function(SNPs, ...) {
       as.numeric(my_freq), as.integer(my_pos),
       anc_all
     )
-
   }
 
   for (nm in c("MAF", "BP")) {

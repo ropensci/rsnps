@@ -13,7 +13,7 @@ phenotypes_byid(phenotypeid = NA, return_ = c("description", "knownvars",
 
 \item{return_}{Return data.frame (\code{TRUE}) or not (\code{FALSE}). Default: \code{FALSE}}
 
-\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
 List of description of phenotype, list of known variants, or
@@ -30,9 +30,6 @@ phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
 phenotypes_byid(phenotypeid=12, return_ = 'users')
 
 # pass on curl options
-library("httr")
-phenotypes_byid(phenotypeid=12, return_ = 'desc', 
-  config=c(verbose(), timeout(1)))
-phenotypes_byid(phenotypeid=12, return_ = 'desc', config=verbose())
+phenotypes_byid(phenotypeid=12, return_ = 'desc', verbose = TRUE)
 }
 }

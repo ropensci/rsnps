@@ -1,10 +1,8 @@
 #' Query NCBI's dbSNP for information on a set of SNPs
 #' 
-#' 
 #' @export
 #' @param SNPs A vector of SNPs (rs numbers).
-#' @param ... Further named parameters passed on to [httr::config()] to 
-#' debug curl
+#' @param ... Curl options passed on to [crul::HttpClient]
 #' 
 #' @seealso [ncbi_snp_query()]
 #' 
@@ -20,9 +18,7 @@
 #' ncbi_snp_query2("rs111068718") # chromosomal information may be unmapped
 #' }
 ncbi_snp_query2 <- function(SNPs, ...) {
-  tmp <- sapply( SNPs, function(x) { 
-    grep( "^rs[0-9]+$", x) 
-  })
+  tmp <- sapply( SNPs, function(x) grep( "^rs[0-9]+$", x))
   if ( any( sapply( tmp, length ) == 0 ) ) {
     stop("not all items supplied are prefixed with 'rs';\n",
          "you must supply rs numbers and they should be prefixed with ",
@@ -30,17 +26,19 @@ ncbi_snp_query2 <- function(SNPs, ...) {
   }
   url <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
   quer <- list(db = 'snp', retmode = 'flt', rettype = 'flt')
+
+  cli <- crul::HttpClient$new(url = url, opts = list(...))
   
   if (length(SNPs) > 190) {
-    res <- httr::POST(url, query = quer, 
-                     body = list(id = paste(SNPs, collapse = ",")), ...)
+    res <- cli$post(query = quer, 
+      body = list(id = paste(SNPs, collapse = ",")))
   } else {
     quer$id <- paste(SNPs, collapse = ",")
-    res <- httr::GET(url, query = quer, ...)
+    res <- cli$get(query = quer)
   }
   
-  httr::stop_for_status(res)
-  tmp <- cuf8(res)
+  res$raise_for_status()
+  tmp <- res$parse("UTF-8")
   tmpsplit <- strsplit(tmp, "\n\n")[[1]]
   tmpsplit <- tmpsplit[tmpsplit != ""]
   dat <- lapply(tmpsplit, parse_data)

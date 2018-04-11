@@ -13,7 +13,7 @@ download_users(name = NULL, id = NULL, dir = "~/", ...)
 
 \item{dir}{Directory to save file to}
 
-\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
 File downloaded to directory you specify (or default), nothing

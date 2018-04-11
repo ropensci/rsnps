@@ -4,7 +4,7 @@
 #' @param name User name
 #' @param id User id
 #' @param dir Directory to save file to
-#' @param ... Curl options passed on to [httr::GET()]
+#' @param ... Curl options passed on to [crul::HttpClient]
 #' @return File downloaded to directory you specify (or default), nothing
 #' returned in R.
 #' @examples \dontrun{
@@ -42,9 +42,8 @@ download_users <- function(name = NULL, id = NULL, dir = "~/", ...) {
   message(sprintf("File downloaded - saved to %s", dir2))
 }
 
-get_write <- function(x, y, ...){
-  res <- GET(x, ...)
-  txt <- cuf8(res)
+get_write <- function(x, y, ...) {
+  txt <- os_GET(x, list(), ...)
   write(txt, file = y)
 }
 
@@ -58,7 +57,7 @@ get_write <- function(x, y, ...){
 #' @param name User name
 #' @param id User id
 #' @param path Path to file to read from.
-#' @param ... Parameters passed on to \code{\link{read.table}}
+#' @param ... Parameters passed on to [read.table()]
 #' @details
 #' If you specify a name or id, this function reads environment variables
 #' written in the function download_users, and then searches against those

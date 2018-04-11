@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @param df Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
-#' @param ... Curl options passed on to [httr::GET()].
+#' @param ... Curl options passed on to [crul::HttpClient]
 #' @return List of openSNP users, their ID numbers, and XX if available.
 #' @examples \dontrun{
 #' # just the list
@@ -16,9 +16,8 @@
 #' }
 
 users <- function(df = FALSE, ...) {
-  res <- GET(paste0(osnp_base(), "users.json"), ...)
-  stop_for_status(res)
-  users_ <- jsonlite::fromJSON(cuf8(res), FALSE)
+  res <- os_GET(paste0(osnp_base(), "users.json"), list(), ...)
+  users_ <- jsonlite::fromJSON(res, FALSE)
   if (!df) { 
     users_ 
   } else {

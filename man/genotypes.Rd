@@ -13,7 +13,7 @@ genotypes(snp = NA, userid = NA, df = FALSE, ...)
 
 \item{df}{Return data.frame (\code{TRUE}) or not (\code{FALSE}). Default: \code{FALSE}}
 
-\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}]}
 }
 \value{
 List (or data.frame) of genotypes for specified user(s) at a

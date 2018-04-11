@@ -9,8 +9,7 @@ ncbi_snp_query(SNPs, ...)
 \arguments{
 \item{SNPs}{(character) A vector of SNPs (rs numbers).}
 
-\item{...}{Further named parameters passed on to \code{\link[httr:config]{httr::config()}}
-to debug curl. See examples.}
+\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
 A dataframe with columns:
@@ -80,10 +79,8 @@ ncbi_snp_query(SNPs='rs9970807')$BP
 
 # Curl debugging
 ncbi_snp_query("rs121909001")
-library("httr")
-ncbi_snp_query("rs121909001", config=verbose())
+ncbi_snp_query("rs121909001", verbose = TRUE)
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-ncbi_snp_query(snps, config=progress())
 }
 }
 \references{

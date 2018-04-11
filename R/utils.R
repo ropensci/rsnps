@@ -99,8 +99,12 @@ rsnps_comp <- function(x) Filter(Negate(is.null), x)
 
 osnp_base <- function() "https://opensnp.org/"
 
-cuf8 <- function(x) httr::content(x, "text", encoding = "UTF-8")
-
 stract_ <- function(string, pattern) {
   regmatches(string, regexpr(pattern, string))
+}
+
+rbl <- function(x) {
+  (xxxxx <- data.table::setDF(
+    data.table::rbindlist(x, use.names = TRUE, fill = TRUE)
+  ))
 }

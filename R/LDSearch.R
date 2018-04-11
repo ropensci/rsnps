@@ -49,7 +49,7 @@
 #' to search for SNPs in LD with each set of SNPs.
 #' @param quiet boolean; if `TRUE` progress updates are written to the
 #' console.
-#' @param ... Curl options passed on to [httr::GET()]
+#' @param ... Curl options passed on to [crul::HttpClient]
 #' @note The `GeneCruiser` parameter is defunct, GeneCruiser service is 
 #' no longer available.
 #' @return A list of data frames, one for each SNP queried, containing
@@ -140,10 +140,12 @@ ld_search <- function(SNPs, dataset = "onekgpilot", panel = "CEU",
     `columnList[]` = "DP,MAF"))
 
   if ( !quiet ) cat("Querying SNAP...\n")
-  dat_tmp <- GET(url, query = args, ...)
-  stop_for_status(dat_tmp)
-  dat <- cuf8(dat_tmp)
 
+  cli <- crul::HttpClient$new(url = url, opts = list(...))
+  res <- cli$get(query = args)
+  res$raise_for_status()
+  dat <- res$parse("UTF-8")
+  
   ## check for validation error
   if (length( grep( "validation error", dat ) ) > 0) {
     stop(dat, call. = FALSE)

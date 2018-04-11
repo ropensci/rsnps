@@ -10,8 +10,8 @@
 #' @param output Name the source or sources you want annotations from (options
 #' 		are: 'plos', 'mendeley', 'snpedia', 'metadata'). 'metadata' gives the
 #' 		metadata for the response.
-#' @param ... Curl options passed on to [httr::GET()]
-#' @return Data.frame of results.
+#' @param ... Curl options passed on to [crul::HttpClient]
+#' @return data.frame of results
 #' @examples \dontrun{
 #' # Get all data
 #' ## get just the metadata
@@ -30,10 +30,8 @@ annotations <- function(snp = NA,
   output = c('all','plos','mendeley','snpedia','metadata'), ...) {
   
   url <- paste0(osnp_base(), "snps/json/annotation/", snp, '.json')
-  message(url)
-  res <- httr::GET(url, ...)
-  httr::stop_for_status(res)
-  out <- jsonlite::fromJSON(cuf8(res), FALSE)
+  out <- os_GET(url, list(), ...)
+  out <- jsonlite::fromJSON(out, FALSE)
   source_ <- match.arg(output, c('all','plos','mendeley','snpedia','metadata'), 
                        FALSE)
 

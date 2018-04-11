@@ -80,33 +80,33 @@ head(tmp)
 
 ```
 #> $rs420358
-#>        Proxy      SNP Distance RSquared DPrime GeneVariant GeneName
-#> 4   rs420358 rs420358        0    1.000  1.000  INTERGENIC      N/A
-#> 5   rs442418 rs420358      122    1.000  1.000  INTERGENIC      N/A
-#> 8   rs718223 rs420358     1168    1.000  1.000  INTERGENIC      N/A
-#> 6   rs453604 rs420358     2947    1.000  1.000  INTERGENIC      N/A
-#> 3   rs372946 rs420358      -70    0.943  1.000  INTERGENIC      N/A
-#> 1 rs10889290 rs420358     3987    0.800  1.000  INTERGENIC      N/A
-#> 2 rs10889291 rs420358     4334    0.800  1.000  INTERGENIC      N/A
-#> 7  rs4660403 rs420358     7021    0.800  1.000  INTERGENIC      N/A
-#>   GeneDescription Major Minor   MAF NObserved marker_NCBI organism_NCBI
-#> 4             N/A     C     A 0.167       120    rs420358  Homo sapiens
-#> 5             N/A     C     T 0.167       120    rs442418  Homo sapiens
-#> 8             N/A     A     G 0.167       120    rs718223  Homo sapiens
-#> 6             N/A     A     G 0.167       120    rs453604  Homo sapiens
-#> 3             N/A     G     C 0.175       120    rs372946  Homo sapiens
-#> 1             N/A     G     A 0.200       120  rs10889290  Homo sapiens
-#> 2             N/A     C     T 0.200       120  rs10889291  Homo sapiens
-#> 7             N/A     A     G 0.200       120   rs4660403  Homo sapiens
-#>   chromosome_NCBI assembly_NCBI alleles_NCBI minor_NCBI maf_NCBI  bp_NCBI
-#> 4               1     GRCh38.p2          G/T       <NA>     <NA> 40341239
-#> 5               1     GRCh38.p2          A/G          T   0.0723 40341361
-#> 8               1     GRCh38.p2          A/G          G   0.0723 40342407
-#> 6               1     GRCh38.p2          A/G          G   0.0727 40344186
-#> 3               1     GRCh38.p2          C/G       <NA>     <NA> 40341169
-#> 1               1     GRCh38.p2          A/G          A   0.0841 40345226
-#> 2               1     GRCh38.p2          C/T          T   0.0839 40345573
-#> 7               1     GRCh38.p2          A/G          G   0.0827 40348260
+#>        Proxy      SNP Distance RSquared DPrime Major Minor   MAF NObserved
+#> 4   rs420358 rs420358        0    1.000  1.000     C     A 0.167       120
+#> 5   rs442418 rs420358      122    1.000  1.000     C     T 0.167       120
+#> 8   rs718223 rs420358     1168    1.000  1.000     A     G 0.167       120
+#> 6   rs453604 rs420358     2947    1.000  1.000     A     G 0.167       120
+#> 3   rs372946 rs420358      -70    0.943  1.000     G     C 0.175       120
+#> 1 rs10889290 rs420358     3987    0.800  1.000     G     A 0.200       120
+#> 2 rs10889291 rs420358     4334    0.800  1.000     C     T 0.200       120
+#> 7  rs4660403 rs420358     7021    0.800  1.000     A     G 0.200       120
+#>   marker_NCBI organism_NCBI chromosome_NCBI assembly_NCBI alleles_NCBI
+#> 4    rs420358  Homo sapiens               1     GRCh38.p7        A/G/T
+#> 5    rs442418  Homo sapiens               1     GRCh38.p7        A/G/T
+#> 8    rs718223  Homo sapiens               1     GRCh38.p7          A/G
+#> 6    rs453604  Homo sapiens               1     GRCh38.p7          A/G
+#> 3    rs372946  Homo sapiens               1     GRCh38.p7        C/G/T
+#> 1  rs10889290  Homo sapiens               1     GRCh38.p7        A/C/G
+#> 2  rs10889291  Homo sapiens               1     GRCh38.p7          C/T
+#> 7   rs4660403  Homo sapiens               1     GRCh38.p7        A/G/T
+#>   minor_NCBI maf_NCBI  bp_NCBI
+#> 4       <NA>     <NA> 40341239
+#> 5          T   0.0723 40341361
+#> 8          G   0.0723 40342407
+#> 6          G   0.0727 40344186
+#> 3       <NA>     <NA> 40341169
+#> 1          A   0.0841 40345226
+#> 2          T   0.0839 40345573
+#> 7          G   0.0827 40348260
 ```
 
 ## Using NCBI dbSNP data
@@ -118,16 +118,16 @@ ncbi_snp_query(SNPs)
 ```
 
 ```
-#>         Query Chromosome      Marker          Class Gene   Alleles Major
-#> 1       rs332          7 rs121909001         in-del CFTR     -/TTT  <NA>
-#> 2    rs420358          1    rs420358            snp <NA>       G,T     G
-#> 3   rs1837253          5   rs1837253            snp <NA>       C/T     C
-#> 4 rs111068718       <NA> rs111068718 microsatellite <NA> (GT)21/24  <NA>
-#>   Minor    MAF        BP AncestralAllele
-#> 1  <NA>     NA 117559593            <NA>
-#> 2     T     NA  40341239     T,T,T,T,T,T
-#> 3     T 0.3822 111066174     T,T,T,T,T,T
-#> 4  <NA>     NA        NA            <NA>
+#>          Query Chromosome       Marker  Class Gene Alleles Major Minor
+#> 1        rs332          7  rs121909001 in-del CFTR   -/TTT  <NA>  <NA>
+#> 2     rs420358          1     rs420358    snp <NA>   A,G,T     A     G
+#> 3    rs1837253          5    rs1837253    snp <NA>     C/T     C     T
+#> 4 rs1209415715          9 rs1209415715    snp <NA>     C,T     C     T
+#>      MAF        BP AncestralAllele
+#> 1     NA 117559593            <NA>
+#> 2     NA  40341239     T,T,T,T,T,T
+#> 3 0.3822 111066174     T,T,T,T,T,T
+#> 4     NA  41782316            <NA>
 ```
 
 ## Using openSNP data
@@ -140,10 +140,10 @@ genotypes('rs9939609', userid='1,6,8', df=TRUE)
 ```
 
 ```
-#>    snp_name snp_chromosome snp_position         user_name user_id
-#> 1 rs9939609             16     53786615  Bastian Greshake       1
-#> 2 rs9939609             16     53786615      Nash Parovoz       6
-#> 3 rs9939609             16     53786615 Samantha B. Clark       8
+#>    snp_name snp_chromosome snp_position                 user_name user_id
+#> 1 rs9939609             16     53786615 Bastian Greshake Tzovaras       1
+#> 2 rs9939609             16     53786615              Nash Parovoz       6
+#> 3 rs9939609             16     53786615         Samantha B. Clark       8
 #>   genotype_id genotype
 #> 1           9       AT
 #> 2           5       AT

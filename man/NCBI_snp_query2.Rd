@@ -9,8 +9,7 @@ ncbi_snp_query2(SNPs, ...)
 \arguments{
 \item{SNPs}{A vector of SNPs (rs numbers).}
 
-\item{...}{Further named parameters passed on to \code{\link[httr:config]{httr::config()}} to
-debug curl}
+\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \description{
 Query NCBI's dbSNP for information on a set of SNPs

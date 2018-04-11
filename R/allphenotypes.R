@@ -9,8 +9,8 @@
 #' @param df Return a data.frame of all data. The column known_variations
 #' can take multiple values, so the other columns id, characteristic, and
 #' number_of_users are replicated in the data.frame. Default: `FALSE`
-#' @param ... Curl options passed on to [httr::GET()]
-#' @return Data.frame of results, or list if `df=FALSE`
+#' @param ... Curl options passed on to [crul::HttpClient]
+#' @return data.frame of results, or list if `df=FALSE`
 #' @examples \dontrun{
 #' # Get all data
 #' allphenotypes(df = TRUE)
@@ -22,11 +22,8 @@
 #' datalist[["ADHD"]] # get data.frame for 'ADHD'
 #' datalist[c("mouth size","SAT Writing")] # get data.frame for 'ADHD'
 #' }
-
 allphenotypes <- function(df = FALSE, ...) {
-  res <- GET(paste0(osnp_base(), "phenotypes.json"), ...)
-  stop_for_status(res)
-  out <- cuf8(res)
+  out <- os_GET(paste0(osnp_base(), "phenotypes.json"), list(), ...)
   out <- jsonlite::fromJSON(out, simplifyVector = FALSE)
   if (df) {
     ldply(out, function(x) data.frame(do.call(cbind, x),

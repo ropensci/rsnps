@@ -11,7 +11,7 @@ phenotypes(userid = NA, df = FALSE, ...)
 
 \item{df}{Return data.frame (\code{TRUE}) or not (\code{FALSE}). Default: \code{FALSE}}
 
-\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
 List of phenotypes for specified user(s).
@@ -31,8 +31,6 @@ df <- ldply(phenotypes(userid='1-8', df=TRUE))
 head(df); tail(df)
 
 # pass on curl options
-library("httr")
-# phenotypes(1, config=c(verbose(), timeout(1)))
-phenotypes(1, config=verbose())
+phenotypes(1, verbose = TRUE)
 }
 }

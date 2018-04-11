@@ -12,10 +12,10 @@ allphenotypes(df = FALSE, ...)
 can take multiple values, so the other columns id, characteristic, and
 number_of_users are replicated in the data.frame. Default: \code{FALSE}}
 
-\item{...}{Curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
-Data.frame of results, or list if \code{df=FALSE}
+data.frame of results, or list if \code{df=FALSE}
 }
 \description{
 Either return data.frame with all results, or output a list, then call

@@ -43,9 +43,3 @@ make_named_list <- function(x) {
   as.list(stats::setNames(xml2::xml_text(x), 
     tolower(xml2::xml_attr(x, "Name"))))
 }
-
-rbl <- function(x) {
-  (xxxxx <- data.table::setDF(
-    data.table::rbindlist(x, use.names = TRUE, fill = TRUE)
-  ))
-}
