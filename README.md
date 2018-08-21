@@ -1,8 +1,7 @@
 rsnps
 =====
 
-
-
+[![cran checks](https://cranchecks.info/badges/worst/rsnps)](https://cranchecks.info/pkgs/rsnps)
 [![Build Status](https://api.travis-ci.org/ropensci/rsnps.png)](https://travis-ci.org/ropensci/rsnps)
 [![Build status](https://ci.appveyor.com/api/projects/status/d2lv98726u6t9ut5/branch/master)](https://ci.appveyor.com/project/sckott/rsnps/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rsnps/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rsnps?branch=master)
@@ -25,11 +24,6 @@ This set of functions/package accesses data from:
 	+ Relavant functions:
 		+ `allgensnp()`, `allphenotypes()`, `annotations()`, `download_users()`, 
 		`fetch_genotypes()`, `genotypes()`, `phenotypes()`, `phenotypes_byid()`, `users()`
-
-+ The Broad Institute SNP Annotation and Proxy Search
-	+ See <http://www.broadinstitute.org/mpg/snap/index.php> for more details
-	+ Relavant functions:
-		+ `ld_search()`
 
 + NCBI's dbSNP SNP database
 	+ See <https://www.ncbi.nlm.nih.gov/snp> for more details
@@ -57,56 +51,6 @@ devtools::install_github("ropensci/rsnps")
 
 ```r
 library("rsnps")
-```
-
-## Search for SNPs in Linkage Disequilibrium
-
-Using the Broad Institute data
-
-
-```r
-tmp <- ld_search("rs420358")
-```
-
-```
-#> Querying SNAP...
-#> Querying NCBI for up-to-date SNP annotation information...
-#> Done!
-```
-
-```r
-head(tmp)
-```
-
-```
-#> $rs420358
-#>        Proxy      SNP Distance RSquared DPrime Major Minor   MAF NObserved
-#> 4   rs420358 rs420358        0    1.000  1.000     C     A 0.167       120
-#> 5   rs442418 rs420358      122    1.000  1.000     C     T 0.167       120
-#> 8   rs718223 rs420358     1168    1.000  1.000     A     G 0.167       120
-#> 6   rs453604 rs420358     2947    1.000  1.000     A     G 0.167       120
-#> 3   rs372946 rs420358      -70    0.943  1.000     G     C 0.175       120
-#> 1 rs10889290 rs420358     3987    0.800  1.000     G     A 0.200       120
-#> 2 rs10889291 rs420358     4334    0.800  1.000     C     T 0.200       120
-#> 7  rs4660403 rs420358     7021    0.800  1.000     A     G 0.200       120
-#>   marker_NCBI organism_NCBI chromosome_NCBI assembly_NCBI alleles_NCBI
-#> 4    rs420358  Homo sapiens               1     GRCh38.p7        A/G/T
-#> 5    rs442418  Homo sapiens               1     GRCh38.p7        A/G/T
-#> 8    rs718223  Homo sapiens               1     GRCh38.p7          A/G
-#> 6    rs453604  Homo sapiens               1     GRCh38.p7          A/G
-#> 3    rs372946  Homo sapiens               1     GRCh38.p7        C/G/T
-#> 1  rs10889290  Homo sapiens               1     GRCh38.p7        A/C/G
-#> 2  rs10889291  Homo sapiens               1     GRCh38.p7          C/T
-#> 7   rs4660403  Homo sapiens               1     GRCh38.p7        A/G/T
-#>   minor_NCBI maf_NCBI  bp_NCBI
-#> 4       <NA>     <NA> 40341239
-#> 5          T   0.0723 40341361
-#> 8          G   0.0723 40342407
-#> 6          G   0.0727 40344186
-#> 3       <NA>     <NA> 40341169
-#> 1          A   0.0841 40345226
-#> 2          T   0.0839 40345573
-#> 7          G   0.0827 40348260
 ```
 
 ## Using NCBI dbSNP data

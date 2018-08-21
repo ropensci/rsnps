@@ -9,6 +9,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+[![cran checks](https://cranchecks.info/badges/worst/rsnps)](https://cranchecks.info/pkgs/rsnps)
 [![Build Status](https://api.travis-ci.org/ropensci/rsnps.png)](https://travis-ci.org/ropensci/rsnps)
 [![Build status](https://ci.appveyor.com/api/projects/status/d2lv98726u6t9ut5/branch/master)](https://ci.appveyor.com/project/sckott/rsnps/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rsnps/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rsnps?branch=master)
@@ -31,11 +32,6 @@ This set of functions/package accesses data from:
 	+ Relavant functions:
 		+ `allgensnp()`, `allphenotypes()`, `annotations()`, `download_users()`, 
 		`fetch_genotypes()`, `genotypes()`, `phenotypes()`, `phenotypes_byid()`, `users()`
-
-+ The Broad Institute SNP Annotation and Proxy Search
-	+ See <http://www.broadinstitute.org/mpg/snap/index.php> for more details
-	+ Relavant functions:
-		+ `ld_search()`
 
 + NCBI's dbSNP SNP database
 	+ See <https://www.ncbi.nlm.nih.gov/snp> for more details
@@ -60,15 +56,6 @@ devtools::install_github("ropensci/rsnps")
 
 ```{r}
 library("rsnps")
-```
-
-## Search for SNPs in Linkage Disequilibrium
-
-Using the Broad Institute data
-
-```{r}
-tmp <- ld_search("rs420358")
-head(tmp)
 ```
 
 ## Using NCBI dbSNP data

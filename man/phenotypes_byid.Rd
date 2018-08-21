@@ -5,8 +5,8 @@
 \title{Get all known variations and all users sharing that phenotype for
 one phenotype(-ID).}
 \usage{
-phenotypes_byid(phenotypeid = NA, return_ = c("description", "knownvars",
-  "users"), ...)
+phenotypes_byid(phenotypeid = NA, return_ = c("description",
+  "knownvars", "users"), ...)
 }
 \arguments{
 \item{phenotypeid}{ID of openSNP phenotype.}

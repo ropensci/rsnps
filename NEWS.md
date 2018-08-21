@@ -1,3 +1,11 @@
+rsnps 0.3.0
+===========
+
+### DEPRECATED AND DEFUNCT
+
+* `ld_search()` is now defunct. The Broad Insitute has taken down the SNAP service behind the function. 
+
+
 rsnps 0.2.0
 ===========
 
