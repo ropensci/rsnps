@@ -63,17 +63,13 @@
 #' ncbi_snp_query("rs332") # warning that its merged into another, try that
 #' ncbi_snp_query("rs121909001")
 #' ncbi_snp_query("rs1837253")
-#' # warning that no data available, returns 0 length data.frame
 #' ncbi_snp_query("rs1209415715")
-#' # warning that chromosomal information may be unmapped 
 #' ncbi_snp_query("rs111068718") 
-#'
-#' ncbi_snp_query(SNPs='rs9970807')$BP
+#' ncbi_snp_query(SNPs='rs9970807')
 #'
 #' # Curl debugging
 #' ncbi_snp_query("rs121909001")
 #' ncbi_snp_query("rs121909001", verbose = TRUE)
-#' snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' }
 ncbi_snp_query <- function(SNPs, key = NULL, ...) {
   ## ensure these are rs numbers of the form rs[0-9]+
@@ -94,6 +90,9 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
 
   xml_parsed <- XML::xmlInternalTreeParse(xml)
   xml_list_ <- XML::xmlToList(xml_parsed)
+
+  x2 <- xml2::read_xml(xml)
+  xml2::xml_ns_strip(x2)
 
   ## we don't need the last element; it's just metadata
   xml_list <- xml_list_[ 1:(length(xml_list_) - 1) ]
@@ -149,7 +148,9 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     }
     my_snpClass <- tryget(my_list$.attrs["snpClass"])
 
-    my_gene <- tryget( my_list$Assembly$Component$MapLoc$FxnSet['symbol'] )
+    my_gene <- xml2::xml_attr(xml2::xml_find_first(x2, "//Assembly//Component/MapLoc/FxnSet"), 
+      "symbol")
+    # my_gene <- tryget( my_list$Assembly$Component$MapLoc$FxnSet['symbol'] )
     if (is.null(my_gene)) my_gene <- NA
     alleles <- my_list$Ss$Sequence$Observed
 
@@ -181,12 +182,16 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
       my_freq <- NA
     }
 
-    my_pos <- tryCatch(
-      my_list$Assembly$Component$MapLoc$.attrs["physMapInt"],
-      error = function(e) {
-        my_list$Assembly$Component$MapLoc["physMapInt"]
-      }
+    my_pos <- xml2::xml_attr(
+      xml2::xml_find_first(x2, "//Assembly//Component/MapLoc[@physMapInt]"), 
+      "physMapInt"
     )
+    # my_pos <- tryCatch(
+    #   my_list$Assembly$Component$MapLoc$.attrs["physMapInt"],
+    #   error = function(e) {
+    #     my_list$Assembly$Component$MapLoc["physMapInt"]
+    #   }
+    # )
     
     if (is.null(my_pos)) my_pos <- NA
     

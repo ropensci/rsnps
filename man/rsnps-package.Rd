@@ -20,7 +20,7 @@ allow higher rate limits (more requests per time period)
 If you don't have an NCBI API key, get one at
 https://www.ncbi.nlm.nih.gov/account/
 
-Create your key from your (brand-new) account. After generating your key
+Create your key from your account. After generating your key
 set an environment variable as \code{ENTREZ_KEY} in .Renviron.
 
 \code{ENTREZ_KEY='youractualkeynotthisstring'}
