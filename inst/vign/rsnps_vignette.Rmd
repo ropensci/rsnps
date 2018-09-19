@@ -43,11 +43,8 @@ library(rsnps)
 Get genotype data for all users at a particular SNP
 
 ```{r allgensnp}
-allgensnp(snp='rs7412')[1:3]
-```
-
-```{r}
-allgensnp('rs7412', df=TRUE)[1:10,]
+x <- allgensnp(snp='rs7412')
+head(x)
 ```
 
 
@@ -57,13 +54,14 @@ Get all phenotypes, their variations, and how many users have data available for
 
 Get all data
 
-```{r allphenotypes1}
-allphenotypes(df = TRUE)[1:10,]
+```{r}
+x <- allphenotypes(df = TRUE)
+head(x)
 ```
 
 Output a list, then call the characterisitc of interest by 'id' or 'characteristic'
 
-```{r allphenotypes2}
+```{r}
 datalist <- allphenotypes()
 ```
 
@@ -117,7 +115,7 @@ Download genotype data for a user from 23andme or other repo. (not evaluated in 
 
 ```{r fetch_genotypes, eval=FALSE}
 data <- users(df=TRUE)
-head( data[[1]] )
+head(data[[1]])
 fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], rows=15)
 ```
 
@@ -171,22 +169,8 @@ phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
 phenotypes_byid(phenotypeid=12, return_ = 'users')[1:10,]
 ```
 
-### OpenSNP users
-
-```{r}
-data <- users(df=FALSE)
-data[1:2]
-```
 
 ## NCBI SNP data
-
-### ld_search
-
-Search for SNPs in Linkage Disequilibrium with a set of SNPs
-
-```{r}
-ld_search("rs420358")
-```
 
 ### dbSNP
 
