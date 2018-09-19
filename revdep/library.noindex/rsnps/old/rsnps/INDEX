@@ -1,0 +1,24 @@
+LDSearch                Search for SNPs in Linkage Disequilibrium with
+                        a set of SNPs
+NCBI_snp_query          Query NCBI's dbSNP for information on a set of
+                        SNPs
+NCBI_snp_query2         Query NCBI's dbSNP for information on a set of
+                        SNPs
+allgensnp               Get genotype data for all users at a particular
+                        snp.
+allphenotypes           Get all phenotypes, their variations, and how
+                        many users have data available for a given
+                        phenotype.
+annotations             Get all phenotypes, their variations, and how
+                        many users have data available for a given
+                        phenotype.
+download_users          Download openSNP user files.
+fetch_genotypes         Download genotype data for a user
+genotypes               Get genotype data for one or multiple users.
+phenotypes              Get phenotype data for one or multiple users.
+phenotypes_byid         Get all known variations and all users sharing
+                        that phenotype for one phenotype(-ID).
+read_users              Read in openSNP user files from local storage.
+rsnps-package           Get SNP (Single-Nucleotide Polymorphism) Data
+                        on the Web
+users                   Get openSNP users.

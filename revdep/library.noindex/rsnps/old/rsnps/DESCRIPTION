@@ -1,0 +1,32 @@
+Package: rsnps
+Title: Get 'SNP' ('Single-Nucleotide' 'Polymorphism') Data on the Web
+Description: A programmatic interface to various 'SNP' 'datasets'
+    on the web: 'OpenSNP' (<https://opensnp.org>), 'NBCIs' 'dbSNP' database 
+    (<https://www.ncbi.nlm.nih.gov/projects/SNP>), and Broad Institute 'SNP'
+    Annotation and Proxy Search 
+    (<http://archive.broadinstitute.org/mpg/snap/ldsearch.php>). Functions 
+    are included for searching for 'SNPs' for the Broad Institute and 'NCBI'. 
+    For 'OpenSNP', functions are included for getting 'SNPs', and data for 
+    'genotypes', 'phenotypes', annotations, and bulk downloads of data by user.
+Version: 0.2.0
+License: MIT + file LICENSE
+Authors@R: c(
+    person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
+    person("Kevin", "Ushey", role = "aut", email = "kevinushey@gmail.com"),
+    person("Hao", "Zhu", role = "aut", email = "haozhu233@gmail.com")
+    )
+URL: https://github.com/ropensci/rsnps
+BugReports: https://github.com/ropensci/rsnps/issues
+VignetteBuilder: knitr
+Imports: plyr, stringr, httr (>= 1.2.0), XML, jsonlite
+Suggests: roxygen2 (>= 5.0.1), testthat, knitr, covr
+RoxygenNote: 5.0.1
+NeedsCompilation: no
+Packaged: 2016-11-20 00:40:42 UTC; sacmac
+Author: Scott Chamberlain [aut, cre],
+  Kevin Ushey [aut],
+  Hao Zhu [aut]
+Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
+Repository: CRAN
+Date/Publication: 2016-11-20 09:22:43
+Built: R 3.5.0; ; 2018-04-23 21:35:35 UTC; unix

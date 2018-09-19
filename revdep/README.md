@@ -1,28 +1,28 @@
-# Setup
+# Platform
 
-## Platform
+|field    |value                                       |
+|:--------|:-------------------------------------------|
+|version  |R version 3.5.1 Patched (2018-08-12 r75119) |
+|os       |macOS High Sierra 10.13.6                   |
+|system   |x86_64, darwin15.6.0                        |
+|ui       |X11                                         |
+|language |(EN)                                        |
+|collate  |en_US.UTF-8                                 |
+|tz       |US/Pacific                                  |
+|date     |2018-09-19                                  |
 
-|setting  |value                        |
-|:--------|:----------------------------|
-|version  |R version 3.3.2 (2016-10-31) |
-|system   |x86_64, darwin13.4.0         |
-|ui       |X11                          |
-|language |(EN)                         |
-|collate  |en_US.UTF-8                  |
-|tz       |America/Los_Angeles          |
-|date     |2016-11-18                   |
+# Dependencies
 
-## Packages
+|package    |old   |new        |Δ  |
+|:----------|:-----|:----------|:--|
+|rsnps      |0.2.0 |0.2.9.9930 |*  |
+|data.table |NA    |1.11.4     |*  |
 
-|package |*  |version |date       |source                    |
-|:-------|:--|:-------|:----------|:-------------------------|
-|rsnps   |   |0.2.0   |2016-11-19 |local (ropensci/rsnps@NA) |
+# Revdeps
 
-# Check results
-1 packages
+## All (1)
 
-## solarius (0.3.0.2)
-Maintainer: Andrey Ziyatdinov <andrey.ziyatdinov@upc.edu>
-
-0 errors | 0 warnings | 0 notes
+|package  |version |error |warning |note |
+|:--------|:-------|:-----|:-------|:----|
+|solarius |0.3.0.2 |      |        |     |
 
