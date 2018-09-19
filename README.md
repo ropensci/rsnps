@@ -1,6 +1,8 @@
 rsnps
 =====
 
+
+
 [![cran checks](https://cranchecks.info/badges/worst/rsnps)](https://cranchecks.info/pkgs/rsnps)
 [![Build Status](https://api.travis-ci.org/ropensci/rsnps.png)](https://travis-ci.org/ropensci/rsnps)
 [![Build status](https://ci.appveyor.com/api/projects/status/d2lv98726u6t9ut5/branch/master)](https://ci.appveyor.com/project/sckott/rsnps/branch/master)
@@ -30,6 +32,7 @@ This set of functions/package accesses data from:
 	+ Relavant functions:
 		+ `ncbi_snp_query()`
 		+ `ncbi_snp_query2()`
+        + `ncbi_snp_summary()`
 
 ## Install
 
@@ -64,14 +67,14 @@ ncbi_snp_query(SNPs)
 ```
 #>          Query Chromosome       Marker  Class Gene Alleles Major Minor
 #> 1        rs332          7  rs121909001 in-del CFTR   -/TTT  <NA>  <NA>
-#> 2     rs420358          1     rs420358    snp <NA>   A,G,T     A     G
-#> 3    rs1837253          5    rs1837253    snp <NA>     C/T     C     T
-#> 4 rs1209415715          9 rs1209415715    snp <NA>     C,T     C     T
+#> 2     rs420358          1     rs420358    snp CFTR   A,G,T     A     G
+#> 3    rs1837253          5    rs1837253    snp CFTR     C/T     C     T
+#> 4 rs1209415715          9 rs1209415715    snp CFTR     C,T     C     T
 #>      MAF        BP AncestralAllele
 #> 1     NA 117559593            <NA>
-#> 2     NA  40341239     T,T,T,T,T,T
-#> 3 0.3822 111066174     T,T,T,T,T,T
-#> 4     NA  41782316            <NA>
+#> 2     NA 117559593     T,T,T,T,T,T
+#> 3 0.3822 117559593     T,T,T,T,T,T
+#> 4     NA 117559593            <NA>
 ```
 
 ## Using openSNP data

@@ -38,6 +38,7 @@ This set of functions/package accesses data from:
 	+ Relavant functions:
 		+ `ncbi_snp_query()`
 		+ `ncbi_snp_query2()`
+        + `ncbi_snp_summary()`
 
 ## Install
 
