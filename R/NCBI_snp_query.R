@@ -12,6 +12,8 @@
 #'
 #' @export
 #' @param SNPs (character) A vector of SNPs (rs numbers).
+#' @param key (character) NCBI Entrez API key. optional. 
+#' See "NCBI Authenication" in [rsnps-package]
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return A dataframe with columns:
 #' 
@@ -73,7 +75,7 @@
 #' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' }
-ncbi_snp_query <- function(SNPs, ...) {
+ncbi_snp_query <- function(SNPs, key = NULL, ...) {
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply( SNPs, function(x) { grep( "^rs[0-9]+$", x) } )
   if (any(sapply( tmp, length ) == 0)) {
@@ -84,8 +86,9 @@ ncbi_snp_query <- function(SNPs, ...) {
 
   url <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
   cli <- crul::HttpClient$new(url = url, opts = list(...))
-  res <- cli$get(query = list(db = 'snp', mode = 'xml', 
-    id = paste( SNPs, collapse = ",")))
+  key <- check_key(key %||% "")
+  res <- cli$get(query = rsnps_comp(list(db = 'snp', mode = 'xml', 
+    id = paste( SNPs, collapse = ","), api_key = key)))
   res$raise_for_status()
   xml <- res$parse("UTF-8")
 

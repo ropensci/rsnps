@@ -2,6 +2,8 @@
 #' 
 #' @export
 #' @param SNPs A vector of SNPs (rs numbers).
+#' @param key (character) NCBI Entrez API key. optional. 
+#' See "NCBI Authenication" in [rsnps-package]
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' 
 #' @seealso [ncbi_snp_query()]
@@ -17,7 +19,7 @@
 #' ncbi_snp_query2("rs1209415715") # no data available
 #' ncbi_snp_query2("rs111068718") # chromosomal information may be unmapped
 #' }
-ncbi_snp_query2 <- function(SNPs, ...) {
+ncbi_snp_query2 <- function(SNPs, key = NULL, ...) {
   tmp <- sapply( SNPs, function(x) grep( "^rs[0-9]+$", x))
   if ( any( sapply( tmp, length ) == 0 ) ) {
     stop("not all items supplied are prefixed with 'rs';\n",
@@ -25,7 +27,9 @@ ncbi_snp_query2 <- function(SNPs, ...) {
          "'rs', e.g. rs420358")
   }
   url <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
-  quer <- list(db = 'snp', retmode = 'flt', rettype = 'flt')
+  key <- check_key(key %||% "")
+  quer <- rsnps_comp(list(db = 'snp', retmode = 'flt', rettype = 'flt', 
+    api_key = key))
 
   cli <- crul::HttpClient$new(url = url, opts = list(...))
   

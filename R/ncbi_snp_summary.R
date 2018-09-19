@@ -2,6 +2,8 @@
 #' 
 #' @export
 #' @param x A vector of SNPs (with or without 'rs' prefix)
+#' @param key (character) NCBI Entrez API key. optional. 
+#' See "NCBI Authenication" in [rsnps-package]
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @seealso [ncbi_snp_query2()]
 #' @examples \dontrun{
@@ -20,11 +22,12 @@
 #' ncbi_snp_summary("rs1209415715") # no data available
 #' ncbi_snp_summary("rs111068718") # chromosomal information may be unmapped
 #' }
-ncbi_snp_summary <- function(x, ...) {
+ncbi_snp_summary <- function(x, key = NULL, ...) {
   stopifnot(inherits(x, "character"))
   x <- gsub("^rs", "", x)
-  args <- list(db = 'snp', retmode = 'flt', rettype = 'flt',
-    id = paste(x, collapse = ","))
+  key <- check_key(key %||% "")
+  args <- rsnps_comp(list(db = 'snp', retmode = 'flt', rettype = 'flt',
+    id = paste(x, collapse = ","), api_key = key))
   url <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
   cli <- crul::HttpClient$new(url = url, opts = list(...))
   res <- cli$get(query = args)
@@ -48,4 +51,11 @@ ncbi_snp_summary <- function(x, ...) {
 make_named_list <- function(x) {
   as.list(stats::setNames(xml2::xml_text(x), 
     tolower(xml2::xml_attr(x, "Name"))))
+}
+
+check_key <- function(key = "") {
+  stopifnot(is.character(key))
+  if (nzchar(key)) return(key)
+  key <- Sys.getenv("ENTREZ_KEY")
+  if (!nzchar(key)) NULL else key
 }

@@ -4,10 +4,13 @@
 \alias{ncbi_snp_summary}
 \title{Query NCBI's dbSNP for summary information on a set of SNPs}
 \usage{
-ncbi_snp_summary(x, ...)
+ncbi_snp_summary(x, key = NULL, ...)
 }
 \arguments{
 \item{x}{A vector of SNPs (with or without 'rs' prefix)}
+
+\item{key}{(character) NCBI Entrez API key. optional.
+See "NCBI Authenication" in \link{rsnps-package}}
 
 \item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
