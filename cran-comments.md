@@ -22,7 +22,8 @@ No problems were found related to this package.
 
 ---
 
-This version includes many bug fixes, xx.
+This version includes a new function, a defunct function, 
+a number of bug fixes.
 
 Thanks!
 Scott Chamberlain
