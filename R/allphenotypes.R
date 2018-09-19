@@ -1,4 +1,4 @@
-#' Get all phenotypes, their variations, and how many users have data
+#' Get all openSNP phenotypes, their variations, and how many users have data
 #' 		available for a given phenotype.
 #'
 #' Either return data.frame with all results, or output a list, then call
@@ -6,6 +6,7 @@
 #' 		"characteristic").
 #'
 #' @export
+#' @family opensnp-fxns
 #' @param df Return a data.frame of all data. The column known_variations
 #' can take multiple values, so the other columns id, characteristic, and
 #' number_of_users are replicated in the data.frame. Default: `FALSE`

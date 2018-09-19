@@ -1,6 +1,7 @@
-#' Get genotype data for one or multiple users.
+#' Get openSNP genotype data for one or multiple users.
 #'
 #' @export
+#' @family opensnp-fxns 
 #' @param snp SNP name.
 #' @param userid ID of openSNP user.
 #' @param df Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`

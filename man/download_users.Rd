@@ -35,3 +35,11 @@ lapply(c(14,22), function(x) download_users(id=x))
 read_users(id=14, nrows=5)
 }
 }
+\seealso{
+Other opensnp-fxns: \code{\link{allgensnp}},
+  \code{\link{allphenotypes}}, \code{\link{annotations}},
+  \code{\link{fetch_genotypes}}, \code{\link{genotypes}},
+  \code{\link{phenotypes_byid}}, \code{\link{phenotypes}},
+  \code{\link{users}}
+}
+\concept{opensnp-fxns}

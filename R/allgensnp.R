@@ -1,6 +1,7 @@
-#' Get genotype data for all users at a particular snp.
+#' Get openSNP genotype data for all users at a particular snp.
 #'
 #' @export
+#' @family opensnp-fxns
 #' @param snp (character) A SNP name
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return data.frame of genotypes for all users at a certain SNP

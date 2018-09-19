@@ -1,6 +1,7 @@
-#' Download genotype data for a user
+#' Download openSNP genotype data for a user
 #'
 #' @export
+#' @family opensnp-fxns
 #' @param url (character) URL for the download. See example below of 
 #' function use.
 #' @param rows (integer) Number of rows to read in. Useful for getting a 

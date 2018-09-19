@@ -2,7 +2,7 @@
 % Please edit documentation in R/phenotypes.R
 \name{phenotypes}
 \alias{phenotypes}
-\title{Get phenotype data for one or multiple users.}
+\title{Get openSNP phenotype data for one or multiple users.}
 \usage{
 phenotypes(userid = NA, df = FALSE, ...)
 }
@@ -17,7 +17,7 @@ phenotypes(userid = NA, df = FALSE, ...)
 List of phenotypes for specified user(s).
 }
 \description{
-Get phenotype data for one or multiple users.
+Get openSNP phenotype data for one or multiple users.
 }
 \examples{
 \dontrun{
@@ -34,3 +34,11 @@ head(df); tail(df)
 phenotypes(1, verbose = TRUE)
 }
 }
+\seealso{
+Other opensnp-fxns: \code{\link{allgensnp}},
+  \code{\link{allphenotypes}}, \code{\link{annotations}},
+  \code{\link{download_users}},
+  \code{\link{fetch_genotypes}}, \code{\link{genotypes}},
+  \code{\link{phenotypes_byid}}, \code{\link{users}}
+}
+\concept{opensnp-fxns}

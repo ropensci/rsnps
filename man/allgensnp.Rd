@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgensnp.R
 \name{allgensnp}
 \alias{allgensnp}
-\title{Get genotype data for all users at a particular snp.}
+\title{Get openSNP genotype data for all users at a particular snp.}
 \usage{
 allgensnp(snp = NA, ...)
 }
@@ -15,7 +15,7 @@ allgensnp(snp = NA, ...)
 data.frame of genotypes for all users at a certain SNP
 }
 \description{
-Get genotype data for all users at a particular snp.
+Get openSNP genotype data for all users at a particular snp.
 }
 \examples{
 \dontrun{
@@ -23,3 +23,11 @@ x <- allgensnp(snp = 'rs7412')
 head(x)
 }
 }
+\seealso{
+Other opensnp-fxns: \code{\link{allphenotypes}},
+  \code{\link{annotations}}, \code{\link{download_users}},
+  \code{\link{fetch_genotypes}}, \code{\link{genotypes}},
+  \code{\link{phenotypes_byid}}, \code{\link{phenotypes}},
+  \code{\link{users}}
+}
+\concept{opensnp-fxns}

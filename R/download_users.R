@@ -1,6 +1,7 @@
 #' Download openSNP user files.
 #'
 #' @export
+#' @family opensnp-fxns
 #' @param name User name
 #' @param id User id
 #' @param dir Directory to save file to

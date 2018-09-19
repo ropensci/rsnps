@@ -1,6 +1,7 @@
-#' Get phenotype data for one or multiple users.
+#' Get openSNP phenotype data for one or multiple users.
 #'
 #' @export
+#' @family opensnp-fxns 
 #' @param userid ID of openSNP user.
 #' @param df Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
 #' @param ... Curl options passed on to [crul::HttpClient]

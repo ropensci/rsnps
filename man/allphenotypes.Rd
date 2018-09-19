@@ -2,7 +2,7 @@
 % Please edit documentation in R/allphenotypes.R
 \name{allphenotypes}
 \alias{allphenotypes}
-\title{Get all phenotypes, their variations, and how many users have data
+\title{Get all openSNP phenotypes, their variations, and how many users have data
 available for a given phenotype.}
 \usage{
 allphenotypes(df = FALSE, ...)
@@ -35,3 +35,11 @@ datalist[["ADHD"]] # get data.frame for 'ADHD'
 datalist[c("mouth size","SAT Writing")] # get data.frame for 'ADHD'
 }
 }
+\seealso{
+Other opensnp-fxns: \code{\link{allgensnp}},
+  \code{\link{annotations}}, \code{\link{download_users}},
+  \code{\link{fetch_genotypes}}, \code{\link{genotypes}},
+  \code{\link{phenotypes_byid}}, \code{\link{phenotypes}},
+  \code{\link{users}}
+}
+\concept{opensnp-fxns}

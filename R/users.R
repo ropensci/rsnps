@@ -1,6 +1,7 @@
 #' Get openSNP users.
 #'
 #' @export
+#' @family opensnp-fxns
 #' @param df Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return List of openSNP users, their ID numbers, and XX if available.

@@ -1,7 +1,8 @@
-#' Get all known variations and all users sharing that phenotype for 
+#' Get all openSNP known variations and all users sharing that phenotype for 
 #' one phenotype(-ID).
 #'
 #' @export
+#' @family opensnp-fxns
 #' @param phenotypeid ID of openSNP phenotype.
 #' @param return_ Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
 #' @param ... Curl options passed on to [crul::HttpClient]

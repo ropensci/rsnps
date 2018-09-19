@@ -1,4 +1,4 @@
-#' Get all phenotypes, their variations, and how many users have data
+#' Get all openSNP phenotypes, their variations, and how many users have data
 #' 		available for a given phenotype.
 #'
 #' Either return data.frame with all results, or output a list, then call
@@ -6,6 +6,7 @@
 #' 		name (paramater = "characteristic").
 #'
 #' @export
+#' @family opensnp-fxns
 #' @param snp SNP name.
 #' @param output Name the source or sources you want annotations from (options
 #' 		are: 'plos', 'mendeley', 'snpedia', 'metadata'). 'metadata' gives the

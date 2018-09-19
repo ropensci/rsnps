@@ -2,7 +2,7 @@
 % Please edit documentation in R/annotations.R
 \name{annotations}
 \alias{annotations}
-\title{Get all phenotypes, their variations, and how many users have data
+\title{Get all openSNP phenotypes, their variations, and how many users have data
 available for a given phenotype.}
 \usage{
 annotations(snp = NA, output = c("all", "plos", "mendeley", "snpedia",
@@ -41,3 +41,12 @@ annotations(snp = 'rs7903146', output = 'snpedia')
 annotations(snp = 'rs7903146', output = 'all') 
 }
 }
+\seealso{
+Other opensnp-fxns: \code{\link{allgensnp}},
+  \code{\link{allphenotypes}},
+  \code{\link{download_users}},
+  \code{\link{fetch_genotypes}}, \code{\link{genotypes}},
+  \code{\link{phenotypes_byid}}, \code{\link{phenotypes}},
+  \code{\link{users}}
+}
+\concept{opensnp-fxns}

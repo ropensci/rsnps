@@ -2,7 +2,7 @@
 % Please edit documentation in R/phenotypes_byid.R
 \name{phenotypes_byid}
 \alias{phenotypes_byid}
-\title{Get all known variations and all users sharing that phenotype for
+\title{Get all openSNP known variations and all users sharing that phenotype for
 one phenotype(-ID).}
 \usage{
 phenotypes_byid(phenotypeid = NA, return_ = c("description",
@@ -20,7 +20,7 @@ List of description of phenotype, list of known variants, or
 data.frame of variants for each user with that phenotype.
 }
 \description{
-Get all known variations and all users sharing that phenotype for
+Get all openSNP known variations and all users sharing that phenotype for
 one phenotype(-ID).
 }
 \examples{
@@ -33,3 +33,11 @@ phenotypes_byid(phenotypeid=12, return_ = 'users')
 phenotypes_byid(phenotypeid=12, return_ = 'desc', verbose = TRUE)
 }
 }
+\seealso{
+Other opensnp-fxns: \code{\link{allgensnp}},
+  \code{\link{allphenotypes}}, \code{\link{annotations}},
+  \code{\link{download_users}},
+  \code{\link{fetch_genotypes}}, \code{\link{genotypes}},
+  \code{\link{phenotypes}}, \code{\link{users}}
+}
+\concept{opensnp-fxns}

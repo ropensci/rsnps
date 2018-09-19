@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetch_genotypes.R
 \name{fetch_genotypes}
 \alias{fetch_genotypes}
-\title{Download genotype data for a user}
+\title{Download openSNP genotype data for a user}
 \usage{
 fetch_genotypes(url, rows = 100, filepath = NULL, quiet = TRUE, ...)
 }
@@ -33,7 +33,7 @@ data.frame for a single user, with four columns:
 }
 }
 \description{
-Download genotype data for a user
+Download openSNP genotype data for a user
 }
 \details{
 Beware, not setting the rows parameter means that you download
@@ -59,3 +59,11 @@ mydata
 read.table("~/myfile.txt", nrows=10)
 }
 }
+\seealso{
+Other opensnp-fxns: \code{\link{allgensnp}},
+  \code{\link{allphenotypes}}, \code{\link{annotations}},
+  \code{\link{download_users}}, \code{\link{genotypes}},
+  \code{\link{phenotypes_byid}}, \code{\link{phenotypes}},
+  \code{\link{users}}
+}
+\concept{opensnp-fxns}
