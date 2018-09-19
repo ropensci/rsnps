@@ -1,9 +1,8 @@
 ## Test environments
 
-* local OS X install, R 3.3.2
-* ubuntu 12.04 (on travis-ci), R 3.3.2
+* local OS X install, R 3.5.1
+* ubuntu 14.04 (on travis-ci), R 3.5.1
 * win-builder (devel and release)
-* R-hub (Ubuntu Linux R-release, Fedora Linux R-devel, Windows R-oldrel)
 
 ## R CMD check results
 
@@ -12,19 +11,18 @@
    License components with restrictions and base license permitting such:
      MIT + file LICENSE
    File 'LICENSE':
-     YEAR: 2016
+     YEAR: 2018
      COPYRIGHT HOLDER: Scott Chamberlain
 
 ## Reverse dependencies
 
-There are no reverse dependencies.
+* I have run R CMD check on the 1 downstream dependency
+(<https://github.com/ropensci/rsnps/blob/master/revdep/README.md>).
+No problems were found related to this package.
 
 ---
 
-This version includes many bug fixes, fixes for changed URLs for web 
-services, and some minor improvements outlined in NEWS.md.
-
-This is a resubmission of v0.2 with revdep/ removed.
+This version includes many bug fixes, xx.
 
 Thanks!
 Scott Chamberlain

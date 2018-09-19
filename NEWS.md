@@ -3,7 +3,24 @@ rsnps 0.3.0
 
 ### DEPRECATED AND DEFUNCT
 
-* `ld_search()` is now defunct. The Broad Insitute has taken down the SNAP service behind the function. 
+* `ld_search()` is now defunct. The Broad Insitute has taken down the SNAP service behind the function. (#46) (#53) (#60)
+
+### NEW FEATURES
+
+* the three NCBI functions gain a new parameter `key` for passing in an NCBI Entrez API key. You can alteernatively (and we encourage this) store your key as an environment variable and we'll use that instead. The key allows you to have higher rate limits than without a key (#58)
+* http requests are now done using `crul` instead of `httr` (#44)
+* gains new function `ncbi_snp_summary()` for summary data on a SNP (#31)
+
+### MINOR IMPROVEMENTS
+
+* now using markdown formatted documentation (#56)
+* documented in `ncbi_snp_query()` that we can not change the assembly (#49)
+
+### BUG FIXES
+
+* fix to `ncbi_snp_query2()`: when many IDs passed in, we were failing with a "URI too long" message. We now check how many Ids are passed in and do a POST request as needed  (#39)
+* fixed problem in `ncbi_snp_query()` where it wasn't pulling out correctly the gene name and BP position (#25)
+
 
 
 rsnps 0.2.0
