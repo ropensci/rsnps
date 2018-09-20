@@ -6,7 +6,7 @@ Description: A programmatic interface to various 'SNP' 'datasets'
     are included for searching for 'NCBI'. For 'OpenSNP', functions are included 
     for getting 'SNPs', and data for 'genotypes', 'phenotypes', annotations, 
     and bulk downloads of data by user.
-Version: 0.3.0
+Version: 0.3.0.9100
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), 
