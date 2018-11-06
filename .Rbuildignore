@@ -1,3 +1,4 @@
+^codemeta\.json$
 .gitignore
 ^.*\.Rproj$
 ^\.Rproj\.user$
@@ -13,4 +14,3 @@ inst/vign/cache
 ^CODE_OF_CONDUCT\.md$
 revdep
 .github
-

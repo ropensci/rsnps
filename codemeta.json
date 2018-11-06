@@ -1,0 +1,172 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "rsnps",
+  "description": "A programmatic interface to various 'SNP' 'datasets'\n    on the web: 'OpenSNP' (<https://opensnp.org>), and 'NBCIs' 'dbSNP' database\n    (<https://www.ncbi.nlm.nih.gov/projects/SNP>). Functions\n    are included for searching for 'NCBI'. For 'OpenSNP', functions are included \n    for getting 'SNPs', and data for 'genotypes', 'phenotypes', annotations, \n    and bulk downloads of data by user.",
+  "name": "rsnps: Get 'SNP' ('Single-Nucleotide' 'Polymorphism') Data on the Web",
+  "codeRepository": "https://github.com/ropensci/rsnps",
+  "issueTracker": "https://github.com/ropensci/rsnps/issues",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "0.3.0.9310",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.5.1",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.5.1 Patched (2018-08-12 r75119)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Scott",
+      "familyName": "Chamberlain",
+      "email": "myrmecocystus@gmail.com",
+      "@id": "https://orcid.org/0000-0003-1444-9135"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Kevin",
+      "familyName": "Ushey"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Hao",
+      "familyName": "Zhu"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Scott",
+      "familyName": "Chamberlain",
+      "email": "myrmecocystus@gmail.com",
+      "@id": "https://orcid.org/0000-0003-1444-9135"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "plyr",
+      "name": "plyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=plyr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stringr",
+      "name": "stringr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=stringr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "crul",
+      "name": "crul",
+      "version": ">= 0.5.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=crul"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "data.table",
+      "name": "data.table",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=data.table"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "XML",
+      "name": "XML",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=XML"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "xml2",
+      "name": "xml2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=xml2"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jsonlite",
+      "name": "jsonlite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
+    }
+  ],
+  "applicationCategory": "Genes",
+  "isPartOf": "https://ropensci.org",
+  "keywords": ["gene", "snp", "sequence", "API", "web", "api-client", "species", "dbSNP", "OpenSNP", "NCBI", "genotype", "web-api", "snps", "data", "rstats", "r", "r-package"],
+  "releaseNotes": "https://github.com/ropensci/rsnps/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/rsnps/blob/master/README.md",
+  "fileSize": "36.537KB",
+  "contIntegration": ["https://travis-ci.org/ropensci/rsnps", "https://ci.appveyor.com/project/sckott/rsnps/branch/master", "https://codecov.io/github/ropensci/rsnps?branch=master"]
+}

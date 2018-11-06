@@ -32,3 +32,6 @@ Suggests:
     testthat,
     knitr
 RoxygenNote: 6.1.0
+X-schema.org-applicationCategory: Genes
+X-schema.org-keywords: gene, snp, sequence, API, web, api-client, species, dbSNP, OpenSNP, NCBI, genotype
+X-schema.org-isPartOf: https://ropensci.org
