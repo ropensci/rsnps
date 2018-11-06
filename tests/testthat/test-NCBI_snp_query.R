@@ -38,7 +38,7 @@ test_that("ncbi_snp_query - rs IDs not found", {
 test_that("ncbi_snp_query - gives warning when expected", {
   skip_on_cran()
 
-  expect_warning(ncbi_snp_query('rs332'), "has been merged into")
+  expect_warning(ncbi_snp_query('rs332'))
 })
 
 test_that("ncbi_snp_query fails well", {

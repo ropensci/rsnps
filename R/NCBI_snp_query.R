@@ -93,6 +93,7 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
 
   x2 <- xml2::read_xml(xml)
   xml2::xml_ns_strip(x2)
+  x2kids <- xml2::xml_children(x2)
 
   ## we don't need the last element; it's just metadata
   xml_list <- xml_list_[ 1:(length(xml_list_) - 1) ]
@@ -148,8 +149,10 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     }
     my_snpClass <- tryget(my_list$.attrs["snpClass"])
 
-    my_gene <- xml2::xml_attr(xml2::xml_find_first(x2, "//Assembly//Component/MapLoc/FxnSet"), 
-      "symbol")
+    my_gene <- xml2::xml_attr(
+      xml2::xml_find_first(x2kids[[i]], "Assembly//Component/MapLoc/FxnSet"),
+      "symbol"
+    )
     # my_gene <- tryget( my_list$Assembly$Component$MapLoc$FxnSet['symbol'] )
     if (is.null(my_gene)) my_gene <- NA
     alleles <- my_list$Ss$Sequence$Observed
@@ -183,7 +186,7 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     }
 
     my_pos <- xml2::xml_attr(
-      xml2::xml_find_first(x2, "//Assembly//Component/MapLoc[@physMapInt]"), 
+      xml2::xml_find_first(x2kids[[i]], "Assembly//Component/MapLoc[@physMapInt]"), 
       "physMapInt"
     )
     # my_pos <- tryCatch(
