@@ -6,7 +6,7 @@ Description: A programmatic interface to various 'SNP' 'datasets'
     are included for searching for 'NCBI'. For 'OpenSNP', functions are included 
     for getting 'SNPs', and data for 'genotypes', 'phenotypes', annotations, 
     and bulk downloads of data by user.
-Version: 0.3.0.9310
+Version: 0.3.1.9110
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), 
@@ -31,7 +31,7 @@ Imports:
 Suggests:
     testthat,
     knitr
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 X-schema.org-applicationCategory: Genes
 X-schema.org-keywords: gene, snp, sequence, API, web, api-client, species, dbSNP, OpenSNP, NCBI, genotype
 X-schema.org-isPartOf: https://ropensci.org

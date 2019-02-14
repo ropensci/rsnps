@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "rsnps",
   "description": "A programmatic interface to various 'SNP' 'datasets'\n    on the web: 'OpenSNP' (<https://opensnp.org>), and 'NBCIs' 'dbSNP' database\n    (<https://www.ncbi.nlm.nih.gov/projects/SNP>). Functions\n    are included for searching for 'NCBI'. For 'OpenSNP', functions are included \n    for getting 'SNPs', and data for 'genotypes', 'phenotypes', annotations, \n    and bulk downloads of data by user.",
@@ -7,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/rsnps",
   "issueTracker": "https://github.com/ropensci/rsnps/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.0.9310",
+  "version": "0.3.1.9110",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
+    "version": "3.5.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 Patched (2018-08-12 r75119)",
+  "runtimePlatform": "R version 3.5.2 Patched (2018-12-31 r75943)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -167,6 +170,10 @@
   "keywords": ["gene", "snp", "sequence", "API", "web", "api-client", "species", "dbSNP", "OpenSNP", "NCBI", "genotype", "web-api", "snps", "data", "rstats", "r", "r-package"],
   "releaseNotes": "https://github.com/ropensci/rsnps/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rsnps/blob/master/README.md",
-  "fileSize": "36.537KB",
-  "contIntegration": ["https://travis-ci.org/ropensci/rsnps", "https://ci.appveyor.com/project/sckott/rsnps/branch/master", "https://codecov.io/github/ropensci/rsnps?branch=master"]
+  "fileSize": "36.977KB",
+  "contIntegration": [
+    "https://travis-ci.org/ropensci/rsnps",
+    "https://ci.appveyor.com/project/sckott/rsnps/branch/master",
+    "https://codecov.io/github/ropensci/rsnps?branch=master"
+  ]
 }

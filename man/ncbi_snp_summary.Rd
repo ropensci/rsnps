@@ -14,6 +14,10 @@ See "NCBI Authenication" in \link{rsnps-package}}
 
 \item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
+\value{
+data.frame with many columns. SNPs not found are returned at the
+bottom of the data.frame with NA's for all columns
+}
 \description{
 Query NCBI's dbSNP for summary information on a set of SNPs
 }

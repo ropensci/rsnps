@@ -6,6 +6,8 @@
 #' See "NCBI Authenication" in [rsnps-package]
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @seealso [ncbi_snp_query2()]
+#' @return data.frame with many columns. SNPs not found are returned at the 
+#' bottom of the data.frame with NA's for all columns
 #' @examples \dontrun{
 #' # use with 'rs' or without it
 #' ncbi_snp_summary("rs420358")
@@ -26,7 +28,7 @@ ncbi_snp_summary <- function(x, key = NULL, ...) {
   stopifnot(inherits(x, "character"))
   x <- gsub("^rs", "", x)
   key <- check_key(key %||% "")
-  args <- rsnps_comp(list(db = 'snp', retmode = 'flt', rettype = 'flt',
+  args <- rsnps_comp(list(db = "snp", retmode = "flt", rettype = "flt",
     id = paste(x, collapse = ","), api_key = key))
   url <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
   cli <- crul::HttpClient$new(url = url, opts = list(...))
@@ -37,7 +39,10 @@ ncbi_snp_summary <- function(x, key = NULL, ...) {
   docsums <- xml2::xml_find_all(xml, "//DocSum")
   dats <- lapply(docsums, function(w) {
     items <- xml2::xml_find_all(w, "Item")
-    unlist(lapply(items, make_named_list), FALSE)
+    c(
+      list(queried_id = xml2::xml_text(xml2::xml_find_first(w, "Id"))),
+      unlist(lapply(items, make_named_list), FALSE)
+    )
   })
   dats <- lapply(dats, function(z) {
     gn <- stract_(z$docsum, "GENE=[A-Za-z0-9]+:[0-9]+,?([A-Za-z0-9]+:[0-9]+)?")
@@ -45,7 +50,18 @@ ncbi_snp_summary <- function(x, key = NULL, ...) {
     z$gene2 <- gn %||% NA_character_
     z
   })
-  rbl(dats)
+  temp <- rbl(dats)
+  not_found <- x[!x %in% temp$queried_id]
+  if (length(not_found) > 0) {
+    if (NROW(temp) == 0) {
+      warning("no results found for any SNPs")
+      return(temp)
+    }
+    for (i in not_found) {
+      temp <- rbind(temp, c(i, rep(NA_character_, NCOL(temp))))
+    }
+  }
+  return(temp)
 }
 
 make_named_list <- function(x) {
