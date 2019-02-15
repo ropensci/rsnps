@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/rsnps",
   "issueTracker": "https://github.com/ropensci/rsnps/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.1.9110",
+  "version": "0.3.1.9113",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -170,7 +170,7 @@
   "keywords": ["gene", "snp", "sequence", "API", "web", "api-client", "species", "dbSNP", "OpenSNP", "NCBI", "genotype", "web-api", "snps", "data", "rstats", "r", "r-package"],
   "releaseNotes": "https://github.com/ropensci/rsnps/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rsnps/blob/master/README.md",
-  "fileSize": "36.977KB",
+  "fileSize": "37.101KB",
   "contIntegration": [
     "https://travis-ci.org/ropensci/rsnps",
     "https://ci.appveyor.com/project/sckott/rsnps/branch/master",

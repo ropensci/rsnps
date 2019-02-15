@@ -26,6 +26,16 @@ test_that("ncbi_snp_summary - many snps at once works", {
   expect_equal(NROW(aa), 5)
 })
 
+test_that("ncbi_snp_summary - sort order matches input order", {
+  skip_on_cran()
+
+  x <- c("rs4301695", "rs17495050", "rs5024522", "rs9422868", "rs9422871")
+  aa <- ncbi_snp_summary(x)
+
+  expect_is(aa, "data.frame")
+  expect_equal(gsub("^rs", "", x), aa$queried_id)
+})
+
 test_that("ncbi_snp_summary - rs IDs not found", {
   skip_on_cran()
 
