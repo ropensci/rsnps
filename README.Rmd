@@ -61,14 +61,16 @@ devtools::install_github("ropensci/rsnps")
 library("rsnps")
 ```
 
-## Using NCBI dbSNP data
+## Usage
+
+### NCBI dbSNP data
 
 ```{r}
 SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 ncbi_snp_query(SNPs)
 ```
 
-## Using openSNP data
+### openSNP data
 
 `genotypes()` function
 
@@ -82,6 +84,8 @@ genotypes('rs9939609', userid='1,6,8', df=TRUE)
 out <- phenotypes(userid=1)
 out$phenotypes$`Hair Type`
 ```
+
+For more detail, see the [vignette: rsnps tutorial](https://github.com/ropensci/rsnps/blob/master/inst/vign/rsnps_vignette.md).
 
 ## Meta
 
