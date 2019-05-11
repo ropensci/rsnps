@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 [![cran version](http://www.r-pkg.org/badges/version/rsnps)](https://cran.r-project.org/package=rsnps)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rsnps?color=E664A4)](https://github.com/metacran/cranlogs.app)
 
+This package gives you access to data from OpenSNP and NCBI's dbSNP SNP database.
+
 ## NOTE
 
 `rsnps` used to be `ropensnp`
@@ -38,7 +40,7 @@ This set of functions/package accesses data from:
 	+ Relavant functions:
 		+ `ncbi_snp_query()`
 		+ `ncbi_snp_query2()`
-        + `ncbi_snp_summary()`
+    + `ncbi_snp_summary()`
 
 ## Install
 
