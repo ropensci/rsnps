@@ -31,13 +31,13 @@ This set of functions/package accesses data from:
 	+ <https://opensnp.org>
 	+ See documentation on the openSNP API <https://opensnp.org/faq#api>
 	+ See blog post about their API <http://opensnp.wordpress.com/2012/01/18/some-progress-on-the-api-json-endpoints>
-	+ Relavant functions:
+	+ Relevant functions:
 		+ `allgensnp()`, `allphenotypes()`, `annotations()`, `download_users()`, 
 		`fetch_genotypes()`, `genotypes()`, `phenotypes()`, `phenotypes_byid()`, `users()`
 
 + NCBI's dbSNP SNP database
 	+ See <https://www.ncbi.nlm.nih.gov/snp> for more details
-	+ Relavant functions:
+	+ Relevant functions:
 		+ `ncbi_snp_query()`
 		+ `ncbi_snp_query2()`
     + `ncbi_snp_summary()`
