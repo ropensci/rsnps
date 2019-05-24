@@ -1,3 +1,23 @@
+rsnps 0.3.2
+===========
+
+### MINOR IMPROVEMENTS
+
+* Reordered `ncbi_snp_query` dataframe output to have chromosome and bp beside each other (#70). 
+
+### DOCUMENTATION FIXES
+
+* Restructured and fixed a typo in `README.Rmd` and added link to vignette (#63).
+
+### BUG FIXES
+
+* Fixed the test for `allphenotypes` function by making it less specific (#72). 
+
+
+rsnps 0.3.1
+===========
+
+
 rsnps 0.3.0
 ===========
 
