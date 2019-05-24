@@ -9,8 +9,8 @@ test_that("ncbi_snp_query works", {
   expect_is(aa$Query, "character")
   expect_is(aa$Chromosome, "character")
   expect_type(aa$BP, "double")
-  expect_named(aa, c('Query', 'Chromosome', 'Marker', 'Class', 'Gene',
-                'Alleles', 'Major', 'Minor', 'MAF', 'BP', 'AncestralAllele'))
+  expect_named(aa, c('Query', 'Chromosome', 'BP', 'Marker', 'Class', 'Gene',
+                'Alleles', 'Major', 'Minor', 'MAF', 'AncestralAllele'))
 })
 
 test_that("ncbi_snp_query - many snps at once works", {
@@ -23,8 +23,8 @@ test_that("ncbi_snp_query - many snps at once works", {
   expect_is(aa$Query, "character")
   expect_is(aa$Chromosome, "character")
   expect_type(aa$BP, "double")
-  expect_named(aa, c('Query', 'Chromosome', 'Marker', 'Class', 'Gene',
-              'Alleles', 'Major', 'Minor', 'MAF', 'BP', 'AncestralAllele'))
+  expect_named(aa, c('Query', 'Chromosome', 'BP', 'Marker', 'Class', 'Gene',
+              'Alleles', 'Major', 'Minor', 'MAF', 'AncestralAllele'))
   expect_gt(NROW(aa), 2)
 })
 
