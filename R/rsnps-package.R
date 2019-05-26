@@ -1,7 +1,8 @@
 #' Get SNP (Single-Nucleotide Polymorphism) Data on the Web
 #'
 #' This package gives you access to data from OpenSNP (https://opensnp.org)
-#' via their API (https://opensnp.org/faq#api).
+#' via their API (https://opensnp.org/faq#api) and NCBI's dbSNP SNP database 
+#' (https://www.ncbi.nlm.nih.gov/snp).
 #' 
 #' @section NCBI Authenication:
 #' This applies the the functions [ncbi_snp_query()], 
