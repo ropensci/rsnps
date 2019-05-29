@@ -10,7 +10,7 @@ ncbi_snp_summary(x, key = NULL, ...)
 \item{x}{A vector of SNPs (with or without 'rs' prefix)}
 
 \item{key}{(character) NCBI Entrez API key. optional.
-See "NCBI Authenication" in \link{rsnps-package}}
+See "NCBI Authentication" in \link{rsnps-package}}
 
 \item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
@@ -29,6 +29,9 @@ ncbi_snp_summary("420358")
 
 # you can pass > 1
 x <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
+ncbi_snp_summary(x)
+
+x <- c("rs4301695", "rs17495050", "rs5024522", "rs9422868", "rs9422871")
 ncbi_snp_summary(x)
 
 ncbi_snp_summary("rs420358")
