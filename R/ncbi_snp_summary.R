@@ -17,6 +17,9 @@
 #' x <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' ncbi_snp_summary(x)
 #' 
+#' x <- c("rs4301695", "rs17495050", "rs5024522", "rs9422868", "rs9422871")
+#' ncbi_snp_summary(x)
+#' 
 #' ncbi_snp_summary("rs420358")
 #' ncbi_snp_summary("rs332") # warning, merged into new one
 #' ncbi_snp_summary("rs121909001") 
