@@ -3,7 +3,7 @@
 #' @export
 #' @param x A vector of SNPs (with or without 'rs' prefix)
 #' @param key (character) NCBI Entrez API key. optional. 
-#' See "NCBI Authenication" in [rsnps-package]
+#' See "NCBI Authentication" in [rsnps-package]
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @seealso [ncbi_snp_query2()]
 #' @return data.frame with many columns. SNPs not found are returned at the 
@@ -15,6 +15,9 @@
 #' 
 #' # you can pass > 1
 #' x <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
+#' ncbi_snp_summary(x)
+#' 
+#' x <- c("rs4301695", "rs17495050", "rs5024522", "rs9422868", "rs9422871")
 #' ncbi_snp_summary(x)
 #' 
 #' ncbi_snp_summary("rs420358")

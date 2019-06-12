@@ -13,7 +13,7 @@
 #' @export
 #' @param SNPs (character) A vector of SNPs (rs numbers).
 #' @param key (character) NCBI Entrez API key. optional. 
-#' See "NCBI Authenication" in [rsnps-package]
+#' See "NCBI Authentication" in [rsnps-package]
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return A dataframe with columns:
 #' 
