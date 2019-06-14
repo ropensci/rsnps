@@ -3,7 +3,7 @@
 #' @export
 #' @param x A vector of SNPs (with or without 'rs' prefix)
 #' @param key (character) NCBI Entrez API key. optional. 
-#' See "NCBI Authenication" in [rsnps-package]
+#' See "NCBI Authentication" in [rsnps-package]
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @seealso [ncbi_snp_query2()]
 #' @return data.frame with many columns. SNPs not found are returned at the 

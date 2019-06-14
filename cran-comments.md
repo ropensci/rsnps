@@ -11,7 +11,7 @@
    License components with restrictions and base license permitting such:
      MIT + file LICENSE
    File 'LICENSE':
-     YEAR: 2018
+     YEAR: 2019
      COPYRIGHT HOLDER: Scott Chamberlain
 
 ## Reverse dependencies
@@ -22,8 +22,7 @@ No problems were found related to this package.
 
 ---
 
-This version includes a new function, a defunct function, 
-a number of bug fixes.
+This version includes a number of bug fixes, minor improvements of a function and updated documentation.
 
 Thanks!
-Scott Chamberlain
+Julia Gustavsen and Sina Rüeger

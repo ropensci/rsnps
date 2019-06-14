@@ -13,7 +13,7 @@
 #' @export
 #' @param SNPs (character) A vector of SNPs (rs numbers).
 #' @param key (character) NCBI Entrez API key. optional. 
-#' See "NCBI Authenication" in [rsnps-package]
+#' See "NCBI Authentication" in [rsnps-package]
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return A dataframe with columns:
 #' 
@@ -129,8 +129,8 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
   SNPs <- SNPs[ SNPs %in% found_snps ]
 
   out <- as.data.frame(matrix(0, nrow = length(SNPs), ncol = 11))
-  names(out) <- c("Query", "Chromosome", "Marker", "Class", "Gene", "Alleles",
-    "Major", "Minor", "MAF", "BP", "AncestralAllele")
+  names(out) <- c("Query", "Chromosome", "BP", "Marker", "Class", "Gene", "Alleles",
+    "Major", "Minor", "MAF", "AncestralAllele")
 
   for (i in seq_along(SNPs)) {
     my_list <- xml_list[[i]]
@@ -209,10 +209,10 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     anc_all <- if (is.na(anc_all)) NA else anc_all[[1]]
 
     out[i, ] <- c(
-      SNPs[i], my_chr, my_snp, unname(my_snpClass),
+      SNPs[i], my_chr, as.integer(my_pos), my_snp, unname(my_snpClass),
       unname(my_gene), paste0(unname(alleles), collapse = ","), 
       unname(my_major), unname(my_minor),
-      as.numeric(my_freq), as.integer(my_pos),
+      as.numeric(my_freq), 
       anc_all
     )
   }
