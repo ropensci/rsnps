@@ -10,7 +10,7 @@ ncbi_snp_query2(SNPs, key = NULL, ...)
 \item{SNPs}{A vector of SNPs (rs numbers).}
 
 \item{key}{(character) NCBI Entrez API key. optional.
-See "NCBI Authenication" in \link{rsnps-package}}
+See "NCBI Authentication" in \link{rsnps-package}}
 
 \item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
