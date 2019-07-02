@@ -1,4 +1,3 @@
-# rsnps 0.3.2
 
 rsnps 0.3.2
 ===========
@@ -16,10 +15,6 @@ rsnps 0.3.2
 ### BUG FIXES
 
 * Fixed the test for `allphenotypes` function by making it less specific (#72). 
-
-
-rsnps 0.3.1
-===========
 
 
 rsnps 0.3.0
