@@ -71,16 +71,10 @@ SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 ncbi_snp_query(SNPs)
 ```
 
-    #>          Query Chromosome       Marker  Class Gene Alleles Major Minor
-    #> 1        rs332          7  rs121909001 in-del CFTR   -/TTT  <NA>  <NA>
-    #> 2     rs420358          1     rs420358    snp CFTR   A,G,T     A     G
-    #> 3    rs1837253          5    rs1837253    snp CFTR     C/T     C     T
-    #> 4 rs1209415715          9 rs1209415715    snp CFTR     C,T     C     T
-    #>      MAF        BP AncestralAllele
-    #> 1     NA 117559593            <NA>
-    #> 2     NA 117559593     T,T,T,T,T,T
-    #> 3 0.3822 117559593     T,T,T,T,T,T
-    #> 4     NA 117559593            <NA>
+    #>  [1] Query           Chromosome      BP              Marker         
+    #>  [5] Class           Gene            Alleles         Major          
+    #>  [9] Minor           MAF             AncestralAllele
+    #> <0 rows> (or 0-length row.names)
 
 ### openSNP data
 
@@ -124,8 +118,9 @@ tutorial](https://github.com/ropensci/rsnps/blob/master/inst/vign/rsnps_vignette
   - Get citation information for `rsnsps` in R doing `citation(package =
     'rsnps')`
   - Please note that this project is released with a [Contributor Code
-    of Conduct](CODE_OF_CONDUCT.md). By participating in this project
-    you agree to abide by its
+    of
+    Conduct](https://github.com/ropensci/rsnps/blob/dev/CODE_OF_CONDUCT.md).
+    By participating in this project you agree to abide by its
 terms.
 
 [![ropensci\_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
