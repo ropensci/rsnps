@@ -1,5 +1,25 @@
 context("ncbi_snp_query")
 
+test_that("ncbi_snp_query for rs1421085", {
+  skip_on_cran()
+  
+  aa <- ncbi_snp_query("rs1421085")
+  
+  
+  expect_equal(aa$Chromosome, "16")
+  expect_equal(aa$BP, 53767042) ## on GRCh38
+  expect_equal(aa$Marker, "rs1421085")
+  expect_equal(aa$Class, "snv")
+  expect_equal(aa$Gene, "FTO")
+  expect_equal(aa$Alleles, "T,C")
+  expect_equal(aa$Major, "T")
+  expect_equal(aa$Minor, "C")
+  expect_equal(aa$MAF, 0.3161)
+  expect_equal(aa$AncestralAllele, "T")
+  
+})
+
+
 test_that("ncbi_snp_query works", {
   skip_on_cran()
 
