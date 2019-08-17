@@ -43,6 +43,46 @@ test_that("ncbi_snp_query for rs1610720 (multiple alleles)", {
   
 })
 
+test_that("ncbi_snp_query for rs146107628 (duplication)", {
+  ## truth: https://www.ncbi.nlm.nih.gov/snp/rs146107628
+  skip_on_cran()
+  
+  aa <- ncbi_snp_query("rs146107628")
+  
+  
+  expect_equal(aa$Chromosome, "10")
+  expect_equal(aa$BP, 98243085) ## on GRCh38
+  expect_equal(aa$Marker, "rs146107628")
+  expect_equal(aa$Class, "insertion")
+  expect_equal(aa$Gene, "R3HCC1L")
+  expect_equal(aa$Alleles, "T")
+  expect_equal(aa$Major, "T")
+  expect_equal(aa$Minor, "TT")
+  expect_equal(aa$MAF, 0.0365)
+  expect_equal(aa$AncestralAllele, "T")
+  
+})
+
+test_that("ncbi_snp_query for rs200623867 (deletion)", {
+  ## truth: https://www.ncbi.nlm.nih.gov/snp/rs200623867
+  skip_on_cran()
+  
+  aa <- ncbi_snp_query("rs200623867")
+  
+  
+  expect_equal(aa$Chromosome, "10")
+  expect_equal(aa$BP, 98243545) ## on GRCh38
+  expect_equal(aa$Marker, "rs200623867")
+  expect_equal(aa$Class, "deletion")
+  expect_equal(aa$Gene, "R3HCC1L")
+  expect_equal(aa$Alleles, "G")
+  expect_equal(aa$Major, "G")
+  expect_equal(aa$Minor, "-")
+  expect_equal(aa$MAF, NA)
+  expect_equal(aa$AncestralAllele, "G")
+  
+})
+
 test_that("ncbi_snp_query works", {
   skip_on_cran()
 
