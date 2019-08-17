@@ -53,7 +53,7 @@ test_that("ncbi_snp_query for rs146107628 (duplication)", {
   expect_equal(aa$Chromosome, "10")
   expect_equal(aa$BP, 98243085) ## on GRCh38
   expect_equal(aa$Marker, "rs146107628")
-  expect_equal(aa$Class, "insertion")
+  expect_equal(aa$Class, "indel")
   expect_equal(aa$Gene, "R3HCC1L")
   expect_equal(aa$Alleles, "T")
   expect_equal(aa$Major, "T")
@@ -73,7 +73,7 @@ test_that("ncbi_snp_query for rs200623867 (deletion)", {
   expect_equal(aa$Chromosome, "10")
   expect_equal(aa$BP, 98243545) ## on GRCh38
   expect_equal(aa$Marker, "rs200623867")
-  expect_equal(aa$Class, "deletion")
+  expect_equal(aa$Class, "indel")
   expect_equal(aa$Gene, "R3HCC1L")
   expect_equal(aa$Alleles, "G")
   expect_equal(aa$Major, "G")
@@ -82,6 +82,28 @@ test_that("ncbi_snp_query for rs200623867 (deletion)", {
   expect_equal(aa$AncestralAllele, "G")
   
 })
+
+
+test_that("ncbi_snp_query for rs1799752 (deletion)", {
+  ## truth: https://www.ncbi.nlm.nih.gov/snp/rs1799752
+  skip_on_cran()
+  
+  aa <- ncbi_snp_query("rs1799752")
+  
+  
+  expect_equal(aa$Chromosome, "17")
+  expect_equal(aa$BP, 63488530) ## on GRCh38 :63488530-63488543
+  expect_equal(aa$Marker, "rs1799752")
+  expect_equal(aa$Class, "indel")
+  expect_equal(aa$Gene, "ACE")
+  expect_equal(aa$Alleles, "ATACAGTCACTTTT,ATACAGTCACTTTTTTTTTTTTTTTGAGACGGAGTCTCGCTCTGTCGCCCATACAGTCACTTTT")
+  expect_equal(aa$Major, "ATACAGTCACTTTT")
+  expect_equal(aa$Minor, "ATACAGTCACTTTTTTTTTTTTTTTGAGACGGAGTCTCGCTCTGTCGCCCATACAGTCACTTTT")
+  expect_equal(aa$MAF, NA)
+  expect_equal(aa$AncestralAllele, "ATACAGTCACTTTT")
+  
+})
+
 
 test_that("ncbi_snp_query works", {
   skip_on_cran()
