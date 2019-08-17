@@ -1,6 +1,8 @@
 context("ncbi_snp_query")
 
 test_that("ncbi_snp_query for rs1421085", {
+  ## truth: https://www.ncbi.nlm.nih.gov/snp/?term=rs1421085
+  
   skip_on_cran()
   
   aa <- ncbi_snp_query("rs1421085")
@@ -19,6 +21,27 @@ test_that("ncbi_snp_query for rs1421085", {
   
 })
 
+
+test_that("ncbi_snp_query for rs1610720 (multiple alleles)", {
+  ## from issue59: https://github.com/ropensci/rsnps/issues/59
+  ## truth: https://www.ncbi.nlm.nih.gov/snp/?term=rs1610720
+  skip_on_cran()
+  
+  aa <- ncbi_snp_query("rs1610720")
+  
+  
+  expect_equal(aa$Chromosome, "6")
+  expect_equal(aa$BP, 29793285) ## on GRCh38
+  expect_equal(aa$Marker, "rs1610720")
+  expect_equal(aa$Class, "snv")
+  expect_equal(aa$Gene, "HCG4/HLA-V")
+  expect_equal(aa$Alleles, "A,G,T")
+  expect_equal(aa$Major, "A")
+  expect_equal(aa$Minor, "G,T")
+  expect_equal(aa$MAF, 0.3895)
+  expect_equal(aa$AncestralAllele, "A")
+  
+})
 
 test_that("ncbi_snp_query works", {
   skip_on_cran()
