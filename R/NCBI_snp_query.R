@@ -170,7 +170,7 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     # alleles <- my_list$SS$Sequence$Observed
     meta_info_ <- tryget(my_list$DOCSUM) 
     ## pull out what is after SEQ and remove SEQ=[ and ]
-    meta_info <- strsplit(meta_info_, "\\|,")[[1]]
+    meta_info <- strsplit(meta_info_, "|", fixed=TRUE)[[1]][2]
     alleles_ordered <- gsub("\\]", "", gsub("SEQ=\\[", "", meta_info))
     
     alleles <- strsplit(alleles_ordered, "/")[[1]]
@@ -180,12 +180,7 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     
     ## handle true SNPs
     if (my_snpClass %in% c("snp", "snv")) {
-      tmp <- c( my_list$Ss$Sequence$Observed, my_list$Ss$.attrs["orient"] )
-      if (tmp[2] != "forward") {
-        tmp[1] <- flip( tmp[1], sep = "/" )
-      }
-      alleles_split <- strsplit( tmp[1], "/" )[[1]]
-
+   
       ## pull out MAF, and the allele that its computed for. 
       maf_df_ <- do.call("rbind", lapply(my_list$GLOBAL_MAFS, function(x) cbind(x$STUDY, x$FREQ)))
       maf_df_2 <- do.call("rbind", strsplit(maf_df_[,2], "=|/"))
