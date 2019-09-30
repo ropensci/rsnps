@@ -156,14 +156,27 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     my_snpClass <- tryget(my_list$SNP_CLASS)
     #my_fxnClass <- tryget(my_list$FXN_CLASS)
     
-    my_gene <- xml2::xml_attr(
-      xml2::xml_find_first(x2kids[[i]], "Assembly//Component/MapLoc/FxnSet"),
-      "symbol"
+   # my_gene <- xml2::xml_attr(
+  #    xml2::xml_find_first(x2kids[[i]], "Assembly//Component/MapLoc/FxnSet"),
+   #   "symbol"
+    #)
+    my_gene <- tryget(
+      sapply(my_list$GENES, function(x) x$NAME)
     )
-    # my_gene <- tryget( my_list$Assembly$Component$MapLoc$FxnSet['symbol'] )
     if (is.null(my_gene)) my_gene <- NA
-    alleles <- my_list$Ss$Sequence$Observed
-
+    
+    
+    # don't really know whats in $SS, but $DOCSUM contains the alleles  
+    # #ALLELE contains...
+    # alleles <- my_list$SS$Sequence$Observed
+    meta_info_ <- tryget(my_list$DOCSUM) 
+    meta_info <- strsplit(meta_info_, "SEQ=|:|,")[[1]][15]
+    
+    alleles_ordered <- gsub("g.|[0-9]", "", meta_info)
+    alleles <- strsplit(alleles_ordered, ">")[[1]]
+    ancestral_allele <- "" # alleles[1]
+    variation_allele <- "" ## alleles[2]
+    
     ## handle true SNPs
     if (my_snpClass %in% c("snp", "snv")) {
       tmp <- c( my_list$Ss$Sequence$Observed, my_list$Ss$.attrs["orient"] )
@@ -192,10 +205,8 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
       my_freq <- NA
     }
 
-    my_pos <- xml2::xml_attr(
-      xml2::xml_find_first(x2kids[[i]], "Assembly//Component/MapLoc[@physMapInt]"), 
-      "physMapInt"
-    )
+    my_pos <- tryget(my_list$CHRPOS)
+    my_pos <- strsplit(my_pos, ":")[[1]][2]
     # my_pos <- tryCatch(
     #   my_list$Assembly$Component$MapLoc$.attrs["physMapInt"],
     #   error = function(e) {
