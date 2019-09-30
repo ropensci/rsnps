@@ -154,7 +154,7 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
       warning(SNPs[i], " has been merged into ", my_snp, call. = FALSE)
     }
     my_snpClass <- tryget(my_list$SNP_CLASS)
-    my_fxnClass <- tryget(my_list$FXN_CLASS)
+    #my_fxnClass <- tryget(my_list$FXN_CLASS)
     
     my_gene <- xml2::xml_attr(
       xml2::xml_find_first(x2kids[[i]], "Assembly//Component/MapLoc/FxnSet"),
