@@ -175,7 +175,7 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     
     alleles <- strsplit(alleles_ordered, "/")[[1]]
     ancestral_allele <- alleles[1]
-    variation_allele <- alleles[2]
+    variation_allele <- paste(alleles[-1], collapse = ",")
     ## todo, cases of more than one alternate allele
     
     ## handle true SNPs
