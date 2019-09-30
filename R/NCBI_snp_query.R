@@ -133,29 +133,29 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
   }
   SNPs <- SNPs[ SNPs %in% found_snps ]
 
-  
-  ########### >>>>>>>>>>>. continue
   out <- as.data.frame(matrix(0, nrow = length(SNPs), ncol = 11))
   names(out) <- c("Query", "Chromosome", "BP", "Marker", "Class", "Gene", "Alleles",
     "Major", "Minor", "MAF", "AncestralAllele")
 
   for (i in seq_along(SNPs)) {
     my_list <- xml_list[[i]]
-    my_chr <- tryget(my_list$Assembly$Component$.attrs["chromosome"])
+    my_chr <- tryget(my_list$CHR)
     if (is.null(my_chr)) {
       my_chr <- NA
       warning("No chromosomal information for ", SNPs[i], "; may be unmapped", 
               call. = FALSE)
     }
-    my_snp <- tryget( my_list$.attrs["rsId"] )
+    my_snp <- tryget( my_list$SNP_ID)
+   # my_snp_query <- tryget( my_list$.attrs["uid"] ) ## this is the queried SNP
     if ( !is.na(my_snp) ) {
       my_snp <- paste(sep = '', "rs", my_snp)
     }
     if (my_snp != SNPs[i] ) {
       warning(SNPs[i], " has been merged into ", my_snp, call. = FALSE)
     }
-    my_snpClass <- tryget(my_list$.attrs["snpClass"])
-
+    my_snpClass <- tryget(my_list$SNP_CLASS)
+    my_fxnClass <- tryget(my_list$FXN_CLASS)
+    
     my_gene <- xml2::xml_attr(
       xml2::xml_find_first(x2kids[[i]], "Assembly//Component/MapLoc/FxnSet"),
       "symbol"
