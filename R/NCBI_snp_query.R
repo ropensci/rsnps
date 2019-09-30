@@ -104,24 +104,23 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
   ## Check which rs numbers were found, and warn if one was not found
   ## one thing that makes our life difficult: there can be multiple
   ## XML entries with the same name. make sure we go through all of them
-  found_snps <- unname( unlist( sapply( xml_list, function(x) {
-
+  found_snps <- unname(unlist(sapply(xml_list, function(x) {
     ## check if the SNP is either in the current rsId, or the merged SNP list
-    attr_rsIds <- tryget( x$SNP_ID )
+    attr_rsIds <- tryget(x$SNP_ID)
     
-    merged <-  tryget( x$TEXT )
+    merged <-  tryget(x$TEXT)
     
     if (!is.null(merged)) {
       merge_rsIds <- attr_rsIds
-      attr_rsIds <- tryget( x$.attrs["uid"] )
+      attr_rsIds <- tryget(x$.attrs["uid"])
     } else {
       merge_rsIds <- NULL
     }
-
+    
     possible_names <- c(attr_rsIds, merge_rsIds)
     return(possible_names)
-
-  }) ) )
+    
+  })))
 
   found_snps <- found_snps[ !is.na(found_snps) ]
   found_snps <- paste(sep = '', "rs", found_snps)
@@ -170,12 +169,14 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     # #ALLELE contains...
     # alleles <- my_list$SS$Sequence$Observed
     meta_info_ <- tryget(my_list$DOCSUM) 
-    meta_info <- strsplit(meta_info_, "SEQ=|:|,")[[1]][15]
+    ## pull out what is after SEQ and remove SEQ=[ and ]
+    meta_info <- strsplit(meta_info_, "\\|,")[[1]]
+    alleles_ordered <- gsub("\\]", "", gsub("SEQ=\\[", "", meta_info))
     
-    alleles_ordered <- gsub("g.|[0-9]", "", meta_info)
-    alleles <- strsplit(alleles_ordered, ">")[[1]]
-    ancestral_allele <- "" # alleles[1]
-    variation_allele <- "" ## alleles[2]
+    alleles <- strsplit(alleles_ordered, "/")[[1]]
+    ancestral_allele <- alleles[1]
+    variation_allele <- alleles[2]
+    ## todo, cases of more than one alternate allele
     
     ## handle true SNPs
     if (my_snpClass %in% c("snp", "snv")) {
@@ -185,19 +186,20 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
       }
       alleles_split <- strsplit( tmp[1], "/" )[[1]]
 
-      ## check which of the two alleles grabbed is actually the minor allele
-      ## we might have to 'flip' the minor allele if there is no match
-      maf_allele <- my_list$Frequency['allele']
-      if (is.null(maf_allele)) {
-        maf_allele <- alleles <- strsplit(my_list$Sequence$Observed, "/")[[1]]
-        my_major <- alleles[1]
-        my_minor <- alleles[2]
-        my_freq <- NA
-      } else {
-        my_minor <- alleles_split[ maf_allele == alleles_split ]
-        my_major <- alleles_split[ maf_allele != alleles_split ]
-        my_freq <- my_list$Frequency["freq"]
-      }
+      ## pull out MAF, and the allele that its computed for. 
+      maf_df_ <- do.call("rbind", lapply(my_list$GLOBAL_MAFS, function(x) cbind(x$STUDY, x$FREQ)))
+      maf_df_2 <- do.call("rbind", strsplit(maf_df_[,2], "=|/"))
+      maf_df <- data.frame(cbind(maf_df_, maf_df_2))
+      names(maf_df) <- c("source", "info", "allele", "freq", "n")
+      maf_df$source <- as.character( maf_df$source)
+      maf_df$info <- as.character( maf_df$info)
+      maf_df$allele <- as.character(maf_df$allele)
+      maf_df$freq <- as.numeric(as.character(maf_df$freq))
+      
+      ## for specific source
+      maf_df_sub <- maf_df[maf_df$source == "GnomAD", ]
+      my_minor <- maf_df_sub$allele
+      my_freq <- maf_df_sub$freq
     } else { 
       ## handle the others in a generic way; maybe specialize later
       my_minor <- NA
@@ -205,8 +207,10 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
       my_freq <- NA
     }
 
+    ## pos on most recent build (hg38)
     my_pos <- tryget(my_list$CHRPOS)
     my_pos <- strsplit(my_pos, ":")[[1]][2]
+    
     # my_pos <- tryCatch(
     #   my_list$Assembly$Component$MapLoc$.attrs["physMapInt"],
     #   error = function(e) {
@@ -220,15 +224,16 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     # should be off by one when compared to web display. So we add one here
     # to make them equivalent 
     #if (is.numeric(my_pos)) my_pos <- my_pos + 1
-    my_pos <- as.integer(my_pos) + 1
+    #my_pos <- as.integer(my_pos) #+ 1
     
     # Ancestral Allele
-    anc_all <- my_list$Sequence$.attrs['ancestralAllele']
+    anc_all <- ancestral_allele
+#    anc_all <- my_list$Sequence$.attrs['ancestralAllele']
     anc_all <- if (is.na(anc_all)) NA else anc_all[[1]]
 
     out[i, ] <- c(
       SNPs[i], my_chr, as.integer(my_pos), my_snp, unname(my_snpClass),
-      unname(my_gene), paste0(unname(alleles), collapse = ","), 
+      paste0(unname(my_gene), collapse = ","), paste0(unname(alleles), collapse = ","), 
       unname(my_major), unname(my_minor),
       as.numeric(my_freq), 
       anc_all
