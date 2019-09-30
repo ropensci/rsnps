@@ -33,16 +33,16 @@
 #' - Alleles: The alleles associated with the SNP if it is a
 #' SNV; otherwise, if it is an INDEL, microsatellite, or other kind of
 #' polymorphism the relevant information will be available here.
-#' - Major: The major allele of the SNP, on the forward strand,
-#' given it is an SNV; otherwise, `NA`.
-#' - Minor: The minor allele of the SNP, on the forward strand,
+#' - Minor: The allele for which the MAF is computed,
 #' given it is an SNV; otherwise, `NA`.
 #' - MAF: The minor allele frequency of the SNP, given it is an SNV.
-#' This is drawn from the current global reference population used by NCBI.
+#' This is drawn from the current global reference population used by NCBI (GnomAD).
 #' - BP: The chromosomal position, in base pairs, of the marker,
 #' as aligned with the current genome used by dbSNP. we add 1 to the base 
 #' pair position in the BP column in the output data.frame to agree with 
 #' what the dbSNP website has.
+#' - AncestralAllele: 
+#' - VariationAllele: 
 #' 
 #' @seealso [ncbi_snp_query2()]
 #' 
@@ -134,7 +134,7 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
 
   out <- as.data.frame(matrix(0, nrow = length(SNPs), ncol = 11))
   names(out) <- c("Query", "Chromosome", "BP", "Marker", "Class", "Gene", "Alleles",
-    "Major", "Minor", "MAF", "AncestralAllele")
+    "Minor", "MAF", "AncestralAllele", "VariationAllele")
 
   for (i in seq_along(SNPs)) {
     my_list <- xml_list[[i]]
@@ -234,9 +234,10 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     out[i, ] <- c(
       SNPs[i], my_chr, as.integer(my_pos), my_snp, unname(my_snpClass),
       paste0(unname(my_gene), collapse = ","), paste0(unname(alleles), collapse = ","), 
-      unname(my_major), unname(my_minor),
+      unname(my_minor),
       as.numeric(my_freq), 
-      anc_all
+      anc_all, 
+      variation_allele
     )
   }
 
