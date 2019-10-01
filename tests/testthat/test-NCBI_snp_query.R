@@ -12,14 +12,14 @@ test_that("ncbi_snp_query for rs1173690113 (merged into rs333)", {
   expect_equal(aa$Chromosome, "3")
   expect_equal(aa$BP, 46373453) ## on GRCh38
   expect_equal(aa$Marker, "rs333")
-  expect_equal(aa$Class, "indel")
+  expect_equal(aa$Class, "delins")
   expect_equal(aa$Gene, "CCR5,LOC102724297")
-  expect_equal(aa$Alleles, "GTCAGTATCAATTCTGGAAGAATTTCCAGACA")
-  expect_equal(aa$Major, "?")
-  expect_equal(aa$Minor, "?")
-  expect_equal(aa$MAF, 00)
-  expect_equal(aa$AncestralAllele, "?")
-
+  expect_equal(aa$Alleles, "GTCAGTATCAATTCTGGAAGAATTTCCAGACA,ACA")
+  expect_equal(aa$Minor, "delGTCAGTATCAATTCTGGAAGAATTTCCAGACA") 
+  expect_equal(aa$MAF, 0.077)
+  expect_equal(aa$AncestralAllele, "GTCAGTATCAATTCTGGAAGAATTTCCAGACA")
+  expect_equal(aa$VariationAllele, "ACA")
+  
 })
 
 
@@ -37,10 +37,10 @@ test_that("ncbi_snp_query for rs1421085", {
   expect_equal(aa$Class, "snv")
   expect_equal(aa$Gene, "FTO")
   expect_equal(aa$Alleles, "T,C")
-  expect_equal(aa$Major, "T")
-  expect_equal(aa$Minor, "C")
-  expect_equal(aa$MAF, 0.3161)
   expect_equal(aa$AncestralAllele, "T")
+  expect_equal(aa$VariationAllele, "C")
+  expect_equal(aa$MAF, 0.3164)
+  expect_equal(aa$Minor, "C")
   
 })
 
@@ -59,10 +59,10 @@ test_that("ncbi_snp_query for rs1610720 (multiple alleles)", {
   expect_equal(aa$Class, "snv")
   expect_equal(aa$Gene, "HCG4/HLA-V")
   expect_equal(aa$Alleles, "A,G,T")
-  expect_equal(aa$Major, "A")
-  expect_equal(aa$Minor, "G,T")
-  expect_equal(aa$MAF, 0.3895)
   expect_equal(aa$AncestralAllele, "A")
+  expect_equal(aa$VariationAllele, "G,T")
+  expect_equal(aa$MAF, 0.3895)
+  expect_equal(aa$Minor, "G")
   
 })
 
@@ -76,13 +76,13 @@ test_that("ncbi_snp_query for rs146107628 (duplication)", {
   expect_equal(aa$Chromosome, "10")
   expect_equal(aa$BP, 98243085) ## on GRCh38
   expect_equal(aa$Marker, "rs146107628")
-  expect_equal(aa$Class, "indel")
+  expect_equal(aa$Class, "delins")
   expect_equal(aa$Gene, "R3HCC1L")
-  expect_equal(aa$Alleles, "T")
-  expect_equal(aa$Major, "T")
-  expect_equal(aa$Minor, "TT")
-  expect_equal(aa$MAF, 0.0365)
+  expect_equal(aa$Alleles, "T,TT")
   expect_equal(aa$AncestralAllele, "T")
+  expect_equal(aa$VariationAllele, "TT")
+  expect_equal(aa$MAF, 0.0365) ## fix!!
+  expect_equal(aa$Minor, "T")  ## fix!!
   
 })
 
@@ -96,13 +96,14 @@ test_that("ncbi_snp_query for rs200623867 (deletion)", {
   expect_equal(aa$Chromosome, "10")
   expect_equal(aa$BP, 98243545) ## on GRCh38
   expect_equal(aa$Marker, "rs200623867")
-  expect_equal(aa$Class, "indel")
+  expect_equal(aa$Class, "del")
   expect_equal(aa$Gene, "R3HCC1L")
-  expect_equal(aa$Alleles, "G")
-  expect_equal(aa$Major, "G")
-  expect_equal(aa$Minor, "-")
-  expect_equal(aa$MAF, NA)
+  expect_equal(aa$Alleles, "G,-")
   expect_equal(aa$AncestralAllele, "G")
+  expect_equal(aa$VariationAllele, "-")
+  expect_equal(aa$MAF, NA) ##fix
+  expect_equal(aa$Minor, NA)  ##fix
+  
   
 })
 
@@ -138,7 +139,7 @@ test_that("ncbi_snp_query works", {
   expect_is(aa$Chromosome, "character")
   expect_type(aa$BP, "double")
   expect_named(aa, c('Query', 'Chromosome', 'BP', 'Marker', 'Class', 'Gene',
-                'Alleles', 'Major', 'Minor', 'MAF', 'AncestralAllele'))
+                'Alleles', 'Minor', 'MAF', 'AncestralAllele', 'VariationAllele'))
 })
 
 test_that("ncbi_snp_query - many snps at once works", {
@@ -152,7 +153,7 @@ test_that("ncbi_snp_query - many snps at once works", {
   expect_is(aa$Chromosome, "character")
   expect_type(aa$BP, "double")
   expect_named(aa, c('Query', 'Chromosome', 'BP', 'Marker', 'Class', 'Gene',
-              'Alleles', 'Major', 'Minor', 'MAF', 'AncestralAllele'))
+                     'Alleles', 'Minor', 'MAF', 'AncestralAllele', 'VariationAllele'))
   expect_gt(NROW(aa), 2)
 })
 
