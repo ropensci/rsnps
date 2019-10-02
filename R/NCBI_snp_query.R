@@ -179,7 +179,7 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
     ## todo, cases of more than one alternate allele
     
     ## handle true SNPs
-    if (my_snpClass %in% c("snp", "snv")) {
+    if (my_snpClass %in% c("snp", "snv", "delins", "indel", "del") & any(my_list$GLOBAL_MAFS != "\n\t")) {
    
       ## pull out MAF, and the allele that its computed for. 
       maf_df_ <- do.call("rbind", lapply(my_list$GLOBAL_MAFS, function(x) cbind(x$STUDY, x$FREQ)))
@@ -228,7 +228,7 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
 
     out[i, ] <- c(
       SNPs[i], my_chr, as.integer(my_pos), my_snp, unname(my_snpClass),
-      paste0(unname(my_gene), collapse = ","), paste0(unname(alleles), collapse = ","), 
+      paste0(unname(my_gene), collapse = "/"), paste0(unname(alleles), collapse = ","), 
       unname(my_minor),
       as.numeric(my_freq), 
       anc_all, 
