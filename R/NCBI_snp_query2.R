@@ -2,7 +2,8 @@
 #' @export
 #' @rdname ncbi_snp_query2-defunct
 #' @keywords internal
-ncbi_snp_query <- function(...) {
+ncbi_snp_query2 <- function(...) {
   .Defunct(msg = "This function is defunct (NCBI API changed); use ncbi_snp_query() instead.")
 }
+
 
