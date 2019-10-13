@@ -33,16 +33,16 @@ of the particular gene of interest.
 \item Alleles: The alleles associated with the SNP if it is a
 SNV; otherwise, if it is an INDEL, microsatellite, or other kind of
 polymorphism the relevant information will be available here.
-\item Major: The major allele of the SNP, on the forward strand,
-given it is an SNV; otherwise, \code{NA}.
-\item Minor: The minor allele of the SNP, on the forward strand,
+\item Minor: The allele for which the MAF is computed,
 given it is an SNV; otherwise, \code{NA}.
 \item MAF: The minor allele frequency of the SNP, given it is an SNV.
-This is drawn from the current global reference population used by NCBI.
+This is drawn from the current global reference population used by NCBI (GnomAD).
 \item BP: The chromosomal position, in base pairs, of the marker,
 as aligned with the current genome used by dbSNP. we add 1 to the base
 pair position in the BP column in the output data.frame to agree with
 what the dbSNP website has.
+\item AncestralAllele:
+\item VariationAllele:
 }
 }
 \description{
