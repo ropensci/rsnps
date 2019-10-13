@@ -5,9 +5,8 @@ test_that("ncbi_snp_query for rs1173690113 (merged into rs333)", {
   
   skip_on_cran()
   
-  aa <- ncbi_snp_query("rs1173690113")
-  
-  
+  expect_warning(aa <- ncbi_snp_query("rs1173690113"), "rs1173690113 has been merged into rs333")
+
   expect_equal(aa$Query, "rs1173690113")
   expect_equal(aa$Chromosome, "3")
   expect_equal(aa$BP, 46373453) ## on GRCh38
