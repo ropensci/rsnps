@@ -100,9 +100,8 @@ test_that("ncbi_snp_query for rs200623867 (deletion)", {
   expect_equal(aa$Alleles, "G,-")
   expect_equal(aa$AncestralAllele, "G")
   expect_equal(aa$VariationAllele, "-")
-  expect_equal(aa$MAF, NA) 
-  expect_equal(aa$Minor, NA) 
-  
+  expect_equal(aa$MAF, NA_real_) 
+  expect_equal(aa$Minor, NA_character_) 
   
 })
 
@@ -120,8 +119,8 @@ test_that("ncbi_snp_query for rs1799752 (deletion)", {
   expect_equal(aa$Class, "delins")
   expect_equal(aa$Gene, "ACE")
   expect_equal(aa$Alleles, "ATACAGTCACTTTT,ATACAGTCACTTTTTTTTTTTTTTTGAGACGGAGTCTCGCTCTGTCGCCCATACAGTCACTTTT")
-  expect_equal(aa$Minor, NA)
-  expect_equal(aa$MAF, NA)
+  expect_equal(aa$Minor, NA_character_)
+  expect_equal(aa$MAF, NA_real_)
   expect_equal(aa$AncestralAllele, "ATACAGTCACTTTT")
   expect_equal(aa$VariationAllele, "ATACAGTCACTTTTTTTTTTTTTTTGAGACGGAGTCTCGCTCTGTCGCCCATACAGTCACTTTT")
   
