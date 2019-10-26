@@ -239,10 +239,12 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
   for (nm in c("MAF", "BP")) {
     out[, nm] <- as.numeric( out[, nm] )
   }
-
-  return(out)
-
+  
+  
   ## NCBI limits to a maximum of 1 query per three seconds; we
   ## ensure that this limit is adhered to
   Sys.sleep(3)
+
+  return(out)
+
 }
