@@ -248,3 +248,12 @@ ncbi_snp_query <- function(SNPs, key = NULL, ...) {
   return(out)
 
 }
+
+
+check_key <- function(key = "") {
+  stopifnot(is.character(key))
+  if (nzchar(key)) return(key)
+  key <- Sys.getenv("ENTREZ_KEY")
+  if (!nzchar(key)) NULL else key
+}
+
