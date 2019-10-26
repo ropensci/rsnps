@@ -32,6 +32,8 @@ NCBI_snp_query2 <- function(...){
 #' - `NCBI_snp_query()`: Function name changed to [ncbi_snp_query]
 #' - `NCBI_snp_query2()`: Function name changed to [ncbi_snp_query2]
 #' - `ncbi_snp_query2()`: NCBI API changed, use [ncbi_snp_query] instead
+#' - `ncbi_snp_summary()`: NCBI API changed, use [ncbi_snp_query] instead
+#' 
 #' 
 #' @name rsnps-defunct
 NULL
