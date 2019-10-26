@@ -11,5 +11,6 @@ https://www.broadinstitute.org/snap/snap
 \item \code{NCBI_snp_query()}: Function name changed to \link{ncbi_snp_query}
 \item \code{NCBI_snp_query2()}: Function name changed to \link{ncbi_snp_query2}
 \item \code{ncbi_snp_query2()}: NCBI API changed, use \link{ncbi_snp_query} instead
+\item \code{ncbi_snp_summary()}: NCBI API changed, use \link{ncbi_snp_query} instead
 }
 }
