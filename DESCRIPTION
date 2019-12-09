@@ -18,7 +18,7 @@ Authors@R: c(
     person("Kevin", "Ushey", role = "aut"),
     person("Hao", "Zhu", role = "aut")
     )
-URL: https://github.com/ropensci/rsnps
+URL: https://docs.ropensci.org/rsnps, https://github.com/ropensci/rsnps
 BugReports: https://github.com/ropensci/rsnps/issues
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
