@@ -4,10 +4,7 @@
 %\VignetteEncoding{UTF-8}
 -->
 
-
-
-rsnps tutorial
-==============
+# rsnps tutorial
 
 ## Install and load library
 
