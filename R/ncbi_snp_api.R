@@ -156,7 +156,7 @@ get_gene_names <- function(primary_info) {
 #' - seqname - Chromosome RefSeq reference.
 #' - hgvs -  full hgvs notation for variant
 #' - assembly - which assembly was used for the annotations
-#' - ref_seq - Chromosome RefSeq reference.
+#' - ref_seq - sequence in reference assembly
 #'
 #' @seealso [ncbi_snp_query()]
 #'
