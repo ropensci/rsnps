@@ -10,7 +10,7 @@ test_that("ncbi_snp_query_api for rs1173690113 (merged into rs333)", {
   expect_equal(aa$Query, "rs1173690113")
   expect_equal(aa$Chromosome, "3")
   expect_equal(aa$BP, 46373453) ## on GRCh38
-  expect_equal(aa$Marker, "rs333")
+  expect_equal(aa$rsid, "rs333")
   expect_equal(aa$Class, "delins")
   expect_equal(aa$Gene, "CCR5/LOC102724297")
   expect_equal(aa$Alleles, "ACAGTCAGTATCAATTCTGGAAGAATTTCCAGACA,ACA")
@@ -32,7 +32,7 @@ test_that("ncbi_snp_query_api for rs1421085", {
   
   expect_equal(aa$Chromosome, "16")
   expect_equal(aa$BP, 53767042) ## on GRCh38
-  expect_equal(aa$Marker, "rs1421085")
+  expect_equal(aa$rsid, "rs1421085")
   expect_equal(aa$Class, "snv")
   expect_equal(aa$Gene, "FTO")
   expect_equal(aa$Alleles, "T,C")
@@ -54,7 +54,7 @@ test_that("ncbi_snp_query_api for rs1610720 (multiple alleles)", {
   
   expect_equal(aa$Chromosome, "6")
   expect_equal(aa$BP, 29793285) ## on GRCh38
-  expect_equal(aa$Marker, "rs1610720")
+  expect_equal(aa$rsid, "rs1610720")
   expect_equal(aa$Class, "snv")
   expect_equal(aa$Gene, "HCG4/HLA-V")
   expect_equal(aa$Alleles, "A,G,T")
@@ -74,7 +74,7 @@ test_that("ncbi_snp_query_api for rs146107628 (duplication)", {
   
   expect_equal(aa$Chromosome, "10")
   expect_equal(aa$BP, 98243085) ## on GRCh38
-  expect_equal(aa$Marker, "rs146107628")
+  expect_equal(aa$rsid, "rs146107628")
   expect_equal(aa$Class, "delins")
   expect_equal(aa$Gene, "R3HCC1L")
   expect_equal(aa$Alleles, "T,TT")
@@ -94,7 +94,7 @@ test_that("ncbi_snp_query_api for rs200623867 (deletion)", {
   
   expect_equal(aa$Chromosome, "10")
   expect_equal(aa$BP, 98243545) ## on GRCh38
-  expect_equal(aa$Marker, "rs200623867")
+  expect_equal(aa$rsid, "rs200623867")
   expect_equal(aa$Class, "del")
   expect_equal(aa$Gene, "R3HCC1L")
   expect_equal(aa$Alleles, "G, delG")
@@ -115,7 +115,7 @@ test_that("ncbi_snp_query_api for rs1799752 (deletion)", {
   
   expect_equal(aa$Chromosome, "17")
   expect_equal(aa$BP, 63488530) ## on GRCh38 :63488530-63488543
-  expect_equal(aa$Marker, "rs1799752")
+  expect_equal(aa$rsid, "rs1799752")
   expect_equal(aa$Class, "delins")
   expect_equal(aa$Gene, "ACE")
   expect_equal(aa$Alleles, "ATACAGTCACTTTT,ATACAGTCACTTTTTTTTTTTTTTTGAGACGGAGTCTCGCTCTGTCGCCCATACAGTCACTTTT")
@@ -135,7 +135,7 @@ test_that("ncbi_snp_query_api for rs1610720 snp", {
   
   expect_equal(aa$Chromosome, "6")
   expect_equal(aa$BP, 29793285) ## on GRCh38
-  expect_equal(aa$Marker, "rs1610720")
+  expect_equal(aa$rsid, "rs1610720")
   expect_equal(aa$Class, "snv")
   expect_equal(aa$Gene, "HCG4/HLA-V")
   expect_equal(aa$Alleles, "A,G,T")
@@ -147,7 +147,7 @@ test_that("ncbi_snp_query_api for rs1610720 snp", {
 })
 
 
-expected_df_names <- c("Query", "Chromosome", "BP", "Class", "Marker", "Gene", "Alleles", "AncestralAllele", "VariationAllele", "seqname", "hgvs", "assembly", "ref_seq", "Minor", "MAF")
+expected_df_names <- c("Query", "Chromosome", "BP", "Class", "rsid", "Gene", "Alleles", "AncestralAllele", "VariationAllele", "seqname", "hgvs", "assembly", "ref_seq", "Minor", "MAF")
 
 test_that("ncbi_snp_query works", {
   skip_on_cran()

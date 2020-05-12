@@ -5,9 +5,11 @@
 \title{Internal function to get the frequency of the variants from
 different studies.}
 \usage{
-get_frequency(primary_info, study = "GnomAD")
+get_frequency(Class, primary_info, study = "GnomAD")
 }
 \arguments{
+\item{Class}{What kind of variant is the rsid. Accepted options are "snv", "snp" and "delins".}
+
 \item{primary_info}{refsnp entry read in JSON format}
 
 \item{study}{Study from which frequency information is obtained. Possibilities

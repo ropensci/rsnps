@@ -20,16 +20,16 @@ A dataframe with columns:
 as aligned with the current genome used by dbSNP. we add 1 to the base
 pair position in the BP column in the output data.frame to agree with
 what the dbSNP website has.
-\item Marker: The name of the marker. If the rs ID queried
-has been merged, the up-to-date name of the marker is returned here, and
+\item rsid: Reference SNP cluster ID. If the rs ID queried
+has been merged, the up-to-date name of the ID is returned here, and
 a warning is issued.
-\item Class: The marker's 'class'. See
+\item Class: The rsdi's 'class'. See
 \url{http://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass}
 for more details.
-\item Gene: If the marker lies within a gene (either within the exon
+\item Gene: If the rsid lies within a gene (either within the exon
 or introns of a gene), the name of that gene is returned here; otherwise,
 \code{NA}. Note that
-the gene may not be returned if the marker lies too far upstream or downstream
+the gene may not be returned if the rsid lies too far upstream or downstream
 of the particular gene of interest.
 \item Alleles: The alleles associated with the SNP if it is a
 SNV; otherwise, if it is an INDEL, microsatellite, or other kind of
@@ -43,7 +43,7 @@ This is drawn from the current global reference population used by NCBI (GnomAD)
 \item seqname - Chromosome RefSeq reference.
 \item hgvs -  full hgvs notation for variant
 \item assembly - which assembly was used for the annotations
-\item ref_seq - Chromosome RefSeq reference.
+\item ref_seq - sequence in reference assembly
 }
 }
 \description{

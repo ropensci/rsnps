@@ -42,9 +42,9 @@ get_placements <- function(primary_info) {
       ## if more than one we need to merge the ancestral and variation alleles
       df_all <- do.call(rbind, df_list)
       new_df <- stats::aggregate(. ~ BP, data = df_all,
-                          FUN = function(x)
-                            paste(unique(x[x != ""]),
-                                  collapse = ",")
+                                 FUN = function(x)
+                                   paste(unique(x[x != ""]),
+                                         collapse = ",")
       )
       new_df$Alleles <- paste(unique(unlist(strsplit(new_df$Alleles, ","))),
                               collapse = ",")
@@ -56,38 +56,54 @@ get_placements <- function(primary_info) {
 #' Internal function to get the frequency of the variants from
 #' different studies.
 #'
+#' @param Class What kind of variant is the rsid. Accepted options are "snv", "snp" and "delins".
 #' @param primary_info refsnp entry read in JSON format
 #' @param study Study from which frequency information is obtained. Possibilities
 #' include: GnomAD (default), 1000Genomes, ALSPAC, Estonian, NorthernSweden, TWINSUK
 #'
-get_frequency <- function(primary_info, study = "GnomAD") {
-  for (record in  primary_info$primary_snapshot_data$allele_annotations) {
-    for (freq_record in record$frequency) {
-      if (freq_record$study_name == study & freq_record$observation$deleted_sequence != freq_record$observation$inserted_sequence) {
-        if (freq_record$observation$inserted_sequence == "") {
-          MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
-          df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
-                                Minor = paste0("del", freq_record$observation$deleted),
-                                MAF = MAF,
-                                stringsAsFactors = FALSE)
+get_frequency <- function(Class, primary_info, study = "GnomAD") {
+  if (Class %in% c("snv", "snp", "delins")) {
+    for (record in  primary_info$primary_snapshot_data$allele_annotations) {
+      for (freq_record in record$frequency) {
+        if (freq_record$study_name == study & freq_record$observation$deleted_sequence != freq_record$observation$inserted_sequence) {
+          if (freq_record$observation$inserted_sequence == "") {
+            MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
+            df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
+                                  Minor = paste0("del", freq_record$observation$deleted),
+                                  MAF = MAF,
+                                  stringsAsFactors = FALSE)
+          }
+          else if (freq_record$observation$deleted_sequence == "") {
+            MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
+            df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
+                                  Minor = paste0("dup", freq_record$observation$inserted_sequence),
+                                  MAF = MAF,
+                                  stringsAsFactors = FALSE)
+          }
+          else {
+            MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
+            df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
+                                  Minor = freq_record$observation$inserted_sequence,
+                                  MAF = MAF,
+                                  stringsAsFactors = FALSE)
+          }
         }
-        else if (freq_record$observation$deleted_sequence == "") {
-          MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
-          df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
-                                Minor = paste0("dup", freq_record$observation$inserted_sequence),
-                                MAF = MAF,
-                                stringsAsFactors = FALSE)
-        }
-        else {
-          MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
-          df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
-                                Minor = freq_record$observation$inserted_sequence,
-                                MAF = MAF,
-                                stringsAsFactors = FALSE)
-        }
-        return(df_freq)
       }
     }
+    if (exists("df_freq")) {
+      return(df_freq)
+    }
+    else {
+      df_freq <- data.frame(ref_seq = NA,
+                            Minor = NA,
+                            MAF = NA,
+                            stringsAsFactors = FALSE)
+    }
+  } else {
+    df_freq <- data.frame(ref_seq = NA,
+                          Minor = NA,
+                          MAF = NA,
+                          stringsAsFactors = FALSE)
   }
 }
 
@@ -133,16 +149,16 @@ get_gene_names <- function(primary_info) {
 #' as aligned with the current genome used by dbSNP. we add 1 to the base 
 #' pair position in the BP column in the output data.frame to agree with 
 #' what the dbSNP website has.
-#' - Marker: The name of the marker. If the rs ID queried
-#' has been merged, the up-to-date name of the marker is returned here, and
+#' - rsid: Reference SNP cluster ID. If the rs ID queried
+#' has been merged, the up-to-date name of the ID is returned here, and
 #' a warning is issued.
-#' - Class: The marker's 'class'. See
+#' - Class: The rsdi's 'class'. See
 #' <http://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass>
 #' for more details.
-#' - Gene: If the marker lies within a gene (either within the exon
+#' - Gene: If the rsid lies within a gene (either within the exon
 #' or introns of a gene), the name of that gene is returned here; otherwise,
 #' `NA`. Note that
-#' the gene may not be returned if the marker lies too far upstream or downstream
+#' the gene may not be returned if the rsid lies too far upstream or downstream
 #' of the particular gene of interest.
 #' - Alleles: The alleles associated with the SNP if it is a
 #' SNV; otherwise, if it is an INDEL, microsatellite, or other kind of
@@ -201,7 +217,7 @@ ncbi_snp_query_api <- function(SNPs, ...) {
   SNPs_num <- gsub("rs", "", SNPs)
   
   out <- as.data.frame(matrix(0, nrow = length(SNPs_num), ncol = 15))
-  names(out) <- c("Query", "Chromosome", "BP", "Class", "Marker", "Gene", "Alleles", "AncestralAllele", "VariationAllele", "seqname", "hgvs", "assembly", "ref_seq", "Minor", "MAF")
+  names(out) <- c("Query", "Chromosome", "BP", "Class", "rsid", "Gene", "Alleles", "AncestralAllele", "VariationAllele", "seqname", "hgvs", "assembly", "ref_seq", "Minor", "MAF")
   
   ## as far as I understand from https://api.ncbi.nlm.nih.gov/variation/v0/#/RefSNP/ we
   ## can only send one query at a time and max 1 per second.
@@ -237,67 +253,31 @@ ncbi_snp_query_api <- function(SNPs, ...) {
     ## if merged into another id
     if (is.null(variant.response.content$primary_snapshot_data)) {
       
-      Marker <- as.character(paste0("rs", variant.response.content$merged_snapshot_data$merged_into))
-      no_rs_Marker <-  as.character(variant.response.content$merged_snapshot_data$merged_into)
+      rsid <- as.character(paste0("rs", variant.response.content$merged_snapshot_data$merged_into))
+      no_rsid <-  as.character(variant.response.content$merged_snapshot_data$merged_into)
       
-      warning(Query, " has been merged into ", Marker, call. = FALSE)
+      warning(Query, " has been merged into ", rsid, call. = FALSE)
       
-      variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", no_rs_Marker)
+      variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", no_rsid)
       variant.response <- httr::GET(variant.url)
       variant.response.content <- RJSONIO::fromJSON(rawToChar(variant.response$content),
                                                     simplifyWithNames = TRUE)
-      Class <- as.character(variant.response.content$primary_snapshot_data$variant_type)
-      placement_SNP <- get_placements(variant.response.content)
-      
-      if (Class %in% c("snv", "snp", "delins")) {
-        ## frequence of minor allele
-        frequency_SNP <- get_frequency(variant.response.content)
-        
-        ## if there is no frequency information
-        if (is.null(frequency_SNP)) {
-          frequency_SNP <- data.frame(ref_seq = NA,
-                                      Minor = NA,
-                                      MAF = NA,
-                                      stringsAsFactors = FALSE)
-        }
-        
-      } else {
-        frequency_SNP <- data.frame(ref_seq = NA,
-                                    Minor = NA,
-                                    MAF = NA,
-                                    stringsAsFactors = FALSE)
-      }
-      
-      Gene <- get_gene_names(variant.response.content)
     } else {
-      Marker <- as.character(paste0("rs",
-                                    variant.response.content$refsnp_id))
-      Class <- as.character(variant.response.content$primary_snapshot_data$variant_type)
-      placement_SNP <- get_placements(variant.response.content)
-      
-      if (Class %in% c("snv", "snp", "delins")) {
-        ## frequency of minor allele
-        frequency_SNP <- get_frequency(variant.response.content)
-        if (is.null(frequency_SNP)) {
-          frequency_SNP <- data.frame(ref_seq = NA,
-                                      Minor = NA,
-                                      MAF = NA,
-                                      stringsAsFactors = FALSE)
-        }
-      } else {
-        frequency_SNP <- data.frame(ref_seq = NA,
-                                    Minor = NA,
-                                    MAF = NA,
-                                    stringsAsFactors = FALSE)
-      }
-      Gene <- get_gene_names(variant.response.content)
+      rsid <- as.character(paste0("rs",
+                                  variant.response.content$refsnp_id))
     }
+    
+    Class <- as.character(variant.response.content$primary_snapshot_data$variant_type)
+    placement_SNP <- get_placements(variant.response.content)
+    ## frequency of minor allele
+    frequency_SNP <- get_frequency(Class, variant.response.content)
+    Gene <- get_gene_names(variant.response.content)
     
     out[i, ] <- c(Query,
                   placement_SNP$Chromosome,
                   placement_SNP$BP,
                   Class,
-                  Marker,
+                  rsid,
                   Gene,
                   placement_SNP$Alleles,
                   placement_SNP$AncestralAllele,
