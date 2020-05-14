@@ -22,8 +22,6 @@ NCBI_snp_query2 <- function(...){
   .Defunct(new = "ncbi_snp_query2", package = "rsnps", msg = "the NCBI_snp_query2() function name has been changed to ncbi_snp_query2()")
 }
 
-
-
 #' Defunct functions in rsnps
 #'
 #' - `LDSearch()`: Function name changed to [ld_search]
@@ -31,9 +29,6 @@ NCBI_snp_query2 <- function(...){
 #' https://www.broadinstitute.org/snap/snap
 #' - `NCBI_snp_query()`: Function name changed to [ncbi_snp_query]
 #' - `NCBI_snp_query2()`: Function name changed to [ncbi_snp_query2]
-#' - `ncbi_snp_query2()`: NCBI API changed, use [ncbi_snp_query] instead
-#' - `ncbi_snp_summary()`: NCBI API changed, use [ncbi_snp_query] instead
-#' 
 #' 
 #' @name rsnps-defunct
 NULL
