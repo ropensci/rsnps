@@ -12,7 +12,9 @@ Authors@R: c(
     person("Julia", "Gustavsen", role = c("aut", "cre"),
       email = "j.gustavsen@gmail.com",
       comment = c(ORCID = "0000-0002-4764-4802")), 
-    person("Sina", "Rüeger", role = "aut"), 
+    person("Sina", "Rüeger", role = "aut",
+      email = "sina.rueeger@gmail.com",
+      comment = c(ORCID = "0000-0003-2848-9242")), 
     person("Scott", "Chamberlain", role = "aut",
       comment = c(ORCID = "0000-0003-1444-9135")), 
     person("Kevin", "Ushey", role = "aut"),
@@ -30,11 +32,13 @@ Imports:
     data.table,
     XML,
     xml2,
-    jsonlite
+    jsonlite,
+    RJSONIO,
+    httr
 Suggests:
     testthat,
     knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 X-schema.org-applicationCategory: Genes
 X-schema.org-keywords: gene, snp, sequence, API, web, api-client, species, dbSNP, OpenSNP, NCBI, genotype
 X-schema.org-isPartOf: https://ropensci.org

@@ -1,4 +1,3 @@
-# rsnps 0.3.2
 
 rsnps 0.3.2
 ===========
@@ -10,14 +9,12 @@ rsnps 0.3.2
 ### DOCUMENTATION FIXES
 
 * Restructured and fixed a typo in `README.Rmd` and added link to vignette (#63).
+* Fixed a typo in `R/NCBI_snp_query.R`, `R/NCBI_snp_query2.R` and `R/ncbi_snp_summary.R`.
+* Added info of two new maintainers to `DESCRIPTION`. 
 
 ### BUG FIXES
 
 * Fixed the test for `allphenotypes` function by making it less specific (#72). 
-
-
-rsnps 0.3.1
-===========
 
 
 rsnps 0.3.0
