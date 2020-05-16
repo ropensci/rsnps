@@ -30,11 +30,14 @@ genotypes('rs9939609', userid='1-2', df=FALSE)
 }
 }
 \seealso{
-Other opensnp-fxns: \code{\link{allgensnp}},
-  \code{\link{allphenotypes}}, \code{\link{annotations}},
-  \code{\link{download_users}},
-  \code{\link{fetch_genotypes}},
-  \code{\link{phenotypes_byid}}, \code{\link{phenotypes}},
-  \code{\link{users}}
+Other opensnp-fxns: 
+\code{\link{allgensnp}()},
+\code{\link{allphenotypes}()},
+\code{\link{annotations}()},
+\code{\link{download_users}()},
+\code{\link{fetch_genotypes}()},
+\code{\link{phenotypes_byid}()},
+\code{\link{phenotypes}()},
+\code{\link{users}()}
 }
 \concept{opensnp-fxns}

@@ -30,10 +30,14 @@ data[[2]] # users without links to genome data
 }
 }
 \seealso{
-Other opensnp-fxns: \code{\link{allgensnp}},
-  \code{\link{allphenotypes}}, \code{\link{annotations}},
-  \code{\link{download_users}},
-  \code{\link{fetch_genotypes}}, \code{\link{genotypes}},
-  \code{\link{phenotypes_byid}}, \code{\link{phenotypes}}
+Other opensnp-fxns: 
+\code{\link{allgensnp}()},
+\code{\link{allphenotypes}()},
+\code{\link{annotations}()},
+\code{\link{download_users}()},
+\code{\link{fetch_genotypes}()},
+\code{\link{genotypes}()},
+\code{\link{phenotypes_byid}()},
+\code{\link{phenotypes}()}
 }
 \concept{opensnp-fxns}
