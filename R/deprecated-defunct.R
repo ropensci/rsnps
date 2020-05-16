@@ -51,8 +51,11 @@ NCBI_snp_query2 <- function(...){
 #' - `LDSearch()`: Function name changed to [ld_search]
 #' - `ld_search()`: The Broad Institute took the service down, see 
 #' https://www.broadinstitute.org/snap/snap
-#' - `NCBI_snp_query()`: Function name changed to [ncbi_snp_query]
-#' - `NCBI_snp_query2()`: Function name changed to [ncbi_snp_query2]
+#' - `NCBI_snp_query()`: Function name changed to [ncbi_snp_query_api]
+#' - `NCBI_snp_query2()`: Function name changed to [ncbi_snp_query_api]
+#' - `ncbi_snp_summary()`: Function name changed to [ncbi_snp_query_api]
+#' - `ncbi_snp_query()`: Function name changed to [ncbi_snp_query_api]
+#' - `ncbi_snp_query2()`: Function name changed to [ncbi_snp_query_api]
 #' 
 #' @name rsnps-defunct
 NULL
