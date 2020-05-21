@@ -152,7 +152,7 @@ get_gene_names <- function(primary_info) {
 #' - rsid: Reference SNP cluster ID. If the rs ID queried
 #' has been merged, the up-to-date name of the ID is returned here, and
 #' a warning is issued.
-#' - Class: The rsdi's 'class'. See
+#' - Class: The rsid's 'class'. See
 #' <http://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass>
 #' for more details.
 #' - Gene: If the rsid lies within a gene (either within the exon
