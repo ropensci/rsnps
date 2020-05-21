@@ -29,14 +29,6 @@ devtools::install_github("ropensci/rsnps")
 library(rsnps)
 ```
 
-## dbSNP data
-
-Get a SNP summary from NCBI's [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) resource:
-
-```r
-ncbi_snp_query(SNPs = c('rs7412', 'rs332'))
-```
-
 
 ## OpenSNP data
 
@@ -647,9 +639,10 @@ phenotypes_byid(phenotypeid=12, return_ = 'users')[1:10,]
 
 ### dbSNP
 
-Query NCBI's dbSNP for information on a set of SNPs
+Query NCBI's [dbSNP](https://www.ncbi.nlm.nih.gov/snp/)  for information on a set of SNPs
 
 An example with both merged SNPs, non-SNV SNPs, regular SNPs, SNPs not found, microsatellite
+
 
 
 ```r
