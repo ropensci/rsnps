@@ -1,11 +1,11 @@
-context("ncbi_snp_query_api")
+context("ncbi_snp_query")
 
-test_that("ncbi_snp_query_api for rs1173690113 (merged into rs333)", {
+test_that("ncbi_snp_query for rs1173690113 (merged into rs333)", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/rs1173690113
   
   skip_on_cran()
   
-  expect_warning(aa <- ncbi_snp_query_api("rs1173690113"), "rs1173690113 has been merged into rs333")
+  expect_warning(aa <- ncbi_snp_query("rs1173690113"), "rs1173690113 has been merged into rs333")
 
   expect_equal(aa$Query, "rs1173690113")
   expect_equal(aa$Chromosome, "3")
@@ -22,12 +22,12 @@ test_that("ncbi_snp_query_api for rs1173690113 (merged into rs333)", {
 })
 
 
-test_that("ncbi_snp_query_api for rs1421085", {
+test_that("ncbi_snp_query for rs1421085", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/?term=rs1421085
   
   skip_on_cran()
   
-  aa <- ncbi_snp_query_api("rs1421085")
+  aa <- ncbi_snp_query("rs1421085")
   
   
   expect_equal(aa$Chromosome, "16")
@@ -44,12 +44,12 @@ test_that("ncbi_snp_query_api for rs1421085", {
 })
 
 
-test_that("ncbi_snp_query_api for rs1610720 (multiple alleles)", {
+test_that("ncbi_snp_query for rs1610720 (multiple alleles)", {
   ## from issue59: https://github.com/ropensci/rsnps/issues/59
   ## truth: https://www.ncbi.nlm.nih.gov/snp/?term=rs1610720
   skip_on_cran()
   
-  aa <- ncbi_snp_query_api("rs1610720")
+  aa <- ncbi_snp_query("rs1610720")
   
   
   expect_equal(aa$Chromosome, "6")
@@ -65,11 +65,11 @@ test_that("ncbi_snp_query_api for rs1610720 (multiple alleles)", {
   
 })
 
-test_that("ncbi_snp_query_api for rs146107628 (duplication)", {
+test_that("ncbi_snp_query for rs146107628 (duplication)", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/rs146107628
   skip_on_cran()
   
-  aa <- ncbi_snp_query_api("rs146107628")
+  aa <- ncbi_snp_query("rs146107628")
   
   
   expect_equal(aa$Chromosome, "10")
@@ -85,11 +85,11 @@ test_that("ncbi_snp_query_api for rs146107628 (duplication)", {
   
 })
 
-test_that("ncbi_snp_query_api for rs200623867 (deletion)", {
+test_that("ncbi_snp_query for rs200623867 (deletion)", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/rs200623867
   skip_on_cran()
   
-  aa <- ncbi_snp_query_api("rs200623867")
+  aa <- ncbi_snp_query("rs200623867")
   
   
   expect_equal(aa$Chromosome, "10")
@@ -106,11 +106,11 @@ test_that("ncbi_snp_query_api for rs200623867 (deletion)", {
 })
 
 
-test_that("ncbi_snp_query_api for rs1799752 (deletion)", {
+test_that("ncbi_snp_query for rs1799752 (deletion)", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/rs1799752
   skip_on_cran()
   
-  aa <- ncbi_snp_query_api("rs1799752")
+  aa <- ncbi_snp_query("rs1799752")
   
   
   expect_equal(aa$Chromosome, "17")
@@ -127,11 +127,11 @@ test_that("ncbi_snp_query_api for rs1799752 (deletion)", {
 })
 
 
-test_that("ncbi_snp_query_api for rs1610720 snp", {
+test_that("ncbi_snp_query for rs1610720 snp", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/rs1610720
   skip_on_cran()
   
-  aa <- ncbi_snp_query_api("rs1610720")
+  aa <- ncbi_snp_query("rs1610720")
   
   expect_equal(aa$Chromosome, "6")
   expect_equal(aa$BP, 29793285) ## on GRCh38
@@ -152,7 +152,7 @@ expected_df_names <- c("Query", "Chromosome", "BP", "Class", "rsid", "Gene", "Al
 test_that("ncbi_snp_query works", {
   skip_on_cran()
 
-  aa <- ncbi_snp_query_api("rs420358")
+  aa <- ncbi_snp_query("rs420358")
 
   expect_is(aa, "data.frame")
   expect_is(aa$Query, "character")
@@ -161,11 +161,11 @@ test_that("ncbi_snp_query works", {
   expect_named(aa, expected_df_names)
 })
 
-test_that("ncbi_snp_query_api - many snps at once works", {
+test_that("ncbi_snp_query - many snps at once works", {
   skip_on_cran()
 
   x <- c("rs420358", "rs1837253", "rs1209415715")
-  aa <- ncbi_snp_query_api(x)
+  aa <- ncbi_snp_query(x)
 
   expect_is(aa, "data.frame")
   expect_is(aa$Query, "character")
@@ -176,11 +176,11 @@ test_that("ncbi_snp_query_api - many snps at once works", {
 })
 
 
-test_that("ncbi_snp_query_api - many snps at once works with some that give errors", {
+test_that("ncbi_snp_query - many snps at once works with some that give errors", {
   skip_on_cran()
   
   x <- c("rs420358", "rs1", "rs1209415715") ## rs1 does not exist
-  expect_warning(aa <- ncbi_snp_query_api(x), "The following rsId had no information available on NCBI:") 
+  expect_warning(aa <- ncbi_snp_query(x), "The following rsId had no information available on NCBI:") 
   
   expect_is(aa, "data.frame")
   expect_is(aa$Query, "character")
@@ -190,28 +190,28 @@ test_that("ncbi_snp_query_api - many snps at once works with some that give erro
   expect_equal(NROW(aa), 2)
 })
 
-test_that("ncbi_snp_query_api - rs IDs not found", {
+test_that("ncbi_snp_query - rs IDs not found", {
   skip_on_cran()
 
-  expect_warning(z <- ncbi_snp_query_api("rs111068718"), "The following rsId has been withdrawn from NCBI:")
+  expect_warning(z <- ncbi_snp_query("rs111068718"), "The following rsId has been withdrawn from NCBI:")
   expect_equal(NROW(z), 0)
 })
 
-test_that("ncbi_snp_query_api - gives warning when expected", {
+test_that("ncbi_snp_query - gives warning when expected", {
   skip_on_cran()
 
-  expect_warning(ncbi_snp_query_api('rs332'))
-  expect_warning(ncbi_snp_query_api('rs1'), "The following rsId had no information available on NCBI:")
+  expect_warning(ncbi_snp_query('rs332'))
+  expect_warning(ncbi_snp_query('rs1'), "The following rsId had no information available on NCBI:")
 
   
 })
 
-test_that("ncbi_snp_query_api fails well", {
+test_that("ncbi_snp_query fails well", {
   skip_on_cran()
 
-  expect_error(ncbi_snp_query_api(), "argument \"SNPs\" is missing")
-  expect_error(ncbi_snp_query_api(5), "not all items supplied are prefixed")
-  expect_error(ncbi_snp_query_api('ab5'), "not all items supplied are prefixed")
+  expect_error(ncbi_snp_query(), "argument \"SNPs\" is missing")
+  expect_error(ncbi_snp_query(5), "not all items supplied are prefixed")
+  expect_error(ncbi_snp_query('ab5'), "not all items supplied are prefixed")
 
 })
 

@@ -9,7 +9,7 @@
 \usage{
 ncbi_snp_summary(...)
 
-ncbi_snp_query(...)
+ncbi_snp_query(SNPs, ...)
 
 ncbi_snp_query2(...)
 

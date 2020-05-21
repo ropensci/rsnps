@@ -29,11 +29,20 @@ devtools::install_github("ropensci/rsnps")
 library(rsnps)
 ```
 
+## dbSNP data
+
+Get a SNP summary from NCBI's [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) resource:
+
+```r
+ncbi_snp_query(SNPs = c('rs7412', 'rs332'))
+```
+
+
 ## OpenSNP data
 
 ### All Genotypes
 
-Get genotype data for all users at a particular SNP
+Get genotype data for all users at a particular SNP from [OpenSNP](https://opensnp.org):
 
 
 ```r

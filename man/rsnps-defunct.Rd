@@ -8,7 +8,10 @@
 \item \code{LDSearch()}: Function name changed to \link{ld_search}
 \item \code{ld_search()}: The Broad Institute took the service down, see
 https://www.broadinstitute.org/snap/snap
-\item \code{NCBI_snp_query()}: Function name changed to \link{ncbi_snp_query}
-\item \code{NCBI_snp_query2()}: Function name changed to \link{ncbi_snp_query2}
+\item \code{NCBI_snp_query()}: Function name changed to \link{ncbi_snp_query_api}
+\item \code{NCBI_snp_query2()}: Function name changed to \link{ncbi_snp_query_api}
+\item \code{ncbi_snp_summary()}: Function name changed to \link{ncbi_snp_query_api}
+\item \code{ncbi_snp_query()}: Function name changed to \link{ncbi_snp_query_api}
+\item \code{ncbi_snp_query2()}: Function name changed to \link{ncbi_snp_query_api}
 }
 }

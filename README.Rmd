@@ -42,10 +42,8 @@ This set of functions/package accesses data from:
 
 + NCBI's dbSNP SNP database
 	+ See <https://www.ncbi.nlm.nih.gov/snp> for more details
-	+ Relevant functions:
+	+ Relevant function:
 		+ `ncbi_snp_query()`
-		+ `ncbi_snp_query2()`
-    + `ncbi_snp_summary()`
 
 ## Install
 

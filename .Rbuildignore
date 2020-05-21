@@ -14,3 +14,5 @@ inst/vign/cache
 ^CODE_OF_CONDUCT\.md$
 revdep
 .github
+^doc$
+^Meta$
