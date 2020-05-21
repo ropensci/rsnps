@@ -38,10 +38,8 @@ This set of functions/package accesses data from:
             `phenotypes()`, `phenotypes_byid()`, `users()`
   - NCBI’s dbSNP SNP database
       - See <https://www.ncbi.nlm.nih.gov/snp> for more details
-      - Relevant functions:
+      - Relevant function:
           - `ncbi_snp_query()`
-          - `ncbi_snp_query2()`
-      - `ncbi_snp_summary()`
 
 ## Install
 
@@ -67,45 +65,45 @@ library("rsnps")
 ### NCBI dbSNP data
 
 ``` r
-SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-ncbi_snp_query(SNPs)
+snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
+ncbi_snp_query(snps)
 ```
 
-    #>  [1] Query           Chromosome      BP              Marker         
-    #>  [5] Class           Gene            Alleles         Major          
-    #>  [9] Minor           MAF             AncestralAllele
-    #> <0 rows> (or 0-length row.names)
+    #>          Query Chromosome        BP Class         rsid          Gene
+    #> 1        rs332          7 117559593   del  rs121909001 CFTR/CFTR-AS1
+    #> 2     rs420358          1  40341239   snv     rs420358              
+    #> 3    rs1837253          5 111066174   snv    rs1837253              
+    #> 4 rs1209415715          9  41782316   snv rs1209415715              
+    #>       Alleles AncestralAllele VariationAllele      seqname
+    #> 1 TTT, delTTT             TTT          delTTT NC_000007.14
+    #> 2       A,C,T               A             C,T NC_000001.11
+    #> 3         T,C               T               C NC_000005.10
+    #> 4         T,C               T               C NC_000009.12
+    #>                                                    hgvs   assembly ref_seq
+    #> 1                 NC_000007.14:g.117559593_117559595del GRCh38.p12    <NA>
+    #> 2 NC_000001.11:g.40341239A>C,NC_000001.11:g.40341239A>T GRCh38.p12       A
+    #> 3                           NC_000005.10:g.111066174T>C GRCh38.p12       T
+    #> 4                            NC_000009.12:g.41782316T>C GRCh38.p12    <NA>
+    #>   Minor    MAF
+    #> 1  <NA>     NA
+    #> 2     C 0.8614
+    #> 3     C 0.7133
+    #> 4  <NA>     NA
 
 ### openSNP data
 
-`genotypes()`
-    function
+`genotypes()` function
 
 ``` r
-genotypes('rs9939609', userid='1,6,8', df=TRUE)
+#genotypes('rs9939609', userid='1,6,8', df=TRUE)
 ```
-
-    #>    snp_name snp_chromosome snp_position                 user_name user_id
-    #> 1 rs9939609             16     53786615 Bastian Greshake Tzovaras       1
-    #> 2 rs9939609             16     53786615              Nash Parovoz       6
-    #> 3 rs9939609             16     53786615         Samantha B. Clark       8
-    #>   genotype_id genotype
-    #> 1           9       AT
-    #> 2           5       AT
-    #> 3           2       TT
 
 `phenotypes()` function
 
 ``` r
-out <- phenotypes(userid=1)
-out$phenotypes$`Hair Type`
+#out <- phenotypes(userid=1)
+#out$phenotypes$`Hair Type`
 ```
-
-    #> $phenotype_id
-    #> [1] 16
-    #> 
-    #> $variation
-    #> [1] "straight"
 
 For more detail, see the [vignette: rsnps
 tutorial](https://github.com/ropensci/rsnps/blob/master/inst/vign/rsnps_vignette.md).
