@@ -69,8 +69,8 @@ library("rsnps")
 ### NCBI dbSNP data
 
 ```{r}
-SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-ncbi_snp_query(SNPs)
+snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
+ncbi_snp_query(snps)
 ```
 
 ### openSNP data
