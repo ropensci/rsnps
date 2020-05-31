@@ -12,7 +12,7 @@ test_that("ncbi_snp_query for rs1173690113 (merged into rs333)", {
   expect_equal(aa$BP, 46373453) ## on GRCh38
   expect_equal(aa$rsid, "rs333")
   expect_equal(aa$Class, "delins")
-  expect_equal(aa$Gene, "CCR5/LOC102724297")
+  expect_equal(aa$Gene, "CCR5/CCR5AS")
   expect_equal(aa$Alleles, "ACAGTCAGTATCAATTCTGGAAGAATTTCCAGACA,ACA")
   expect_equal(aa$Minor, "delACAGTCAGTATCAATTCTGGAAGAATTTCCAG")
   expect_equal(aa$MAF, 0.0774)
