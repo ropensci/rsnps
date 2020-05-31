@@ -1,5 +1,5 @@
 
-rsnps 0.x.x
+rsnps 0.4.0
 ===========
 
 ### MAJOR IMPROVEMENTS
@@ -8,11 +8,6 @@ NCBI / dbSNP changed their API:
 
 * Rewrote `ncbi_snp_query` to accomodate the new API (#86, #88). 
 * Removed the functions `ncbi_snp_query2` an `ncbi_snp_summary`. 
-
-
-
-rsnps 0.3.2
-===========
 
 ### MINOR IMPROVEMENTS
 
