@@ -12,3 +12,5 @@ revdep/library.noindex
 revdep/data.sqlite
 revdep/*.html
 revdep/*.cache.rds
+doc
+Meta

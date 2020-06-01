@@ -152,7 +152,7 @@ get_gene_names <- function(primary_info) {
 #' - rsid: Reference SNP cluster ID. If the rs ID queried
 #' has been merged, the up-to-date name of the ID is returned here, and
 #' a warning is issued.
-#' - Class: The rsdi's 'class'. See
+#' - Class: The rsid's 'class'. See
 #' <http://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass>
 #' for more details.
 #' - Gene: If the rsid lies within a gene (either within the exon
@@ -186,20 +186,20 @@ get_gene_names <- function(primary_info) {
 #' ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
 #' ## SNPs not found, microsatellite
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-#' ncbi_snp_query_api (SNPs)
-#' # ncbi_snp_query_api ("123456") ##invalid: must prefix with 'rs'
-#' ncbi_snp_query_api ("rs420358")
-#' ncbi_snp_query_api ("rs332") # warning that its merged into another, try that
-#' ncbi_snp_query_api ("rs121909001")
-#' ncbi_snp_query_api ("rs1837253")
-#' ncbi_snp_query_api ("rs1209415715")
-#' ncbi_snp_query_api ("rs111068718")
-#' ncbi_snp_query_api (SNPs='rs9970807')
+#' ncbi_snp_query(SNPs)
+#' # ncbi_snp_query("123456") ##invalid: must prefix with 'rs'
+#' ncbi_snp_query("rs420358")
+#' ncbi_snp_query("rs332") # warning that its merged into another, try that
+#' ncbi_snp_query("rs121909001")
+#' ncbi_snp_query("rs1837253")
+#' ncbi_snp_query("rs1209415715")
+#' ncbi_snp_query("rs111068718")
+#' ncbi_snp_query(SNPs='rs9970807')
 #'
-#' ncbi_snp_query_api ("rs121909001")
-#' ncbi_snp_query_api ("rs121909001", verbose = TRUE)
+#' ncbi_snp_query("rs121909001")
+#' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' }
-ncbi_snp_query_api <- function(SNPs, ...) {
+ncbi_snp_query <- function(SNPs, ...) {
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply(SNPs, function(x) {
     grep("^rs[0-9]+$", x)

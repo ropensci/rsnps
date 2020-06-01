@@ -2,22 +2,17 @@
 % Please edit documentation in R/deprecated-defunct.R
 \name{ncbi_snp_summary}
 \alias{ncbi_snp_summary}
-\alias{ncbi_snp_query}
 \alias{ncbi_snp_query2}
 \alias{NCBI_snp_query}
 \title{This function is defunct.}
 \usage{
 ncbi_snp_summary(...)
 
-ncbi_snp_query(...)
-
 ncbi_snp_query2(...)
 
 NCBI_snp_query(...)
 }
 \description{
-This function is defunct.
-
 This function is defunct.
 
 This function is defunct.

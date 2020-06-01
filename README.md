@@ -38,10 +38,8 @@ This set of functions/package accesses data from:
             `phenotypes()`, `phenotypes_byid()`, `users()`
   - NCBI’s dbSNP SNP database
       - See <https://www.ncbi.nlm.nih.gov/snp> for more details
-      - Relevant functions:
+      - Relevant function:
           - `ncbi_snp_query()`
-          - `ncbi_snp_query2()`
-      - `ncbi_snp_summary()`
 
 ## Install
 
@@ -67,14 +65,30 @@ library("rsnps")
 ### NCBI dbSNP data
 
 ``` r
-SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-ncbi_snp_query(SNPs)
+snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
+ncbi_snp_query(snps)
 ```
 
-    #>  [1] Query           Chromosome      BP              Marker         
-    #>  [5] Class           Gene            Alleles         Major          
-    #>  [9] Minor           MAF             AncestralAllele
-    #> <0 rows> (or 0-length row.names)
+    #>          Query Chromosome        BP Class         rsid          Gene
+    #> 1        rs332          7 117559593   del  rs121909001 CFTR/CFTR-AS1
+    #> 2     rs420358          1  40341239   snv     rs420358              
+    #> 3    rs1837253          5 111066174   snv    rs1837253              
+    #> 4 rs1209415715          9  41782316   snv rs1209415715              
+    #>       Alleles AncestralAllele VariationAllele      seqname
+    #> 1 TTT, delTTT             TTT          delTTT NC_000007.14
+    #> 2     A,C,G,T               A           C,G,T NC_000001.11
+    #> 3         T,C               T               C NC_000005.10
+    #> 4         T,C               T               C NC_000009.12
+    #>                                                                               hgvs
+    #> 1                                            NC_000007.14:g.117559593_117559595del
+    #> 2 NC_000001.11:g.40341239A>C,NC_000001.11:g.40341239A>G,NC_000001.11:g.40341239A>T
+    #> 3                                                      NC_000005.10:g.111066174T>C
+    #> 4                                                       NC_000009.12:g.41782316T>C
+    #>     assembly ref_seq Minor    MAF
+    #> 1 GRCh38.p12    <NA>  <NA>     NA
+    #> 2 GRCh38.p12       A     C 0.8614
+    #> 3 GRCh38.p12       T     C 0.7133
+    #> 4 GRCh38.p12    <NA>  <NA>     NA
 
 ### openSNP data
 

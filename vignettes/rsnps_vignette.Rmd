@@ -29,11 +29,12 @@ devtools::install_github("ropensci/rsnps")
 library(rsnps)
 ```
 
+
 ## OpenSNP data
 
 ### All Genotypes
 
-Get genotype data for all users at a particular SNP
+Get genotype data for all users at a particular SNP from [OpenSNP](https://opensnp.org):
 
 
 ```r
@@ -638,9 +639,10 @@ phenotypes_byid(phenotypeid=12, return_ = 'users')[1:10,]
 
 ### dbSNP
 
-Query NCBI's dbSNP for information on a set of SNPs
+Query NCBI's [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) for information on a set of SNPs
 
 An example with both merged SNPs, non-SNV SNPs, regular SNPs, SNPs not found, microsatellite
+
 
 
 ```r
