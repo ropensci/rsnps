@@ -1,6 +1,13 @@
 
-rsnps 0.3.2
+rsnps 0.4.0
 ===========
+
+### MAJOR IMPROVEMENTS
+
+NCBI / dbSNP changed their API:
+
+* Rewrote `ncbi_snp_query` to accomodate the new API (#86, #88). 
+* Removed the functions `ncbi_snp_query2` an `ncbi_snp_summary`. 
 
 ### MINOR IMPROVEMENTS
 
@@ -9,7 +16,6 @@ rsnps 0.3.2
 ### DOCUMENTATION FIXES
 
 * Restructured and fixed a typo in `README.Rmd` and added link to vignette (#63).
-* Fixed a typo in `R/NCBI_snp_query.R`, `R/NCBI_snp_query2.R` and `R/ncbi_snp_summary.R`.
 * Added info of two new maintainers to `DESCRIPTION`. 
 
 ### BUG FIXES
