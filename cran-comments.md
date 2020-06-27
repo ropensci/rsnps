@@ -6,7 +6,7 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
 
    License components with restrictions and base license permitting such:
      MIT + file LICENSE
