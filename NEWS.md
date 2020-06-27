@@ -13,7 +13,6 @@ NCBI / dbSNP changed their API:
 
 * Reordered `ncbi_snp_query` dataframe output to have chromosome and bp beside each other (#70).
 * Changed `ncbi_snp_query` parameter (`SNPs`) to lower case (`snps`). 
-* Added more unit tests for `ncbi_snp_query`.
 
 ### DOCUMENTATION FIXES
 
