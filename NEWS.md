@@ -11,12 +11,15 @@ NCBI / dbSNP changed their API:
 
 ### MINOR IMPROVEMENTS
 
-* Reordered `ncbi_snp_query` dataframe output to have chromosome and bp beside each other (#70). 
+* Reordered `ncbi_snp_query` dataframe output to have chromosome and bp beside each other (#70).
+* Changed `ncbi_snp_query` parameter (`SNPs`) to lower case (`snps`). 
+* Added more unit tests for `ncbi_snp_query`.
 
 ### DOCUMENTATION FIXES
 
 * Restructured and fixed a typo in `README.Rmd` and added link to vignette (#63).
 * Added info of two new maintainers to `DESCRIPTION`. 
+* Added relevant API links to vignette. 
 
 ### BUG FIXES
 
