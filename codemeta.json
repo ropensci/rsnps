@@ -14,10 +14,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
+    "version": "3.6.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
+  "runtimePlatform": "R version 3.6.2 (2019-12-12)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -176,6 +176,30 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "RJSONIO",
+      "name": "RJSONIO",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=RJSONIO"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "httr",
+      "name": "httr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=httr"
     }
   ],
   "applicationCategory": "Genes",
@@ -183,7 +207,6 @@
   "keywords": ["gene", "snp", "sequence", "API", "web", "api-client", "species", "dbSNP", "OpenSNP", "NCBI", "genotype", "web-api", "snps", "data", "rstats", "r", "r-package"],
   "releaseNotes": "https://github.com/ropensci/rsnps/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rsnps/blob/master/README.md",
-  "fileSize": "37.352KB",
   "contIntegration": [
     "https://travis-ci.org/ropensci/rsnps",
     "https://ci.appveyor.com/project/sckott/rsnps/branch/master",
