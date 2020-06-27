@@ -131,7 +131,9 @@ tutorial](https://github.com/ropensci/rsnps/blob/master/inst/vign/rsnps_vignette
   - License: MIT
   - Get citation information for `rsnsps` in R doing `citation(package =
     'rsnps')`
-  - Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
-
+  - Please note that this package is released with a [Contributor Code
+    of Conduct](https://ropensci.org/code-of-conduct/). By contributing
+    to this project, you agree to abide by its
+terms.
 
 [![ropensci\_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
