@@ -34,4 +34,6 @@
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @author Kevin Ushey \email{kevinushey@@gmail.com}
 #' @author Hao Zhu \email{haozhu233@@gmail.com}
+#' @author Sina Rüeger \email{sina.rueeger@gmail.com}
+#' @author Julia Gustavsen \email{j.gustavsen@gmail.com}
 NULL

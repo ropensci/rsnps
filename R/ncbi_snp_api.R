@@ -128,19 +128,19 @@ get_gene_names <- function(primary_info) {
 }
 
 
-#' Query NCBI's refSNP for information on a set of SNPs via the API
+#' Query NCBI's refSNP for information on a set of snps via the API
 #'
 #' This function queries NCBI's refSNP for information related to the latest
 #' dbSNP build and latest reference genome for information on the vector
-#' of SNPs submitted.
+#' of snps submitted.
 #' 
 #' This function currently pulling data for Assembly 38 - in particular
 #' note that if you think the BP position is wrong, that you may be 
 #' hoping for the BP position for a different Assembly. 
 #'
 #' @export
-#' @param SNPs (character) A vector of SNPs (rs numbers).
-#' @param ... Curl options passed on to [crul::HttpClient]
+#' @param snps (character) A vector of SNPs (rs numbers).
+#' @param ... Curl options passed on to [httr:GET]
 #' @return A dataframe with columns:
 #' 
 #' - Query: The rs ID that was queried.
@@ -174,7 +174,6 @@ get_gene_names <- function(primary_info) {
 #' - assembly - which assembly was used for the annotations
 #' - ref_seq - sequence in reference assembly
 #'
-#' @seealso [ncbi_snp_query()]
 #'
 #' @references <https://www.ncbi.nlm.nih.gov/projects/SNP/>
 #' @references <https://www.ncbi.nlm.nih.gov/pubmed/31738401> SPDI model
@@ -194,14 +193,14 @@ get_gene_names <- function(primary_info) {
 #' ncbi_snp_query("rs1837253")
 #' ncbi_snp_query("rs1209415715")
 #' ncbi_snp_query("rs111068718")
-#' ncbi_snp_query(SNPs='rs9970807')
+#' ncbi_snp_query(snps='rs9970807')
 #'
 #' ncbi_snp_query("rs121909001")
 #' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' }
-ncbi_snp_query <- function(SNPs, ...) {
+ncbi_snp_query <- function(snps, ...) {
   ## ensure these are rs numbers of the form rs[0-9]+
-  tmp <- sapply(SNPs, function(x) {
+  tmp <- sapply(snps, function(x) {
     grep("^rs[0-9]+$", x)
   })
   if (any(sapply(tmp, length) == 0)) {
@@ -211,19 +210,19 @@ ncbi_snp_query <- function(SNPs, ...) {
   }
   
   message(paste0("Getting info about the following rsIDs: ",
-                 paste(SNPs,
+                 paste(snps,
                        collapse = ", ")))
   ## transform all SNPs into numbers (rsid)
-  SNPs_num <- gsub("rs", "", SNPs)
+  snps_num <- gsub("rs", "", snps)
   
-  out <- as.data.frame(matrix(0, nrow = length(SNPs_num), ncol = 15))
+  out <- as.data.frame(matrix(0, nrow = length(snps_num), ncol = 15))
   names(out) <- c("Query", "Chromosome", "BP", "Class", "rsid", "Gene", "Alleles", "AncestralAllele", "VariationAllele", "seqname", "hgvs", "assembly", "ref_seq", "Minor", "MAF")
   
   ## as far as I understand from https://api.ncbi.nlm.nih.gov/variation/v0/#/RefSNP/ we
   ## can only send one query at a time and max 1 per second.
-  for (i in seq_along(SNPs_num)) {
+  for (i in seq_along(snps_num)) {
     
-    variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", SNPs_num[i])
+    variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", snps_num[i])
     variant.response <-  httr::GET(variant.url)
     variant.response.content <-  RJSONIO::fromJSON(rawToChar(variant.response$content),
                                                    simplifyWithNames = TRUE)
@@ -231,7 +230,7 @@ ncbi_snp_query <- function(SNPs, ...) {
     if ("error" %in% names(variant.response.content)) {
       if (variant.response.content$error$message == "RefSNP not found") {
         warning("The following rsId had no information available on NCBI:\n  ",
-                paste0("rs", SNPs_num[i]),
+                paste0("rs", snps_num[i]),
                 call. = FALSE)
         next()
       } else {
@@ -244,7 +243,7 @@ ncbi_snp_query <- function(SNPs, ...) {
     
     if ("withdrawn_snapshot_data" %in% names(variant.response.content) & length(variant.response.content$present_obs_movements) == 0) {
       warning("The following rsId has been withdrawn from NCBI:\n  ",
-              paste0("rs", SNPs_num[i]),
+              paste0("rs", snps_num[i]),
               call. = FALSE)
       next()
     }
