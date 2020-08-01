@@ -39,7 +39,7 @@ Suggests:
     testthat,
     knitr,
     markdown
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 X-schema.org-applicationCategory: Genes
 X-schema.org-keywords: gene, snp, sequence, API, web, api-client, species, dbSNP, OpenSNP, NCBI, genotype
 X-schema.org-isPartOf: https://ropensci.org

@@ -12,8 +12,7 @@ via their API (https://opensnp.org/faq#api) and NCBI's dbSNP SNP database
 }
 \section{NCBI Authenication}{
 
-This applies the the functions \code{\link[=ncbi_snp_query]{ncbi_snp_query()}},
-\code{\link[=ncbi_snp_query2]{ncbi_snp_query2()}}, and \code{\link[=ncbi_snp_summary]{ncbi_snp_summary()}}:
+This applies the function \code{\link[=ncbi_snp_query]{ncbi_snp_query()}}:
 
 You can optionally use an API key, if you do it will
 allow higher rate limits (more requests per time period)
