@@ -25,8 +25,6 @@
 #' @importFrom crul HttpClient
 #' @importFrom plyr ldply llply laply compact
 #' @importFrom stringr str_split str_replace_all str_trim
-#' @importFrom xml2 read_xml xml_find_all xml_text xml_attr
-#' @importFrom XML xmlInternalTreeParse xmlToList
 #' @name rsnps-package
 #' @aliases rsnps
 #' @docType package
