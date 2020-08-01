@@ -5,8 +5,7 @@
 #' (https://www.ncbi.nlm.nih.gov/snp).
 #' 
 #' @section NCBI Authenication:
-#' This applies the the functions [ncbi_snp_query()], 
-#' [ncbi_snp_query2()], and [ncbi_snp_summary()]:
+#' This applies the function [ncbi_snp_query()]:
 #' 
 #' You can optionally use an API key, if you do it will 
 #' allow higher rate limits (more requests per time period)
@@ -31,6 +30,8 @@
 #' @name rsnps-package
 #' @aliases rsnps
 #' @docType package
+#' @author Julia Gustavsen \email{j.gustavsen@@gmail.com}
+#' @author Sina Rüeger \email{sina.rueeger@@gmail.com}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @author Kevin Ushey \email{kevinushey@@gmail.com}
 #' @author Hao Zhu \email{haozhu233@@gmail.com}
