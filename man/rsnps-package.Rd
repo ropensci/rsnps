@@ -36,4 +36,8 @@ Scott Chamberlain \email{myrmecocystus@gmail.com}
 Kevin Ushey \email{kevinushey@gmail.com}
 
 Hao Zhu \email{haozhu233@gmail.com}
+
+Sina Rüeger \email{sina.rueeger@gmail.com}
+
+Julia Gustavsen \email{j.gustavsen@gmail.com}
 }

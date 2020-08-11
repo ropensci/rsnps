@@ -2,14 +2,14 @@
 % Please edit documentation in R/ncbi_snp_api.R
 \name{ncbi_snp_query}
 \alias{ncbi_snp_query}
-\title{Query NCBI's refSNP for information on a set of SNPs via the API}
+\title{Query NCBI's refSNP for information on a set of snps via the API}
 \usage{
-ncbi_snp_query(SNPs, ...)
+ncbi_snp_query(snps, ...)
 }
 \arguments{
-\item{SNPs}{(character) A vector of SNPs (rs numbers).}
+\item{snps}{(character) A vector of SNPs (rs numbers).}
 
-\item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
+\item{...}{Curl options passed on to \link{httr:GET}}
 }
 \value{
 A dataframe with columns:
@@ -49,7 +49,7 @@ This is drawn from the current global reference population used by NCBI (GnomAD)
 \description{
 This function queries NCBI's refSNP for information related to the latest
 dbSNP build and latest reference genome for information on the vector
-of SNPs submitted.
+of snps submitted.
 }
 \details{
 This function currently pulling data for Assembly 38 - in particular
@@ -72,7 +72,7 @@ ncbi_snp_query("rs121909001")
 ncbi_snp_query("rs1837253")
 ncbi_snp_query("rs1209415715")
 ncbi_snp_query("rs111068718")
-ncbi_snp_query(SNPs='rs9970807')
+ncbi_snp_query(snps='rs9970807')
 
 ncbi_snp_query("rs121909001")
 ncbi_snp_query("rs121909001", verbose = TRUE)
@@ -82,7 +82,4 @@ ncbi_snp_query("rs121909001", verbose = TRUE)
 \url{https://www.ncbi.nlm.nih.gov/projects/SNP/}
 
 \url{https://www.ncbi.nlm.nih.gov/pubmed/31738401} SPDI model
-}
-\seealso{
-\code{\link[=ncbi_snp_query]{ncbi_snp_query()}}
 }
