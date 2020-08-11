@@ -10,14 +10,13 @@
   "codeRepository": "https://github.com/ropensci/rsnps",
   "issueTracker": "https://github.com/ropensci/rsnps/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.2.9121",
+  "version": "0.4.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.2 (2019-12-12)",
+  "runtimePlatform": "R version 3.5.2 (2018-12-20)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -89,6 +88,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "markdown",
+      "name": "markdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=markdown"
     }
   ],
   "softwareRequirements": [
@@ -144,14 +155,7 @@
     {
       "@type": "SoftwareApplication",
       "identifier": "XML",
-      "name": "XML",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=XML"
+      "name": "XML"
     },
     {
       "@type": "SoftwareApplication",
@@ -207,12 +211,9 @@
   "keywords": ["gene", "snp", "sequence", "API", "web", "api-client", "species", "dbSNP", "OpenSNP", "NCBI", "genotype", "web-api", "snps", "data", "rstats", "r", "r-package"],
   "releaseNotes": "https://github.com/ropensci/rsnps/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rsnps/blob/master/README.md",
-  "contIntegration": [
-    "https://travis-ci.org/ropensci/rsnps",
-    "https://ci.appveyor.com/project/sckott/rsnps/branch/master",
-    "https://codecov.io/github/ropensci/rsnps?branch=master"
-  ],
+  "contIntegration": ["https://travis-ci.org/ropensci/rsnps", "https://ci.appveyor.com/project/sckott/rsnps/branch/master", "https://codecov.io/github/ropensci/rsnps?branch=master"],
   "contributor": {},
   "copyrightHolder": {},
-  "funder": {}
+  "funder": {},
+  "fileSize": "203.327KB"
 }
