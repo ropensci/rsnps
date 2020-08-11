@@ -14,32 +14,32 @@ ncbi_snp_query(SNPs, ...)
 \value{
 A dataframe with columns:
 \itemize{
-\item Query: The rs ID that was queried.
-\item Chromosome: The chromosome that the marker lies on.
-\item BP: The chromosomal position, in base pairs, of the marker,
+\item query: The rs ID that was queried.
+\item chromosome: The chromosome that the marker lies on.
+\item bp: The chromosomal position, in base pairs, of the marker,
 as aligned with the current genome used by dbSNP. we add 1 to the base
 pair position in the BP column in the output data.frame to agree with
 what the dbSNP website has.
 \item rsid: Reference SNP cluster ID. If the rs ID queried
 has been merged, the up-to-date name of the ID is returned here, and
 a warning is issued.
-\item Class: The rsid's 'class'. See
+\item class: The rsid's 'class'. See
 \url{http://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass}
 for more details.
-\item Gene: If the rsid lies within a gene (either within the exon
+\item gene: If the rsid lies within a gene (either within the exon
 or introns of a gene), the name of that gene is returned here; otherwise,
 \code{NA}. Note that
 the gene may not be returned if the rsid lies too far upstream or downstream
 of the particular gene of interest.
-\item Alleles: The alleles associated with the SNP if it is a
+\item alleles: The alleles associated with the SNP if it is a
 SNV; otherwise, if it is an INDEL, microsatellite, or other kind of
 polymorphism the relevant information will be available here.
-\item Minor: The allele for which the MAF is computed,
+\item minor: The allele for which the MAF is computed,
 given it is an SNV; otherwise, \code{NA}.
-\item MAF: The minor allele frequency of the SNP, given it is an SNV.
+\item maf: The minor allele frequency of the SNP, given it is an SNV.
 This is drawn from the current global reference population used by NCBI (GnomAD).
-\item AncestralAllele: allele as described in the current assembly
-\item VariationAllele: difference to the current assembly
+\item ancestral_allele: allele as described in the current assembly
+\item variation_allele: difference to the current assembly
 \item seqname - Chromosome RefSeq reference.
 \item hgvs -  full hgvs notation for variant
 \item assembly - which assembly was used for the annotations

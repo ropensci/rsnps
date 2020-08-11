@@ -5,8 +5,7 @@
 #' (https://www.ncbi.nlm.nih.gov/snp).
 #' 
 #' @section NCBI Authenication:
-#' This applies the the functions [ncbi_snp_query()], 
-#' [ncbi_snp_query2()], and [ncbi_snp_summary()]:
+#' This applies the function [ncbi_snp_query()]:
 #' 
 #' You can optionally use an API key, if you do it will 
 #' allow higher rate limits (more requests per time period)
@@ -26,8 +25,6 @@
 #' @importFrom crul HttpClient
 #' @importFrom plyr ldply llply laply compact
 #' @importFrom stringr str_split str_replace_all str_trim
-#' @importFrom xml2 read_xml xml_find_all xml_text xml_attr
-#' @importFrom XML xmlInternalTreeParse xmlToList
 #' @name rsnps-package
 #' @aliases rsnps
 #' @docType package
@@ -37,3 +34,4 @@
 #' @author Sina Rüeger \email{sina.rueeger@gmail.com}
 #' @author Julia Gustavsen \email{j.gustavsen@gmail.com}
 NULL
+

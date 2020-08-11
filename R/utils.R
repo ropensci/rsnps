@@ -4,7 +4,6 @@
 #' @param from A vector of elements to map from.
 #' @param to A vector of elements to map to.
 #' @param ... Optional arguments passed to [match()]
-#' @export
 #' @keywords internal
 swap <- function( vec, from, to=names(from), ... ) {
   tmp <- to[ match( vec, from, ... ) ]
@@ -18,7 +17,6 @@ swap <- function( vec, from, to=names(from), ... ) {
 #' @param SNP A vector of genotypes for a particular locus.
 #' @param sep The separator between each allele.
 #' @param outSep The output separator to use.
-#' @export
 #' @keywords internal
 flip <- function( SNP, sep="", outSep=sep ) {
 
@@ -54,7 +52,6 @@ flip <- function( SNP, sep="", outSep=sep ) {
 #' character-by-character.
 #' @param names optional: a vector of names to pass to the returned `data.frame`.
 #' @seealso [strsplit()]
-#' @export
 #' @keywords internal
 split_to_df <- function(x, sep, fixed=FALSE, perl=TRUE, useBytes=FALSE, names=NULL) {
 
