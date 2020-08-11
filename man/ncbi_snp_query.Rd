@@ -2,14 +2,12 @@
 % Please edit documentation in R/ncbi_snp_api.R
 \name{ncbi_snp_query}
 \alias{ncbi_snp_query}
-\title{Query NCBI's refSNP for information on a set of snps via the API}
+\title{Query NCBI's refSNP for information on a set of SNPs via the API}
 \usage{
-ncbi_snp_query(snps, ...)
+ncbi_snp_query(snps)
 }
 \arguments{
 \item{snps}{(character) A vector of SNPs (rs numbers).}
-
-\item{...}{Curl options passed on to \link{httr:GET}}
 }
 \value{
 A dataframe with columns:
@@ -58,6 +56,8 @@ hoping for the BP position for a different Assembly.
 
 Note that you are limited in the to a max of one query per second
 and concurrent queries are not allowed.
+If users want to set curl options when querying for the SNPs they can do so by using
+httr::set_config/httr::with_config
 }
 \examples{
 \dontrun{

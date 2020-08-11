@@ -128,7 +128,7 @@ get_gene_names <- function(primary_info) {
 }
 
 
-#' Query NCBI's refSNP for information on a set of snps via the API
+#' Query NCBI's refSNP for information on a set of SNPs via the API
 #'
 #' This function queries NCBI's refSNP for information related to the latest
 #' dbSNP build and latest reference genome for information on the vector
@@ -140,7 +140,6 @@ get_gene_names <- function(primary_info) {
 #'
 #' @export
 #' @param snps (character) A vector of SNPs (rs numbers).
-#' @param ... Curl options passed on to [httr:GET]
 #' @return A dataframe with columns:
 #' 
 #' - query: The rs ID that was queried.
@@ -180,6 +179,8 @@ get_gene_names <- function(primary_info) {
 #'
 #' @details Note that you are limited in the to a max of one query per second
 #' and concurrent queries are not allowed.
+#' If users want to set curl options when querying for the SNPs they can do so by using
+#'  httr::set_config/httr::with_config
 #'
 #' @examples \dontrun{
 #' ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
@@ -198,7 +199,7 @@ get_gene_names <- function(primary_info) {
 #' ncbi_snp_query("rs121909001")
 #' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' }
-ncbi_snp_query <- function(snps, ...) {
+ncbi_snp_query <- function(snps) {
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply(snps, function(x) {
     grep("^rs[0-9]+$", x)
