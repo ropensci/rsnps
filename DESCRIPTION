@@ -30,8 +30,6 @@ Imports:
     stringr,
     crul (>= 0.5.2),
     data.table,
-    XML,
-    xml2,
     jsonlite,
     RJSONIO,
     httr
