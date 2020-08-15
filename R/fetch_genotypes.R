@@ -16,7 +16,7 @@
 #' @return data.frame for a single user, with four columns:
 #' 
 #' - rsid (character)
-#' - chromsome (integer)
+#' - chromosome (integer)
 #' - position (integer)
 #' - genotype (character)
 #' 
@@ -46,5 +46,5 @@ fetch_genotypes <- function(url, rows = 100, filepath = NULL, quiet = TRUE, ...)
   utils::download.file(url, destfile = filepath, quiet = quiet, ...)
   df <- utils::read.table(filepath, sep = "\t", nrows = rows, header = FALSE, 
                    comment.char = "#", stringsAsFactors = FALSE)
-  stats::setNames(df, c("rsid", "chromsome", "position", "genotype"))
+  stats::setNames(df, c("rsid", "chromosome", "position", "genotype"))
 }

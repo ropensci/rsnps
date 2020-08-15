@@ -27,7 +27,7 @@ to a file if you want to  access it later.}
 data.frame for a single user, with four columns:
 \itemize{
 \item rsid (character)
-\item chromsome (integer)
+\item chromosome (integer)
 \item position (integer)
 \item genotype (character)
 }

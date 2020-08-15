@@ -6,7 +6,7 @@ rsnps 0.4.0
 
 NCBI / dbSNP changed their API:
 
-* Rewrote `ncbi_snp_query` to accomodate the new API (#86, #88). 
+* Rewrote `ncbi_snp_query` to accommodate the new API (#86, #88). 
 * Removed the functions `ncbi_snp_query2` an `ncbi_snp_summary`. 
 
 ### MINOR IMPROVEMENTS
@@ -30,11 +30,11 @@ rsnps 0.3.0
 
 ### DEPRECATED AND DEFUNCT
 
-* `ld_search()` is now defunct. The Broad Insitute has taken down the SNAP service behind the function. (#46) (#53) (#60)
+* `ld_search()` is now defunct. The Broad Institute has taken down the SNAP service behind the function. (#46) (#53) (#60)
 
 ### NEW FEATURES
 
-* the three NCBI functions gain a new parameter `key` for passing in an NCBI Entrez API key. You can alteernatively (and we encourage this) store your key as an environment variable and we'll use that instead. The key allows you to have higher rate limits than without a key (#58)
+* the three NCBI functions gain a new parameter `key` for passing in an NCBI Entrez API key. You can alternatively (and we encourage this) store your key as an environment variable and we'll use that instead. The key allows you to have higher rate limits than without a key (#58)
 * gains new function `ncbi_snp_summary()` for summary data on a SNP (#31)
 
 ### MINOR IMPROVEMENTS
