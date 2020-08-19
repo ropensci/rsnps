@@ -76,7 +76,7 @@ head(x)
 #> 6  1      Eye color             Blue            1359
 ```
 
-Output a list, then call the characterisitc of interest by 'id' or 'characteristic'
+Output a list, then call the characteristic of interest by 'id' or 'characteristic'
 
 
 ```r
