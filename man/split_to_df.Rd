@@ -4,8 +4,7 @@
 \alias{split_to_df}
 \title{Split a Vector of Strings Following a Regular Structure}
 \usage{
-split_to_df(x, sep, fixed = FALSE, perl = TRUE, useBytes = FALSE,
-  names = NULL)
+split_to_df(x, sep, fixed = FALSE, perl = TRUE, useBytes = FALSE, names = NULL)
 }
 \arguments{
 \item{x}{a vector of strings.}

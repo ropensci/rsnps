@@ -5,3 +5,12 @@
 rsnps.Rproj
 .Rhistory
 inst/vign/cache
+revdep/checks
+revdep/library
+revdep/checks.noindex
+revdep/library.noindex
+revdep/data.sqlite
+revdep/*.html
+revdep/*.cache.rds
+doc
+Meta

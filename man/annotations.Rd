@@ -5,8 +5,11 @@
 \title{Get all openSNP phenotypes, their variations, and how many users have data
 available for a given phenotype.}
 \usage{
-annotations(snp = NA, output = c("all", "plos", "mendeley", "snpedia",
-  "metadata"), ...)
+annotations(
+  snp = NA,
+  output = c("all", "plos", "mendeley", "snpedia", "metadata"),
+  ...
+)
 }
 \arguments{
 \item{snp}{SNP name.}
@@ -22,8 +25,8 @@ data.frame of results
 }
 \description{
 Either return data.frame with all results, or output a list, then call
-the charicteristic by id (paramater = "id") or
-name (paramater = "characteristic").
+the charicteristic by id (parameter = "id") or
+name (parameter = "characteristic").
 }
 \examples{
 \dontrun{
@@ -42,11 +45,14 @@ annotations(snp = 'rs7903146', output = 'all')
 }
 }
 \seealso{
-Other opensnp-fxns: \code{\link{allgensnp}},
-  \code{\link{allphenotypes}},
-  \code{\link{download_users}},
-  \code{\link{fetch_genotypes}}, \code{\link{genotypes}},
-  \code{\link{phenotypes_byid}}, \code{\link{phenotypes}},
-  \code{\link{users}}
+Other opensnp-fxns: 
+\code{\link{allgensnp}()},
+\code{\link{allphenotypes}()},
+\code{\link{download_users}()},
+\code{\link{fetch_genotypes}()},
+\code{\link{genotypes}()},
+\code{\link{phenotypes_byid}()},
+\code{\link{phenotypes}()},
+\code{\link{users}()}
 }
 \concept{opensnp-fxns}

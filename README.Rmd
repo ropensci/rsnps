@@ -1,3 +1,8 @@
+---
+output: github_document
+---
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 rsnps
 =====
 
@@ -13,8 +18,10 @@ knitr::opts_chunk$set(
 [![Build Status](https://api.travis-ci.org/ropensci/rsnps.png)](https://travis-ci.org/ropensci/rsnps)
 [![Build status](https://ci.appveyor.com/api/projects/status/d2lv98726u6t9ut5/branch/master)](https://ci.appveyor.com/project/sckott/rsnps/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rsnps/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rsnps?branch=master)
-[![cran version](http://www.r-pkg.org/badges/version/rsnps)](https://cran.r-project.org/package=rsnps)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rsnps?color=E664A4)](https://github.com/metacran/cranlogs.app)
+[![cran version](https://www.r-pkg.org/badges/version/rsnps)](https://cran.r-project.org/package=rsnps)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rsnps?color=E664A4)](https://github.com/metacran/cranlogs.app)
+
+This package gives you access to data from OpenSNP and NCBI's dbSNP SNP database.
 
 ## NOTE
 
@@ -28,17 +35,15 @@ This set of functions/package accesses data from:
 + openSNP.org
 	+ <https://opensnp.org>
 	+ See documentation on the openSNP API <https://opensnp.org/faq#api>
-	+ See blog post about their API <http://opensnp.wordpress.com/2012/01/18/some-progress-on-the-api-json-endpoints>
-	+ Relavant functions:
+	+ See blog post about their API <https://opensnp.wordpress.com/2012/01/18/some-progress-on-the-api-json-endpoints>
+	+ Relevant functions:
 		+ `allgensnp()`, `allphenotypes()`, `annotations()`, `download_users()`, 
 		`fetch_genotypes()`, `genotypes()`, `phenotypes()`, `phenotypes_byid()`, `users()`
 
 + NCBI's dbSNP SNP database
 	+ See <https://www.ncbi.nlm.nih.gov/snp> for more details
-	+ Relavant functions:
+	+ Relevant function:
 		+ `ncbi_snp_query()`
-		+ `ncbi_snp_query2()`
-        + `ncbi_snp_summary()`
 
 ## Install
 
@@ -51,22 +56,24 @@ install.packages("rsnps")
 Or dev version
 
 ```{r eval=FALSE}
-install.packages("devtools")
-devtools::install_github("ropensci/rsnps")
+install.packages("remotes")
+remotes::install_github("ropensci/rsnps")
 ```
 
 ```{r}
 library("rsnps")
 ```
 
-## Using NCBI dbSNP data
+## Usage
+
+### NCBI dbSNP data
 
 ```{r}
-SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-ncbi_snp_query(SNPs)
+snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
+ncbi_snp_query(snps)
 ```
 
-## Using openSNP data
+### openSNP data
 
 `genotypes()` function
 
@@ -81,12 +88,13 @@ out <- phenotypes(userid=1)
 out$phenotypes$`Hair Type`
 ```
 
+For more detail, see the [vignette: rsnps tutorial](https://github.com/ropensci/rsnps/blob/master/inst/vign/rsnps_vignette.md).
+
 ## Meta
 
 * Please [report any issues or bugs](https://github.com/ropensci/rsnps/issues).
 * License: MIT
 * Get citation information for `rsnsps` in R doing `citation(package = 'rsnps')`
-* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). 
-By participating in this project you agree to abide by its terms.
+* Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

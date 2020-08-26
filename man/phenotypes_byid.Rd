@@ -5,8 +5,11 @@
 \title{Get all openSNP known variations and all users sharing that phenotype for
 one phenotype(-ID).}
 \usage{
-phenotypes_byid(phenotypeid = NA, return_ = c("description",
-  "knownvars", "users"), ...)
+phenotypes_byid(
+  phenotypeid = NA,
+  return_ = c("description", "knownvars", "users"),
+  ...
+)
 }
 \arguments{
 \item{phenotypeid}{ID of openSNP phenotype.}
@@ -34,10 +37,14 @@ phenotypes_byid(phenotypeid=12, return_ = 'desc', verbose = TRUE)
 }
 }
 \seealso{
-Other opensnp-fxns: \code{\link{allgensnp}},
-  \code{\link{allphenotypes}}, \code{\link{annotations}},
-  \code{\link{download_users}},
-  \code{\link{fetch_genotypes}}, \code{\link{genotypes}},
-  \code{\link{phenotypes}}, \code{\link{users}}
+Other opensnp-fxns: 
+\code{\link{allgensnp}()},
+\code{\link{allphenotypes}()},
+\code{\link{annotations}()},
+\code{\link{download_users}()},
+\code{\link{fetch_genotypes}()},
+\code{\link{genotypes}()},
+\code{\link{phenotypes}()},
+\code{\link{users}()}
 }
 \concept{opensnp-fxns}

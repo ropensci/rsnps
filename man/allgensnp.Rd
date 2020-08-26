@@ -24,10 +24,14 @@ head(x)
 }
 }
 \seealso{
-Other opensnp-fxns: \code{\link{allphenotypes}},
-  \code{\link{annotations}}, \code{\link{download_users}},
-  \code{\link{fetch_genotypes}}, \code{\link{genotypes}},
-  \code{\link{phenotypes_byid}}, \code{\link{phenotypes}},
-  \code{\link{users}}
+Other opensnp-fxns: 
+\code{\link{allphenotypes}()},
+\code{\link{annotations}()},
+\code{\link{download_users}()},
+\code{\link{fetch_genotypes}()},
+\code{\link{genotypes}()},
+\code{\link{phenotypes_byid}()},
+\code{\link{phenotypes}()},
+\code{\link{users}()}
 }
 \concept{opensnp-fxns}

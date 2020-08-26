@@ -10,14 +10,13 @@
   "codeRepository": "https://github.com/ropensci/rsnps",
   "issueTracker": "https://github.com/ropensci/rsnps/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.1.9113",
+  "version": "0.4.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.2 Patched (2018-12-31 r75943)",
+  "runtimePlatform": "R version 3.5.2 (2018-12-20)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -27,9 +26,22 @@
   "author": [
     {
       "@type": "Person",
+      "givenName": "Julia",
+      "familyName": "Gustavsen",
+      "email": "j.gustavsen@gmail.com",
+      "@id": "https://orcid.org/0000-0002-4764-4802"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Sina",
+      "familyName": "Rüeger",
+      "email": "sina.rueeger@gmail.com",
+      "@id": "https://orcid.org/0000-0003-2848-9242"
+    },
+    {
+      "@type": "Person",
       "givenName": "Scott",
       "familyName": "Chamberlain",
-      "email": "myrmecocystus@gmail.com",
       "@id": "https://orcid.org/0000-0003-1444-9135"
     },
     {
@@ -46,10 +58,10 @@
   "maintainer": [
     {
       "@type": "Person",
-      "givenName": "Scott",
-      "familyName": "Chamberlain",
-      "email": "myrmecocystus@gmail.com",
-      "@id": "https://orcid.org/0000-0003-1444-9135"
+      "givenName": "Julia",
+      "familyName": "Gustavsen",
+      "email": "j.gustavsen@gmail.com",
+      "@id": "https://orcid.org/0000-0002-4764-4802"
     }
   ],
   "softwareSuggestions": [
@@ -76,6 +88,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "markdown",
+      "name": "markdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=markdown"
     }
   ],
   "softwareRequirements": [
@@ -131,14 +155,7 @@
     {
       "@type": "SoftwareApplication",
       "identifier": "XML",
-      "name": "XML",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=XML"
+      "name": "XML"
     },
     {
       "@type": "SoftwareApplication",
@@ -163,6 +180,30 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "RJSONIO",
+      "name": "RJSONIO",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=RJSONIO"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "httr",
+      "name": "httr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=httr"
     }
   ],
   "applicationCategory": "Genes",
@@ -170,10 +211,9 @@
   "keywords": ["gene", "snp", "sequence", "API", "web", "api-client", "species", "dbSNP", "OpenSNP", "NCBI", "genotype", "web-api", "snps", "data", "rstats", "r", "r-package"],
   "releaseNotes": "https://github.com/ropensci/rsnps/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rsnps/blob/master/README.md",
-  "fileSize": "37.101KB",
-  "contIntegration": [
-    "https://travis-ci.org/ropensci/rsnps",
-    "https://ci.appveyor.com/project/sckott/rsnps/branch/master",
-    "https://codecov.io/github/ropensci/rsnps?branch=master"
-  ]
+  "contIntegration": ["https://travis-ci.org/ropensci/rsnps", "https://ci.appveyor.com/project/sckott/rsnps/branch/master", "https://codecov.io/github/ropensci/rsnps?branch=master"],
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {},
+  "fileSize": "203.327KB"
 }

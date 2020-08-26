@@ -27,7 +27,7 @@ to a file if you want to  access it later.}
 data.frame for a single user, with four columns:
 \itemize{
 \item rsid (character)
-\item chromsome (integer)
+\item chromosome (integer)
 \item position (integer)
 \item genotype (character)
 }
@@ -60,10 +60,14 @@ read.table("~/myfile.txt", nrows=10)
 }
 }
 \seealso{
-Other opensnp-fxns: \code{\link{allgensnp}},
-  \code{\link{allphenotypes}}, \code{\link{annotations}},
-  \code{\link{download_users}}, \code{\link{genotypes}},
-  \code{\link{phenotypes_byid}}, \code{\link{phenotypes}},
-  \code{\link{users}}
+Other opensnp-fxns: 
+\code{\link{allgensnp}()},
+\code{\link{allphenotypes}()},
+\code{\link{annotations}()},
+\code{\link{download_users}()},
+\code{\link{genotypes}()},
+\code{\link{phenotypes_byid}()},
+\code{\link{phenotypes}()},
+\code{\link{users}()}
 }
 \concept{opensnp-fxns}

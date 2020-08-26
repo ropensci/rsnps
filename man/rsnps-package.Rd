@@ -7,12 +7,12 @@
 \title{Get SNP (Single-Nucleotide Polymorphism) Data on the Web}
 \description{
 This package gives you access to data from OpenSNP (https://opensnp.org)
-via their API (https://opensnp.org/faq#api).
+via their API (https://opensnp.org/faq#api) and NCBI's dbSNP SNP database
+(https://www.ncbi.nlm.nih.gov/snp).
 }
 \section{NCBI Authenication}{
 
-This applies the the functions \code{\link[=ncbi_snp_query]{ncbi_snp_query()}},
-\code{\link[=ncbi_snp_query2]{ncbi_snp_query2()}}, and \code{\link[=ncbi_snp_summary]{ncbi_snp_summary()}}:
+This applies the function \code{\link[=ncbi_snp_query]{ncbi_snp_query()}}:
 
 You can optionally use an API key, if you do it will
 allow higher rate limits (more requests per time period)
@@ -36,4 +36,8 @@ Scott Chamberlain \email{myrmecocystus@gmail.com}
 Kevin Ushey \email{kevinushey@gmail.com}
 
 Hao Zhu \email{haozhu233@gmail.com}
+
+Sina Rüeger \email{sina.rueeger@gmail.com}
+
+Julia Gustavsen \email{j.gustavsen@gmail.com}
 }
