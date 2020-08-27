@@ -2,7 +2,7 @@ Package: rsnps
 Title: Get 'SNP' ('Single-Nucleotide' 'Polymorphism') Data on the Web
 Description: A programmatic interface to various 'SNP' 'datasets'
     on the web: 'OpenSNP' (<https://opensnp.org>), and 'NBCIs' 'dbSNP' database
-    (<https://www.ncbi.nlm.nih.gov/projects/SNP>). Functions
+    (<https://www.ncbi.nlm.nih.gov/projects/SNP/>). Functions
     are included for searching for 'NCBI'. For 'OpenSNP', functions are included 
     for getting 'SNPs', and data for 'genotypes', 'phenotypes', annotations, 
     and bulk downloads of data by user.
@@ -20,8 +20,8 @@ Authors@R: c(
     person("Kevin", "Ushey", role = "aut"),
     person("Hao", "Zhu", role = "aut")
     )
-URL: https://docs.ropensci.org/rsnps, https://github.com/ropensci/rsnps
-BugReports: https://github.com/ropensci/rsnps/issues
+URL: https://docs.ropensci.org/rsnps/, https://github.com/ropensci/rsnps/
+BugReports: https://github.com/ropensci/rsnps/issues/
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8

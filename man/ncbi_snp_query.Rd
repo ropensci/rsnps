@@ -22,7 +22,7 @@ what the dbSNP website has.
 has been merged, the up-to-date name of the ID is returned here, and
 a warning is issued.
 \item class: The rsid's 'class'. See
-\url{http://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass}
+\url{https://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass}
 for more details.
 \item gene: If the rsid lies within a gene (either within the exon
 or introns of a gene), the name of that gene is returned here; otherwise,
@@ -81,5 +81,5 @@ ncbi_snp_query("rs121909001", verbose = TRUE)
 \references{
 \url{https://www.ncbi.nlm.nih.gov/projects/SNP/}
 
-\url{https://www.ncbi.nlm.nih.gov/pubmed/31738401} SPDI model
+\url{https://pubmed.ncbi.nlm.nih.gov/31738401/} SPDI model
 }

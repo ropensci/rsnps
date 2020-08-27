@@ -152,7 +152,7 @@ get_gene_names <- function(primary_info) {
 #' has been merged, the up-to-date name of the ID is returned here, and
 #' a warning is issued.
 #' - class: The rsid's 'class'. See
-#' <http://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass>
+#' <https://www.ncbi.nlm.nih.gov/projects/SNP/snp_legend.cgi?legend=snpClass>
 #' for more details.
 #' - gene: If the rsid lies within a gene (either within the exon
 #' or introns of a gene), the name of that gene is returned here; otherwise,
@@ -175,7 +175,7 @@ get_gene_names <- function(primary_info) {
 #'
 #'
 #' @references <https://www.ncbi.nlm.nih.gov/projects/SNP/>
-#' @references <https://www.ncbi.nlm.nih.gov/pubmed/31738401> SPDI model
+#' @references <https://pubmed.ncbi.nlm.nih.gov/31738401/> SPDI model
 #'
 #' @details Note that you are limited in the to a max of one query per second
 #' and concurrent queries are not allowed.
