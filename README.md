@@ -14,6 +14,8 @@ status](https://ci.appveyor.com/api/projects/status/d2lv98726u6t9ut5/branch/mast
 version](https://www.r-pkg.org/badges/version/rsnps)](https://cran.r-project.org/package=rsnps)
 [![rstudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/rsnps?color=E664A4)](https://github.com/r-hub/cranlogs.app)
+[![R build
+status](https://github.com/ropensci/rsnps/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/rsnps/actions)
 
 This package gives you access to data from OpenSNP and NCBI’s dbSNP SNP
 database.
