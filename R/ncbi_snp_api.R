@@ -228,7 +228,7 @@ ncbi_snp_query <- function(snps) {
   ## transform all SNPs into numbers (rsid)
   snps_num <- gsub("rs", "", snps)
   
-  out <- as.data.frame(matrix(0, nrow = length(snps_num), ncol = 15))
+  out <- as.data.frame(matrix(NA, nrow = length(snps_num), ncol = 15))
   names(out) <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf")
 
   ## as far as I understand from https://api.ncbi.nlm.nih.gov/variation/v0/#/RefSNP/ we
