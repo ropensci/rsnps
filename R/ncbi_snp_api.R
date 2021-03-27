@@ -66,10 +66,7 @@ get_frequency <- function(Class, primary_info) {
     df_freq <- NULL
     for (record in primary_info$primary_snapshot_data$allele_annotations) {
       for (freq_record in record$frequency) {
-        print(freq_record$study_name)
-        
         if (freq_record$observation$deleted_sequence != freq_record$observation$inserted_sequence) {
-          print( "true")
           if (freq_record$observation$inserted_sequence == "") {
             MAF <-  freq_record$allele_count / freq_record$total_count
             df_freq_study <- data.frame(study = freq_record$study_name,
@@ -95,7 +92,6 @@ get_frequency <- function(Class, primary_info) {
                                         stringsAsFactors = FALSE)
           }
           df_freq <- rbind(df_freq, df_freq_study)
-          print(df_freq)
         }
       }
     }
@@ -231,6 +227,8 @@ ncbi_snp_query <- function(snps) {
   out <- as.data.frame(matrix(NA, nrow = length(snps_num), ncol = 15))
   names(out) <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf")
 
+  out_maf <- list(NULL)
+  
   ## as far as I understand from https://api.ncbi.nlm.nih.gov/variation/v0/#/RefSNP/ we
   ## can only send one query at a time and max 1 per second.
   for (i in seq_along(snps_num)) {
@@ -297,9 +295,11 @@ ncbi_snp_query <- function(snps) {
                   placement_SNP$seqname,
                   placement_SNP$hgvs,
                   placement_SNP$assembly,
-                  frequency_SNP$ref_seq,
-                  frequency_SNP$Minor,
-                  frequency_SNP$MAF)
+                  frequency_SNP$ref_seq[frequency_SNP$study=="GnomAD"],
+                  frequency_SNP$Minor[frequency_SNP$study=="GnomAD"],
+                  frequency_SNP$MAF[frequency_SNP$study=="GnomAD"])
+    
+    out_maf[[i]] <- frequency_SNP
     
   }
   Sys.sleep(1)
@@ -310,5 +310,8 @@ ncbi_snp_query <- function(snps) {
   for (nm in c("maf", "bp")) {
     out[, nm] <- as.numeric(out[, nm])
   }
+  
+  ## adding maf_population
+  out <- tibble::tibble(out, maf_population = out_maf)
   return(out)
 }
