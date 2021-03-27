@@ -32,7 +32,8 @@ Imports:
     data.table,
     jsonlite,
     RJSONIO,
-    httr
+    httr,
+    tibble
 Suggests:
     testthat,
     knitr,
