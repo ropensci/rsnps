@@ -95,24 +95,28 @@ get_frequency <- function(Class, primary_info) {
         }
       }
     }
-    ## sort study names so studies grouped together
-    df_freq <- df_freq[order(df_freq$study),]
-    
-    if (exists("df_freq")) {
+  
+    if (!is.null(df_freq)) {
       return(df_freq)
     }
     else {
-      df_freq <- data.frame(ref_seq = NA,
+      df_freq <- data.frame(study = "", 
+                            ref_seq = NA,
                             Minor = NA,
                             MAF = NA,
                             stringsAsFactors = FALSE)
     }
   } else {
-    df_freq <- data.frame(ref_seq = NA,
+    df_freq <- data.frame(study = "", 
+                          ref_seq = NA,
                           Minor = NA,
                           MAF = NA,
                           stringsAsFactors = FALSE)
   }
+  
+  ## sort study names so studies grouped together
+  df_freq <- df_freq[order(df_freq$study),]
+  
 }
 
 #' Internal function to get gene names.
@@ -180,6 +184,8 @@ get_gene_names <- function(primary_info) {
 #' - hgvs -  full hgvs notation for variant
 #' - assembly - which assembly was used for the annotations
 #' - ref_seq - sequence in reference assembly
+#' - maf_population - dataframe of all minor allele frequencies reported, with columns study, 
+#' reference allele, alternative allele (minor) and minor allele frequency. 
 #'
 #'
 #' @references <https://www.ncbi.nlm.nih.gov/projects/SNP/>
@@ -295,17 +301,19 @@ ncbi_snp_query <- function(snps) {
                   placement_SNP$seqname,
                   placement_SNP$hgvs,
                   placement_SNP$assembly,
-                  frequency_SNP$ref_seq[frequency_SNP$study=="GnomAD"],
-                  frequency_SNP$Minor[frequency_SNP$study=="GnomAD"],
-                  frequency_SNP$MAF[frequency_SNP$study=="GnomAD"])
-    
+                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$ref_seq[frequency_SNP$study=="GnomAD"], NA),
+                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$Minor[frequency_SNP$study=="GnomAD"], NA),
+                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$MAF[frequency_SNP$study=="GnomAD"], NA)
+                  ) 
     out_maf[[i]] <- frequency_SNP
     
   }
   Sys.sleep(1)
   
   ## remove missing rsnumbers
-  out <- out[out$query != 0, ]
+  ind <- which(!is.na(out$query))
+  out <- out[ind, ]
+  out_maf <-  out_maf[ind]
   
   for (nm in c("maf", "bp")) {
     out[, nm] <- as.numeric(out[, nm])
