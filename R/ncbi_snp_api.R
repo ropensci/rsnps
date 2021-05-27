@@ -58,7 +58,6 @@ get_placements <- function(primary_info) {
 #'
 #' @param Class What kind of variant is the rsid. Accepted options are "snv", "snp" and "delins".
 #' @param primary_info refsnp entry read in JSON format
-#' @param study Study from which frequency information is obtained. Possibilities
 #' include: GnomAD (default), 1000Genomes, ALSPAC, Estonian, NorthernSweden, TWINSUK
 #'
 get_frequency <- function(Class, primary_info) {
