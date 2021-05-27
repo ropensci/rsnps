@@ -182,6 +182,8 @@ get_gene_names <- function(primary_info) {
 #' - hgvs -  full hgvs notation for variant
 #' - assembly - which assembly was used for the annotations
 #' - ref_seq - sequence in reference assembly
+#' - maf_population - dataframe of all minor allele frequencies reported, with columns study, 
+#' reference allele, alternative allele (minor) and minor allele frequency. 
 #'
 #'
 #' @references <https://www.ncbi.nlm.nih.gov/projects/SNP/>
@@ -226,7 +228,7 @@ ncbi_snp_query <- function(snps) {
   ## transform all SNPs into numbers (rsid)
   snps_num <- gsub("rs", "", snps)
   
-  out <- as.data.frame(matrix(0, nrow = length(snps_num), ncol = 15))
+  out <- as.data.frame(matrix(NA, nrow = length(snps_num), ncol = 15))
   names(out) <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf")
 
   ## as far as I understand from https://api.ncbi.nlm.nih.gov/variation/v0/#/RefSNP/ we
