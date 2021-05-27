@@ -299,9 +299,11 @@ ncbi_snp_query <- function(snps) {
                   placement_SNP$seqname,
                   placement_SNP$hgvs,
                   placement_SNP$assembly,
-                  frequency_SNP$ref_seq,
-                  frequency_SNP$Minor,
-                  frequency_SNP$MAF)
+                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$ref_seq[frequency_SNP$study=="GnomAD"], NA),
+                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$Minor[frequency_SNP$study=="GnomAD"], NA),
+                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$MAF[frequency_SNP$study=="GnomAD"], NA)
+                  ) 
+  out_maf[[i]] <- frequency_SNP
     
   }
   Sys.sleep(1)
