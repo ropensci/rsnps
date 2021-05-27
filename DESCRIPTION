@@ -36,7 +36,8 @@ Imports:
 Suggests:
     testthat,
     knitr,
-    markdown
+    markdown,
+    tibble
 RoxygenNote: 7.1.1
 X-schema.org-applicationCategory: Genes
 X-schema.org-keywords: gene, snp, sequence, API, web, api-client, species, dbSNP, OpenSNP, NCBI, genotype

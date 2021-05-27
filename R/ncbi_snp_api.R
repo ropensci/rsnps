@@ -315,6 +315,7 @@ ncbi_snp_query <- function(snps) {
   out <- out[ind, ]
   out_maf <-  out_maf[ind]
   
+  ## ensure maf and bp are numeric
   for (nm in c("maf", "bp")) {
     out[, nm] <- as.numeric(out[, nm])
   }
