@@ -15,7 +15,7 @@ test_that("ncbi_snp_query for rs1173690113 (merged into rs333)", {
   expect_equal(aa$gene, "CCR5/CCR5AS")
   expect_equal(aa$alleles, "ACAGTCAGTATCAATTCTGGAAGAATTTCCAGACA,ACA")
   expect_equal(aa$minor, "delACAGTCAGTATCAATTCTGGAAGAATTTCCAG")
-  expect_equal(aa$maf, 0.0774)
+  expect_equal(aa$maf, 0.0774, tolerance = 1e-2)
   expect_equal(aa$ancestral_allele, "ACAGTCAGTATCAATTCTGGAAGAATTTCCAGACA")
   expect_equal(aa$variation_allele, "ACA")
   
@@ -38,7 +38,7 @@ test_that("ncbi_snp_query for rs1421085", {
   expect_equal(aa$alleles, "T,C")
   expect_equal(aa$ancestral_allele, "T")
   expect_equal(aa$variation_allele, "C")
-  expect_equal(aa$maf, 0.3164)
+  expect_equal(aa$maf, 0.3164, tolerance = 1e-2)
   expect_equal(aa$minor, "C")
   
 })
@@ -60,7 +60,7 @@ test_that("ncbi_snp_query for rs1610720 (multiple alleles)", {
   expect_equal(aa$alleles, "A,G,T")
   expect_equal(aa$ancestral_allele, "A")
   expect_equal(aa$variation_allele, "G,T")
-  expect_equal(aa$maf, 0.3895)
+  expect_equal(aa$maf, 0.3895, tolerance = 1e-2)
   expect_equal(aa$minor, "G")
   
 })
@@ -80,7 +80,7 @@ test_that("ncbi_snp_query for rs146107628 (duplication)", {
   expect_equal(aa$alleles, "T,TT")
   expect_equal(aa$ancestral_allele, "T")
   expect_equal(aa$variation_allele, "TT")
-  expect_equal(aa$maf, 0.0365) 
+  expect_equal(aa$maf, 0.0365, tolerance = 1e-2) 
   expect_equal(aa$minor, "dupT") 
   
 })
@@ -140,7 +140,7 @@ test_that("ncbi_snp_query for rs1610720 snp", {
   expect_equal(aa$gene, "HCG4/HLA-V")
   expect_equal(aa$alleles, "A,G,T")
   expect_equal(aa$minor, "G")
-  expect_equal(aa$maf, 0.3895)
+  expect_equal(aa$maf, 0.3895, tolerance = 1e-2)
   expect_equal(aa$ancestral_allele, "A")
   expect_equal(aa$variation_allele, "G,T")
   
