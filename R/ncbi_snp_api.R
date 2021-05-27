@@ -283,7 +283,8 @@ ncbi_snp_query <- function(snps) {
     
     Class <- as.character(variant.response.content$primary_snapshot_data$variant_type)
     placement_SNP <- get_placements(variant.response.content)
-    ## frequency of minor allele
+    
+    ## frequency of minor allele for all studies
     frequency_SNP <- get_frequency(Class, variant.response.content)
     Gene <- get_gene_names(variant.response.content)
     
@@ -299,11 +300,12 @@ ncbi_snp_query <- function(snps) {
                   placement_SNP$seqname,
                   placement_SNP$hgvs,
                   placement_SNP$assembly,
+                  # if GnomAD maf available, pick that
                   ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$ref_seq[frequency_SNP$study=="GnomAD"], NA),
                   ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$Minor[frequency_SNP$study=="GnomAD"], NA),
                   ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$MAF[frequency_SNP$study=="GnomAD"], NA)
                   ) 
-  out_maf[[i]] <- frequency_SNP
+    out_maf[[i]] <- frequency_SNP
     
   }
   Sys.sleep(1)
