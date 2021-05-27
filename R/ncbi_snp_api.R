@@ -316,5 +316,9 @@ ncbi_snp_query <- function(snps) {
   for (nm in c("maf", "bp")) {
     out[, nm] <- as.numeric(out[, nm])
   }
+  
+  ## adding maf_population
+  out <- tibble::tibble(out, maf_population = out_maf)
+  
   return(out)
 }
