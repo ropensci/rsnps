@@ -309,7 +309,9 @@ ncbi_snp_query <- function(snps) {
   Sys.sleep(1)
   
   ## remove missing rsnumbers
-  out <- out[out$query != 0, ]
+  ind <- which(!is.na(out$query))
+  out <- out[ind, ]
+  out_maf <-  out_maf[ind]
   
   for (nm in c("maf", "bp")) {
     out[, nm] <- as.numeric(out[, nm])
