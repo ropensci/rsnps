@@ -158,8 +158,7 @@ test_that("ncbi_snp_query for rs1610720 snp", {
 })
 
 
-expected_df_names <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf")
-
+expected_df_names <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf", "maf_population")
 test_that("ncbi_snp_query works", {
   skip_on_cran()
 
