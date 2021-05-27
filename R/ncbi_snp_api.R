@@ -58,53 +58,63 @@ get_placements <- function(primary_info) {
 #'
 #' @param Class What kind of variant is the rsid. Accepted options are "snv", "snp" and "delins".
 #' @param primary_info refsnp entry read in JSON format
-#' @param study Study from which frequency information is obtained. Possibilities
-#' include: GnomAD (default), 1000Genomes, ALSPAC, Estonian, NorthernSweden, TWINSUK
 #'
-get_frequency <- function(Class, primary_info, study = "GnomAD") {
+get_frequency <- function(Class, primary_info) {
   if (Class %in% c("snv", "snp", "delins")) {
-    for (record in  primary_info$primary_snapshot_data$allele_annotations) {
+    df_freq <- NULL
+    for (record in primary_info$primary_snapshot_data$allele_annotations) {
       for (freq_record in record$frequency) {
-        if (freq_record$study_name == study & freq_record$observation$deleted_sequence != freq_record$observation$inserted_sequence) {
+        if (freq_record$observation$deleted_sequence != freq_record$observation$inserted_sequence) {
           if (freq_record$observation$inserted_sequence == "") {
-            MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
-            df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
-                                  Minor = paste0("del", freq_record$observation$deleted),
-                                  MAF = MAF,
-                                  stringsAsFactors = FALSE)
+            MAF <-  freq_record$allele_count / freq_record$total_count
+            df_freq_study <- data.frame(study = freq_record$study_name,
+                                        ref_seq = freq_record$observation$deleted_sequence,
+                                        Minor = paste0("del", freq_record$observation$deleted),
+                                        MAF = MAF,
+                                        stringsAsFactors = FALSE)
           }
           else if (freq_record$observation$deleted_sequence == "") {
-            MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
-            df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
-                                  Minor = paste0("dup", freq_record$observation$inserted_sequence),
-                                  MAF = MAF,
-                                  stringsAsFactors = FALSE)
+            MAF <-  freq_record$allele_count / freq_record$total_count
+            df_freq_study <- data.frame(study = freq_record$study_name,
+                                        ref_seq = freq_record$observation$deleted_sequence,
+                                        Minor = paste0("dup", freq_record$observation$inserted_sequence),
+                                        MAF = MAF,
+                                        stringsAsFactors = FALSE)
           }
           else {
-            MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
-            df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
-                                  Minor = freq_record$observation$inserted_sequence,
-                                  MAF = MAF,
-                                  stringsAsFactors = FALSE)
+            MAF <- freq_record$allele_count / freq_record$total_count
+            df_freq_study <- data.frame(study = freq_record$study_name,
+                                        ref_seq = freq_record$observation$deleted_sequence,
+                                        Minor = freq_record$observation$inserted_sequence,
+                                        MAF = MAF,
+                                        stringsAsFactors = FALSE)
           }
+          df_freq <- rbind(df_freq, df_freq_study)
         }
       }
     }
-    if (exists("df_freq")) {
+    
+    if (!is.null(df_freq)) {
       return(df_freq)
     }
     else {
-      df_freq <- data.frame(ref_seq = NA,
+      df_freq <- data.frame(study = "", 
+                            ref_seq = NA,
                             Minor = NA,
                             MAF = NA,
                             stringsAsFactors = FALSE)
     }
   } else {
-    df_freq <- data.frame(ref_seq = NA,
+    df_freq <- data.frame(study = "", 
+                          ref_seq = NA,
                           Minor = NA,
                           MAF = NA,
                           stringsAsFactors = FALSE)
   }
+  
+  ## sort study names so studies grouped together
+  df_freq <- df_freq[order(df_freq$study),]
+  
 }
 
 #' Internal function to get gene names.
