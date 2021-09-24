@@ -1,3 +1,4 @@
+* enable allele frequency for different reference populations (#97).
 
 rsnps 0.4.0
 ===========
