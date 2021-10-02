@@ -1,8 +1,21 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{rsnps tutorial}
 %\VignetteEncoding{UTF-8}
 -->
+
+```{r, eval=TRUE, echo=FALSE}
+knitr::opts_chunk$set(
+  warning=FALSE,
+  message=FALSE,
+  comment="#>"
+)
+```
 
 # rsnps tutorial
 
@@ -11,21 +24,21 @@
 When available on CRAN
 
 
-```r
+```{r, eval=FALSE}
 install.packages("rsnps")
 ```
 
 Or get from Github
 
 
-```r
+```{r, eval=FALSE}
 install.packages("devtools")
 devtools::install_github("ropensci/rsnps")
 ```
 
 
 
-```r
+```{r}
 library(rsnps)
 ```
 
@@ -37,7 +50,7 @@ library(rsnps)
 Get genotype data for all users at a particular SNP from [OpenSNP](https://opensnp.org):
 
 
-```r
+```{r}
 x <- allgensnp(snp='rs7412')
 head(x)
 #>     name chromosome position              name id genotype_id
@@ -64,7 +77,7 @@ Get all phenotypes, their variations, and how many users have data available for
 Get all data
 
 
-```r
+```{r}
 x <- allphenotypes(df = TRUE)
 head(x)
 #>   id characteristic known_variations number_of_users
@@ -79,14 +92,14 @@ head(x)
 Output a list, then call the characteristic of interest by 'id' or 'characteristic'
 
 
-```r
+```{r}
 datalist <- allphenotypes()
 ```
 
 Get a list of all characteristics you can call
 
 
-```r
+```{r}
 names(datalist)[1:10]
 #>  [1] "Eye color"                        "Lactose intolerance"             
 #>  [3] "Handedness"                       "white skin"                      
@@ -98,7 +111,7 @@ names(datalist)[1:10]
 Get data.frame for _ADHD_
 
 
-```r
+```{r}
 datalist[["ADHD"]]
 #>    id characteristic                            known_variations
 #> 1  29           ADHD                                       False
@@ -129,7 +142,7 @@ datalist[["ADHD"]]
 Get data.frame for _mouth size_ and _SAT Writing_
 
 
-```r
+```{r}
 datalist[c("mouth size","SAT Writing")]
 #> $`mouth size`
 #>    id characteristic     known_variations number_of_users
@@ -178,7 +191,7 @@ datalist[c("mouth size","SAT Writing")]
 Get just the metadata
 
 
-```r
+```{r}
 annotations(snp = 'rs7903146', output = 'metadata')
 #>          .id        V1
 #> 1       name rs7903146
@@ -189,7 +202,7 @@ annotations(snp = 'rs7903146', output = 'metadata')
 Just from PLOS journals
 
 
-```r
+```{r}
 annotations(snp = 'rs7903146', output = 'plos')[c(1:2),]
 #>                   author
 #> 1        Maggie C. Y. Ng
@@ -211,7 +224,7 @@ annotations(snp = 'rs7903146', output = 'plos')[c(1:2),]
 Just from SNPedia
 
 
-```r
+```{r}
 annotations(snp = 'rs7903146', output = 'snpedia')
 #>                                               url
 #> 1 http://www.snpedia.com/index.php/Rs7903146(C;C)
@@ -226,7 +239,7 @@ annotations(snp = 'rs7903146', output = 'snpedia')
 Get all annotations
 
 
-```r
+```{r}
 annotations(snp = 'rs7903146', output = 'all')[1:5,]
 #>        .id              author
 #> 1 mendeley           T E Meyer
@@ -277,7 +290,7 @@ annotations(snp = 'rs7903146', output = 'all')[1:5,]
 Download genotype data for a user from 23andme or other repo. (not evaluated in this example)
 
 
-```r
+```{r}
 data <- users(df=TRUE)
 head(data[[1]])
 fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], rows=15)
@@ -288,7 +301,7 @@ fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], rows=15)
 Genotype data for one or multiple users
 
 
-```r
+```{r}
 genotypes(snp='rs9939609', userid=1)
 #> $snp
 #> $snp$name
@@ -318,7 +331,7 @@ genotypes(snp='rs9939609', userid=1)
 ```
 
 
-```r
+```{r}
 genotypes('rs9939609', userid='1,6,8', df=TRUE)
 #>    snp_name snp_chromosome snp_position                 user_name user_id
 #> 1 rs9939609             16     53786615 Bastian Greshake Tzovaras       1
@@ -331,7 +344,7 @@ genotypes('rs9939609', userid='1,6,8', df=TRUE)
 ```
 
 
-```r
+```{r}
 genotypes('rs9939609', userid='1-2', df=FALSE)
 #> [[1]]
 #> [[1]]$snp
@@ -392,7 +405,7 @@ genotypes('rs9939609', userid='1-2', df=FALSE)
 Get phenotype data for one or multiple users
 
 
-```r
+```{r}
 phenotypes(userid=1)$phenotypes[1:3]
 #> $`hair on ear`
 #> $`hair on ear`$phenotype_id
@@ -420,7 +433,7 @@ phenotypes(userid=1)$phenotypes[1:3]
 
 
 
-```r
+```{r}
 phenotypes(userid='1,6,8', df=TRUE)[[1]][1:10,]
 #>                                phenotype phenotypeID
 #> 1                            hair on ear         254
@@ -447,7 +460,7 @@ phenotypes(userid='1,6,8', df=TRUE)[[1]][1:10,]
 ```
 
 
-```r
+```{r}
 out <- phenotypes(userid='1-8', df=TRUE)
 lapply(out, head)
 #> $`Bastian Greshake Tzovaras`
@@ -503,7 +516,7 @@ lapply(out, head)
 Get all known variations and all users sharing that phenotype for one phenotype(-ID).
 
 
-```r
+```{r}
 phenotypes_byid(phenotypeid=12, return_ = 'desc')
 #> $id
 #> [1] 12
@@ -516,7 +529,7 @@ phenotypes_byid(phenotypeid=12, return_ = 'desc')
 ```
 
 
-```r
+```{r}
 phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
 #> $known_variations
 #> $known_variations[[1]]
@@ -608,7 +621,7 @@ phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
 ```
 
 
-```r
+```{r}
 phenotypes_byid(phenotypeid=12, return_ = 'users')[1:10,]
 #>    user_id
 #> 1       22
@@ -643,12 +656,12 @@ Query NCBI's [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) for information on a set
 
 An example with four markers, where one has been merged, and one has been withdrawn from NCBI.
 
-```r
+```{r}
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 (dbsnp_info <- ncbi_snp_query(snps))
 ```
 
 The maf column contains the minor allele frequency from the GnomAD database (if available). All population specific allele frequencies can be accessed through the column `maf_population` which returns a list.
-```r
+```{r}
 dbsnp_info$maf_population
 ```
