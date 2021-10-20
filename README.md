@@ -69,30 +69,21 @@ snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 ncbi_snp_query(snps)
 ```
 
-    #>          query chromosome        bp class         rsid          gene
-    #> 1        rs332          7 117559593   del  rs121909001 CFTR/CFTR-AS1
-    #> 2     rs420358          1  40341239   snv     rs420358              
-    #> 3    rs1837253          5 111066174   snv    rs1837253              
-    #> 4 rs1209415715          9  41782316   snv rs1209415715              
-    #>       alleles ancestral_allele variation_allele      seqname
-    #> 1 TTT, delTTT              TTT           delTTT NC_000007.14
-    #> 2     A,C,G,T                A            C,G,T NC_000001.11
-    #> 3         T,C                T                C NC_000005.10
-    #> 4         T,C                T                C NC_000009.12
-    #>                                                                               hgvs
-    #> 1                                            NC_000007.14:g.117559593_117559595del
-    #> 2 NC_000001.11:g.40341239A>C,NC_000001.11:g.40341239A>G,NC_000001.11:g.40341239A>T
-    #> 3                                                      NC_000005.10:g.111066174T>C
-    #> 4                                                       NC_000009.12:g.41782316T>C
-    #>     assembly ref_seq minor    maf
-    #> 1 GRCh38.p12    <NA>  <NA>     NA
-    #> 2 GRCh38.p12       A     C 0.8614
-    #> 3 GRCh38.p12       T     C 0.7133
-    #> 4 GRCh38.p12    <NA>  <NA>     NA
+    #> # A tibble: 4 x 16
+    #>   query    chromosome       bp class rsid     gene     alleles  ancestral_allele
+    #>   <chr>    <chr>         <dbl> <chr> <chr>    <chr>    <chr>    <chr>           
+    #> 1 rs332    7            1.18e8 del   rs12190… "CFTR/C… TTT, de… TTT             
+    #> 2 rs420358 1            4.03e7 snv   rs420358 ""       A,C,G,T  A               
+    #> 3 rs18372… 5            1.11e8 snv   rs18372… ""       T,C      T               
+    #> 4 rs12094… 9            4.18e7 snv   rs12094… ""       T,A,C    T               
+    #> # … with 8 more variables: variation_allele <chr>, seqname <chr>, hgvs <chr>,
+    #> #   assembly <chr>, ref_seq <chr>, minor <chr>, maf <dbl>,
+    #> #   maf_population <list>
 
 ### openSNP data
 
-`genotypes()` function
+`genotypes()`
+    function
 
 ``` r
 genotypes('rs9939609', userid='1,6,8', df=TRUE)
@@ -132,6 +123,7 @@ tutorial](https://github.com/ropensci/rsnps/blob/master/inst/vign/rsnps_vignette
     'rsnps')`
   - Please note that this package is released with a [Contributor Code
     of Conduct](https://ropensci.org/code-of-conduct/). By contributing
-    to this project, you agree to abide by its terms.
+    to this project, you agree to abide by its
+terms.
 
 [![ropensci\_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
