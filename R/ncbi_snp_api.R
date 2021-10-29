@@ -219,16 +219,10 @@ ncbi_snp_query <- function(snps) {
   out <- as.data.frame(matrix(0, nrow = length(snps_num), ncol = 15))
   names(out) <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf")
 
-  ## NCBI moved to https but not using http v.2. The setting of the version 
-  ## used with curl is based on 
-  ##  https://github.com/ropensci/rentrez/issues/127#issuecomment-488838967
-  ## in the rentrez package 
-  httr::config(http_version = 2) ## value 2 corresponds to CURL_HTTP_VERSION_1_1
-  
-  
   ## as far as I understand from https://api.ncbi.nlm.nih.gov/variation/v0/#/RefSNP/ we
   ## can only send one query at a time and max 1 per second.
   for (i in seq_along(snps_num)) {
+    
     variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", snps_num[i])
     variant.response <-  httr::GET(variant.url)
     variant.response.content <-  RJSONIO::fromJSON(rawToChar(variant.response$content),
