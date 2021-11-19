@@ -212,6 +212,13 @@ get_gene_names <- function(primary_info) {
 #' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' }
 ncbi_snp_query <- function(snps) {
+  
+  ## NCBI moved to https but not using http v.2. The setting of the version 
+  ## used with curl is based on 
+  ##  https://github.com/ropensci/rentrez/issues/127#issuecomment-488838967
+  ## in the rentrez package 
+  httr::set_config(httr::config(http_version = 2)) ## value 2 corresponds to CURL_HTTP_VERSION_1_1
+  
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply(snps, function(x) {
     grep("^rs[0-9]+$", x)
