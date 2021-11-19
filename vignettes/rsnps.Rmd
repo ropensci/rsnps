@@ -190,7 +190,7 @@ An example with four markers, where one has been merged, and one has been withdr
 ```{r}
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 (dbsnp_info <- ncbi_snp_query(snps))
-=```
+```
 
 The maf column contains the minor allele frequency from the GnomAD database (if available). All population specific allele frequencies can be accessed through the column `maf_population` which returns a list.
 ```{r}
