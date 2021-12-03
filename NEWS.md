@@ -1,4 +1,5 @@
 * ncbi_snp_query(): enable allele frequency for different reference populations, output now a tibble (#97).
+* move vignette source to /vignettes and precompute using an rscript
 
 rsnps 0.4.0
 ===========
