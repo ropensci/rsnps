@@ -246,8 +246,8 @@ ncbi_snp_query <- function(snps) {
     
     variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", snps_num[i])
     variant.response <-  httr::GET(variant.url)
-    variant.response.content <-  RJSONIO::fromJSON(rawToChar(variant.response$content),
-                                                   simplifyWithNames = TRUE)
+    variant.response.content <-  jsonlite::fromJSON(rawToChar(variant.response$content),
+                                                    simplifyVector = FALSE)  
     
     if ("error" %in% names(variant.response.content)) {
       if (variant.response.content$error$message == "RefSNP not found") {
@@ -281,8 +281,9 @@ ncbi_snp_query <- function(snps) {
       
       variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", no_rsid)
       variant.response <- httr::GET(variant.url)
-      variant.response.content <- RJSONIO::fromJSON(rawToChar(variant.response$content),
-                                                    simplifyWithNames = TRUE)
+      variant.response.content <- jsonlite::fromJSON(rawToChar(variant.response$content),
+                                                     simplifyVector = FALSE)
+      
     } else {
       rsid <- as.character(paste0("rs",
                                   variant.response.content$refsnp_id))
