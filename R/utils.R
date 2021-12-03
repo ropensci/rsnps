@@ -107,3 +107,14 @@ rbl <- function(x) {
 }
 
 `%||%` <- function(x, y) if (is.null(x) || length(x) == 0) y else x
+
+#' For use with usethis::use_release_issue()
+#'
+release_bullets <- function() {
+  c(
+    "Update vignette by running `vignettes/precompile.R`.",
+    "update codemeta.json using `codemetar::write_codemeta('.')` (from within project folder on dev branch)",
+    "Tag release",
+    "Bump dev version"
+  )
+}
