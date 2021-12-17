@@ -31,7 +31,6 @@ Imports:
     crul (>= 0.5.2),
     data.table,
     jsonlite,
-    RJSONIO,
     httr
 Suggests:
     testthat,
