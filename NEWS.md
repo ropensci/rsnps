@@ -8,8 +8,8 @@ rsnps 0.5.0
 ### MINOR IMPROVEMENTS
 
 * ncbi_snp_query(): replace calls to RJSONIO with equivalent in jsonlite (#98).
+* unit tests for ncbi_snp_query(): added a tolerance to any allele frequency checks.
 * move vignette source to /vignettes and precompute using an R script.
-* Unit tests: added a tolerance to any allele frequency checks.
 
 ### DOCUMENTATION FIXES
 
