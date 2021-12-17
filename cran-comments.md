@@ -27,7 +27,8 @@ No problems were found related to this package.
 
 ---
 
-This version includes a bug fix, major and minor improvements of the function `ncbi_snp_query` and updated documentation.
+This version includes a new feature and two minor improvement of the function `ncbi_snp_query`,
+and a change in the vignette (we now pre-compile the vignette to avoid long runtimes). 
 
 
 Thanks!
