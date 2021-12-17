@@ -6,19 +6,8 @@
 
 ## R CMD check results
 
-There were no ERRORs or WARNINGs. 
+There were no ERRORs, NOTEs or WARNINGs. 
 
-There was 1 NOTE:
-
-* Maintainer: 'Julia Gustavsen <j.gustavsen@gmail.com>'
-
-New maintainer:
-  Julia Gustavsen <j.gustavsen@gmail.com>
-Old maintainer(s):
-  Scott Chamberlain <myrmecocystus@gmail.com>
-  
- This is an expected change as the maintainers of this package have changed. 
- 
 ## Reverse dependencies
 
 * We have run R CMD check on the 1 downstream dependency
