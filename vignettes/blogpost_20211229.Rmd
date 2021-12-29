@@ -1,0 +1,103 @@
+---
+title: "rsnps 0.5.0: new features"
+output: html_document
+author: Sina Rüeger, Julia Gustavsen
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+theme_set(theme_bw())
+library(dplyr)
+library(tidyr)
+library(forcats)
+```
+
+## Summary
+
+- `ncbi_snp_query()` now returns all reported allele frequencies in dbSNP (>= 0.5.0) in column `maf_population`.
+- `ncbi_snp_query()` used to report only the allele frequency from [gnomAD](https://gnomad.broadinstitute.org/) (<= 0.4.0) in column `maf`.
+
+## Changes
+
+The [NEWS](https://github.com/ropensci/rsnps/blob/master/NEWS.md) file will tell you about the changes of rsnps 0.4.0 to 0.5.0, but the most relevant for users we would like to highlight in this blogpost. 
+
+`ncbi_snp_query()` is the function that pulls data from [NCBI's](https://www.ncbi.nlm.nih.gov/) [dbSNP](https://www.ncbi.nlm.nih.gov/snp/), a database of single-nucleotide polymorphisms (SNP). This database lets a user query for a SNP of interest and returns a plethora of information, among them genomic position, associated gene, clinical significance and - relevant for this blogpost - the allele frequency. The allele frequency varies typically between different populations, sometimes just a little (e.g. [rs562556](https://www.ncbi.nlm.nih.gov/snp/rs562556#frequency_tab)), sometimes a lot (e.g. [rs11677783](https://www.ncbi.nlm.nih.gov/snp/rs11677783#frequency_tab)). This is why dbSNP collects allele frequency estimates from different studies and populations. Also, the database is constantly updated. 
+
+Until version 0.4.0 `ncbi_snp_query()` reported the allele frequnecy estimated from gnomAD. For example, for SNP `rs420358` the `ncbi_snp_query` output used to look like this:
+
+```r
+ncbi_snp_query("rs420358")
+
+#>          query chromosome        bp class         rsid          gene
+#> 2     rs420358          1  40341239   snv     rs420358              
+
+#>       alleles ancestral_allele variation_allele      seqname
+#> 2     A,C,G,T                A            C,G,T NC_000001.11
+
+#>     assembly ref_seq minor    maf
+#> 2 GRCh38.p12       A     C 0.8614
+```
+
+We have now changed two things:
+
+1. The `maf_population` column in the `ncbi_snp_query` output contains all reported allele frequencies, not only from one study or population (the `maf` column stays the same).
+2. To do that, `ncbi_snp_query` returns now a tibble (and not a dataframe). 
+
+## Examples
+
+Let's have a look at the output of two SNPs mentioned above. You can see that `dat` is a) a tibble and b) that the column `maf_population` is a list.
+
+```{r query}
+# remotes::install_github("ropensci/rsnps", ref = "dev")
+library(rsnps)
+(dat <- ncbi_snp_query(c("rs11677783", "rs562556")))
+```
+
+
+Here is a visual to show how much the allele frequencies vary per SNP. 
+
+First, we flatten the dataframe. 
+```{r}
+(dat_maf <- dat %>% select(query, maf_population) %>% unnest(cols = c(maf_population)))
+```
+
+Then we plot it. 
+```{r plot_maf}
+
+
+ggplot(data = dat_maf %>% filter(query == "rs11677783") %>% mutate(study = forcats::fct_reorder(study, MAF ))) + 
+  geom_vline(xintercept = c(0, 0.5, 1), linetype = 3, color ="gray") +
+  geom_point(aes(MAF, study)) + 
+  labs(title = "Allele frequency", subtitle = "rs11677783") 
+
+ggplot(data = dat_maf %>% filter(query == "rs562556") %>% mutate(study = forcats::fct_reorder(study, MAF ))) + 
+  geom_vline(xintercept = c(0, 0.5, 1), linetype = 3, color ="gray") +
+  geom_point(aes(MAF, study)) + 
+  labs(title = "Allele frequency", subtitle = "rs562556") 
+
+```
+
+We can decide to turn the tibble into a dataframe again and pick a specific study (note that `maf_korean` is a `dbl` again): 
+
+```{r}
+(dat_korean <- 
+  dat %>% mutate(maf_korean = purrr::map(maf_population, ~..1$MAF[..1$study=="KOREAN"])) %>% unnest(cols = c(maf_korean)))
+                  
+```
+
+Or we can decide to pivot the study allele frequencies, so that each study has its own column:
+
+```{r}
+       
+dat_maf <- dat %>% select(query, maf_population) %>% unnest(cols = c(maf_population)) %>%
+  select(query, study, MAF) %>%
+  pivot_wider(values_from = "MAF", names_from = "study", values_fn = min, names_prefix = "maf_") ## if duplicate, picking the minimum
+
+(dat_wide <- 
+  dat %>% left_join(dat_maf, by = "query"))
+
+
+           
+```
