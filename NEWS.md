@@ -1,3 +1,19 @@
+rsnps 0.5.0
+===========
+
+### NEW FEATURES
+
+* ncbi_snp_query(): enable allele frequency for different reference populations, ncbi_snp_query() outputs now a tibble (#97).
+
+### MINOR IMPROVEMENTS
+
+* ncbi_snp_query(): replace calls to RJSONIO with equivalent in jsonlite (#98).
+* unit tests for ncbi_snp_query(): added a tolerance to any allele frequency checks.
+* move vignette source to /vignettes and precompute using an R script.
+
+### DOCUMENTATION FIXES
+
+* Updated vignette.
 
 rsnps 0.4.0
 ===========

@@ -1,24 +1,23 @@
 ## Test environments
 
-* local OS X install, R 3.6.2
-* ubuntu 14.04 (on travis-ci), R 4.0.0
-* win-builder (devel and release)
+* local OS X install, R 4.1.1
+* Ubuntu Linux 20.04.1 LTS (on R-hub), R 4.1.2
+* Fedora Linux (on R-hub) R-devel
+* Windows (devel and release)
 
 ## R CMD check results
 
 There were no ERRORs or WARNINGs. 
 
-There was 1 NOTE:
+There is one NOTE that is only found on Windows (Server 2022, R-devel 64-bit): 
 
-* Maintainer: 'Julia Gustavsen <j.gustavsen@gmail.com>'
+```
+* checking for detritus in the temp directory ... NOTE
+Found the following files/directories:
+  'lastMiKTeXException'
+```
+As noted in [R-hub issue #503](https://github.com/r-hub/rhub/issues/503), this could be due to a bug/crash in MiKTeX and can likely be ignored.
 
-New maintainer:
-  Julia Gustavsen <j.gustavsen@gmail.com>
-Old maintainer(s):
-  Scott Chamberlain <myrmecocystus@gmail.com>
-  
- This is an expected change as the maintainers of this package have changed. 
- 
 ## Reverse dependencies
 
 * We have run R CMD check on the 1 downstream dependency
@@ -27,7 +26,8 @@ No problems were found related to this package.
 
 ---
 
-This version includes a bug fix, major and minor improvements of the function `ncbi_snp_query` and updated documentation.
+This version includes a new feature and two minor improvement of the function `ncbi_snp_query`,
+and a change in the vignette (we now pre-compile the vignette to avoid long runtimes). 
 
 
 Thanks!

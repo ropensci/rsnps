@@ -2,7 +2,7 @@
 .gitignore
 ^.*\.Rproj$
 ^\.Rproj\.user$
-README.Rmd
+^README\.Rmd$
 .travis.yml
 travis-tool.sh
 Makefile

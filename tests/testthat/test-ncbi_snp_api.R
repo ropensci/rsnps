@@ -15,9 +15,14 @@ test_that("ncbi_snp_query for rs1173690113 (merged into rs333)", {
   expect_equal(aa$gene, "CCR5/CCR5AS")
   expect_equal(aa$alleles, "ACAGTCAGTATCAATTCTGGAAGAATTTCCAGACA,ACA")
   expect_equal(aa$minor, "delACAGTCAGTATCAATTCTGGAAGAATTTCCAG")
-  expect_equal(aa$maf, 0.0774)
+  expect_equal(aa$maf, 0.0774, tolerance = 1e-2)
   expect_equal(aa$ancestral_allele, "ACAGTCAGTATCAATTCTGGAAGAATTTCCAGACA")
   expect_equal(aa$variation_allele, "ACA")
+  
+  maf_pop <- aa$maf_population[[1]]
+  expect_equal(maf_pop[maf_pop$study == "ALSPAC" & maf_pop$ref_seq == "ACAGTCAGTATCAATTCTGGAAGAATTTCCAG" & maf_pop$Minor == "delACAGTCAGTATCAATTCTGGAAGAATTTCCAG" ,"MAF"], 0.09366892, tolerance = 1e-2)
+  expect_equal(maf_pop[maf_pop$study == "Estonian" & maf_pop$ref_seq == "ACAGTCAGTATCAATTCTGGAAGAATTTCCAG" & maf_pop$Minor == "delACAGTCAGTATCAATTCTGGAAGAATTTCCAG","MAF"], 0.11785714, tolerance = 1e-2)
+  
   
 })
 
@@ -38,8 +43,13 @@ test_that("ncbi_snp_query for rs1421085", {
   expect_equal(aa$alleles, "T,C")
   expect_equal(aa$ancestral_allele, "T")
   expect_equal(aa$variation_allele, "C")
-  expect_equal(aa$maf, 0.3164)
+  expect_equal(aa$maf, 0.3063, tolerance = 1e-2)
   expect_equal(aa$minor, "C")
+  
+  maf_pop <- aa$maf_population[[1]]
+  expect_equal(maf_pop[maf_pop$study == "HapMap" & maf_pop$ref_seq == "T" & maf_pop$Minor == "C" ,"MAF"], 0.2085987, tolerance=1e-2)
+  expect_equal(maf_pop[maf_pop$study == "Vietnamese" & maf_pop$ref_seq == "T" & maf_pop$Minor == "C","MAF"], 0.1495327, tolerance=1e-2)
+  
   
 })
 
@@ -60,8 +70,9 @@ test_that("ncbi_snp_query for rs1610720 (multiple alleles)", {
   expect_equal(aa$alleles, "A,G,T")
   expect_equal(aa$ancestral_allele, "A")
   expect_equal(aa$variation_allele, "G,T")
-  expect_equal(aa$maf, 0.3895)
+  expect_equal(aa$maf, 0.4170, tolerance = 1e-2)
   expect_equal(aa$minor, "G")
+  
   
 })
 
@@ -80,7 +91,7 @@ test_that("ncbi_snp_query for rs146107628 (duplication)", {
   expect_equal(aa$alleles, "T,TT")
   expect_equal(aa$ancestral_allele, "T")
   expect_equal(aa$variation_allele, "TT")
-  expect_equal(aa$maf, 0.0365) 
+  expect_equal(aa$maf, 0.0365, tolerance = 1e-2) 
   expect_equal(aa$minor, "dupT") 
   
 })
@@ -140,15 +151,14 @@ test_that("ncbi_snp_query for rs1610720 snp", {
   expect_equal(aa$gene, "HCG4/HLA-V")
   expect_equal(aa$alleles, "A,G,T")
   expect_equal(aa$minor, "G")
-  expect_equal(aa$maf, 0.3895)
+  expect_equal(aa$maf, 0.4170, tolerance = 1e-2)
   expect_equal(aa$ancestral_allele, "A")
   expect_equal(aa$variation_allele, "G,T")
   
 })
 
 
-expected_df_names <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf")
-
+expected_df_names <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf", "maf_population")
 test_that("ncbi_snp_query works", {
   skip_on_cran()
 

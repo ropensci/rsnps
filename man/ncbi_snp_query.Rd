@@ -42,6 +42,8 @@ This is drawn from the current global reference population used by NCBI (GnomAD)
 \item hgvs -  full hgvs notation for variant
 \item assembly - which assembly was used for the annotations
 \item ref_seq - sequence in reference assembly
+\item maf_population - dataframe of all minor allele frequencies reported, with columns study,
+reference allele, alternative allele (minor) and minor allele frequency.
 }
 }
 \description{

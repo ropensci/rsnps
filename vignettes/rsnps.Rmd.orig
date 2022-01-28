@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{rsnps tutorial}
@@ -13,8 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-rsnps tutorial
-==============
+# rsnps tutorial
 
 ## Install and load library
 
@@ -40,7 +44,7 @@ library(rsnps)
 
 ### All Genotypes
 
-Get genotype data for all users at a particular SNP
+Get genotype data for all users at a particular SNP from [OpenSNP](https://opensnp.org):
 
 ```{r allgensnp}
 x <- allgensnp(snp='rs7412')
@@ -59,7 +63,7 @@ x <- allphenotypes(df = TRUE)
 head(x)
 ```
 
-Output a list, then call the characterisitc of interest by 'id' or 'characteristic'
+Output a list, then call the characteristic of interest by 'id' or 'characteristic'
 
 ```{r}
 datalist <- allphenotypes()
@@ -127,9 +131,11 @@ Genotype data for one or multiple users
 genotypes(snp='rs9939609', userid=1)
 ```
 
+
 ```{r}
 genotypes('rs9939609', userid='1,6,8', df=TRUE)
 ```
+
 
 ```{r}
 genotypes('rs9939609', userid='1-2', df=FALSE)
@@ -139,14 +145,15 @@ genotypes('rs9939609', userid='1-2', df=FALSE)
 
 Get phenotype data for one or multiple users
 
+
 ```{r}
 phenotypes(userid=1)$phenotypes[1:3]
 ```
 
-
 ```{r}
 phenotypes(userid='1,6,8', df=TRUE)[[1]][1:10,]
 ```
+
 
 ```{r}
 out <- phenotypes(userid='1-8', df=TRUE)
@@ -161,9 +168,11 @@ Get all known variations and all users sharing that phenotype for one phenotype(
 phenotypes_byid(phenotypeid=12, return_ = 'desc')
 ```
 
+
 ```{r}
 phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
 ```
+
 
 ```{r}
 phenotypes_byid(phenotypeid=12, return_ = 'users')[1:10,]
@@ -174,11 +183,16 @@ phenotypes_byid(phenotypeid=12, return_ = 'users')[1:10,]
 
 ### dbSNP
 
-Query NCBI's dbSNP for information on a set of SNPs
+Query NCBI's [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) for information on a set of SNPs. 
 
-An example with both merged SNPs, non-SNV SNPs, regular SNPs, SNPs not found, microsatellite
+An example with four markers, where one has been merged, and one has been withdrawn from NCBI.
 
 ```{r}
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-ncbi_snp_query(snps)
+(dbsnp_info <- ncbi_snp_query(snps))
+```
+
+The maf column contains the minor allele frequency from the GnomAD database (if available). All population specific allele frequencies can be accessed through the column `maf_population` which returns a list.
+```{r}
+dbsnp_info$maf_population
 ```

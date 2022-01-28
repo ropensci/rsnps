@@ -1,8 +1,15 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{rsnps tutorial}
 %\VignetteEncoding{UTF-8}
 -->
+
+
 
 # rsnps tutorial
 
@@ -29,7 +36,6 @@ devtools::install_github("ropensci/rsnps")
 library(rsnps)
 ```
 
-
 ## OpenSNP data
 
 ### All Genotypes
@@ -40,20 +46,13 @@ Get genotype data for all users at a particular SNP from [OpenSNP](https://opens
 ```r
 x <- allgensnp(snp='rs7412')
 head(x)
-#>     name chromosome position              name id genotype_id
-#> 1 rs7412         19 44908822 Samantha B. Clark  8           2
-#> 2 rs7412         19 44908822              Svan 10           3
-#> 3 rs7412         19 44908822      Nash Parovoz  6           5
-#> 4 rs7412         19 44908822 Glenn Allen Nolen 19           7
-#> 5 rs7412         19 44908822      R.M. Holston 22           8
-#> 6 rs7412         19 44908822        Mark Davis 36          14
-#>   local_genotype
-#> 1             CC
-#> 2             CC
-#> 3             CC
-#> 4             CC
-#> 5             CC
-#> 6             CC
+#>     name chromosome position                name   id genotype_id local_genotype
+#> 1 rs7412         19 44908822        R.M. Holston   22           8             CC
+#> 2 rs7412         19 44908822 Charles G. Sullivan 5326        3834             CC
+#> 3 rs7412         19 44908822   Glenn Allen Nolen   19           7             CC
+#> 4 rs7412         19 44908822        Angel Harris  495         223             CC
+#> 5 rs7412         19 44908822           Mom to AG  387         173             CC
+#> 6 rs7412         19 44908822            kevinmcc  285         118             CC
 ```
 
 
@@ -68,12 +67,12 @@ Get all data
 x <- allphenotypes(df = TRUE)
 head(x)
 #>   id characteristic known_variations number_of_users
-#> 1  1      Eye color            Brown            1359
-#> 2  1      Eye color      Brown-green            1359
-#> 3  1      Eye color       Blue-green            1359
-#> 4  1      Eye color        Blue-grey            1359
-#> 5  1      Eye color            Green            1359
-#> 6  1      Eye color             Blue            1359
+#> 1  1      Eye color            Brown            1665
+#> 2  1      Eye color      Brown-green            1665
+#> 3  1      Eye color       Blue-green            1665
+#> 4  1      Eye color        Blue-grey            1665
+#> 5  1      Eye color            Green            1665
+#> 6  1      Eye color             Blue            1665
 ```
 
 Output a list, then call the characteristic of interest by 'id' or 'characteristic'
@@ -88,11 +87,10 @@ Get a list of all characteristics you can call
 
 ```r
 names(datalist)[1:10]
-#>  [1] "Eye color"                        "Lactose intolerance"             
-#>  [3] "Handedness"                       "white skin"                      
-#>  [5] "Ability to find a bug in openSNP" "Beard Color"                     
-#>  [7] "Hair Color"                       "Ability to Tan"                  
-#>  [9] "Height"                           "Hair Type"
+#>  [1] "Eye color"                        "Lactose intolerance"              "Handedness"                      
+#>  [4] "white skin"                       "Ability to find a bug in openSNP" "Beard Color"                     
+#>  [7] "Hair Color"                       "Ability to Tan"                   "Height"                          
+#> [10] "Hair Type"
 ```
 
 Get data.frame for _ADHD_
@@ -100,30 +98,36 @@ Get data.frame for _ADHD_
 
 ```r
 datalist[["ADHD"]]
-#>    id characteristic                            known_variations
-#> 1  29           ADHD                                       False
-#> 2  29           ADHD                                        True
-#> 3  29           ADHD              Undiagnosed, but probably true
-#> 4  29           ADHD                                          No
-#> 5  29           ADHD                                         Yes
-#> 6  29           ADHD                               Not diagnosed
-#> 7  29           ADHD                                 Mthfr c677t
-#> 8  29           ADHD Diagnosed as not having but with some signs
-#> 9  29           ADHD                                   Rs1801260
-#> 10 29           ADHD                                 Adult onset
-#> 11 29           ADHD  Diagnosed as "other hyperkinetic disorder"
+#>    id characteristic                                                                                             known_variations
+#> 1  29           ADHD                                                                                                        False
+#> 2  29           ADHD                                                                                                         True
+#> 3  29           ADHD                                                                               Undiagnosed, but probably true
+#> 4  29           ADHD                                                                                                           No
+#> 5  29           ADHD                                                                                                          Yes
+#> 6  29           ADHD                                                                                                Not diagnosed
+#> 7  29           ADHD                                                                  Diagnosed as not having but with some signs
+#> 8  29           ADHD                                                                                                  Mthfr c677t
+#> 9  29           ADHD                                                                                                    Rs1801260
+#> 10 29           ADHD                                                                                                  Adult onset
+#> 11 29           ADHD                                                                   Diagnosed as "other hyperkinetic disorder"
+#> 12 29           ADHD                                                                                 Blonde, european, green eyes
+#> 13 29           ADHD                                                                                                      Extreme
+#> 14 29           ADHD Diagnosed as hyperactive type, though it is my belief that adhd is simply a normal trait such as eye color. 
 #>    number_of_users
-#> 1              275
-#> 2              275
-#> 3              275
-#> 4              275
-#> 5              275
-#> 6              275
-#> 7              275
-#> 8              275
-#> 9              275
-#> 10             275
-#> 11             275
+#> 1              325
+#> 2              325
+#> 3              325
+#> 4              325
+#> 5              325
+#> 6              325
+#> 7              325
+#> 8              325
+#> 9              325
+#> 10             325
+#> 11             325
+#> 12             325
+#> 13             325
+#> 14             325
 ```
 
 Get data.frame for _mouth size_ and _SAT Writing_
@@ -133,44 +137,29 @@ Get data.frame for _mouth size_ and _SAT Writing_
 datalist[c("mouth size","SAT Writing")]
 #> $`mouth size`
 #>    id characteristic     known_variations number_of_users
-#> 1 120     mouth size               Medium             187
-#> 2 120     mouth size                Small             187
-#> 3 120     mouth size                Large             187
-#> 4 120     mouth size Slightly wide mouth              187
+#> 1 120     mouth size               Medium             202
+#> 2 120     mouth size                Small             202
+#> 3 120     mouth size                Large             202
+#> 4 120     mouth size Slightly wide mouth              202
 #> 
 #> $`SAT Writing`
-#>    id characteristic
-#> 1  41    SAT Writing
-#> 2  41    SAT Writing
-#> 3  41    SAT Writing
-#> 4  41    SAT Writing
-#> 5  41    SAT Writing
-#> 6  41    SAT Writing
-#> 7  41    SAT Writing
-#> 8  41    SAT Writing
-#> 9  41    SAT Writing
-#> 10 41    SAT Writing
-#> 11 41    SAT Writing
-#> 12 41    SAT Writing
-#> 13 41    SAT Writing
-#> 14 41    SAT Writing
-#> 15 41    SAT Writing
-#>                                           known_variations number_of_users
-#> 1                                                      750              95
-#> 2                                       Tested before 2005              95
-#> 3                                                      800              95
-#> 4                                      Country with no sat              95
-#> 5                                                      N/a              95
-#> 6                                  Never & have ba & above              95
-#> 7                                                      720              95
-#> 8                          Did well - don't remember score              95
-#> 9                                                      511              95
-#> 10                                                     700              95
-#> 11                                                     760              95
-#> 12                                                     780              95
-#> 13 Not part of sat when i took test in august 1967 at uiuc              95
-#> 14                                 Not part of sat in 1961              95
-#> 15                                                     620              95
+#>    id characteristic                                        known_variations number_of_users
+#> 1  41    SAT Writing                                                     750             110
+#> 2  41    SAT Writing                                      Tested before 2005             110
+#> 3  41    SAT Writing                                                     800             110
+#> 4  41    SAT Writing                                     Country with no sat             110
+#> 5  41    SAT Writing                                                     N/a             110
+#> 6  41    SAT Writing                                 Never & have ba & above             110
+#> 7  41    SAT Writing                                                     720             110
+#> 8  41    SAT Writing                         Did well - don't remember score             110
+#> 9  41    SAT Writing                                                     511             110
+#> 10 41    SAT Writing                                                     760             110
+#> 11 41    SAT Writing                                                     780             110
+#> 12 41    SAT Writing                                                     700             110
+#> 13 41    SAT Writing Not part of sat when i took test in august 1967 at uiuc             110
+#> 14 41    SAT Writing                                 Not part of sat in 1961             110
+#> 15 41    SAT Writing                                                     620             110
+#> 16 41    SAT Writing                                                     560             110
 ```
 
 ### Annotations
@@ -197,15 +186,9 @@ annotations(snp = 'rs7903146', output = 'plos')[c(1:2),]
 #>                                                                                                                                      title
 #> 1 Meta-Analysis of Genome-Wide Association Studies in African Americans Provides Insights into the Genetic Architecture of Type 2 Diabetes
 #> 2                                  Genetic Variants of Diabetes Risk and Incident Cardiovascular Events in Chronic Coronary Artery Disease
-#>           publication_date number_of_readers
-#> 1 2014-08-07T00:00:00.000Z             11650
-#> 2 2011-01-20T00:00:00.000Z              2482
-#>                                            url
-#> 1 https://doi.org/10.1371/journal.pgen.1004517
-#> 2 https://doi.org/10.1371/journal.pone.0016341
-#>                            doi
-#> 1 10.1371/journal.pgen.1004517
-#> 2 10.1371/journal.pone.0016341
+#>           publication_date number_of_readers                                          url                          doi
+#> 1 2014-08-07T00:00:00.000Z             11650 https://doi.org/10.1371/journal.pgen.1004517 10.1371/journal.pgen.1004517
+#> 2 2011-01-20T00:00:00.000Z              2482 https://doi.org/10.1371/journal.pone.0016341 10.1371/journal.pone.0016341
 ```
 
 Just from SNPedia
@@ -213,14 +196,10 @@ Just from SNPedia
 
 ```r
 annotations(snp = 'rs7903146', output = 'snpedia')
-#>                                               url
-#> 1 http://www.snpedia.com/index.php/Rs7903146(C;C)
-#> 2 http://www.snpedia.com/index.php/Rs7903146(C;T)
-#> 3 http://www.snpedia.com/index.php/Rs7903146(T;T)
-#>                                                            summary
-#> 1 Normal (lower) risk of Type 2 Diabetes and Gestational Diabetes.
-#> 2     1.4x increased risk for diabetes (and perhaps colon cancer).
-#> 3                            2x increased risk for Type-2 diabetes
+#>                                               url                                                          summary
+#> 1 http://www.snpedia.com/index.php/Rs7903146(C;C) Normal (lower) risk of Type 2 Diabetes and Gestational Diabetes.
+#> 2 http://www.snpedia.com/index.php/Rs7903146(C;T)     1.4x increased risk for diabetes (and perhaps colon cancer).
+#> 3 http://www.snpedia.com/index.php/Rs7903146(T;T)                            2x increased risk for Type-2 diabetes
 ```
 
 Get all annotations
@@ -252,24 +231,18 @@ annotations(snp = 'rs7903146', output = 'all')[1:5,]
 #> 3              http://www.mendeley.com/research/association-tcf7l2-gene-polymorphisms-reduced-acute-insulin-response-hispanic-americans/
 #> 4        http://www.mendeley.com/research/genotype-tissuespecific-effects-alternative-splicing-transcription-factor-7like-2-gene-humans/
 #> 5 http://www.mendeley.com/research/polymorphism-transcription-factor-7like-2-tcf7l2-gene-associated-reduced-insulin-secretion-nondiabet/
-#>                                              doi publication_date summary
-#> 1 19/2/558 [pii]\\r10.1158/1055-9965.EPI-09-0902             <NA>    <NA>
-#> 2                         10.2337/db07-0299.Leif             <NA>    <NA>
-#> 3                           10.1210/jc.2007-1225             <NA>    <NA>
-#> 4                           10.1210/jc.2009-2064             <NA>    <NA>
-#> 5                              10.2337/db06-0574             <NA>    <NA>
-#>   first_author pubmed_link journal trait pvalue pvalue_description
-#> 1         <NA>        <NA>    <NA>  <NA>     NA               <NA>
-#> 2         <NA>        <NA>    <NA>  <NA>     NA               <NA>
-#> 3         <NA>        <NA>    <NA>  <NA>     NA               <NA>
-#> 4         <NA>        <NA>    <NA>  <NA>     NA               <NA>
-#> 5         <NA>        <NA>    <NA>  <NA>     NA               <NA>
-#>   confidence_interval
-#> 1                <NA>
-#> 2                <NA>
-#> 3                <NA>
-#> 4                <NA>
-#> 5                <NA>
+#>                                              doi publication_date summary first_author pubmed_link journal trait pvalue
+#> 1 19/2/558 [pii]\\r10.1158/1055-9965.EPI-09-0902             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
+#> 2                         10.2337/db07-0299.Leif             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
+#> 3                           10.1210/jc.2007-1225             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
+#> 4                           10.1210/jc.2009-2064             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
+#> 5                              10.2337/db06-0574             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
+#>   pvalue_description confidence_interval
+#> 1               <NA>                <NA>
+#> 2               <NA>                <NA>
+#> 3               <NA>                <NA>
+#> 4               <NA>                <NA>
+#> 5               <NA>                <NA>
 ```
 
 ### Download
@@ -318,17 +291,15 @@ genotypes(snp='rs9939609', userid=1)
 ```
 
 
+
 ```r
 genotypes('rs9939609', userid='1,6,8', df=TRUE)
-#>    snp_name snp_chromosome snp_position                 user_name user_id
-#> 1 rs9939609             16     53786615 Bastian Greshake Tzovaras       1
-#> 2 rs9939609             16     53786615              Nash Parovoz       6
-#> 3 rs9939609             16     53786615         Samantha B. Clark       8
-#>   genotype_id genotype
-#> 1           9       AT
-#> 2           5       AT
-#> 3           2       TT
+#>    snp_name snp_chromosome snp_position                 user_name user_id genotype_id genotype
+#> 1 rs9939609             16     53786615 Bastian Greshake Tzovaras       1           9       AT
+#> 2 rs9939609             16     53786615              Nash Parovoz       6           5       AT
+#> 3 rs9939609             16     53786615         Samantha B. Clark       8           2       TT
 ```
+
 
 
 ```r
@@ -392,8 +363,17 @@ genotypes('rs9939609', userid='1-2', df=FALSE)
 Get phenotype data for one or multiple users
 
 
+
 ```r
 phenotypes(userid=1)$phenotypes[1:3]
+#> $`Caffeine dependence`
+#> $`Caffeine dependence`$phenotype_id
+#> [1] 538
+#> 
+#> $`Caffeine dependence`$variation
+#> [1] "No"
+#> 
+#> 
 #> $`hair on ear`
 #> $`hair on ear`$phenotype_id
 #> [1] 254
@@ -408,43 +388,24 @@ phenotypes(userid=1)$phenotypes[1:3]
 #> 
 #> $`Third Nipple`$variation
 #> [1] "None"
-#> 
-#> 
-#> $Alcoholism
-#> $Alcoholism$phenotype_id
-#> [1] 485
-#> 
-#> $Alcoholism$variation
-#> [1] "None"
 ```
-
 
 
 ```r
 phenotypes(userid='1,6,8', df=TRUE)[[1]][1:10,]
-#>                                phenotype phenotypeID
-#> 1                            hair on ear         254
-#> 2                           Third Nipple         259
-#> 3                             Alcoholism         485
-#> 4         Alcohol Consumption (per week)         484
-#> 5  Allergy to artificial grape flavoring         352
-#> 6                       inverted nipples         583
-#> 7    Do you prefer python, matlab, or R?         585
-#> 8                      Political Compass         276
-#> 9                Sweat eating spicy food         219
-#> 10                            syndactyly         372
-#>                                                              variation
-#> 1                                                                   No
-#> 2                                                                 None
-#> 3                                                                 None
-#> 4                                                                    0
-#> 5                                                                   No
-#> 6                                                                 None
-#> 7                                                           Python & R
-#> 8  Economic Left/Right: -8.88  Social Libertarian/Authoritarian: -9.49
-#> 9                                                                  Yes
-#> 10                                                                None
+#>                                phenotype phenotypeID                                                           variation
+#> 1                    Caffeine dependence         538                                                                  No
+#> 2                            hair on ear         254                                                                  No
+#> 3                           Third Nipple         259                                                                None
+#> 4                             Alcoholism         485                                                                None
+#> 5         Alcohol Consumption (per week)         484                                                                   0
+#> 6  Allergy to artificial grape flavoring         352                                                                  No
+#> 7                       inverted nipples         583                                                                None
+#> 8    Do you prefer python, matlab, or R?         585                                                          Python & R
+#> 9                      Political Compass         276 Economic Left/Right: -8.88  Social Libertarian/Authoritarian: -9.49
+#> 10               Sweat eating spicy food         219                                                                 Yes
 ```
+
 
 
 ```r
@@ -452,12 +413,12 @@ out <- phenotypes(userid='1-8', df=TRUE)
 lapply(out, head)
 #> $`Bastian Greshake Tzovaras`
 #>                               phenotype phenotypeID variation
-#> 1                           hair on ear         254        No
-#> 2                          Third Nipple         259      None
-#> 3                            Alcoholism         485      None
-#> 4        Alcohol Consumption (per week)         484         0
-#> 5 Allergy to artificial grape flavoring         352        No
-#> 6                      inverted nipples         583      None
+#> 1                   Caffeine dependence         538        No
+#> 2                           hair on ear         254        No
+#> 3                          Third Nipple         259      None
+#> 4                            Alcoholism         485      None
+#> 5        Alcohol Consumption (per week)         484         0
+#> 6 Allergy to artificial grape flavoring         352        No
 #> 
 #> $Senficon
 #>   phenotype phenotypeID variation
@@ -514,6 +475,7 @@ phenotypes_byid(phenotypeid=12, return_ = 'desc')
 #> $description
 #> [1] "coloration of facial hair"
 ```
+
 
 
 ```r
@@ -605,33 +567,35 @@ phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
 #> 
 #> $known_variations[[29]]
 #> [1] "Black with few white hairs"
+#> 
+#> $known_variations[[30]]
+#> [1] "Brown ginger"
+#> 
+#> $known_variations[[31]]
+#> [1] "Dark blonde"
+#> 
+#> $known_variations[[32]]
+#> [1] "Black - going white due to age"
+#> 
+#> $known_variations[[33]]
+#> [1] "N/a"
 ```
+
 
 
 ```r
 phenotypes_byid(phenotypeid=12, return_ = 'users')[1:10,]
-#>    user_id
-#> 1       22
-#> 2        1
-#> 3       26
-#> 4       10
-#> 5       14
-#> 6       42
-#> 7       45
-#> 8       16
-#> 9        8
-#> 10     661
-#>                                                                                              variation
-#> 1                                                                                                  Red
-#> 2                                                                                               Blonde
-#> 3                                                                                            red-brown
-#> 4  Red-Blonde-Brown-Black(in diferent parts i have different color,for example near the lips blond-red
-#> 5                                                                                      No beard-female
-#> 6                                                                                          Brown-black
-#> 7  Red-Blonde-Brown-Black(in diferent parts i have different color,for example near the lips blond-red
-#> 8                                                                                         blonde-brown
-#> 9                                                                                      No beard-female
-#> 10                                                                                         Brown-black
+#>    user_id                                                                                           variation
+#> 1       22                                                                                                 Red
+#> 2        1                                                                                              Blonde
+#> 3       26                                                                                           red-brown
+#> 4       10 Red-Blonde-Brown-Black(in diferent parts i have different color,for example near the lips blond-red
+#> 5       14                                                                                     No beard-female
+#> 6       42                                                                                         Brown-black
+#> 7       45 Red-Blonde-Brown-Black(in diferent parts i have different color,for example near the lips blond-red
+#> 8       16                                                                                        blonde-brown
+#> 9        8                                                                                     No beard-female
+#> 10     661                                                                                         Brown-black
 ```
 
 
@@ -639,23 +603,81 @@ phenotypes_byid(phenotypeid=12, return_ = 'users')[1:10,]
 
 ### dbSNP
 
-Query NCBI's [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) for information on a set of SNPs
+Query NCBI's [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) for information on a set of SNPs. 
 
-An example with both merged SNPs, non-SNV SNPs, regular SNPs, SNPs not found, microsatellite
-
+An example with four markers, where one has been merged, and one has been withdrawn from NCBI.
 
 
 ```r
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
-ncbi_snp_query(snps)
-#>          Query Chromosome       Marker  Class Gene Alleles Major Minor
-#> 1        rs332          7  rs121909001 in-del CFTR   -/TTT  <NA>  <NA>
-#> 2     rs420358          1     rs420358    snp CFTR   A,G,T     A     G
-#> 3    rs1837253          5    rs1837253    snp CFTR     C/T     C     T
-#> 4 rs1209415715          9 rs1209415715    snp CFTR     C,T     C     T
-#>      MAF        BP AncestralAllele
-#> 1     NA 117559593            <NA>
-#> 2     NA 117559593     T,T,T,T,T,T
-#> 3 0.3822 117559593     T,T,T,T,T,T
-#> 4     NA 117559593            <NA>
+(dbsnp_info <- ncbi_snp_query(snps))
+#> # A tibble: 4 × 16
+#>   query  chromosome     bp class rsid  gene  alleles ancestral_allele variation_allele seqname hgvs  assembly ref_seq minor    maf
+#>   <chr>  <chr>       <dbl> <chr> <chr> <chr> <chr>   <chr>            <chr>            <chr>   <chr> <chr>    <chr>   <chr>  <dbl>
+#> 1 rs332  7          1.18e8 del   rs12… "CFT… TTT, d… TTT              delTTT           NC_000… NC_0… GRCh38.… <NA>    <NA>  NA    
+#> 2 rs420… 1          4.03e7 snv   rs42… ""    A,C,G,T A                C,G,T            NC_000… NC_0… GRCh38.… <NA>    <NA>  NA    
+#> 3 rs183… 5          1.11e8 snv   rs18… ""    T,C     T                C                NC_000… NC_0… GRCh38.… T       C      0.726
+#> 4 rs120… 9          4.18e7 snv   rs12… ""    T,A,C   T                A,C              NC_000… NC_0… GRCh38.… <NA>    <NA>  NA    
+#> # … with 1 more variable: maf_population <list>
+```
+
+The maf column contains the minor allele frequency from the GnomAD database (if available). All population specific allele frequencies can be accessed through the column `maf_population` which returns a list.
+
+```r
+dbsnp_info$maf_population
+#> [[1]]
+#>   study ref_seq Minor MAF
+#> 1            NA    NA  NA
+#> 
+#> [[2]]
+#>             study ref_seq Minor       MAF
+#> 1          ALSPAC       A     C 0.8227815
+#> 2        Estonian       A     C 0.7895089
+#> 3       GENOME_DK       A     C 0.8750000
+#> 4            GoNL       A     C 0.8266533
+#> 5          KOREAN       A     C 0.9658703
+#> 6  NorthernSweden       A     C 0.8183333
+#> 7          Qatari       A     C 0.8379630
+#> 8        SGDP_PRJ       A     C 0.9175824
+#> 9        Siberian       A     C 0.8333333
+#> 10          TOMMO       A     C 0.9589499
+#> 11         TOPMED       A     C 0.8765689
+#> 12         TOPMED       A     C 0.8767313
+#> 13        TWINSUK       A     C 0.8193096
+#> 14     Vietnamese       A     C 0.9952830
+#> 15  dbGaP_PopFreq       A     C 0.7991653
+#> 16         KOREAN       A     G 0.0000000
+#> 17         KOREAN       A     T 0.0000000
+#> 18  dbGaP_PopFreq       A     T 0.0000000
+#> 
+#> [[3]]
+#>             study ref_seq Minor       MAF
+#> 1     1000Genomes       T     C 0.6178115
+#> 2          ALSPAC       T     C 0.7477945
+#> 3       Daghestan       T     C 0.6856128
+#> 4        Estonian       T     C 0.7037946
+#> 5       GENOME_DK       T     C 0.7250000
+#> 6          GnomAD       T     C 0.7257767
+#> 7            GoNL       T     C 0.7274549
+#> 8   HGDP_Stanford       T     C 0.6602687
+#> 9          HapMap       T     C 0.6054025
+#> 10         KOREAN       T     C 0.3969283
+#> 11        Korea1K       T     C 0.3733624
+#> 12 NorthernSweden       T     C 0.6850000
+#> 13     PAGE_STUDY       T     C 0.6673868
+#> 14     PRJEB36033       T     C 1.0000000
+#> 15     PRJEB37584       T     C 0.4141414
+#> 16         Qatari       T     C 0.7824074
+#> 17       SGDP_PRJ       T     C 0.7670940
+#> 18       Siberian       T     C 0.7826087
+#> 19          TOMMO       T     C 0.3405728
+#> 20         TOPMED       T     C 0.7110490
+#> 21         TOPMED       T     C 0.7196758
+#> 22        TWINSUK       T     C 0.7437972
+#> 23     Vietnamese       T     C 0.4074074
+#> 24  dbGaP_PopFreq       T     C 0.7300999
+#> 
+#> [[4]]
+#>           study ref_seq Minor MAF
+#> 1 dbGaP_PopFreq       T     A   0
 ```

@@ -58,53 +58,63 @@ get_placements <- function(primary_info) {
 #'
 #' @param Class What kind of variant is the rsid. Accepted options are "snv", "snp" and "delins".
 #' @param primary_info refsnp entry read in JSON format
-#' @param study Study from which frequency information is obtained. Possibilities
-#' include: GnomAD (default), 1000Genomes, ALSPAC, Estonian, NorthernSweden, TWINSUK
 #'
-get_frequency <- function(Class, primary_info, study = "GnomAD") {
+get_frequency <- function(Class, primary_info) {
   if (Class %in% c("snv", "snp", "delins")) {
-    for (record in  primary_info$primary_snapshot_data$allele_annotations) {
+    df_freq <- NULL
+    for (record in primary_info$primary_snapshot_data$allele_annotations) {
       for (freq_record in record$frequency) {
-        if (freq_record$study_name == study & freq_record$observation$deleted_sequence != freq_record$observation$inserted_sequence) {
+        if (freq_record$observation$deleted_sequence != freq_record$observation$inserted_sequence) {
           if (freq_record$observation$inserted_sequence == "") {
-            MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
-            df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
-                                  Minor = paste0("del", freq_record$observation$deleted),
-                                  MAF = MAF,
-                                  stringsAsFactors = FALSE)
+            MAF <-  freq_record$allele_count / freq_record$total_count
+            df_freq_study <- data.frame(study = freq_record$study_name,
+                                        ref_seq = freq_record$observation$deleted_sequence,
+                                        Minor = paste0("del", freq_record$observation$deleted),
+                                        MAF = MAF,
+                                        stringsAsFactors = FALSE)
           }
           else if (freq_record$observation$deleted_sequence == "") {
-            MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
-            df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
-                                  Minor = paste0("dup", freq_record$observation$inserted_sequence),
-                                  MAF = MAF,
-                                  stringsAsFactors = FALSE)
+            MAF <-  freq_record$allele_count / freq_record$total_count
+            df_freq_study <- data.frame(study = freq_record$study_name,
+                                        ref_seq = freq_record$observation$deleted_sequence,
+                                        Minor = paste0("dup", freq_record$observation$inserted_sequence),
+                                        MAF = MAF,
+                                        stringsAsFactors = FALSE)
           }
           else {
-            MAF <-  round(freq_record$allele_count / freq_record$total_count, 4)
-            df_freq <- data.frame(ref_seq = freq_record$observation$deleted_sequence,
-                                  Minor = freq_record$observation$inserted_sequence,
-                                  MAF = MAF,
-                                  stringsAsFactors = FALSE)
+            MAF <- freq_record$allele_count / freq_record$total_count
+            df_freq_study <- data.frame(study = freq_record$study_name,
+                                        ref_seq = freq_record$observation$deleted_sequence,
+                                        Minor = freq_record$observation$inserted_sequence,
+                                        MAF = MAF,
+                                        stringsAsFactors = FALSE)
           }
+          df_freq <- rbind(df_freq, df_freq_study)
         }
       }
     }
-    if (exists("df_freq")) {
+    
+    if (!is.null(df_freq)) {
       return(df_freq)
     }
     else {
-      df_freq <- data.frame(ref_seq = NA,
+      df_freq <- data.frame(study = "", 
+                            ref_seq = NA,
                             Minor = NA,
                             MAF = NA,
                             stringsAsFactors = FALSE)
     }
   } else {
-    df_freq <- data.frame(ref_seq = NA,
+    df_freq <- data.frame(study = "", 
+                          ref_seq = NA,
                           Minor = NA,
                           MAF = NA,
                           stringsAsFactors = FALSE)
   }
+  
+  ## sort study names so studies grouped together
+  df_freq <- df_freq[order(df_freq$study),]
+  
 }
 
 #' Internal function to get gene names.
@@ -172,6 +182,8 @@ get_gene_names <- function(primary_info) {
 #' - hgvs -  full hgvs notation for variant
 #' - assembly - which assembly was used for the annotations
 #' - ref_seq - sequence in reference assembly
+#' - maf_population - dataframe of all minor allele frequencies reported, with columns study, 
+#' reference allele, alternative allele (minor) and minor allele frequency. 
 #'
 #'
 #' @references <https://www.ncbi.nlm.nih.gov/projects/SNP/>
@@ -200,6 +212,13 @@ get_gene_names <- function(primary_info) {
 #' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' }
 ncbi_snp_query <- function(snps) {
+  
+  ## NCBI moved to https but not using http v.2. The setting of the version 
+  ## used with curl is based on 
+  ##  https://github.com/ropensci/rentrez/issues/127#issuecomment-488838967
+  ## in the rentrez package 
+  httr::set_config(httr::config(http_version = 2)) ## value 2 corresponds to CURL_HTTP_VERSION_1_1
+  
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply(snps, function(x) {
     grep("^rs[0-9]+$", x)
@@ -216,17 +235,19 @@ ncbi_snp_query <- function(snps) {
   ## transform all SNPs into numbers (rsid)
   snps_num <- gsub("rs", "", snps)
   
-  out <- as.data.frame(matrix(0, nrow = length(snps_num), ncol = 15))
+  out <- as.data.frame(matrix(NA, nrow = length(snps_num), ncol = 15))
   names(out) <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf")
 
+  out_maf <- list(NULL)
+  
   ## as far as I understand from https://api.ncbi.nlm.nih.gov/variation/v0/#/RefSNP/ we
   ## can only send one query at a time and max 1 per second.
   for (i in seq_along(snps_num)) {
     
     variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", snps_num[i])
     variant.response <-  httr::GET(variant.url)
-    variant.response.content <-  RJSONIO::fromJSON(rawToChar(variant.response$content),
-                                                   simplifyWithNames = TRUE)
+    variant.response.content <-  jsonlite::fromJSON(rawToChar(variant.response$content),
+                                                    simplifyVector = FALSE)  
     
     if ("error" %in% names(variant.response.content)) {
       if (variant.response.content$error$message == "RefSNP not found") {
@@ -260,8 +281,9 @@ ncbi_snp_query <- function(snps) {
       
       variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", no_rsid)
       variant.response <- httr::GET(variant.url)
-      variant.response.content <- RJSONIO::fromJSON(rawToChar(variant.response$content),
-                                                    simplifyWithNames = TRUE)
+      variant.response.content <- jsonlite::fromJSON(rawToChar(variant.response$content),
+                                                     simplifyVector = FALSE)
+      
     } else {
       rsid <- as.character(paste0("rs",
                                   variant.response.content$refsnp_id))
@@ -269,7 +291,8 @@ ncbi_snp_query <- function(snps) {
     
     Class <- as.character(variant.response.content$primary_snapshot_data$variant_type)
     placement_SNP <- get_placements(variant.response.content)
-    ## frequency of minor allele
+    
+    ## frequency of minor allele for all studies
     frequency_SNP <- get_frequency(Class, variant.response.content)
     Gene <- get_gene_names(variant.response.content)
     
@@ -285,18 +308,28 @@ ncbi_snp_query <- function(snps) {
                   placement_SNP$seqname,
                   placement_SNP$hgvs,
                   placement_SNP$assembly,
-                  frequency_SNP$ref_seq,
-                  frequency_SNP$Minor,
-                  frequency_SNP$MAF)
+                  # if GnomAD maf available, pick that
+                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$ref_seq[frequency_SNP$study=="GnomAD"], NA),
+                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$Minor[frequency_SNP$study=="GnomAD"], NA),
+                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$MAF[frequency_SNP$study=="GnomAD"], NA)
+                  ) 
+    out_maf[[i]] <- frequency_SNP
     
   }
   Sys.sleep(1)
   
   ## remove missing rsnumbers
-  out <- out[out$query != 0, ]
+  ind <- which(!is.na(out$query))
+  out <- out[ind, ]
+  out_maf <-  out_maf[ind]
   
+  ## ensure maf and bp are numeric
   for (nm in c("maf", "bp")) {
     out[, nm] <- as.numeric(out[, nm])
   }
+  
+  ## adding maf_population
+  out <- tibble::tibble(out, maf_population = out_maf)
+  
   return(out)
 }
