@@ -111,7 +111,7 @@ out$phenotypes$`Hair Type`
     #> [1] "straight"
 
 For more detail, see the [vignette: rsnps
-tutorial](https://github.com/ropensci/rsnps/blob/master/vignettes).
+tutorial](https://github.com/ropensci/rsnps/tree/master/vignettes).
 
 ## Meta
 
