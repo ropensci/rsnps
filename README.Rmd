@@ -89,7 +89,7 @@ out <- phenotypes(userid=1)
 out$phenotypes$`Hair Type`
 ```
 
-For more detail, see the [vignette: rsnps tutorial](https://github.com/ropensci/rsnps/blob/master/inst/vign/rsnps_vignette.md).
+For more detail, see the [vignette: rsnps tutorial](https://github.com/ropensci/rsnps/blob/master/vignettes).
 
 ## Meta
 
