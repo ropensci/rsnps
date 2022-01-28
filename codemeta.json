@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/rsnps/",
   "issueTracker": "https://github.com/ropensci/rsnps/issues/",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.4.0.9000",
+  "version": "0.5.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -198,6 +198,6 @@
   "contributor": {},
   "copyrightHolder": {},
   "funder": {},
-  "fileSize": "1311433.802KB",
+  "fileSize": "108.372KB",
   "relatedLink": "https://docs.ropensci.org/rsnps/"
 }
