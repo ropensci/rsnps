@@ -54,8 +54,8 @@ get_placements <- function(primary_info, version) {
   for (record in primary_info$primary_snapshot_data$placements_with_allele) {
     if (record$is_ptlp & length(record$placement_annot$seq_id_traits_by_assembly) > 0 && version == "38") {
       return(get_placements_inside(record))
-    }else if(length(record$placement_annot$seq_id_traits_by_assembly) > 0 && version == "37")){
-      if(startsWith(record$placement_annot$seq_id_traits_by_assembly[[1]]$assembly_name, "GRCh37"){
+    }else if(length(record$placement_annot$seq_id_traits_by_assembly) > 0 && version == "37"){
+      if(startsWith(record$placement_annot$seq_id_traits_by_assembly[[1]]$assembly_name, "GRCh37")){
         return(get_placements_inside(record))
       }
     }}
