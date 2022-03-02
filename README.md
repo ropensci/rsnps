@@ -53,7 +53,7 @@ Or dev version
 
 ``` r
 install.packages("remotes")
-remotes::install_github("cruzpazv/rsnps")
+remotes::install_github("ropensci/rsnps")
 ```
 
 ``` r
