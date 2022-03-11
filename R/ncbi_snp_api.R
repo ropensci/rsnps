@@ -3,52 +3,61 @@
 #'
 #' @param primary_info refsnp entry read in JSON format
 #'
-get_placements <- function(primary_info) {
-  for (record in primary_info$primary_snapshot_data$placements_with_allele) {
-    if (record$is_ptlp & length(record$placement_annot$seq_id_traits_by_assembly) > 0) {
-      assembly_name <- record$placement_annot$seq_id_traits_by_assembly[[1]]$assembly_name
-      chrom_name <- gsub("NC_[0]+([1-9]+[0-9]?)\\.[[:digit:]]+", "\\1", record$seq_id)
-      df_list <- lapply(record$alleles,
-                        function(one_allele) {
-                          if (one_allele$allele$spdi$deleted_sequence != one_allele$allele$spdi$inserted_sequence) {
-                            alleles <-  paste(one_allele$allele$spdi$deleted_sequence,
-                                              one_allele$allele$spdi$inserted_sequence,
-                                              sep = ",")
-                            if (one_allele$allele$spdi$inserted_sequence == "") {
-                              VariationAllele <-  paste0("del",
-                                                         one_allele$allele$spdi$deleted_sequence)
-                              alleles <-  paste(alleles, VariationAllele)
-                            } else {
-                              VariationAllele <- one_allele$allele$spdi$inserted_sequence
-                            }
-                            
-                            df_snp <- data.frame(Alleles = alleles,
-                                                 AncestralAllele = one_allele$allele$spdi$deleted_sequence,
-                                                 VariationAllele = VariationAllele,
-                                                 BP = one_allele$allele$spdi$position + 1,
-                                                 seqname = one_allele$allele$spdi$seq_id,
-                                                 hgvs = one_allele$hgvs,
-                                                 assembly = assembly_name,
-                                                 Chromosome = chrom_name,
-                                                 stringsAsFactors = FALSE)
-                            return(df_snp)
-                          }
+
+get_placements_inside <- function(record){
+  assembly_name <- record$placement_annot$seq_id_traits_by_assembly[[1]]$assembly_name
+  chrom_name <- gsub("NC_[0]+([1-9]+[0-9]?)\\.[[:digit:]]+", "\\1", record$seq_id)
+  df_list <- lapply(record$alleles,
+                    function(one_allele) {
+                      if (one_allele$allele$spdi$deleted_sequence != one_allele$allele$spdi$inserted_sequence) {
+                        alleles <-  paste(one_allele$allele$spdi$deleted_sequence,
+                                          one_allele$allele$spdi$inserted_sequence,
+                                          sep = ",")
+                        if (one_allele$allele$spdi$inserted_sequence == "") {
+                          VariationAllele <-  paste0("del",
+                                                     one_allele$allele$spdi$deleted_sequence)
+                          alleles <-  paste(alleles, VariationAllele)
+                        } else {
+                          VariationAllele <- one_allele$allele$spdi$inserted_sequence
                         }
-      )
-      
-      ## remove the NULLs
-      df_list <- df_list[lengths(df_list) != 0]
-      
-      ## if more than one we need to merge the ancestral and variation alleles
-      df_all <- do.call(rbind, df_list)
-      new_df <- stats::aggregate(. ~ BP, data = df_all,
-                                 FUN = function(x)
-                                   paste(unique(x[x != ""]),
-                                         collapse = ",")
-      )
-      new_df$Alleles <- paste(unique(unlist(strsplit(new_df$Alleles, ","))),
-                              collapse = ",")
-      return(new_df)
+                        
+                        df_snp <- data.frame(Alleles = alleles,
+                                             AncestralAllele = one_allele$allele$spdi$deleted_sequence,
+                                             VariationAllele = VariationAllele,
+                                             BP = one_allele$allele$spdi$position + 1,
+                                             seqname = one_allele$allele$spdi$seq_id,
+                                             hgvs = one_allele$hgvs,
+                                             assembly = assembly_name,
+                                             Chromosome = chrom_name,
+                                             stringsAsFactors = FALSE)
+                        return(df_snp)
+                      }
+                    }
+  )
+  
+  ## remove the NULLs
+  df_list <- df_list[lengths(df_list) != 0]
+  
+  ## if more than one we need to merge the ancestral and variation alleles
+  df_all <- do.call(rbind, df_list)
+  new_df <- stats::aggregate(. ~ BP, data = df_all,
+                             FUN = function(x)
+                               paste(unique(x[x != ""]),
+                                     collapse = ",")
+  )
+  new_df$Alleles <- paste(unique(unlist(strsplit(new_df$Alleles, ","))),
+                          collapse = ",")
+  return(new_df)
+}
+
+get_placements <- function(primary_info, version) {
+  for (record in primary_info$primary_snapshot_data$placements_with_allele) {
+    if (record$is_ptlp & length(record$placement_annot$seq_id_traits_by_assembly) > 0 && version == "38") {
+      return(get_placements_inside(record))
+    }else if(length(record$placement_annot$seq_id_traits_by_assembly) > 0 && version == "37"){
+      if(startsWith(record$placement_annot$seq_id_traits_by_assembly[[1]]$assembly_name, "GRCh37")){
+        return(get_placements_inside(record))
+      }
     }}
 }
 
@@ -211,7 +220,7 @@ get_gene_names <- function(primary_info) {
 #' ncbi_snp_query("rs121909001")
 #' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' }
-ncbi_snp_query <- function(snps) {
+ncbi_snp_query <- function(snps, version = "38") {
   
   ## NCBI moved to https but not using http v.2. The setting of the version 
   ## used with curl is based on 
@@ -237,7 +246,7 @@ ncbi_snp_query <- function(snps) {
   
   out <- as.data.frame(matrix(NA, nrow = length(snps_num), ncol = 15))
   names(out) <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf")
-
+  
   out_maf <- list(NULL)
   
   ## as far as I understand from https://api.ncbi.nlm.nih.gov/variation/v0/#/RefSNP/ we
@@ -290,7 +299,7 @@ ncbi_snp_query <- function(snps) {
     }
     
     Class <- as.character(variant.response.content$primary_snapshot_data$variant_type)
-    placement_SNP <- get_placements(variant.response.content)
+    placement_SNP <- get_placements(variant.response.content, version)
     
     ## frequency of minor allele for all studies
     frequency_SNP <- get_frequency(Class, variant.response.content)
@@ -312,7 +321,7 @@ ncbi_snp_query <- function(snps) {
                   ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$ref_seq[frequency_SNP$study=="GnomAD"], NA),
                   ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$Minor[frequency_SNP$study=="GnomAD"], NA),
                   ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$MAF[frequency_SNP$study=="GnomAD"], NA)
-                  ) 
+    ) 
     out_maf[[i]] <- frequency_SNP
     
   }
@@ -333,3 +342,4 @@ ncbi_snp_query <- function(snps) {
   
   return(out)
 }
+

@@ -64,6 +64,8 @@ library("rsnps")
 
 ### NCBI dbSNP data
 
+By default, will be version **GRCh38**:
+
 ``` r
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 ncbi_snp_query(snps)
@@ -79,6 +81,24 @@ ncbi_snp_query(snps)
     #> # … with 8 more variables: variation_allele <chr>, seqname <chr>, hgvs <chr>,
     #> #   assembly <chr>, ref_seq <chr>, minor <chr>, maf <dbl>,
     #> #   maf_population <list>
+    
+    
+For version **GRCh37**:
+
+``` r
+snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
+ncbi_snp_query(snps, "37")
+```
+
+    #> A tibble: 4 x 16
+    #> query     chromosome     bp class rsid  gene  alleles ancestral_allele variation_allele seqname hgvs assembly ref_seq
+    #> <chr>     <chr>       <dbl> <chr> <chr> <chr> <chr>   <chr>            <chr>            <chr>   <chr> <chr>    <chr>  
+    #> 1 rs332     7          1.17e8 del   rs12~ "CFT~ TTT, d~ TTT              delTTT           NC_000~ NC_0~ GRCh37.~ NA     
+    #> 2 rs420358  1          4.08e7 snv   rs42~ ""    A,C,G,T A                C,G,T            NC_000~ NC_0~ GRCh37.~ NA     
+    #> 3 rs1837253 5          1.10e8 snv   rs18~ ""    T,C     T                C                NC_000~ NC_0~ GRCh37.~ T      
+    #>4 rs120941~ 9          4.72e7 snv   rs12~ ""    T,A,C   T                A,C              NC_000~ NC_0~ GRCh37.~ NA     
+    #> # ... with 3 more variables: minor <chr>, maf <dbl>, maf_population <list>
+
 
 ### openSNP data
 
