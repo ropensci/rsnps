@@ -1,0 +1,15 @@
+url: ~
+template:
+  bootstrap: 5
+destination: docs/
+navbar:
+  title: rnsps
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    articles:
+      text: Articles
+      menu: 
+      - text: "rsnps 0.5.0: New ncbi_snp_query() Features"
+        href: https://ropensci.org/blog/2022/03/29/rsnps-update/
