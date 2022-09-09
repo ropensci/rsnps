@@ -1,11 +1,11 @@
 context("genotypes")
 
 test_that("genotypes returns the correct class", {
-	skip_on_cran()
+  skip_on_cran()
 
-	one <- suppressMessages(genotypes('rs9939609', userid='1,6,8', df=TRUE))
+  one <- suppressMessages(genotypes("rs9939609", userid = "1,6,8", df = TRUE))
 
-	expect_that(one, is_a("data.frame"))
-	expect_equal(NROW(one), 3)
-	expect_match(as.character(one[2,4]), "Nash Parovoz")
+  expect_that(one, is_a("data.frame"))
+  expect_equal(NROW(one), 3)
+  expect_match(as.character(one[2, 4]), "Nash Parovoz")
 })
