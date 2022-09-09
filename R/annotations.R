@@ -2,7 +2,7 @@
 #' 		available for a given phenotype.
 #'
 #' Either return data.frame with all results, or output a list, then call
-#' 		the charicteristic by id (parameter = "id") or
+#' 		the characteristic by id (parameter = "id") or
 #' 		name (parameter = "characteristic").
 #'
 #' @export

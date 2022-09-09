@@ -4,7 +4,7 @@
 #' via their API (https://opensnp.org/faq#api) and NCBI's dbSNP SNP database
 #' (https://www.ncbi.nlm.nih.gov/snp).
 #'
-#' @section NCBI Authenication:
+#' @section NCBI Authentication:
 #' This applies the function [ncbi_snp_query()]:
 #'
 #' You can optionally use an API key, if you do it will
