@@ -67,12 +67,12 @@ Get all data
 x <- allphenotypes(df = TRUE)
 head(x)
 #>   id characteristic known_variations number_of_users
-#> 1  1      Eye color            Brown            1665
-#> 2  1      Eye color      Brown-green            1665
-#> 3  1      Eye color       Blue-green            1665
-#> 4  1      Eye color        Blue-grey            1665
-#> 5  1      Eye color            Green            1665
-#> 6  1      Eye color             Blue            1665
+#> 1  1      Eye color            Brown            1718
+#> 2  1      Eye color      Brown-green            1718
+#> 3  1      Eye color       Blue-green            1718
+#> 4  1      Eye color        Blue-grey            1718
+#> 5  1      Eye color            Green            1718
+#> 6  1      Eye color             Blue            1718
 ```
 
 Output a list, then call the characteristic of interest by 'id' or 'characteristic'
@@ -98,36 +98,51 @@ Get data.frame for _ADHD_
 
 ```r
 datalist[["ADHD"]]
-#>    id characteristic                                                                                             known_variations
-#> 1  29           ADHD                                                                                                        False
-#> 2  29           ADHD                                                                                                         True
-#> 3  29           ADHD                                                                               Undiagnosed, but probably true
-#> 4  29           ADHD                                                                                                           No
-#> 5  29           ADHD                                                                                                          Yes
-#> 6  29           ADHD                                                                                                Not diagnosed
-#> 7  29           ADHD                                                                  Diagnosed as not having but with some signs
-#> 8  29           ADHD                                                                                                  Mthfr c677t
-#> 9  29           ADHD                                                                                                    Rs1801260
-#> 10 29           ADHD                                                                                                  Adult onset
-#> 11 29           ADHD                                                                   Diagnosed as "other hyperkinetic disorder"
-#> 12 29           ADHD                                                                                 Blonde, european, green eyes
-#> 13 29           ADHD                                                                                                      Extreme
-#> 14 29           ADHD Diagnosed as hyperactive type, though it is my belief that adhd is simply a normal trait such as eye color. 
+#>    id characteristic
+#> 1  29           ADHD
+#> 2  29           ADHD
+#> 3  29           ADHD
+#> 4  29           ADHD
+#> 5  29           ADHD
+#> 6  29           ADHD
+#> 7  29           ADHD
+#> 8  29           ADHD
+#> 9  29           ADHD
+#> 10 29           ADHD
+#> 11 29           ADHD
+#> 12 29           ADHD
+#> 13 29           ADHD
+#> 14 29           ADHD
+#>                                                                                                known_variations
+#> 1                                                                                                         False
+#> 2                                                                                                          True
+#> 3                                                                                Undiagnosed, but probably true
+#> 4                                                                                                            No
+#> 5                                                                                                           Yes
+#> 6                                                                                                 Not diagnosed
+#> 7                                                                   Diagnosed as not having but with some signs
+#> 8                                                                                                   Mthfr c677t
+#> 9                                                                                                     Rs1801260
+#> 10                                                                                                  Adult onset
+#> 11                                                                   Diagnosed as "other hyperkinetic disorder"
+#> 12                                                                                 Blonde, european, green eyes
+#> 13                                                                                                      Extreme
+#> 14 Diagnosed as hyperactive type, though it is my belief that adhd is simply a normal trait such as eye color. 
 #>    number_of_users
-#> 1              325
-#> 2              325
-#> 3              325
-#> 4              325
-#> 5              325
-#> 6              325
-#> 7              325
-#> 8              325
-#> 9              325
-#> 10             325
-#> 11             325
-#> 12             325
-#> 13             325
-#> 14             325
+#> 1              337
+#> 2              337
+#> 3              337
+#> 4              337
+#> 5              337
+#> 6              337
+#> 7              337
+#> 8              337
+#> 9              337
+#> 10             337
+#> 11             337
+#> 12             337
+#> 13             337
+#> 14             337
 ```
 
 Get data.frame for _mouth size_ and _SAT Writing_
@@ -137,10 +152,10 @@ Get data.frame for _mouth size_ and _SAT Writing_
 datalist[c("mouth size","SAT Writing")]
 #> $`mouth size`
 #>    id characteristic     known_variations number_of_users
-#> 1 120     mouth size               Medium             202
-#> 2 120     mouth size                Small             202
-#> 3 120     mouth size                Large             202
-#> 4 120     mouth size Slightly wide mouth              202
+#> 1 120     mouth size               Medium             203
+#> 2 120     mouth size                Small             203
+#> 3 120     mouth size                Large             203
+#> 4 120     mouth size Slightly wide mouth              203
 #> 
 #> $`SAT Writing`
 #>    id characteristic                                        known_variations number_of_users
@@ -186,9 +201,12 @@ annotations(snp = 'rs7903146', output = 'plos')[c(1:2),]
 #>                                                                                                                                      title
 #> 1 Meta-Analysis of Genome-Wide Association Studies in African Americans Provides Insights into the Genetic Architecture of Type 2 Diabetes
 #> 2                                  Genetic Variants of Diabetes Risk and Incident Cardiovascular Events in Chronic Coronary Artery Disease
-#>           publication_date number_of_readers                                          url                          doi
-#> 1 2014-08-07T00:00:00.000Z             11650 https://doi.org/10.1371/journal.pgen.1004517 10.1371/journal.pgen.1004517
-#> 2 2011-01-20T00:00:00.000Z              2482 https://doi.org/10.1371/journal.pone.0016341 10.1371/journal.pone.0016341
+#>           publication_date number_of_readers                                          url
+#> 1 2014-08-07T00:00:00.000Z             11650 https://doi.org/10.1371/journal.pgen.1004517
+#> 2 2011-01-20T00:00:00.000Z              2482 https://doi.org/10.1371/journal.pone.0016341
+#>                            doi
+#> 1 10.1371/journal.pgen.1004517
+#> 2 10.1371/journal.pone.0016341
 ```
 
 Just from SNPedia
@@ -231,18 +249,18 @@ annotations(snp = 'rs7903146', output = 'all')[1:5,]
 #> 3              http://www.mendeley.com/research/association-tcf7l2-gene-polymorphisms-reduced-acute-insulin-response-hispanic-americans/
 #> 4        http://www.mendeley.com/research/genotype-tissuespecific-effects-alternative-splicing-transcription-factor-7like-2-gene-humans/
 #> 5 http://www.mendeley.com/research/polymorphism-transcription-factor-7like-2-tcf7l2-gene-associated-reduced-insulin-secretion-nondiabet/
-#>                                              doi publication_date summary first_author pubmed_link journal trait pvalue
-#> 1 19/2/558 [pii]\\r10.1158/1055-9965.EPI-09-0902             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
-#> 2                         10.2337/db07-0299.Leif             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
-#> 3                           10.1210/jc.2007-1225             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
-#> 4                           10.1210/jc.2009-2064             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
-#> 5                              10.2337/db06-0574             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>     NA
-#>   pvalue_description confidence_interval
-#> 1               <NA>                <NA>
-#> 2               <NA>                <NA>
-#> 3               <NA>                <NA>
-#> 4               <NA>                <NA>
-#> 5               <NA>                <NA>
+#>                                              doi publication_date summary first_author pubmed_link journal trait
+#> 1 19/2/558 [pii]\\r10.1158/1055-9965.EPI-09-0902             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>
+#> 2                         10.2337/db07-0299.Leif             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>
+#> 3                           10.1210/jc.2007-1225             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>
+#> 4                           10.1210/jc.2009-2064             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>
+#> 5                              10.2337/db06-0574             <NA>    <NA>         <NA>        <NA>    <NA>  <NA>
+#>   pvalue pvalue_description confidence_interval
+#> 1     NA               <NA>                <NA>
+#> 2     NA               <NA>                <NA>
+#> 3     NA               <NA>                <NA>
+#> 4     NA               <NA>                <NA>
+#> 5     NA               <NA>                <NA>
 ```
 
 ### Download
@@ -393,17 +411,28 @@ phenotypes(userid=1)$phenotypes[1:3]
 
 ```r
 phenotypes(userid='1,6,8', df=TRUE)[[1]][1:10,]
-#>                                phenotype phenotypeID                                                           variation
-#> 1                    Caffeine dependence         538                                                                  No
-#> 2                            hair on ear         254                                                                  No
-#> 3                           Third Nipple         259                                                                None
-#> 4                             Alcoholism         485                                                                None
-#> 5         Alcohol Consumption (per week)         484                                                                   0
-#> 6  Allergy to artificial grape flavoring         352                                                                  No
-#> 7                       inverted nipples         583                                                                None
-#> 8    Do you prefer python, matlab, or R?         585                                                          Python & R
-#> 9                      Political Compass         276 Economic Left/Right: -8.88  Social Libertarian/Authoritarian: -9.49
-#> 10               Sweat eating spicy food         219                                                                 Yes
+#>                                phenotype phenotypeID
+#> 1                    Caffeine dependence         538
+#> 2                            hair on ear         254
+#> 3                           Third Nipple         259
+#> 4                             Alcoholism         485
+#> 5         Alcohol Consumption (per week)         484
+#> 6  Allergy to artificial grape flavoring         352
+#> 7                       inverted nipples         583
+#> 8    Do you prefer python, matlab, or R?         585
+#> 9                      Political Compass         276
+#> 10               Sweat eating spicy food         219
+#>                                                              variation
+#> 1                                                                   No
+#> 2                                                                   No
+#> 3                                                                 None
+#> 4                                                                 None
+#> 5                                                                    0
+#> 6                                                                   No
+#> 7                                                                 None
+#> 8                                                           Python & R
+#> 9  Economic Left/Right: -8.88  Social Libertarian/Authoritarian: -9.49
+#> 10                                                                 Yes
 ```
 
 
@@ -612,13 +641,13 @@ An example with four markers, where one has been merged, and one has been withdr
 snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 (dbsnp_info <- ncbi_snp_query(snps))
 #> # A tibble: 4 × 16
-#>   query  chromosome     bp class rsid  gene  alleles ancestral_allele variation_allele seqname hgvs  assembly ref_seq minor    maf
-#>   <chr>  <chr>       <dbl> <chr> <chr> <chr> <chr>   <chr>            <chr>            <chr>   <chr> <chr>    <chr>   <chr>  <dbl>
-#> 1 rs332  7          1.18e8 del   rs12… "CFT… TTT, d… TTT              delTTT           NC_000… NC_0… GRCh38.… <NA>    <NA>  NA    
-#> 2 rs420… 1          4.03e7 snv   rs42… ""    A,C,G,T A                C,G,T            NC_000… NC_0… GRCh38.… <NA>    <NA>  NA    
-#> 3 rs183… 5          1.11e8 snv   rs18… ""    T,C     T                C                NC_000… NC_0… GRCh38.… T       C      0.726
-#> 4 rs120… 9          4.18e7 snv   rs12… ""    T,A,C   T                A,C              NC_000… NC_0… GRCh38.… <NA>    <NA>  NA    
-#> # … with 1 more variable: maf_population <list>
+#>   query   chromosome     bp class rsid  gene  alleles ancestral_allele variation_allele seqname hgvs  assembly ref_seq
+#>   <chr>   <chr>       <dbl> <chr> <chr> <chr> <chr>   <chr>            <chr>            <chr>   <chr> <chr>    <chr>  
+#> 1 rs332   7          1.18e8 del   rs12… "CFT… TTT, d… TTT              delTTT           NC_000… NC_0… GRCh38.… <NA>   
+#> 2 rs4203… 1          4.03e7 snv   rs42… ""    A,C,G,T A                C,G,T            NC_000… NC_0… GRCh38.… <NA>   
+#> 3 rs1837… 5          1.11e8 snv   rs18… ""    T,C     T                C                NC_000… NC_0… GRCh38.… T      
+#> 4 rs1209… 9          4.18e7 snv   rs12… ""    T,A,C   T                A,C              NC_000… NC_0… GRCh38.… <NA>   
+#> # … with 3 more variables: minor <chr>, maf <dbl>, maf_population <list>
 ```
 
 The maf column contains the minor allele frequency from the GnomAD database (if available). All population specific allele frequencies can be accessed through the column `maf_population` which returns a list.

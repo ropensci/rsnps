@@ -13,11 +13,11 @@
 #' download_users(id = 14)
 #'
 #' # Download a single user file, by user name
-#' download_users(name = 'kevinmcc')
+#' download_users(name = "kevinmcc")
 #'
 #' # Download many user files
-#' lapply(c(14,22), function(x) download_users(id=x))
-#' read_users(id=14, nrows=5)
+#' lapply(c(14, 22), function(x) download_users(id = x))
+#' read_users(id = 14, nrows = 5)
 #' }
 download_users <- function(name = NULL, id = NULL, dir = "~/", ...) {
   if (is.null(name) && is.null(id)) {
@@ -28,17 +28,17 @@ download_users <- function(name = NULL, id = NULL, dir = "~/", ...) {
   tmp <- data[[1]]
   if (is.null(name)) {
     fileurl <- as.character(tmp[tmp$id %in% id, "genotypes.download_url"])
-    meta <- tmp[tmp$id %in% id, c("name","id")]
+    meta <- tmp[tmp$id %in% id, c("name", "id")]
   } else {
     fileurl <- as.character(tmp[tmp$name %in% name, "genotypes.download_url"])
-    meta <- tmp[tmp$name %in% name, c("name","id")]
+    meta <- tmp[tmp$name %in% name, c("name", "id")]
   }
   fileend <- strsplit(fileurl, "/")[[1]][length(strsplit(fileurl, "/")[[1]])]
-  dir2 <- paste(dir, fileend, '.txt', sep = "")
+  dir2 <- paste(dir, fileend, ".txt", sep = "")
   get_write(fileurl, dir2, ...)
 
-  assign(as.character(meta[,1]), dir2, envir = rsnps::rsnpsCache) # name
-  assign(as.character(meta[,2]), dir2, envir = rsnps::rsnpsCache) # id
+  assign(as.character(meta[, 1]), dir2, envir = rsnps::rsnpsCache) # name
+  assign(as.character(meta[, 2]), dir2, envir = rsnps::rsnpsCache) # id
 
   message(sprintf("File downloaded - saved to %s", dir2))
 }
@@ -84,7 +84,7 @@ read_users <- function(name = NULL, id = NULL, path = NULL, ...) {
   }
   message(sprintf("Reading data from %s", dir))
   dat <- utils::read.table(dir, skip = 14, ...)
-  names(dat) <- c('rsid','chromsome','position','genotype')
+  names(dat) <- c("rsid", "chromsome", "position", "genotype")
   dat
 }
 

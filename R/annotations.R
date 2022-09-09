@@ -2,7 +2,7 @@
 #' 		available for a given phenotype.
 #'
 #' Either return data.frame with all results, or output a list, then call
-#' 		the charicteristic by id (parameter = "id") or 
+#' 		the characteristic by id (parameter = "id") or
 #' 		name (parameter = "characteristic").
 #'
 #' @export
@@ -16,44 +16,52 @@
 #' @examples \dontrun{
 #' # Get all data
 #' ## get just the metadata
-#' annotations(snp = 'rs7903146', output = 'metadata')
-#' 
+#' annotations(snp = "rs7903146", output = "metadata")
+#'
 #' ## just from plos
-#' annotations(snp = 'rs7903146', output = 'plos') 
-#' 
+#' annotations(snp = "rs7903146", output = "plos")
+#'
 #' ## just from snpedia
-#' annotations(snp = 'rs7903146', output = 'snpedia')
-#' 
+#' annotations(snp = "rs7903146", output = "snpedia")
+#'
 #' ## get all annotations
-#' annotations(snp = 'rs7903146', output = 'all') 
+#' annotations(snp = "rs7903146", output = "all")
 #' }
-annotations <- function(snp = NA, 
-  output = c('all','plos','mendeley','snpedia','metadata'), ...) {
-  
-  url <- paste0(osnp_base(), "snps/json/annotation/", snp, '.json')
+annotations <- function(snp = NA,
+                        output = c("all", "plos", "mendeley", "snpedia", "metadata"), ...) {
+  url <- paste0(osnp_base(), "snps/json/annotation/", snp, ".json")
   out <- os_GET(url, list(), ...)
   out <- jsonlite::fromJSON(out, FALSE)
-  source_ <- match.arg(output, c('all','plos','mendeley','snpedia','metadata'), 
-                       FALSE)
+  source_ <- match.arg(
+    output, c("all", "plos", "mendeley", "snpedia", "metadata"),
+    FALSE
+  )
 
-  if (source_ == 'metadata') {
-    ldply(out$snp[c('name','chromosome','position')])
+  if (source_ == "metadata") {
+    ldply(out$snp[c("name", "chromosome", "position")])
   } else
-    if (source_ == 'all') {
-      # replace NULL with "none" so that coercing to data.frame will work
-      ss <- function(x) { ifelse(is.null(x), "none", x) }
-      out <- llply(out$snp$annotations, function(x) llply(x, function(y) 
-        llply(y, ss)))
-
-      ldply(out, function(x) ldply(x, data.frame, stringsAsFactors = FALSE))
-    } else {
-      out2 <- out$snp$annotations[[source_]] # Get part of list for given source_
-
-      # replace NULL with "none" so that coercing to data.frame will work
-      ss <- function(x) { ifelse(is.null(x), "none", x) }
-      out2 <- llply(out2, function(x) llply(x, ss))
-
-      # Get data.frame
-      ldply(out2, data.frame, stringsAsFactors = FALSE)
+  if (source_ == "all") {
+    # replace NULL with "none" so that coercing to data.frame will work
+    ss <- function(x) {
+      ifelse(is.null(x), "none", x)
     }
+    out <- llply(out$snp$annotations, function(x) {
+      llply(x, function(y) {
+        llply(y, ss)
+      })
+    })
+
+    ldply(out, function(x) ldply(x, data.frame, stringsAsFactors = FALSE))
+  } else {
+    out2 <- out$snp$annotations[[source_]] # Get part of list for given source_
+
+    # replace NULL with "none" so that coercing to data.frame will work
+    ss <- function(x) {
+      ifelse(is.null(x), "none", x)
+    }
+    out2 <- llply(out2, function(x) llply(x, ss))
+
+    # Get data.frame
+    ldply(out2, data.frame, stringsAsFactors = FALSE)
+  }
 }
