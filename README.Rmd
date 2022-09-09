@@ -74,6 +74,10 @@ snps <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 ncbi_snp_query(snps)
 ```
 
+The `ncbi_snp_query()` function can be used with an NCBI API which gives access 
+higher numbers of API requests per second. More information about setting this 
+up can be found in the package help accessed via `?rsnps`. 
+
 ### openSNP data
 
 `genotypes()` function

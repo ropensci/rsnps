@@ -70,15 +70,19 @@ ncbi_snp_query(snps)
 ```
 
     #> # A tibble: 4 × 16
-    #>   query        chromosome        bp class rsid   gene   alleles ancestral_allele
-    #>   <chr>        <chr>          <dbl> <chr> <chr>  <chr>  <chr>   <chr>           
-    #> 1 rs332        7          117559593 del   rs121… "CFTR… TTT, d… TTT             
-    #> 2 rs420358     1           40341239 snv   rs420… ""     A,C,G,T A               
-    #> 3 rs1837253    5          111066174 snv   rs183… ""     T,C     T               
-    #> 4 rs1209415715 9           41782316 snv   rs120… ""     T,A,C   T               
+    #>   query        chromosome        bp class rsid    gene  alleles ancestral_allele
+    #>   <chr>        <chr>          <dbl> <chr> <chr>   <chr> <chr>   <chr>           
+    #> 1 rs332        7          117559593 del   rs1219… "CFT… TTT, d… TTT             
+    #> 2 rs420358     1           40341239 snv   rs4203… ""    A,C,G,T A               
+    #> 3 rs1837253    5          111066174 snv   rs1837… ""    T,C     T               
+    #> 4 rs1209415715 9           41782316 snv   rs1209… ""    T,A,C   T               
     #> # … with 8 more variables: variation_allele <chr>, seqname <chr>, hgvs <chr>,
     #> #   assembly <chr>, ref_seq <chr>, minor <chr>, maf <dbl>,
     #> #   maf_population <list>
+
+The `ncbi_snp_query()` function can be used with an NCBI API which gives
+access higher numbers of API requests per second. More information about
+setting this up can be found in the package help accessed via `?rsnps`.
 
 ### openSNP data
 
@@ -124,4 +128,4 @@ tutorial](https://github.com/ropensci/rsnps/tree/master/vignettes).
     of Conduct](https://ropensci.org/code-of-conduct/). By contributing
     to this project, you agree to abide by its terms.
 
-[![ropensci\_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
