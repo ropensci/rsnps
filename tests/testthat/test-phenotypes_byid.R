@@ -2,17 +2,22 @@
 context("phenotypes_byid")
 
 test_that("phenotypes_byid returns the correct class", {
-	skip_on_cran()
+  skip_on_cran()
 
-	one <- suppressMessages(phenotypes_byid(phenotypeid=12, return_ = 'users'))
+  one <- suppressMessages(phenotypes_byid(phenotypeid = 12, return_ = "users"))
 
-	expect_is(one, "data.frame")
-	expect_is(suppressMessages(phenotypes_byid(phenotypeid=12, return_ = 'desc')),
-		"list")
-	expect_equal(NCOL(one), 2)
-	expect_equal(
-		suppressMessages(
-			phenotypes_byid(
-				phenotypeid=12, return_ = 'knownvars'))$known_variations[1:2],
-							list("Red","Blonde"))
+  expect_is(one, "data.frame")
+  expect_is(
+    suppressMessages(phenotypes_byid(phenotypeid = 12, return_ = "desc")),
+    "list"
+  )
+  expect_equal(NCOL(one), 2)
+  expect_equal(
+    suppressMessages(
+      phenotypes_byid(
+        phenotypeid = 12, return_ = "knownvars"
+      )
+    )$known_variations[1:2],
+    list("Red", "Blonde")
+  )
 })

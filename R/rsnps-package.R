@@ -1,13 +1,13 @@
 #' Get SNP (Single-Nucleotide Polymorphism) Data on the Web
 #'
 #' This package gives you access to data from OpenSNP (https://opensnp.org)
-#' via their API (https://opensnp.org/faq#api) and NCBI's dbSNP SNP database 
+#' via their API (https://opensnp.org/faq#api) and NCBI's dbSNP SNP database
 #' (https://www.ncbi.nlm.nih.gov/snp).
-#' 
-#' @section NCBI Authenication:
+#'
+#' @section NCBI Authentication:
 #' This applies the function [ncbi_snp_query()]:
-#' 
-#' You can optionally use an API key, if you do it will 
+#'
+#' You can optionally use an API key, if you do it will
 #' allow higher rate limits (more requests per time period)
 #' 
 #' To get an API key from NCBI you can login to create a key via your account settings at 
@@ -49,4 +49,3 @@
 #' @author Sina Rüeger \email{sina.rueeger@gmail.com}
 #' @author Julia Gustavsen \email{j.gustavsen@gmail.com}
 NULL
-
