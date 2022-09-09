@@ -21,20 +21,29 @@
 #' datalist <- allphenotypes()
 #' names(datalist) # get list of all characteristics you can call
 #' datalist[["ADHD"]] # get data.frame for 'ADHD'
-#' datalist[c("mouth size","SAT Writing")] # get data.frame for 'ADHD'
+#' datalist[c("mouth size", "SAT Writing")] # get data.frame for 'ADHD'
 #' }
 allphenotypes <- function(df = FALSE, ...) {
   out <- os_GET(paste0(osnp_base(), "phenotypes.json"), list(), ...)
   out <- jsonlite::fromJSON(out, simplifyVector = FALSE)
   if (df) {
-    ldply(out, function(x) data.frame(do.call(cbind, x),
-                                      stringsAsFactors = FALSE))
+    ldply(out, function(x) {
+      data.frame(do.call(cbind, x),
+        stringsAsFactors = FALSE
+      )
+    })
   } else {
-    temp <- lapply(out, function(x) data.frame(do.call(cbind, x),
-                                               stringsAsFactors = FALSE))
+    temp <- lapply(out, function(x) {
+      data.frame(do.call(cbind, x),
+        stringsAsFactors = FALSE
+      )
+    })
     cs <- str_trim(
       str_replace_all(
-        sapply(out, function(x) x$characteristic), '\\(|\\)', ''), side = "both")
+        sapply(out, function(x) x$characteristic), "\\(|\\)", ""
+      ),
+      side = "both"
+    )
     names(temp) <- cs
     temp
   }
