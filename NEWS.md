@@ -1,3 +1,13 @@
+rsnps 0.5.0.9000 (dev - to be bumped upon release)
+===========
+
+### MINOR IMPROVEMENTS
+
+* allgensnp(): previously the dataframe returned contained duplicate "name" columns. 
+Now the "name" column that contains the submitter's name has been renamed "user_name"
+and the snp rsid name remains "name".
+
+
 rsnps 0.5.0
 ===========
 

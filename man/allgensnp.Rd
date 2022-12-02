@@ -19,7 +19,7 @@ Get openSNP genotype data for all users at a particular snp.
 }
 \examples{
 \dontrun{
-x <- allgensnp(snp = 'rs7412')
+x <- allgensnp(snp = "rs7412")
 head(x)
 }
 }
