@@ -19,7 +19,9 @@ allgensnp <- function(snp = NA, ...) {
     us_er$genotypes <- NULL
     us_er <- c(us_er, unlist(z$user$genotypes, FALSE))
     user <- data.frame(us_er, stringsAsFactors = FALSE)
-    cbind(snp, us_er)
+    ## snp data frame also has a column called "name"
+    names(user)[names(user) == "name"] <- "user_name"
+    cbind(snp, user)
   }))
 }
 
