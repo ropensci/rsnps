@@ -302,6 +302,15 @@ ncbi_snp_query <- function(snps) {
       )
       next()
     }
+    
+    if ("unsupported_snapshot_data" %in% names(variant.response.content) & length(variant.response.content$present_obs_movements) == 0) {
+      warning("The following rsId no longer has any supporting observations in NCBI:\n  ",
+              paste0("rs", snps_num[i]),
+              call. = FALSE
+      )
+      next()
+    }
+    
     Query <- as.character(paste0("rs", variant.response.content$refsnp_id))
 
     ## if merged into another id
