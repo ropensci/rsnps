@@ -4,7 +4,7 @@
 # rsnps
 
 [![cran
-checks](https://cranchecks.info/badges/worst/rsnps)](https://cranchecks.info/pkgs/rsnps/)
+checks](https://badges.cranchecks.info/worst/rsnps.svg)](https://cran.r-project.org/web/checks/check_results_rsnps.html)
 [![R build
 status](https://github.com/ropensci/rsnps/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/rsnps/actions)
 [![Build
@@ -70,15 +70,15 @@ ncbi_snp_query(snps)
 ```
 
     #> # A tibble: 4 × 16
-    #>   query        chromosome        bp class rsid    gene  alleles ancestral_allele
-    #>   <chr>        <chr>          <dbl> <chr> <chr>   <chr> <chr>   <chr>           
-    #> 1 rs332        7          117559593 del   rs1219… "CFT… TTT, d… TTT             
-    #> 2 rs420358     1           40341239 snv   rs4203… ""    A,C,G,T A               
-    #> 3 rs1837253    5          111066174 snv   rs1837… ""    T,C     T               
-    #> 4 rs1209415715 9           41782316 snv   rs1209… ""    T,A,C   T               
-    #> # … with 8 more variables: variation_allele <chr>, seqname <chr>, hgvs <chr>,
-    #> #   assembly <chr>, ref_seq <chr>, minor <chr>, maf <dbl>,
-    #> #   maf_population <list>
+    #>   query   chrom…¹     bp class rsid  gene  alleles ances…² varia…³ seqname hgvs 
+    #>   <chr>   <chr>    <dbl> <chr> <chr> <chr> <chr>   <chr>   <chr>   <chr>   <chr>
+    #> 1 rs332   7       1.18e8 del   rs12… "CFT… TTT, d… TTT     delTTT  NC_000… NC_0…
+    #> 2 rs4203… 1       4.03e7 snv   rs42… ""    A,C,G,T A       C,G,T   NC_000… NC_0…
+    #> 3 rs1837… 5       1.11e8 snv   rs18… ""    T,C     T       C       NC_000… NC_0…
+    #> 4 rs1209… 9       4.18e7 snv   rs12… ""    T,A,C   T       A,C     NC_000… NC_0…
+    #> # … with 5 more variables: assembly <chr>, ref_seq <chr>, minor <chr>,
+    #> #   maf <dbl>, maf_population <list>, and abbreviated variable names
+    #> #   ¹​chromosome, ²​ancestral_allele, ³​variation_allele
 
 The `ncbi_snp_query()` function can be used with an NCBI API which gives
 access higher numbers of API requests per second. More information about
