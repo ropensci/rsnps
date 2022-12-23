@@ -211,3 +211,18 @@ test_that("ncbi_snp_query fails well", {
   expect_error(ncbi_snp_query(5), "not all items supplied are prefixed")
   expect_error(ncbi_snp_query("ab5"), "not all items supplied are prefixed")
 })
+
+
+
+test_that("ncbi_snp_query handles unsupported snps well", {
+  skip_on_cran()
+  ## from issue *157
+  expect_warning(aa <- ncbi_snp_query("rs10921627"), "The following rsId no longer has any supporting observations in NCBI:
+  rs10921627")
+
+  # Among other supported SNPs:
+  expect_warning(aa <- ncbi_snp_query(c( "rs10921647", "rs10921627", "rs10921645" )),"The following rsId no longer has any supporting observations in NCBI:
+  rs10921627")
+  expect_is(aa, "data.frame")
+
+})
