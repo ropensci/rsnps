@@ -267,6 +267,14 @@ ncbi_snp_query <- function(snps) {
   for (i in seq_along(snps_num)) {
     variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", snps_num[i])
     variant.response <- httr::GET(variant.url)
+
+    ## handle sporadic status 500 from NCBI that have
+    ## been occurring starting in Dec 2022.
+    if (variant.response$status_code == 500){
+      ## try to redo the call
+      variant.response <- httr::GET(variant.url)
+    }
+
     variant.response.content <- jsonlite::fromJSON(rawToChar(variant.response$content),
       simplifyVector = FALSE
     )
