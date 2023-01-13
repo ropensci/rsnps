@@ -226,3 +226,13 @@ test_that("ncbi_snp_query handles unsupported snps well", {
   expect_is(aa, "data.frame")
 
 })
+
+test_that("ncbi_snp_query snps that have been merged and then merged again well", {
+  skip_on_cran()
+  ## from issue *157
+  warnings_snps <- capture_warnings(ncbi_snp_query("rs539690682"))
+  expect_equal(length(warnings_snps), 2)
+  expect_true(any(grepl( "rs539690682 has been merged into rs111354118", warnings_snps )))
+  expect_true(any(grepl( "rs539690682 has been merged into rs111354118 which has been merged into rs55649374", warnings_snps )))
+  
+})
