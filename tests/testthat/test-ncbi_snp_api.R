@@ -39,7 +39,7 @@ test_that("ncbi_snp_query for rs1421085", {
   expect_equal(aa$bp, 53767042) ## on GRCh38
   expect_equal(aa$rsid, "rs1421085")
   expect_equal(aa$class, "snv")
-  expect_equal(aa$gene, "FTO")
+  expect_equal(aa$gene, "FTO/LOC124903691")
   expect_equal(aa$alleles, "T,C")
   expect_equal(aa$ancestral_allele, "T")
   expect_equal(aa$variation_allele, "C")
