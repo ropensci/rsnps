@@ -13,8 +13,8 @@ get_placements <- function(primary_info) {
         function(one_allele) {
           if (one_allele$allele$spdi$deleted_sequence != one_allele$allele$spdi$inserted_sequence) {
             alleles <- paste(one_allele$allele$spdi$deleted_sequence,
-              one_allele$allele$spdi$inserted_sequence,
-              sep = ","
+                             one_allele$allele$spdi$inserted_sequence,
+                             sep = ","
             )
             if (one_allele$allele$spdi$inserted_sequence == "") {
               VariationAllele <- paste0(
@@ -25,7 +25,7 @@ get_placements <- function(primary_info) {
             } else {
               VariationAllele <- one_allele$allele$spdi$inserted_sequence
             }
-
+            
             df_snp <- data.frame(
               Alleles = alleles,
               AncestralAllele = one_allele$allele$spdi$deleted_sequence,
@@ -41,22 +41,22 @@ get_placements <- function(primary_info) {
           }
         }
       )
-
+      
       ## remove the NULLs
       df_list <- df_list[lengths(df_list) != 0]
-
+      
       ## if more than one we need to merge the ancestral and variation alleles
       df_all <- do.call(rbind, df_list)
       new_df <- stats::aggregate(. ~ BP,
-        data = df_all,
-        FUN = function(x) {
-          paste(unique(x[x != ""]),
-            collapse = ","
-          )
-        }
+                                 data = df_all,
+                                 FUN = function(x) {
+                                   paste(unique(x[x != ""]),
+                                         collapse = ","
+                                   )
+                                 }
       )
       new_df$Alleles <- paste(unique(unlist(strsplit(new_df$Alleles, ","))),
-        collapse = ","
+                              collapse = ","
       )
       return(new_df)
     }
@@ -108,7 +108,7 @@ get_frequency <- function(Class, primary_info) {
         }
       }
     }
-
+    
     if (!is.null(df_freq)) {
       return(df_freq)
     } else {
@@ -129,7 +129,7 @@ get_frequency <- function(Class, primary_info) {
       stringsAsFactors = FALSE
     )
   }
-
+  
   ## sort study names so studies grouped together
   df_freq <- df_freq[order(df_freq$study), ]
 }
@@ -229,76 +229,76 @@ get_gene_names <- function(primary_info) {
 #' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' }
 ncbi_snp_query <- function(snps) {
-
+  
   ## NCBI moved to https but not using http v.2. The setting of the version
   ## used with curl is based on
   ##  https://github.com/ropensci/rentrez/issues/127#issuecomment-488838967
   ## in the rentrez package
   httr::set_config(httr::config(http_version = 2)) ## value 2 corresponds to CURL_HTTP_VERSION_1_1
-
+  
   ## ensure these are rs numbers of the form rs[0-9]+
   tmp <- sapply(snps, function(x) {
     grep("^rs[0-9]+$", x)
   })
   if (any(sapply(tmp, length) == 0)) {
     stop("not all items supplied are prefixed with 'rs';\n",
-      "you must supply rs numbers and they should be prefixed with ",
-      "'rs', e.g. rs420358",
-      call. = FALSE
+         "you must supply rs numbers and they should be prefixed with ",
+         "'rs', e.g. rs420358",
+         call. = FALSE
     )
   }
-
+  
   message(paste0(
     "Getting info about the following rsIDs: ",
     paste(snps,
-      collapse = ", "
+          collapse = ", "
     )
   ))
   ## transform all SNPs into numbers (rsid)
   snps_num <- gsub("rs", "", snps)
-
+  
   out <- as.data.frame(matrix(NA, nrow = length(snps_num), ncol = 15))
   names(out) <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf")
-
+  
   out_maf <- list(NULL)
-
+  
   ## as far as I understand from https://api.ncbi.nlm.nih.gov/variation/v0/#/RefSNP/ we
   ## can only send one query at a time and max 1 per second.
   for (i in seq_along(snps_num)) {
     variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", snps_num[i])
     variant.response <- httr::GET(variant.url)
-
+    
     ## handle sporadic status 500 from NCBI that have
     ## been occurring starting in Dec 2022.
     if (variant.response$status_code == 500){
       ## try to redo the call
       variant.response <- httr::GET(variant.url)
     }
-
+    
     variant.response.content <- jsonlite::fromJSON(rawToChar(variant.response$content),
-      simplifyVector = FALSE
+                                                   simplifyVector = FALSE
     )
-
+    
     if ("error" %in% names(variant.response.content)) {
       if (variant.response.content$error$message == "RefSNP not found") {
         warning("The following rsId had no information available on NCBI:\n  ",
-          paste0("rs", snps_num[i]),
-          call. = FALSE
+                paste0("rs", snps_num[i]),
+                call. = FALSE
         )
         next()
       } else {
         warning("The following error was received from NCBI:\n  ",
-          variant.response.content$error$message,
-          call. = FALSE
+                variant.response.content$error$message,
+                call. = FALSE
         )
         next()
       }
     }
-
+    
     if ("withdrawn_snapshot_data" %in% names(variant.response.content) & length(variant.response.content$present_obs_movements) == 0) {
       warning("The following rsId has been withdrawn from NCBI:\n  ",
-        paste0("rs", snps_num[i]),
-        call. = FALSE
+              paste0("rs", snps_num[i]),
+              call. = FALSE
       )
       next()
     }
@@ -312,33 +312,54 @@ ncbi_snp_query <- function(snps) {
     }
     
     Query <- as.character(paste0("rs", variant.response.content$refsnp_id))
-
+    
     ## if merged into another id
     if (is.null(variant.response.content$primary_snapshot_data)) {
       rsid <- as.character(paste0("rs", variant.response.content$merged_snapshot_data$merged_into))
       no_rsid <- as.character(variant.response.content$merged_snapshot_data$merged_into)
-
+      
       warning(Query, " has been merged into ", rsid, call. = FALSE)
-
+      
       variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", no_rsid)
       variant.response <- httr::GET(variant.url)
       variant.response.content <- jsonlite::fromJSON(rawToChar(variant.response$content),
-        simplifyVector = FALSE
+                                                     simplifyVector = FALSE
       )
+      
+      ## if merged into a second snp
+      if (is.null(variant.response.content$primary_snapshot_data)) {
+        rsid2 <- as.character(paste0("rs", variant.response.content$merged_snapshot_data$merged_into))
+        no_rsid2 <- as.character(variant.response.content$merged_snapshot_data$merged_into)
+        
+        warning(Query, " has been merged into ", rsid, " which has been merged into ", rsid2, call. = FALSE)
+        
+        variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", no_rsid2)
+        variant.response <- httr::GET(variant.url)
+        variant.response.content <- jsonlite::fromJSON(rawToChar(variant.response$content),
+                                                       simplifyVector = FALSE
+        )
+        
+      } else {
+        rsid <- as.character(paste0(
+          "rs",
+          variant.response.content$refsnp_id
+        ))
+      }
+      
     } else {
       rsid <- as.character(paste0(
         "rs",
         variant.response.content$refsnp_id
       ))
     }
-
+    
     Class <- as.character(variant.response.content$primary_snapshot_data$variant_type)
     placement_SNP <- get_placements(variant.response.content)
-
+    
     ## frequency of minor allele for all studies
     frequency_SNP <- get_frequency(Class, variant.response.content)
     Gene <- get_gene_names(variant.response.content)
-
+    
     out[i, ] <- c(
       Query,
       placement_SNP$Chromosome,
@@ -360,19 +381,19 @@ ncbi_snp_query <- function(snps) {
     out_maf[[i]] <- frequency_SNP
   }
   Sys.sleep(1)
-
+  
   ## remove missing rsnumbers
   ind <- which(!is.na(out$query))
   out <- out[ind, ]
   out_maf <- out_maf[ind]
-
+  
   ## ensure maf and bp are numeric
   for (nm in c("maf", "bp")) {
     out[, nm] <- as.numeric(out[, nm])
   }
-
+  
   ## adding maf_population
   out <- tibble::tibble(out, maf_population = out_maf)
-
+  
   return(out)
 }
