@@ -36,7 +36,7 @@ phenotypes <- function(userid = NA, df = FALSE, ...) {
     } else {
       outdf <- list()
       for (i in seq_along(out)) {
-        if (class(try(out[[i]][[2]], silent = TRUE)) == "try-error") {
+        if (inherits(try(out[[i]][[2]], silent = TRUE), "try-error")) {
           df <- data.frame("no data", "no data", "no data",
             stringsAsFactors = FALSE
           )
