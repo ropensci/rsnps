@@ -74,7 +74,7 @@ ncbi_snp_query("rs121909001")
 ncbi_snp_query("rs1837253")
 ncbi_snp_query("rs1209415715")
 ncbi_snp_query("rs111068718")
-ncbi_snp_query(snps='rs9970807')
+ncbi_snp_query(snps = "rs9970807")
 
 ncbi_snp_query("rs121909001")
 ncbi_snp_query("rs121909001", verbose = TRUE)

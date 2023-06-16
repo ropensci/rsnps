@@ -26,7 +26,7 @@ This function takes a vector of strings following a regular
 structure, and converts that vector into a \code{data.frame}, split
 on that delimiter. A nice wrapper to \code{\link[=strsplit]{strsplit()}}, essentially
 \itemize{
-\item the primary bonus is the automatic coersion to a \code{data.frame}.
+\item the primary bonus is the automatic coercion to a \code{data.frame}.
 }
 }
 \seealso{

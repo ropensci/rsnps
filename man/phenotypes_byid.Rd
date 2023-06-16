@@ -28,12 +28,12 @@ one phenotype(-ID).
 }
 \examples{
 \dontrun{
-phenotypes_byid(phenotypeid=12, return_ = 'desc')
-phenotypes_byid(phenotypeid=12, return_ = 'knownvars')
-phenotypes_byid(phenotypeid=12, return_ = 'users')
+phenotypes_byid(phenotypeid = 12, return_ = "desc")
+phenotypes_byid(phenotypeid = 12, return_ = "knownvars")
+phenotypes_byid(phenotypeid = 12, return_ = "users")
 
 # pass on curl options
-phenotypes_byid(phenotypeid=12, return_ = 'desc', verbose = TRUE)
+phenotypes_byid(phenotypeid = 12, return_ = "desc", verbose = TRUE)
 }
 }
 \seealso{
