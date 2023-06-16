@@ -24,9 +24,9 @@ Get openSNP genotype data for one or multiple users.
 }
 \examples{
 \dontrun{
-genotypes(snp='rs9939609', userid=1)
-genotypes('rs9939609', userid='1,6,8', df=TRUE)
-genotypes('rs9939609', userid='1-2', df=FALSE)
+genotypes(snp = "rs9939609", userid = 1)
+genotypes("rs9939609", userid = "1,6,8", df = TRUE)
+genotypes("rs9939609", userid = "1-2", df = FALSE)
 }
 }
 \seealso{
