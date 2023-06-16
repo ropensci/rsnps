@@ -7,7 +7,7 @@
 swap(vec, from, to = names(from), ...)
 }
 \arguments{
-\item{vec}{A character vector, or vector coercable to character.}
+\item{vec}{A character vector, or vector coercible to character.}
 
 \item{from}{A vector of elements to map from.}
 

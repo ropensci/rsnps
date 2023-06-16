@@ -48,15 +48,17 @@ Internally, we use \code{\link[=download.file]{download.file()}} to download eac
 \dontrun{
 # get a data.frame of the users data
 data <- users(df = TRUE)
-head( data[[1]] ) # users with links to genome data
-mydata <- fetch_genotypes(url = data[[1]][1,"genotypes.download_url"], 
-  file="~/myfile.txt")
+head(data[[1]]) # users with links to genome data
+mydata <- fetch_genotypes(
+  url = data[[1]][1, "genotypes.download_url"],
+  file = "~/myfile.txt"
+)
 
 # see some data right away
 mydata
 
 # Or read in data later separately
-read.table("~/myfile.txt", nrows=10)
+read.table("~/myfile.txt", nrows = 10)
 }
 }
 \seealso{

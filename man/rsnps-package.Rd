@@ -10,7 +10,7 @@ This package gives you access to data from OpenSNP (https://opensnp.org)
 via their API (https://opensnp.org/faq#api) and NCBI's dbSNP SNP database
 (https://www.ncbi.nlm.nih.gov/snp).
 }
-\section{NCBI Authenication}{
+\section{NCBI Authentication}{
 
 This applies the function \code{\link[=ncbi_snp_query]{ncbi_snp_query()}}:
 
