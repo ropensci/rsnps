@@ -26,20 +26,19 @@ database.
 
 This set of functions/package accesses data from:
 
--   openSNP.org
-    -   <https://opensnp.org>
-    -   See documentation on the openSNP API
-        <https://opensnp.org/faq#api>
-    -   See blog post about their API
-        <https://opensnp.wordpress.com/2012/01/18/some-progress-on-the-api-json-endpoints/>
-    -   Relevant functions:
-        -   `allgensnp()`, `allphenotypes()`, `annotations()`,
-            `download_users()`, `fetch_genotypes()`, `genotypes()`,
-            `phenotypes()`, `phenotypes_byid()`, `users()`
--   NCBI’s dbSNP SNP database
-    -   See <https://www.ncbi.nlm.nih.gov/snp/> for more details
-    -   Relevant function:
-        -   `ncbi_snp_query()`
+- openSNP.org
+  - <https://opensnp.org>
+  - See documentation on the openSNP API <https://opensnp.org/faq#api>
+  - See blog post about their API
+    <https://opensnp.wordpress.com/2012/01/18/some-progress-on-the-api-json-endpoints/>
+  - Relevant functions:
+    - `allgensnp()`, `allphenotypes()`, `annotations()`,
+      `download_users()`, `fetch_genotypes()`, `genotypes()`,
+      `phenotypes()`, `phenotypes_byid()`, `users()`
+- NCBI’s dbSNP SNP database
+  - See <https://www.ncbi.nlm.nih.gov/snp/> for more details
+  - Relevant function:
+    - `ncbi_snp_query()`
 
 ## Install
 
@@ -70,15 +69,15 @@ ncbi_snp_query(snps)
 ```
 
     #> # A tibble: 4 × 16
-    #>   query   chrom…¹     bp class rsid  gene  alleles ances…² varia…³ seqname hgvs 
-    #>   <chr>   <chr>    <dbl> <chr> <chr> <chr> <chr>   <chr>   <chr>   <chr>   <chr>
-    #> 1 rs332   7       1.18e8 del   rs12… "CFT… TTT, d… TTT     delTTT  NC_000… NC_0…
-    #> 2 rs4203… 1       4.03e7 snv   rs42… ""    A,C,G,T A       C,G,T   NC_000… NC_0…
-    #> 3 rs1837… 5       1.11e8 snv   rs18… ""    T,C     T       C       NC_000… NC_0…
-    #> 4 rs1209… 9       4.18e7 snv   rs12… ""    T,A,C   T       A,C     NC_000… NC_0…
-    #> # … with 5 more variables: assembly <chr>, ref_seq <chr>, minor <chr>,
-    #> #   maf <dbl>, maf_population <list>, and abbreviated variable names
-    #> #   ¹​chromosome, ²​ancestral_allele, ³​variation_allele
+    #>   query        chromosome        bp class rsid    gene  alleles ancestral_allele
+    #>   <chr>        <chr>          <dbl> <chr> <chr>   <chr> <chr>   <chr>           
+    #> 1 rs332        7          117559593 del   rs1219… "CFT… TTT, d… TTT             
+    #> 2 rs420358     1           40341239 snv   rs4203… ""    A,C,G,T A               
+    #> 3 rs1837253    5          111066174 snv   rs1837… ""    T,C     T               
+    #> 4 rs1209415715 9           41782316 snv   rs1209… ""    T,A,C   T               
+    #> # ℹ 8 more variables: variation_allele <chr>, seqname <chr>, hgvs <chr>,
+    #> #   assembly <chr>, ref_seq <chr>, minor <chr>, maf <dbl>,
+    #> #   maf_population <list>
 
 The `ncbi_snp_query()` function can be used with an NCBI API which gives
 access higher numbers of API requests per second. More information about
@@ -119,13 +118,13 @@ tutorial](https://github.com/ropensci/rsnps/tree/master/vignettes).
 
 ## Meta
 
--   Please [report any issues or
-    bugs](https://github.com/ropensci/rsnps/issues/).
--   License: MIT
--   Get citation information for `rsnsps` in R doing
-    `citation(package = 'rsnps')`
--   Please note that this package is released with a [Contributor Code
-    of Conduct](https://ropensci.org/code-of-conduct/). By contributing
-    to this project, you agree to abide by its terms.
+- Please [report any issues or
+  bugs](https://github.com/ropensci/rsnps/issues/).
+- License: MIT
+- Get citation information for `rsnsps` in R doing
+  `citation(package = 'rsnps')`
+- Please note that this package is released with a [Contributor Code of
+  Conduct](https://ropensci.org/code-of-conduct/). By contributing to
+  this project, you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
