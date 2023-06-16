@@ -1,4 +1,4 @@
-rsnps 0.5.0.9000 (dev - to be bumped upon release)
+rsnps 0.5.1
 ===========
 
 ### MINOR IMPROVEMENTS
@@ -6,7 +6,10 @@ rsnps 0.5.0.9000 (dev - to be bumped upon release)
 * allgensnp(): previously the dataframe returned contained duplicate "name" columns. 
 Now the "name" column that contains the submitter's name has been renamed "user_name"
 and the snp rsid name remains "name".
-
+* allgensnp(): added a parameter "usersubset" which allows to download a subset of
+users for the particular rsid. 
+* improved test coverage from 71 to 76% making use of {vcr} with some test fixtures. 
+* some typos and formatting improved
 
 rsnps 0.5.0
 ===========
