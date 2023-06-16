@@ -36,8 +36,9 @@ Suggests:
     testthat,
     knitr,
     markdown,
-    tibble
-RoxygenNote: 7.2.1
+    tibble,
+    vcr (>= 0.6.0)
+RoxygenNote: 7.2.3
 X-schema.org-applicationCategory: Genes
 X-schema.org-keywords: gene, snp, sequence, API, web, api-client, species, dbSNP, OpenSNP, NCBI, genotype
 X-schema.org-isPartOf: https://ropensci.org

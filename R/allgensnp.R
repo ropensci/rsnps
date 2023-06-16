@@ -3,14 +3,21 @@
 #' @export
 #' @family opensnp-fxns
 #' @param snp (character) A SNP name
+#' @param usersubset Get a subset of users, integer numbers, e.g. 1-8 (default: none)
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return data.frame of genotypes for all users at a certain SNP
 #' @examples \dontrun{
 #' x <- allgensnp(snp = "rs7412")
 #' head(x)
 #' }
-allgensnp <- function(snp = NA, ...) {
-  url2 <- paste(osnp_base(), "snps/", snp, ".json", sep = "")
+allgensnp <- function(snp = NA, usersubset = FALSE, ...) {
+  ## add possibilty to get a subset of users
+  
+  if(!usersubset == FALSE) {
+    url2 <- paste(osnp_base(), "snps/json/", snp,"/", usersubset, ".json", sep = "")
+  }else{
+    url2 <- paste(osnp_base(), "snps/", snp, ".json", sep = "")
+  }
   out <- os_GET(url2, list(), ...)
   tt <- jsonlite::fromJSON(out, FALSE)
   rbl(lapply(tt, function(z) {
