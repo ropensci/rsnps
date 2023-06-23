@@ -9,7 +9,8 @@ checks](https://badges.cranchecks.info/worst/rsnps.svg)](https://cran.r-project.
 status](https://github.com/ropensci/rsnps/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/rsnps/actions)
 [![Build
 status](https://ci.appveyor.com/api/projects/status/d2lv98726u6t9ut5/branch/master)](https://ci.appveyor.com/project/sckott/rsnps/branch/master/)
-[![codecov.io](https://codecov.io/github/ropensci/rsnps/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rsnps?branch=master)
+[![Codecov test
+coverage](https://codecov.io/gh/ropensci/rsnps/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/rsnps?branch=master)
 [![cran
 version](https://www.r-pkg.org/badges/version/rsnps)](https://cran.r-project.org/package=rsnps)
 [![rstudio mirror
