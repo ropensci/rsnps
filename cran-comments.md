@@ -9,7 +9,9 @@
 
 There were no ERRORs or WARNINGs. 
 
-There is one NOTE that is only found on Windows (Server 2022, R-devel 64-bit): 
+There is 3 NOTEs.  
+
+1. Two that are only found on Windows (Server 2022, R-devel 64-bit): 
 
 ```
 * checking for detritus in the temp directory ... NOTE
@@ -17,6 +19,25 @@ Found the following files/directories:
   'lastMiKTeXException'
 ```
 As noted in [R-hub issue #503](https://github.com/r-hub/rhub/issues/503), this could be due to a bug/crash in MiKTeX and can likely be ignored.
+
+2. The second is 
+
+```
+* checking for non-standard things in the check directory ... NOTE
+Found the following files/directories:
+  ''NULL''
+```
+
+As noted in [R-hub issue #560](https://github.com/r-hub/rhub/issues/560), this seems to be an Rhub issue and so can likely be ignored. 
+
+3. A third that is found with *Fedora Linux, R-devel, clang, gfortran* and *Ubuntu Linux 20.04.1 LTS, R-release, GCC*
+
+```
+* checking HTML version of manual ... NOTE
+Skipping checking HTML validation: no command 'tidy' found
+```
+
+This also seems to be a recurring issue on Rhub [R-hub issue #560](https://github.com/r-hub/rhub/issues/548) and so can likely be ignored.
 
 ## Reverse dependencies
 
@@ -26,9 +47,8 @@ No problems were found related to this package.
 
 ---
 
-This version includes a new feature and two minor improvement of the function `ncbi_snp_query`,
-and a change in the vignette (we now pre-compile the vignette to avoid long runtimes). 
+This version includes more tests, some spelling corrections and some formatting corrections.
 
 
 Thanks!
-Julia Gustavsen and Sina Rüeger
+Julia Gustavsen 
