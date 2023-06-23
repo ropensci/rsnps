@@ -25,23 +25,23 @@ data.frame of results
 }
 \description{
 Either return data.frame with all results, or output a list, then call
-the charicteristic by id (parameter = "id") or
+the characteristic by id (parameter = "id") or
 name (parameter = "characteristic").
 }
 \examples{
 \dontrun{
 # Get all data
 ## get just the metadata
-annotations(snp = 'rs7903146', output = 'metadata')
+annotations(snp = "rs7903146", output = "metadata")
 
 ## just from plos
-annotations(snp = 'rs7903146', output = 'plos') 
+annotations(snp = "rs7903146", output = "plos")
 
 ## just from snpedia
-annotations(snp = 'rs7903146', output = 'snpedia')
+annotations(snp = "rs7903146", output = "snpedia")
 
 ## get all annotations
-annotations(snp = 'rs7903146', output = 'all') 
+annotations(snp = "rs7903146", output = "all")
 }
 }
 \seealso{

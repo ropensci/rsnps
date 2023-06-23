@@ -19,7 +19,7 @@ data.frame of results, or list if \code{df=FALSE}
 }
 \description{
 Either return data.frame with all results, or output a list, then call
-the charicteristic by id (parameter = "id") or name (parameter =
+the characteristic by id (parameter = "id") or name (parameter =
 "characteristic").
 }
 \examples{
@@ -32,7 +32,7 @@ allphenotypes(df = TRUE)
 datalist <- allphenotypes()
 names(datalist) # get list of all characteristics you can call
 datalist[["ADHD"]] # get data.frame for 'ADHD'
-datalist[c("mouth size","SAT Writing")] # get data.frame for 'ADHD'
+datalist[c("mouth size", "SAT Writing")] # get data.frame for 'ADHD'
 }
 }
 \seealso{

@@ -2,9 +2,9 @@ context("ncbi_snp_query")
 
 test_that("ncbi_snp_query for rs1173690113 (merged into rs333)", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/rs1173690113
-  
+
   skip_on_cran()
-  
+
   expect_warning(aa <- ncbi_snp_query("rs1173690113"), "rs1173690113 has been merged into rs333")
 
   expect_equal(aa$query, "rs1173690113")
@@ -18,23 +18,21 @@ test_that("ncbi_snp_query for rs1173690113 (merged into rs333)", {
   expect_equal(aa$maf, 0.0774, tolerance = 1e-2)
   expect_equal(aa$ancestral_allele, "ACAGTCAGTATCAATTCTGGAAGAATTTCCAGACA")
   expect_equal(aa$variation_allele, "ACA")
-  
+
   maf_pop <- aa$maf_population[[1]]
-  expect_equal(maf_pop[maf_pop$study == "ALSPAC" & maf_pop$ref_seq == "ACAGTCAGTATCAATTCTGGAAGAATTTCCAG" & maf_pop$Minor == "delACAGTCAGTATCAATTCTGGAAGAATTTCCAG" ,"MAF"], 0.09366892, tolerance = 1e-2)
-  expect_equal(maf_pop[maf_pop$study == "Estonian" & maf_pop$ref_seq == "ACAGTCAGTATCAATTCTGGAAGAATTTCCAG" & maf_pop$Minor == "delACAGTCAGTATCAATTCTGGAAGAATTTCCAG","MAF"], 0.11785714, tolerance = 1e-2)
-  
-  
+  expect_equal(maf_pop[maf_pop$study == "ALSPAC" & maf_pop$ref_seq == "ACAGTCAGTATCAATTCTGGAAGAATTTCCAG" & maf_pop$Minor == "delACAGTCAGTATCAATTCTGGAAGAATTTCCAG", "MAF"], 0.09366892, tolerance = 1e-2)
+  expect_equal(maf_pop[maf_pop$study == "Estonian" & maf_pop$ref_seq == "ACAGTCAGTATCAATTCTGGAAGAATTTCCAG" & maf_pop$Minor == "delACAGTCAGTATCAATTCTGGAAGAATTTCCAG", "MAF"], 0.11785714, tolerance = 1e-2)
 })
 
 
 test_that("ncbi_snp_query for rs1421085", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/?term=rs1421085
-  
+
   skip_on_cran()
-  
+
   aa <- ncbi_snp_query("rs1421085")
-  
-  
+
+
   expect_equal(aa$chromosome, "16")
   expect_equal(aa$bp, 53767042) ## on GRCh38
   expect_equal(aa$rsid, "rs1421085")
@@ -45,12 +43,10 @@ test_that("ncbi_snp_query for rs1421085", {
   expect_equal(aa$variation_allele, "C")
   expect_equal(aa$maf, 0.3063, tolerance = 1e-2)
   expect_equal(aa$minor, "C")
-  
+
   maf_pop <- aa$maf_population[[1]]
-  expect_equal(maf_pop[maf_pop$study == "HapMap" & maf_pop$ref_seq == "T" & maf_pop$Minor == "C" ,"MAF"], 0.2085987, tolerance=1e-2)
-  expect_equal(maf_pop[maf_pop$study == "Vietnamese" & maf_pop$ref_seq == "T" & maf_pop$Minor == "C","MAF"], 0.1495327, tolerance=1e-2)
-  
-  
+  expect_equal(maf_pop[maf_pop$study == "HapMap" & maf_pop$ref_seq == "T" & maf_pop$Minor == "C", "MAF"], 0.2085987, tolerance = 1e-2)
+  expect_equal(maf_pop[maf_pop$study == "Vietnamese" & maf_pop$ref_seq == "T" & maf_pop$Minor == "C", "MAF"], 0.1495327, tolerance = 1e-2)
 })
 
 
@@ -58,10 +54,10 @@ test_that("ncbi_snp_query for rs1610720 (multiple alleles)", {
   ## from issue59: https://github.com/ropensci/rsnps/issues/59
   ## truth: https://www.ncbi.nlm.nih.gov/snp/?term=rs1610720
   skip_on_cran()
-  
+
   aa <- ncbi_snp_query("rs1610720")
-  
-  
+
+
   expect_equal(aa$chromosome, "6")
   expect_equal(aa$bp, 29793285) ## on GRCh38
   expect_equal(aa$rsid, "rs1610720")
@@ -72,17 +68,15 @@ test_that("ncbi_snp_query for rs1610720 (multiple alleles)", {
   expect_equal(aa$variation_allele, "G,T")
   expect_equal(aa$maf, 0.4170, tolerance = 1e-2)
   expect_equal(aa$minor, "G")
-  
-  
 })
 
 test_that("ncbi_snp_query for rs146107628 (duplication)", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/rs146107628
   skip_on_cran()
-  
+
   aa <- ncbi_snp_query("rs146107628")
-  
-  
+
+
   expect_equal(aa$chromosome, "10")
   expect_equal(aa$bp, 98243085) ## on GRCh38
   expect_equal(aa$rsid, "rs146107628")
@@ -91,18 +85,17 @@ test_that("ncbi_snp_query for rs146107628 (duplication)", {
   expect_equal(aa$alleles, "T,TT")
   expect_equal(aa$ancestral_allele, "T")
   expect_equal(aa$variation_allele, "TT")
-  expect_equal(aa$maf, 0.0365, tolerance = 1e-2) 
-  expect_equal(aa$minor, "dupT") 
-  
+  expect_equal(aa$maf, 0.0365, tolerance = 1e-2)
+  expect_equal(aa$minor, "dupT")
 })
 
 test_that("ncbi_snp_query for rs200623867 (deletion)", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/rs200623867
   skip_on_cran()
-  
+
   aa <- ncbi_snp_query("rs200623867")
-  
-  
+
+
   expect_equal(aa$chromosome, "10")
   expect_equal(aa$bp, 98243545) ## on GRCh38
   expect_equal(aa$rsid, "rs200623867")
@@ -111,19 +104,18 @@ test_that("ncbi_snp_query for rs200623867 (deletion)", {
   expect_equal(aa$alleles, "G, delG")
   expect_equal(aa$ancestral_allele, "G")
   expect_equal(aa$variation_allele, "delG")
-  expect_equal(aa$maf, NA_real_) 
-  expect_equal(aa$minor, NA_character_) 
-  
+  expect_equal(aa$maf, NA_real_)
+  expect_equal(aa$minor, NA_character_)
 })
 
 
 test_that("ncbi_snp_query for rs1799752 (deletion)", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/rs1799752
   skip_on_cran()
-  
+
   aa <- ncbi_snp_query("rs1799752")
-  
-  
+
+
   expect_equal(aa$chromosome, "17")
   expect_equal(aa$bp, 63488530) ## on GRCh38 :63488530-63488543
   expect_equal(aa$rsid, "rs1799752")
@@ -134,16 +126,15 @@ test_that("ncbi_snp_query for rs1799752 (deletion)", {
   expect_equal(aa$maf, NA_real_)
   expect_equal(aa$ancestral_allele, "ATACAGTCACTTTT")
   expect_equal(aa$variation_allele, "ATACAGTCACTTTTTTTTTTTTTTTGAGACGGAGTCTCGCTCTGTCGCCCATACAGTCACTTTT")
-  
 })
 
 
 test_that("ncbi_snp_query for rs1610720 snp", {
   ## truth: https://www.ncbi.nlm.nih.gov/snp/rs1610720
   skip_on_cran()
-  
+
   aa <- ncbi_snp_query("rs1610720")
-  
+
   expect_equal(aa$chromosome, "6")
   expect_equal(aa$bp, 29793285) ## on GRCh38
   expect_equal(aa$rsid, "rs1610720")
@@ -154,7 +145,6 @@ test_that("ncbi_snp_query for rs1610720 snp", {
   expect_equal(aa$maf, 0.4170, tolerance = 1e-2)
   expect_equal(aa$ancestral_allele, "A")
   expect_equal(aa$variation_allele, "G,T")
-  
 })
 
 
@@ -188,10 +178,10 @@ test_that("ncbi_snp_query - many snps at once works", {
 
 test_that("ncbi_snp_query - many snps at once works with some that give errors", {
   skip_on_cran()
-  
+
   x <- c("rs420358", "rs1", "rs1209415715") ## rs1 does not exist
-  expect_warning(aa <- ncbi_snp_query(x), "The following rsId had no information available on NCBI:") 
-  
+  expect_warning(aa <- ncbi_snp_query(x), "The following rsId had no information available on NCBI:")
+
   expect_is(aa, "data.frame")
   expect_is(aa$query, "character")
   expect_is(aa$chromosome, "character")
@@ -210,10 +200,8 @@ test_that("ncbi_snp_query - rs IDs not found", {
 test_that("ncbi_snp_query - gives warning when expected", {
   skip_on_cran()
 
-  expect_warning(ncbi_snp_query('rs332'))
-  expect_warning(ncbi_snp_query('rs1'), "The following rsId had no information available on NCBI:")
-
-  
+  expect_warning(ncbi_snp_query("rs332"))
+  expect_warning(ncbi_snp_query("rs1"), "The following rsId had no information available on NCBI:")
 })
 
 test_that("ncbi_snp_query fails well", {
@@ -221,9 +209,30 @@ test_that("ncbi_snp_query fails well", {
 
   expect_error(ncbi_snp_query(), "argument \"snps\" is missing")
   expect_error(ncbi_snp_query(5), "not all items supplied are prefixed")
-  expect_error(ncbi_snp_query('ab5'), "not all items supplied are prefixed")
-
+  expect_error(ncbi_snp_query("ab5"), "not all items supplied are prefixed")
 })
 
 
 
+test_that("ncbi_snp_query handles unsupported snps well", {
+  skip_on_cran()
+  ## from issue *157
+  expect_warning(aa <- ncbi_snp_query("rs10921627"), "The following rsId no longer has any supporting observations in NCBI:
+  rs10921627")
+
+  # Among other supported SNPs:
+  expect_warning(aa <- ncbi_snp_query(c( "rs10921647", "rs10921627", "rs10921645" )),"The following rsId no longer has any supporting observations in NCBI:
+  rs10921627")
+  expect_is(aa, "data.frame")
+
+})
+
+test_that("ncbi_snp_query snps that have been merged and then merged again well", {
+  skip_on_cran()
+  ## from issue *157
+  warnings_snps <- capture_warnings(ncbi_snp_query("rs539690682"))
+  expect_equal(length(warnings_snps), 2)
+  expect_true(any(grepl( "rs539690682 has been merged into rs111354118", warnings_snps )))
+  expect_true(any(grepl( "rs539690682 has been merged into rs111354118 which has been merged into rs55649374", warnings_snps )))
+  
+})

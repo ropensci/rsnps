@@ -15,12 +15,11 @@
 #' data[[1]] # users with links to genome data
 #' data[[2]] # users without links to genome data
 #' }
-
 users <- function(df = FALSE, ...) {
   res <- os_GET(paste0(osnp_base(), "users.json"), list(), ...)
   users_ <- jsonlite::fromJSON(res, FALSE)
-  if (!df) { 
-    users_ 
+  if (!df) {
+    users_
   } else {
     lengths <- laply(users_, function(x) length(unlist(x)))
     getdffive <- function(x) {

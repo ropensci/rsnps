@@ -1,16 +1,14 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "rsnps",
   "description": "A programmatic interface to various 'SNP' 'datasets' on the web: 'OpenSNP' (<https://opensnp.org>), and 'NBCIs' 'dbSNP' database (<https://www.ncbi.nlm.nih.gov/projects/SNP/>). Functions are included for searching for 'NCBI'. For 'OpenSNP', functions are included for getting 'SNPs', and data for 'genotypes', 'phenotypes', annotations, and bulk downloads of data by user.",
   "name": "rsnps: Get 'SNP' ('Single-Nucleotide' 'Polymorphism') Data on the Web",
+  "relatedLink": "https://docs.ropensci.org/rsnps/",
   "codeRepository": "https://github.com/ropensci/rsnps/",
   "issueTracker": "https://github.com/ropensci/rsnps/issues/",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.5.0.0",
+  "version": "0.6.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -112,10 +110,35 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "vcr",
+      "name": "vcr",
+      "version": ">= 0.6.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=vcr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "covr",
+      "name": "covr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=covr"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "plyr",
       "name": "plyr",
@@ -127,7 +150,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=plyr"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -139,7 +162,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "crul",
       "name": "crul",
@@ -152,7 +175,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=crul"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "data.table",
       "name": "data.table",
@@ -164,7 +187,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=data.table"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
@@ -176,7 +199,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "httr",
       "name": "httr",
@@ -187,17 +210,14 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=httr"
-    }
-  ],
+    },
+    "SystemRequirements": null
+  },
   "applicationCategory": "Genes",
   "isPartOf": "https://ropensci.org",
   "keywords": ["gene", "snp", "sequence", "API", "web", "api-client", "species", "dbSNP", "OpenSNP", "NCBI", "genotype", "web-api", "snps", "data", "rstats", "r", "r-package"],
+  "fileSize": "3231.542KB",
   "releaseNotes": "https://github.com/ropensci/rsnps/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rsnps/blob/master/README.md",
-  "contIntegration": ["https://github.com/ropensci/rsnps/actions", "https://ci.appveyor.com/project/sckott/rsnps/branch/master/", "https://codecov.io/github/ropensci/rsnps?branch=master"],
-  "contributor": {},
-  "copyrightHolder": {},
-  "funder": {},
-  "fileSize": "108.372KB",
-  "relatedLink": "https://docs.ropensci.org/rsnps/"
+  "contIntegration": ["https://github.com/ropensci/rsnps/actions", "https://ci.appveyor.com/project/sckott/rsnps/branch/master/", "https://app.codecov.io/gh/ropensci/rsnps?branch=master"]
 }

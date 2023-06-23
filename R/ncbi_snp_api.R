@@ -8,32 +8,38 @@ get_placements <- function(primary_info) {
     if (record$is_ptlp & length(record$placement_annot$seq_id_traits_by_assembly) > 0) {
       assembly_name <- record$placement_annot$seq_id_traits_by_assembly[[1]]$assembly_name
       chrom_name <- gsub("NC_[0]+([1-9]+[0-9]?)\\.[[:digit:]]+", "\\1", record$seq_id)
-      df_list <- lapply(record$alleles,
-                        function(one_allele) {
-                          if (one_allele$allele$spdi$deleted_sequence != one_allele$allele$spdi$inserted_sequence) {
-                            alleles <-  paste(one_allele$allele$spdi$deleted_sequence,
-                                              one_allele$allele$spdi$inserted_sequence,
-                                              sep = ",")
-                            if (one_allele$allele$spdi$inserted_sequence == "") {
-                              VariationAllele <-  paste0("del",
-                                                         one_allele$allele$spdi$deleted_sequence)
-                              alleles <-  paste(alleles, VariationAllele)
-                            } else {
-                              VariationAllele <- one_allele$allele$spdi$inserted_sequence
-                            }
-                            
-                            df_snp <- data.frame(Alleles = alleles,
-                                                 AncestralAllele = one_allele$allele$spdi$deleted_sequence,
-                                                 VariationAllele = VariationAllele,
-                                                 BP = one_allele$allele$spdi$position + 1,
-                                                 seqname = one_allele$allele$spdi$seq_id,
-                                                 hgvs = one_allele$hgvs,
-                                                 assembly = assembly_name,
-                                                 Chromosome = chrom_name,
-                                                 stringsAsFactors = FALSE)
-                            return(df_snp)
-                          }
-                        }
+      df_list <- lapply(
+        record$alleles,
+        function(one_allele) {
+          if (one_allele$allele$spdi$deleted_sequence != one_allele$allele$spdi$inserted_sequence) {
+            alleles <- paste(one_allele$allele$spdi$deleted_sequence,
+                             one_allele$allele$spdi$inserted_sequence,
+                             sep = ","
+            )
+            if (one_allele$allele$spdi$inserted_sequence == "") {
+              VariationAllele <- paste0(
+                "del",
+                one_allele$allele$spdi$deleted_sequence
+              )
+              alleles <- paste(alleles, VariationAllele)
+            } else {
+              VariationAllele <- one_allele$allele$spdi$inserted_sequence
+            }
+            
+            df_snp <- data.frame(
+              Alleles = alleles,
+              AncestralAllele = one_allele$allele$spdi$deleted_sequence,
+              VariationAllele = VariationAllele,
+              BP = one_allele$allele$spdi$position + 1,
+              seqname = one_allele$allele$spdi$seq_id,
+              hgvs = one_allele$hgvs,
+              assembly = assembly_name,
+              Chromosome = chrom_name,
+              stringsAsFactors = FALSE
+            )
+            return(df_snp)
+          }
+        }
       )
       
       ## remove the NULLs
@@ -41,15 +47,20 @@ get_placements <- function(primary_info) {
       
       ## if more than one we need to merge the ancestral and variation alleles
       df_all <- do.call(rbind, df_list)
-      new_df <- stats::aggregate(. ~ BP, data = df_all,
-                                 FUN = function(x)
+      new_df <- stats::aggregate(. ~ BP,
+                                 data = df_all,
+                                 FUN = function(x) {
                                    paste(unique(x[x != ""]),
-                                         collapse = ",")
+                                         collapse = ","
+                                   )
+                                 }
       )
       new_df$Alleles <- paste(unique(unlist(strsplit(new_df$Alleles, ","))),
-                              collapse = ",")
+                              collapse = ","
+      )
       return(new_df)
-    }}
+    }
+  }
 }
 
 
@@ -66,28 +77,32 @@ get_frequency <- function(Class, primary_info) {
       for (freq_record in record$frequency) {
         if (freq_record$observation$deleted_sequence != freq_record$observation$inserted_sequence) {
           if (freq_record$observation$inserted_sequence == "") {
-            MAF <-  freq_record$allele_count / freq_record$total_count
-            df_freq_study <- data.frame(study = freq_record$study_name,
-                                        ref_seq = freq_record$observation$deleted_sequence,
-                                        Minor = paste0("del", freq_record$observation$deleted),
-                                        MAF = MAF,
-                                        stringsAsFactors = FALSE)
-          }
-          else if (freq_record$observation$deleted_sequence == "") {
-            MAF <-  freq_record$allele_count / freq_record$total_count
-            df_freq_study <- data.frame(study = freq_record$study_name,
-                                        ref_seq = freq_record$observation$deleted_sequence,
-                                        Minor = paste0("dup", freq_record$observation$inserted_sequence),
-                                        MAF = MAF,
-                                        stringsAsFactors = FALSE)
-          }
-          else {
             MAF <- freq_record$allele_count / freq_record$total_count
-            df_freq_study <- data.frame(study = freq_record$study_name,
-                                        ref_seq = freq_record$observation$deleted_sequence,
-                                        Minor = freq_record$observation$inserted_sequence,
-                                        MAF = MAF,
-                                        stringsAsFactors = FALSE)
+            df_freq_study <- data.frame(
+              study = freq_record$study_name,
+              ref_seq = freq_record$observation$deleted_sequence,
+              Minor = paste0("del", freq_record$observation$deleted),
+              MAF = MAF,
+              stringsAsFactors = FALSE
+            )
+          } else if (freq_record$observation$deleted_sequence == "") {
+            MAF <- freq_record$allele_count / freq_record$total_count
+            df_freq_study <- data.frame(
+              study = freq_record$study_name,
+              ref_seq = freq_record$observation$deleted_sequence,
+              Minor = paste0("dup", freq_record$observation$inserted_sequence),
+              MAF = MAF,
+              stringsAsFactors = FALSE
+            )
+          } else {
+            MAF <- freq_record$allele_count / freq_record$total_count
+            df_freq_study <- data.frame(
+              study = freq_record$study_name,
+              ref_seq = freq_record$observation$deleted_sequence,
+              Minor = freq_record$observation$inserted_sequence,
+              MAF = MAF,
+              stringsAsFactors = FALSE
+            )
           }
           df_freq <- rbind(df_freq, df_freq_study)
         }
@@ -96,36 +111,38 @@ get_frequency <- function(Class, primary_info) {
     
     if (!is.null(df_freq)) {
       return(df_freq)
-    }
-    else {
-      df_freq <- data.frame(study = "", 
-                            ref_seq = NA,
-                            Minor = NA,
-                            MAF = NA,
-                            stringsAsFactors = FALSE)
+    } else {
+      df_freq <- data.frame(
+        study = "",
+        ref_seq = NA,
+        Minor = NA,
+        MAF = NA,
+        stringsAsFactors = FALSE
+      )
     }
   } else {
-    df_freq <- data.frame(study = "", 
-                          ref_seq = NA,
-                          Minor = NA,
-                          MAF = NA,
-                          stringsAsFactors = FALSE)
+    df_freq <- data.frame(
+      study = "",
+      ref_seq = NA,
+      Minor = NA,
+      MAF = NA,
+      stringsAsFactors = FALSE
+    )
   }
   
   ## sort study names so studies grouped together
-  df_freq <- df_freq[order(df_freq$study),]
-  
+  df_freq <- df_freq[order(df_freq$study), ]
 }
 
 #' Internal function to get gene names.
-#' 
-#' If multiple gene names are encountered they are collapsed with a 
+#'
+#' If multiple gene names are encountered they are collapsed with a
 #' "/".
 #' @param primary_info refsnp entry read in JSON format
-#' 
+#'
 get_gene_names <- function(primary_info) {
   gene_list <- c()
-  for (record in  primary_info$primary_snapshot_data$allele_annotations) {
+  for (record in primary_info$primary_snapshot_data$allele_annotations) {
     for (annotations in record$assembly_annotation) {
       for (genes in annotations$genes) {
         gene <- genes$locus
@@ -143,20 +160,20 @@ get_gene_names <- function(primary_info) {
 #' This function queries NCBI's refSNP for information related to the latest
 #' dbSNP build and latest reference genome for information on the vector
 #' of snps submitted.
-#' 
+#'
 #' This function currently pulling data for Assembly 38 - in particular
-#' note that if you think the BP position is wrong, that you may be 
-#' hoping for the BP position for a different Assembly. 
+#' note that if you think the BP position is wrong, that you may be
+#' hoping for the BP position for a different Assembly.
 #'
 #' @export
 #' @param snps (character) A vector of SNPs (rs numbers).
 #' @return A dataframe with columns:
-#' 
+#'
 #' - query: The rs ID that was queried.
 #' - chromosome: The chromosome that the marker lies on.
 #' - bp: The chromosomal position, in base pairs, of the marker,
-#' as aligned with the current genome used by dbSNP. we add 1 to the base 
-#' pair position in the BP column in the output data.frame to agree with 
+#' as aligned with the current genome used by dbSNP. we add 1 to the base
+#' pair position in the BP column in the output data.frame to agree with
 #' what the dbSNP website has.
 #' - rsid: Reference SNP cluster ID. If the rs ID queried
 #' has been merged, the up-to-date name of the ID is returned here, and
@@ -182,8 +199,8 @@ get_gene_names <- function(primary_info) {
 #' - hgvs -  full hgvs notation for variant
 #' - assembly - which assembly was used for the annotations
 #' - ref_seq - sequence in reference assembly
-#' - maf_population - dataframe of all minor allele frequencies reported, with columns study, 
-#' reference allele, alternative allele (minor) and minor allele frequency. 
+#' - maf_population - dataframe of all minor allele frequencies reported, with columns study,
+#' reference allele, alternative allele (minor) and minor allele frequency.
 #'
 #'
 #' @references <https://www.ncbi.nlm.nih.gov/projects/SNP/>
@@ -206,17 +223,17 @@ get_gene_names <- function(primary_info) {
 #' ncbi_snp_query("rs1837253")
 #' ncbi_snp_query("rs1209415715")
 #' ncbi_snp_query("rs111068718")
-#' ncbi_snp_query(snps='rs9970807')
+#' ncbi_snp_query(snps = "rs9970807")
 #'
 #' ncbi_snp_query("rs121909001")
 #' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' }
 ncbi_snp_query <- function(snps) {
   
-  ## NCBI moved to https but not using http v.2. The setting of the version 
-  ## used with curl is based on 
+  ## NCBI moved to https but not using http v.2. The setting of the version
+  ## used with curl is based on
   ##  https://github.com/ropensci/rentrez/issues/127#issuecomment-488838967
-  ## in the rentrez package 
+  ## in the rentrez package
   httr::set_config(httr::config(http_version = 2)) ## value 2 corresponds to CURL_HTTP_VERSION_1_1
   
   ## ensure these are rs numbers of the form rs[0-9]+
@@ -226,39 +243,54 @@ ncbi_snp_query <- function(snps) {
   if (any(sapply(tmp, length) == 0)) {
     stop("not all items supplied are prefixed with 'rs';\n",
          "you must supply rs numbers and they should be prefixed with ",
-         "'rs', e.g. rs420358", call. = FALSE)
+         "'rs', e.g. rs420358",
+         call. = FALSE
+    )
   }
   
-  message(paste0("Getting info about the following rsIDs: ",
-                 paste(snps,
-                       collapse = ", ")))
+  message(paste0(
+    "Getting info about the following rsIDs: ",
+    paste(snps,
+          collapse = ", "
+    )
+  ))
   ## transform all SNPs into numbers (rsid)
   snps_num <- gsub("rs", "", snps)
   
   out <- as.data.frame(matrix(NA, nrow = length(snps_num), ncol = 15))
   names(out) <- c("query", "chromosome", "bp", "class", "rsid", "gene", "alleles", "ancestral_allele", "variation_allele", "seqname", "hgvs", "assembly", "ref_seq", "minor", "maf")
-
+  
   out_maf <- list(NULL)
   
   ## as far as I understand from https://api.ncbi.nlm.nih.gov/variation/v0/#/RefSNP/ we
   ## can only send one query at a time and max 1 per second.
   for (i in seq_along(snps_num)) {
-    
     variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", snps_num[i])
-    variant.response <-  httr::GET(variant.url)
-    variant.response.content <-  jsonlite::fromJSON(rawToChar(variant.response$content),
-                                                    simplifyVector = FALSE)  
+    variant.response <- httr::GET(variant.url)
+    
+    ## handle sporadic status 500 from NCBI that have
+    ## been occurring starting in Dec 2022.
+    if (variant.response$status_code == 500){
+      ## try to redo the call
+      variant.response <- httr::GET(variant.url)
+    }
+    
+    variant.response.content <- jsonlite::fromJSON(rawToChar(variant.response$content),
+                                                   simplifyVector = FALSE
+    )
     
     if ("error" %in% names(variant.response.content)) {
       if (variant.response.content$error$message == "RefSNP not found") {
         warning("The following rsId had no information available on NCBI:\n  ",
                 paste0("rs", snps_num[i]),
-                call. = FALSE)
+                call. = FALSE
+        )
         next()
       } else {
         warning("The following error was received from NCBI:\n  ",
                 variant.response.content$error$message,
-                call. = FALSE)
+                call. = FALSE
+        )
         next()
       }
     }
@@ -266,27 +298,59 @@ ncbi_snp_query <- function(snps) {
     if ("withdrawn_snapshot_data" %in% names(variant.response.content) & length(variant.response.content$present_obs_movements) == 0) {
       warning("The following rsId has been withdrawn from NCBI:\n  ",
               paste0("rs", snps_num[i]),
-              call. = FALSE)
+              call. = FALSE
+      )
       next()
     }
+    
+    if ("unsupported_snapshot_data" %in% names(variant.response.content) & length(variant.response.content$present_obs_movements) == 0) {
+      warning("The following rsId no longer has any supporting observations in NCBI:\n  ",
+              paste0("rs", snps_num[i]),
+              call. = FALSE
+      )
+      next()
+    }
+    
     Query <- as.character(paste0("rs", variant.response.content$refsnp_id))
     
     ## if merged into another id
     if (is.null(variant.response.content$primary_snapshot_data)) {
-      
       rsid <- as.character(paste0("rs", variant.response.content$merged_snapshot_data$merged_into))
-      no_rsid <-  as.character(variant.response.content$merged_snapshot_data$merged_into)
+      no_rsid <- as.character(variant.response.content$merged_snapshot_data$merged_into)
       
       warning(Query, " has been merged into ", rsid, call. = FALSE)
       
       variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", no_rsid)
       variant.response <- httr::GET(variant.url)
       variant.response.content <- jsonlite::fromJSON(rawToChar(variant.response$content),
-                                                     simplifyVector = FALSE)
+                                                     simplifyVector = FALSE
+      )
+      
+      ## if merged into a second snp
+      if (is.null(variant.response.content$primary_snapshot_data)) {
+        rsid2 <- as.character(paste0("rs", variant.response.content$merged_snapshot_data$merged_into))
+        no_rsid2 <- as.character(variant.response.content$merged_snapshot_data$merged_into)
+        
+        warning(Query, " has been merged into ", rsid, " which has been merged into ", rsid2, call. = FALSE)
+        
+        variant.url <- paste0("https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/", no_rsid2)
+        variant.response <- httr::GET(variant.url)
+        variant.response.content <- jsonlite::fromJSON(rawToChar(variant.response$content),
+                                                       simplifyVector = FALSE
+        )
+        
+      } else {
+        rsid <- as.character(paste0(
+          "rs",
+          variant.response.content$refsnp_id
+        ))
+      }
       
     } else {
-      rsid <- as.character(paste0("rs",
-                                  variant.response.content$refsnp_id))
+      rsid <- as.character(paste0(
+        "rs",
+        variant.response.content$refsnp_id
+      ))
     }
     
     Class <- as.character(variant.response.content$primary_snapshot_data$variant_type)
@@ -296,32 +360,32 @@ ncbi_snp_query <- function(snps) {
     frequency_SNP <- get_frequency(Class, variant.response.content)
     Gene <- get_gene_names(variant.response.content)
     
-    out[i, ] <- c(Query,
-                  placement_SNP$Chromosome,
-                  placement_SNP$BP,
-                  Class,
-                  rsid,
-                  Gene,
-                  placement_SNP$Alleles,
-                  placement_SNP$AncestralAllele,
-                  placement_SNP$VariationAllele,
-                  placement_SNP$seqname,
-                  placement_SNP$hgvs,
-                  placement_SNP$assembly,
-                  # if GnomAD maf available, pick that
-                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$ref_seq[frequency_SNP$study=="GnomAD"], NA),
-                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$Minor[frequency_SNP$study=="GnomAD"], NA),
-                  ifelse(any(frequency_SNP$study=="GnomAD"), frequency_SNP$MAF[frequency_SNP$study=="GnomAD"], NA)
-                  ) 
+    out[i, ] <- c(
+      Query,
+      placement_SNP$Chromosome,
+      placement_SNP$BP,
+      Class,
+      rsid,
+      Gene,
+      placement_SNP$Alleles,
+      placement_SNP$AncestralAllele,
+      placement_SNP$VariationAllele,
+      placement_SNP$seqname,
+      placement_SNP$hgvs,
+      placement_SNP$assembly,
+      # if GnomAD maf available, pick that
+      ifelse(any(frequency_SNP$study == "GnomAD"), frequency_SNP$ref_seq[frequency_SNP$study == "GnomAD"], NA),
+      ifelse(any(frequency_SNP$study == "GnomAD"), frequency_SNP$Minor[frequency_SNP$study == "GnomAD"], NA),
+      ifelse(any(frequency_SNP$study == "GnomAD"), frequency_SNP$MAF[frequency_SNP$study == "GnomAD"], NA)
+    )
     out_maf[[i]] <- frequency_SNP
-    
   }
   Sys.sleep(1)
   
   ## remove missing rsnumbers
   ind <- which(!is.na(out$query))
   out <- out[ind, ]
-  out_maf <-  out_maf[ind]
+  out_maf <- out_maf[ind]
   
   ## ensure maf and bp are numeric
   for (nm in c("maf", "bp")) {

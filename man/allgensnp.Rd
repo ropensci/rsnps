@@ -4,10 +4,12 @@
 \alias{allgensnp}
 \title{Get openSNP genotype data for all users at a particular snp.}
 \usage{
-allgensnp(snp = NA, ...)
+allgensnp(snp = NA, usersubset = FALSE, ...)
 }
 \arguments{
 \item{snp}{(character) A SNP name}
+
+\item{usersubset}{Get a subset of users, integer numbers, e.g. 1-8 (default: none)}
 
 \item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
@@ -19,7 +21,7 @@ Get openSNP genotype data for all users at a particular snp.
 }
 \examples{
 \dontrun{
-x <- allgensnp(snp = 'rs7412')
+x <- allgensnp(snp = "rs7412")
 head(x)
 }
 }

@@ -1,3 +1,21 @@
+rsnps 0.6.0
+===========
+
+### MINOR IMPROVEMENTS
+
+* allgensnp(): previously the dataframe returned contained duplicate "name" columns. 
+Now the "name" column that contains the submitter's name has been renamed "user_name"
+and the snp rsid name remains "name". (#67)
+* allgensnp(): added a parameter "usersubset" which allows to download a subset of
+users for the particular rsid. (#167)
+* improved test coverage from 71 to 76% making use of {vcr} with some test fixtures. 
+* some typos and formatting improved (#167)
+
+
+### BUG FIXES
+
+* fix ncbi_snp_query(): fix so that it does not fail when rsid of SNP is no longer supported. (#157)
+
 rsnps 0.5.0
 ===========
 
