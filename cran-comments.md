@@ -39,11 +39,12 @@ Skipping checking HTML validation: no command 'tidy' found
 
 This also seems to be a recurring issue on Rhub [R-hub issue #560](https://github.com/r-hub/rhub/issues/548) and so can likely be ignored.
 
-## Reverse dependencies
+## revdepcheck results
 
-* We have run R CMD check on the 1 downstream dependency
-(<https://github.com/ropensci/rsnps/blob/master/revdep/README.md>).
-No problems were found related to this package.
+We checked 1 reverse dependencies (0 from CRAN + 1 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages
 
 ---
 
