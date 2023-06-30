@@ -46,13 +46,13 @@ Get genotype data for all users at a particular SNP from [OpenSNP](https://opens
 ```r
 x <- allgensnp(snp='rs7412')
 head(x)
-#>     name chromosome position           user_name   id genotype_id local_genotype
-#> 1 rs7412         19 44908822        R.M. Holston   22           8             CC
-#> 2 rs7412         19 44908822 Charles G. Sullivan 5326        3834             CC
-#> 3 rs7412         19 44908822   Glenn Allen Nolen   19           7             CC
-#> 4 rs7412         19 44908822        Angel Harris  495         223             CC
-#> 5 rs7412         19 44908822           Mom to AG  387         173             CC
-#> 6 rs7412         19 44908822            kevinmcc  285         118             CC
+#>     name chromosome position       user_name   id genotype_id local_genotype
+#> 1 rs7412         19 44908822     Marie Reyes 4134        2800             CC
+#> 2 rs7412         19 44908822       Ganesha18 6598        5001             CC
+#> 3 rs7412         19 44908822     jacob meyer 4157        2818             TC
+#> 4 rs7412         19 44908822 Maggie Mae Mell 4148        2812             CC
+#> 5 rs7412         19 44908822               n 4146        2810             CC
+#> 6 rs7412         19 44908822    Alexey Minko 4135        2801             CC
 ```
 
 
@@ -67,12 +67,12 @@ Get all data
 x <- allphenotypes(df = TRUE)
 head(x)
 #>   id characteristic known_variations number_of_users
-#> 1  1      Eye color            Brown            1771
-#> 2  1      Eye color      Brown-green            1771
-#> 3  1      Eye color       Blue-green            1771
-#> 4  1      Eye color        Blue-grey            1771
-#> 5  1      Eye color            Green            1771
-#> 6  1      Eye color             Blue            1771
+#> 1  1      Eye color            Brown            1773
+#> 2  1      Eye color      Brown-green            1773
+#> 3  1      Eye color       Blue-green            1773
+#> 4  1      Eye color        Blue-grey            1773
+#> 5  1      Eye color            Green            1773
+#> 6  1      Eye color             Blue            1773
 ```
 
 Output a list, then call the characteristic of interest by 'id' or 'characteristic'
@@ -351,34 +351,44 @@ Get phenotype data for one or multiple users
 
 ```r
 phenotypes(userid=1)$phenotypes[1:3]
-#> $`Caffeine dependence`
-#> $`Caffeine dependence`$phenotype_id
-#> [1] 538
+#> $`white skin`
+#> $`white skin`$phenotype_id
+#> [1] 4
 #> 
-#> $`Caffeine dependence`$variation
-#> [1] "No"
-#> 
-#> 
-#> $`hair on ear`
-#> $`hair on ear`$phenotype_id
-#> [1] 254
-#> 
-#> $`hair on ear`$variation
-#> [1] "No"
+#> $`white skin`$variation
+#> [1] "Caucasian"
 #> 
 #> 
-#> $`Third Nipple`
-#> $`Third Nipple`$phenotype_id
-#> [1] 259
+#> $`Lactose intolerance`
+#> $`Lactose intolerance`$phenotype_id
+#> [1] 2
 #> 
-#> $`Third Nipple`$variation
-#> [1] "None"
+#> $`Lactose intolerance`$variation
+#> [1] "lactose-tolerant"
+#> 
+#> 
+#> $`Eye color`
+#> $`Eye color`$phenotype_id
+#> [1] 1
+#> 
+#> $`Eye color`$variation
+#> [1] "blue-green"
 ```
 
 
 ```r
 phenotypes(userid='1,6,8', df=TRUE)[[1]][1:10,]
-#> Error: Bad Gateway (HTTP 502)
+#>                     phenotype phenotypeID        variation
+#> 1                  white skin           4        Caucasian
+#> 2         Lactose intolerance           2 lactose-tolerant
+#> 3                   Eye color           1       blue-green
+#> 4                   Hair Type          16         straight
+#> 5                      Height          15  Tall ( >180cm )
+#> 6              Ability to Tan          14              Yes
+#> 7  Short-sightedness (Myopia)          21              low
+#> 8                 Beard Color          12           Blonde
+#> 9            Colour Blindness          25            False
+#> 10                 Strabismus          23            False
 ```
 
 
@@ -387,13 +397,13 @@ phenotypes(userid='1,6,8', df=TRUE)[[1]][1:10,]
 out <- phenotypes(userid='1-8', df=TRUE)
 lapply(out, head)
 #> $`Bastian Greshake Tzovaras`
-#>                               phenotype phenotypeID variation
-#> 1                   Caffeine dependence         538        No
-#> 2                           hair on ear         254        No
-#> 3                          Third Nipple         259      None
-#> 4                            Alcoholism         485      None
-#> 5        Alcohol Consumption (per week)         484         0
-#> 6 Allergy to artificial grape flavoring         352        No
+#>             phenotype phenotypeID        variation
+#> 1          white skin           4        Caucasian
+#> 2 Lactose intolerance           2 lactose-tolerant
+#> 3           Eye color           1       blue-green
+#> 4           Hair Type          16         straight
+#> 5              Height          15  Tall ( >180cm )
+#> 6      Ability to Tan          14              Yes
 #> 
 #> $Senficon
 #>   phenotype phenotypeID variation
@@ -413,25 +423,25 @@ lapply(out, head)
 #> 
 #> $`Nash Parovoz`
 #>                          phenotype phenotypeID        variation
-#> 1         Y-DNA Haplogroup (ISOGG)         150        J-FGC5206
-#> 2  The Dress: Perception of colour         338   White and gold
-#> 3           Number of wisdom teeth          57                4
-#> 4 Ability to find a bug in openSNP           5   extremely high
-#> 5              Lactose intolerance           2 lactose-tolerant
-#> 6                       white skin           4        Caucasian
+#> 1                       Handedness           3     right-handed
+#> 2                        Eye color           1            brown
+#> 3                       white skin           4        Caucasian
+#> 4              Lactose intolerance           2 lactose-tolerant
+#> 5 Ability to find a bug in openSNP           5   extremely high
+#> 6           Number of wisdom teeth          57                4
 #> 
 #> $`no info on user_7`
 #>   phenotype phenotypeID variation
 #> 1   no data     no data   no data
 #> 
 #> $`Samantha B. Clark`
-#>                             phenotype phenotypeID           variation
-#> 1                            Gambling         539                  No
-#> 2                 Caffeine dependence         538                  No
-#> 3            Dietary supplements used         534                 b12
-#> 4                                Diet         533 Vegan / plant-based
-#> 5                   Tooth sensitivity         532         Sweet, cold
-#> 6 OCD - Obsessive-Compulsive Disorder         555                  No
+#>             phenotype phenotypeID                   variation
+#> 1          Handedness           3                 left-handed
+#> 2 Lactose intolerance           2          lactose-intolerant
+#> 3           Eye color           1                       Brown
+#> 4      Ability to Tan          14                         Yes
+#> 5 Nicotine dependence          20 ex-smoker, 7 cigarettes/day
+#> 6          Hair Color          13                       brown
 ```
 
 ### All known variations
