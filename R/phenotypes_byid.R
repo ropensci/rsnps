@@ -23,7 +23,25 @@ phenotypes_byid <- function(phenotypeid = NA,
     paste0(osnp_base(), "phenotypes/json/variations/"),
     phenotypeid, ".json"
   )
-  res <- os_GET(url2, list(), ...)
+  
+  tryCatch(
+    {
+      res <- os_GET(url2, list(), ...)
+      ## need to check what it returns
+      # Process the data or perform any desired operations
+    },
+    error = function(e) {
+      message("Failed to retrieve data from OpenSNP. Please check the URL or try again later.")
+      stop("Error - Failed to retrieve data from OpenSNP or connection is interrupted")
+    }
+    ,
+    warning = function(w) {
+      message("Warning: Data retrieval resulted in a warning.")
+      # Handle warnings if necessary
+      stop("Warning - Failed to retrieve data from OpenSNP or connection is interrupted")
+    }
+  )
+  
   out <- jsonlite::fromJSON(res, FALSE)
 
   return_2 <- match.arg(return_, c("description", "knownvars", "users"), FALSE)

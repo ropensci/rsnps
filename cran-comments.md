@@ -46,9 +46,20 @@ We checked 1 reverse dependencies (0 from CRAN + 1 from Bioconductor), comparing
  * We saw 0 new problems
  * We failed to check 0 packages
 
+
+4. A fourth note is related to the resubmission of the update following some failing tests on CRAN
+
+```
+* checking CRAN incoming feasibility ... [10s] NOTE
+Maintainer: 'Julia Gustavsen <j.gustavsen@gmail.com>'
+
+Days since last update: 4
+
+```
+
 ---
 
-This version includes more tests, some spelling corrections and some formatting corrections.
+This version includes more tests, fixes and catches for failing tests,some spelling corrections and some formatting corrections.
 
 
 Thanks!

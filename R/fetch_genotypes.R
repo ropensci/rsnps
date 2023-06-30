@@ -45,10 +45,25 @@
 #' }
 fetch_genotypes <- function(url, rows = 100, filepath = NULL, quiet = TRUE, ...) {
   if (is.null(filepath)) filepath <- tempfile(fileext = ".txt")
-  utils::download.file(url, destfile = filepath, quiet = quiet, ...)
+  
+  tryCatch(
+    {
+      utils::download.file(url, destfile = filepath, quiet = quiet, ...)
+    },
+    error = function(e) {
+      message("Failed to retrieve data. Please check the URL or try again later.")
+      stop("No URL available")
+    }
+    ,
+    warning = function(w) {
+      message("Warning: Data retrieval resulted in a warning.")
+      # Handle warnings if necessary
+      return(NULL)
+    }
+  )
   df <- utils::read.table(filepath,
-    sep = "\t", nrows = rows, header = FALSE,
-    comment.char = "#", stringsAsFactors = FALSE
+                          sep = "\t", nrows = rows, header = FALSE,
+                          comment.char = "#", stringsAsFactors = FALSE
   )
   stats::setNames(df, c("rsid", "chromosome", "position", "genotype"))
 }
