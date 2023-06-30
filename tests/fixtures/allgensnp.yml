@@ -1,0 +1,49 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://opensnp.org/snps/json/rs486907/1-8.json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/5.0.1 crul/1.4.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      cache-control: max-age=0, private, must-revalidate
+      connection: keep-alive
+      content-encoding: gzip
+      content-type: application/json; charset=utf-8
+      date: Fri, 30 Jun 2023 09:53:59 GMT
+      etag: W/"171b5a10145cfdc824a295229d993078"
+      server: nginx/1.18.0 + Phusion Passenger(R) 6.0.17
+      status:
+      - HTTP/1.1 200 OK
+      - 200 OK
+      strict-transport-security: max-age=31536000; includeSubDomains
+      transfer-encoding: chunked
+      vary: Accept-Encoding
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      x-powered-by: Phusion Passenger(R) 6.0.17
+      x-request-id: a2956f8d-9ec9-48ba-80bc-0426929b90b0
+      x-runtime: '0.446335'
+      x-xss-protection: 1; mode=block
+    body:
+      encoding: ''
+      file: no
+      string: '[{"snp":{"name":"rs486907","chromosome":"1","position":"182585422"},"user":{"name":"Bastian
+        Greshake Tzovaras","id":1,"genotypes":[{"genotype_id":9,"local_genotype":"TT"}]}},{"snp":{"name":"rs486907","chromosome":"1","position":"182585422"},"user":{"name":"Senficon","id":2,"genotypes":[]}},{"error":"Sorry,
+        we couldn''t find any information for SNP rs486907 and user 3"},{"error":"Sorry,
+        we couldn''t find any information for SNP rs486907 and user 4"},{"error":"Sorry,
+        we couldn''t find any information for SNP rs486907 and user 5"},{"snp":{"name":"rs486907","chromosome":"1","position":"182585422"},"user":{"name":"Nash
+        Parovoz","id":6,"genotypes":[{"genotype_id":5,"local_genotype":"CC"}]}},{"error":"Sorry,
+        we couldn''t find any information for SNP rs486907 and user 7"},{"snp":{"name":"rs486907","chromosome":"1","position":"182585422"},"user":{"name":"Samantha
+        B. Clark","id":8,"genotypes":[{"genotype_id":2,"local_genotype":"TT"}]}}]'
+  recorded_at: 2023-06-30 09:53:59 GMT
+  recorded_with: vcr/1.2.0, webmockr/0.9.0

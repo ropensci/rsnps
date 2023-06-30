@@ -18,7 +18,25 @@ allgensnp <- function(snp = NA, usersubset = FALSE, ...) {
   }else{
     url2 <- paste(osnp_base(), "snps/", snp, ".json", sep = "")
   }
-  out <- os_GET(url2, list(), ...)
+  
+  tryCatch(
+    {
+      out <- os_GET(url2, list(), ...)
+      ## need to check what it returns
+      # Process the data or perform any desired operations
+    },
+    error = function(e) {
+      message("Failed to retrieve data from OpenSNP. Please check the URL or try again later.")
+      stop("Error - Failed to retrieve data from OpenSNP or connection is interrupted")
+    }
+    ,
+    warning = function(w) {
+      message("Warning: Data retrieval resulted in a warning.")
+      # Handle warnings if necessary
+      stop("Warning - Failed to retrieve data from OpenSNP or connection is interrupted")
+    }
+  )
+  
   tt <- jsonlite::fromJSON(out, FALSE)
   rbl(lapply(tt, function(z) {
     snp <- data.frame(z$snp, stringsAsFactors = FALSE)

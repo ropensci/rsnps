@@ -21,3 +21,4 @@ revdep
 ^pkgdown$
 ^codecov\.yml$
 ^revdep$
+^CRAN-SUBMISSION$

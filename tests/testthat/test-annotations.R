@@ -3,9 +3,16 @@ context("annotations")
 
 test_that("annotations returns the correct class", {
   skip_on_cran()
-
-  one <- suppressMessages(annotations(snp = "rs7903146", output = "snpedia"))
-
+  
+  # vcr::use_cassette("annotations_error", {
+  # expect_error(one <- suppressMessages(annotations(snp = "rs7903146",
+  #                                                  output = "snpedia")))
+  # })
+  
+  vcr::use_cassette("annotations", {
+  one <- suppressMessages(annotations(snp = "rs7903146",
+                                      output = "snpedia"))
+  })
   expect_is(one, "data.frame")
   expect_is(
     suppressMessages(annotations(snp = "rs7903146", output = "all")),
