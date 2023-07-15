@@ -3,8 +3,6 @@
 
 # rsnps
 
-[![cran
-checks](https://badges.cranchecks.info/worst/rsnps.svg)](https://cran.r-project.org/web/checks/check_results_rsnps.html)
 [![R build
 status](https://github.com/ropensci/rsnps/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/rsnps/actions)
 [![Build
