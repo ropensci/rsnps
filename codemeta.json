@@ -8,19 +8,13 @@
   "codeRepository": "https://github.com/ropensci/rsnps/",
   "issueTracker": "https://github.com/ropensci/rsnps/issues/",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.1.1 (2021-08-10)",
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
   "author": [
     {
       "@type": "Person",
@@ -216,7 +210,7 @@
   "applicationCategory": "Genes",
   "isPartOf": "https://ropensci.org",
   "keywords": ["gene", "snp", "sequence", "API", "web", "api-client", "species", "dbSNP", "OpenSNP", "NCBI", "genotype", "web-api", "snps", "data", "rstats", "r", "r-package"],
-  "fileSize": "3231.542KB",
+  "fileSize": "3675.815KB",
   "releaseNotes": "https://github.com/ropensci/rsnps/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rsnps/blob/master/README.md",
   "contIntegration": ["https://github.com/ropensci/rsnps/actions", "https://ci.appveyor.com/project/sckott/rsnps/branch/master/", "https://app.codecov.io/gh/ropensci/rsnps?branch=master"]
