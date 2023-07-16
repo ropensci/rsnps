@@ -1,4 +1,5 @@
 test_that("getting users from opensnp works", {
+  skip_on_cran()
   vcr::use_cassette("users", {
     data <- users(df = TRUE)
   })
@@ -6,10 +7,11 @@ test_that("getting users from opensnp works", {
   expect_equal(nrow(data[[1]]), 5476)
 })
 
-
-vcr::use_cassette("users_badgateway", {
-  test_that("fail with 502, bad gateway,  when getting opensnp users", {
-    expect_error(users(df = TRUE))
+test_that("getting users with bad gateway errors out", {
+  skip_on_cran()
+  vcr::use_cassette("users_badgateway", {
+    test_that("fail with 502, bad gateway,  when getting opensnp users", {
+      expect_error(users(df = TRUE))
+    })
   })
-  
 })

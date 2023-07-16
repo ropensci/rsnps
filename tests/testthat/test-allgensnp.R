@@ -5,8 +5,6 @@ test_that("allgensnps returns the proper dataframe", {
   
   ## for testing it is useful to be able to only get a subset of users
   
-  skip_on_cran()
-  
   vcr::use_cassette("allgensnp_error", {
   expect_error(dat <- allgensnp(snp = "rs486907",
                    usersubset = "1-8"))
