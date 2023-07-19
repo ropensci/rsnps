@@ -1,3 +1,11 @@
+rsnps 0.6.2
+===========
+
+### MINOR IMPROVEMENTS
+
+* removed quotes from abbreviation in package description upon request from CRAN
+
+
 rsnps 0.6.0
 ===========
 
