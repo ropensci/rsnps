@@ -1,6 +1,7 @@
 #' This function is defunct.
 #' @export
 #' @rdname LDSearch-defunct
+#' @return a error message telling the user that this function has been removed
 #' @keywords internal
 LDSearch <- function(...) {
   .Defunct(new = "ld_search", package = "rsnps", msg = "the LDSearch() function name has been changed to ld_search()")
@@ -9,6 +10,7 @@ LDSearch <- function(...) {
 #' This function is defunct.
 #' @export
 #' @rdname NCBI_snp_query-defunct
+#' @return a error message telling the user that this function has been deprecated in favour of another function
 #' @keywords internal
 ncbi_snp_summary <- function(...) {
   .Defunct(new = "ncbi_snp_summary", package = "rsnps", msg = "the ncbi_snp_summary() function name has been changed to ncbi_snp_query()")
@@ -18,6 +20,7 @@ ncbi_snp_summary <- function(...) {
 #' This function is defunct.
 #' @export
 #' @rdname NCBI_snp_query-defunct
+#' @return a error message telling the user that this function has been deprecated in favour of another function
 #' @keywords internal
 ncbi_snp_query2 <- function(...) {
   .Defunct(new = "ncbi_snp_query2", package = "rsnps", msg = "the ncbi_snp_query2() function name has been changed to ncbi_snp_query()")
@@ -26,6 +29,7 @@ ncbi_snp_query2 <- function(...) {
 #' This function is defunct.
 #' @export
 #' @rdname NCBI_snp_query-defunct
+#' @return a error message telling the user that this function has been deprecated in favour of another function
 #' @keywords internal
 NCBI_snp_query <- function(...) {
   .Defunct(new = "ncbi_snp_query", package = "rsnps", msg = "the NCBI_snp_query() function name has been changed to ncbi_snp_query()")
@@ -34,6 +38,7 @@ NCBI_snp_query <- function(...) {
 #' This function is defunct.
 #' @export
 #' @rdname NCBI_snp_query2-defunct
+#' @return a error message telling the user that this function has been deprecated in favour of another function
 #' @keywords internal
 NCBI_snp_query2 <- function(...) {
   .Defunct(new = "ncbi_snp_query2", package = "rsnps", msg = "the NCBI_snp_query2() function name has been changed to ncbi_snp_query()")

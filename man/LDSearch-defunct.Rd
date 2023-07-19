@@ -6,6 +6,9 @@
 \usage{
 LDSearch(...)
 }
+\value{
+a error message telling the user that this function has been removed
+}
 \description{
 This function is defunct.
 }
