@@ -15,7 +15,7 @@ number_of_users are replicated in the data.frame. Default: \code{FALSE}}
 \item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
-data.frame of results, or list if \code{df=FALSE}
+data.frame of openSNP phenotypes, variants and users per phenotype, or list if \code{df=FALSE}
 }
 \description{
 Either return data.frame with all results, or output a list, then call
@@ -27,7 +27,7 @@ the characteristic by id (parameter = "id") or name (parameter =
 # Get all data
 allphenotypes(df = TRUE)
 
-# Output a list, then call the characterisitc of interest by 'id' or
+# Output a list, then call the characteristic of interest by 'id' or
 # 'characteristic'
 datalist <- allphenotypes()
 names(datalist) # get list of all characteristics you can call

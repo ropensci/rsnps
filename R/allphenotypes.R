@@ -11,12 +11,12 @@
 #' can take multiple values, so the other columns id, characteristic, and
 #' number_of_users are replicated in the data.frame. Default: `FALSE`
 #' @param ... Curl options passed on to [crul::HttpClient]
-#' @return data.frame of results, or list if `df=FALSE`
+#' @return data.frame of openSNP phenotypes, variants and users per phenotype, or list if `df=FALSE`
 #' @examples \dontrun{
 #' # Get all data
 #' allphenotypes(df = TRUE)
 #'
-#' # Output a list, then call the characterisitc of interest by 'id' or
+#' # Output a list, then call the characteristic of interest by 'id' or
 #' # 'characteristic'
 #' datalist <- allphenotypes()
 #' names(datalist) # get list of all characteristics you can call
