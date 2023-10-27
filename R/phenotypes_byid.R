@@ -9,7 +9,7 @@
 #' @return List of description of phenotype, list of known variants, or
 #' data.frame of variants for each user with that phenotype.
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' phenotypes_byid(phenotypeid = 12, return_ = "desc")
 #' phenotypes_byid(phenotypeid = 12, return_ = "knownvars")
 #' phenotypes_byid(phenotypeid = 12, return_ = "users")

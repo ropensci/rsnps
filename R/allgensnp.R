@@ -6,7 +6,7 @@
 #' @param usersubset Get a subset of users, integer numbers, e.g. 1-8 (default: none)
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return data.frame of genotypes for all users at a certain SNP
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- allgensnp(snp = "rs7412")
 #' head(x)
 #' }

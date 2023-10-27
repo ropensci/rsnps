@@ -30,9 +30,9 @@ variables for the path to the file saved. Alternatively, you can supply
 the path.
 }
 \examples{
-\dontrun{
-# dat <- read_users(name = "kevinmcc")
-# head(dat)
-# dat <- read_users(id = 285)
+\donttest{
+dat <- read_users(name = "kevinmcc")
+head(dat)
+dat <- read_users(id = 285)
 }
 }

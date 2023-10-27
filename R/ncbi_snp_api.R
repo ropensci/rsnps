@@ -211,7 +211,7 @@ get_gene_names <- function(primary_info) {
 #' If users want to set curl options when querying for the SNPs they can do so by using
 #'  httr::set_config/httr::with_config
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
 #' ## SNPs not found, microsatellite
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")

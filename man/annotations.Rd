@@ -29,7 +29,7 @@ the characteristic by id (parameter = "id") or
 name (parameter = "characteristic").
 }
 \examples{
-\dontrun{
+\donttest{
 # Get all data
 ## get just the metadata
 annotations(snp = "rs7903146", output = "metadata")

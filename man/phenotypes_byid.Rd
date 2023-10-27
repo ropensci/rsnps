@@ -27,7 +27,7 @@ Get all openSNP known variations and all users sharing that phenotype for
 one phenotype(-ID).
 }
 \examples{
-\dontrun{
+\donttest{
 phenotypes_byid(phenotypeid = 12, return_ = "desc")
 phenotypes_byid(phenotypeid = 12, return_ = "knownvars")
 phenotypes_byid(phenotypeid = 12, return_ = "users")

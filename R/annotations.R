@@ -13,7 +13,7 @@
 #' 		metadata for the response.
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return data.frame of results
-#' @examples \dontrun{
+#' @examples \donttest{
 #' # Get all data
 #' ## get just the metadata
 #' annotations(snp = "rs7903146", output = "metadata")

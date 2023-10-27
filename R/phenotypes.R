@@ -7,7 +7,7 @@
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return List of phenotypes for specified user(s).
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' phenotypes(userid = 1)
 #' phenotypes(userid = "1,6,8", df = TRUE)
 #' phenotypes(userid = "1-8", df = TRUE)

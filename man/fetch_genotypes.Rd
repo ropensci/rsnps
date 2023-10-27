@@ -45,7 +45,7 @@ Internally, we use \code{\link[=download.file]{download.file()}} to download eac
 \code{\link[=read.table]{read.table()}} to read the file to a data.frame.
 }
 \examples{
-\dontrun{
+\donttest{
 # get a data.frame of the users data
 data <- users(df = TRUE)
 head(data[[1]]) # users with links to genome data

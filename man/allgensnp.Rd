@@ -20,7 +20,7 @@ data.frame of genotypes for all users at a certain SNP
 Get openSNP genotype data for all users at a particular snp.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- allgensnp(snp = "rs7412")
 head(x)
 }

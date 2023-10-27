@@ -12,7 +12,7 @@
 #' number_of_users are replicated in the data.frame. Default: `FALSE`
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return data.frame of results, or list if `df=FALSE`
-#' @examples \dontrun{
+#' @examples \donttest{
 #' # Get all data
 #' allphenotypes(df = TRUE)
 #'

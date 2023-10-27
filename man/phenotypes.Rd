@@ -20,7 +20,7 @@ List of phenotypes for specified user(s).
 Get openSNP phenotype data for one or multiple users.
 }
 \examples{
-\dontrun{
+\donttest{
 phenotypes(userid = 1)
 phenotypes(userid = "1,6,8", df = TRUE)
 phenotypes(userid = "1-8", df = TRUE)

@@ -18,7 +18,7 @@ List of openSNP users, their ID numbers, and XX if available.
 Get openSNP users.
 }
 \examples{
-\dontrun{
+\donttest{
 # just the list
 data <- users(df = FALSE)
 data

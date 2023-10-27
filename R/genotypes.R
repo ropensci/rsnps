@@ -8,7 +8,7 @@
 #' @param ... Curl options passed on to [crul::HttpClient]]
 #' @return List (or data.frame) of genotypes for specified user(s) at a
 #' certain SNP.
-#' @examples \dontrun{
+#' @examples \donttest{
 #' genotypes(snp = "rs9939609", userid = 1)
 #' genotypes("rs9939609", userid = "1,6,8", df = TRUE)
 #' genotypes("rs9939609", userid = "1-2", df = FALSE)

@@ -23,7 +23,7 @@ the characteristic by id (parameter = "id") or name (parameter =
 "characteristic").
 }
 \examples{
-\dontrun{
+\donttest{
 # Get all data
 allphenotypes(df = TRUE)
 
