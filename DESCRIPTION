@@ -1,12 +1,12 @@
 Package: rsnps
-Title: Get 'SNP' ('Single-Nucleotide' 'Polymorphism') Data on the Web
-Description: A programmatic interface to various 'SNP' 'datasets'
-    on the web: 'OpenSNP' (<https://opensnp.org>), and 'NBCIs' 'dbSNP' database
+Title: Get SNP (Single-Nucleotide Polymorphism) Data on the Web
+Description: A programmatic interface to various SNP datasets
+    on the web: OpenSNP (<https://opensnp.org>), and NBCIs dbSNP database
     (<https://www.ncbi.nlm.nih.gov/projects/SNP/>). Functions
-    are included for searching for 'NCBI'. For 'OpenSNP', functions are included 
-    for getting 'SNPs', and data for 'genotypes', 'phenotypes', annotations, 
+    are included for searching for NCBI. For OpenSNP, functions are included 
+    for getting SNPs, and data for genotypes, phenotypes, annotations, 
     and bulk downloads of data by user.
-Version: 0.6.1
+Version: 0.6.2
 License: MIT + file LICENSE
 Authors@R: c(
     person("Julia", "Gustavsen", role = c("aut", "cre"),

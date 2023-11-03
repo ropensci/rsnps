@@ -21,7 +21,7 @@ metadata for the response.}
 \item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
-data.frame of results
+data.frame of openSNP phenotypes from specified source
 }
 \description{
 Either return data.frame with all results, or output a list, then call

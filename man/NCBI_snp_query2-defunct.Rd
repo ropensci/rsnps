@@ -6,6 +6,9 @@
 \usage{
 NCBI_snp_query2(...)
 }
+\value{
+a error message telling the user that this function has been deprecated in favour of another function
+}
 \description{
 This function is defunct.
 }

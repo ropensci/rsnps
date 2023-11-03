@@ -16,7 +16,7 @@ read_users(name = NULL, id = NULL, path = NULL, ...)
 \item{...}{Parameters passed on to \code{\link[=read.table]{read.table()}}}
 }
 \value{
-A data.frame.
+A data.frame with openSNP user files retrieved from local storage
 }
 \description{
 Beware, these tables can be large. Check your RAM before executing. Or

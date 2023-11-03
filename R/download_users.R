@@ -64,7 +64,7 @@ get_write <- function(x, y, ...) {
 #' written in the function download_users, and then searches against those
 #' variables for the path to the file saved. Alternatively, you can supply
 #' the path.
-#' @return A data.frame.
+#' @return A data.frame with openSNP user files retrieved from local storage
 #' @examples \donttest{
 #' dat <- read_users(name = "kevinmcc")
 #' head(dat)

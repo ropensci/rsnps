@@ -14,7 +14,7 @@ phenotypes(userid = NA, df = FALSE, ...)
 \item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
-List of phenotypes for specified user(s).
+List of phenotypes for specified user(s) from openSNP.
 }
 \description{
 Get openSNP phenotype data for one or multiple users.

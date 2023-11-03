@@ -7,7 +7,7 @@
 #' @param return_ Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return List of description of phenotype, list of known variants, or
-#' data.frame of variants for each user with that phenotype.
+#' data.frame of variants for each user with that phenotype retrieved from openSNP.
 #'
 #' @examples \donttest{
 #' phenotypes_byid(phenotypeid = 12, return_ = "desc")

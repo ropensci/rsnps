@@ -12,7 +12,7 @@
 #' 		are: 'plos', 'mendeley', 'snpedia', 'metadata'). 'metadata' gives the
 #' 		metadata for the response.
 #' @param ... Curl options passed on to [crul::HttpClient]
-#' @return data.frame of results
+#' @return data.frame of openSNP phenotypes from specified source
 #' @examples \donttest{
 #' # Get all data
 #' ## get just the metadata

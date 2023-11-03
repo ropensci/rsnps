@@ -12,7 +12,7 @@ users(df = FALSE, ...)
 \item{...}{Curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
-List of openSNP users, their ID numbers, and XX if available.
+List of openSNP users, their ID numbers, and genome data if available.
 }
 \description{
 Get openSNP users.
