@@ -82,15 +82,7 @@ split_to_df <- function(x, sep, fixed = FALSE, perl = TRUE, useBytes = FALSE, na
   return(tmp)
 }
 
-#' Tryget
-#'
-#' @export
-#' @keywords internal
-tryget <- function(x) {
-  return(tryCatch(return(x), error = function(e) {
-    return(NA)
-  }))
-}
+
 
 strtrim <- function(str) {
   gsub("^\\s+|\\s+$", "", str)

@@ -5,7 +5,7 @@
 #' @param userid ID of openSNP user.
 #' @param df Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
 #' @param ... Curl options passed on to [crul::HttpClient]
-#' @return List of phenotypes for specified user(s).
+#' @return List of phenotypes for specified user(s) from openSNP.
 #'
 #' @examples \dontrun{
 #' phenotypes(userid = 1)

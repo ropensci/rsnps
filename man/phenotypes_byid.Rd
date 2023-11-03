@@ -20,7 +20,7 @@ phenotypes_byid(
 }
 \value{
 List of description of phenotype, list of known variants, or
-data.frame of variants for each user with that phenotype.
+data.frame of variants for each user with that phenotype retrieved from openSNP.
 }
 \description{
 Get all openSNP known variations and all users sharing that phenotype for
