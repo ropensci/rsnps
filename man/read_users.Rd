@@ -31,8 +31,9 @@ the path.
 }
 \examples{
 \donttest{
+
+download_users(name = "kevinmcc")
 dat <- read_users(name = "kevinmcc")
 head(dat)
-dat <- read_users(id = 285)
 }
 }

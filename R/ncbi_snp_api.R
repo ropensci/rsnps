@@ -226,7 +226,6 @@ get_gene_names <- function(primary_info) {
 #' ncbi_snp_query(snps = "rs9970807")
 #'
 #' ncbi_snp_query("rs121909001")
-#' ncbi_snp_query("rs121909001", verbose = TRUE)
 #' }
 ncbi_snp_query <- function(snps) {
   

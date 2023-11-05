@@ -77,7 +77,6 @@ ncbi_snp_query("rs111068718")
 ncbi_snp_query(snps = "rs9970807")
 
 ncbi_snp_query("rs121909001")
-ncbi_snp_query("rs121909001", verbose = TRUE)
 }
 }
 \references{
