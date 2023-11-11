@@ -218,7 +218,7 @@ get_gene_names <- function(primary_info) {
 #' ncbi_snp_query(SNPs)
 #' # ncbi_snp_query("123456") ##invalid: must prefix with 'rs'
 #' ncbi_snp_query("rs420358")
-#' ncbi_snp_query("rs332") # warning that its merged into another, try that
+#' ncbi_snp_query("rs332") # warning that its merged into another
 #' ncbi_snp_query("rs121909001")
 #' ncbi_snp_query("rs1837253")
 #' ncbi_snp_query("rs1209415715")

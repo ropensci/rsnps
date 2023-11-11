@@ -14,8 +14,6 @@
 #' @return data.frame of openSNP phenotypes, variants and users per phenotype, or list if `df=FALSE`
 #' @examples \donttest{
 #' # Get all data
-#' allphenotypes(df = TRUE)
-#'
 #' # Output a list, then call the characteristic of interest by 'id' or
 #' # 'characteristic'
 #' datalist <- allphenotypes()

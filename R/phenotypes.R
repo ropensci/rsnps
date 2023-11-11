@@ -12,12 +12,6 @@
 #' phenotypes(userid = "1,6,8", df = TRUE)
 #' phenotypes(userid = "1-8", df = TRUE)
 #'
-#' # coerce to data.frame
-#' library(plyr)
-#' df <- ldply(phenotypes(userid = "1-8", df = TRUE))
-#' head(df)
-#' tail(df)
-#'
 #' # pass on curl options
 #' phenotypes(1, verbose = TRUE)
 #' }

@@ -6,10 +6,6 @@
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return List of openSNP users, their ID numbers, and genome data if available.
 #' @examples \donttest{
-#' # just the list
-#' data <- users(df = FALSE)
-#' data
-#'
 #' # get a data.frame of the users data
 #' data <- users(df = TRUE)
 #' data[[1]] # users with links to genome data

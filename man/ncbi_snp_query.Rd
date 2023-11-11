@@ -69,7 +69,7 @@ SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 ncbi_snp_query(SNPs)
 # ncbi_snp_query("123456") ##invalid: must prefix with 'rs'
 ncbi_snp_query("rs420358")
-ncbi_snp_query("rs332") # warning that its merged into another, try that
+ncbi_snp_query("rs332") # warning that its merged into another
 ncbi_snp_query("rs121909001")
 ncbi_snp_query("rs1837253")
 ncbi_snp_query("rs1209415715")

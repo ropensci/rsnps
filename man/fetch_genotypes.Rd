@@ -47,8 +47,6 @@ Internally, we use \code{\link[=download.file]{download.file()}} to download eac
 \examples{
 \donttest{
 # get a data.frame of the users data
-data <- users(df = TRUE)
-head(data[[1]]) # users with links to genome data
 mydata <- fetch_genotypes(
   url = data[[1]][1, "genotypes.download_url"],
   file = "~/myfile.txt"

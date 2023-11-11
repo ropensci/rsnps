@@ -8,16 +8,12 @@
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return File downloaded to directory you specify (or default), nothing
 #' returned in R.
-#' @examples \dontrun{
+#' @examples \donttest{
 #' # Download a single user file, by id
 #' download_users(id = 14)
 #'
 #' # Download a single user file, by user name
 #' download_users(name = "kevinmcc")
-#'
-#' # Download many user files
-#' lapply(c(14, 22), function(x) download_users(id = x))
-#' read_users(id = 14, nrows = 5)
 #' }
 download_users <- function(name = NULL, id = NULL, dir = "~/", ...) {
   if (is.null(name) && is.null(id)) {

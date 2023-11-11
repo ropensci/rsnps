@@ -19,10 +19,6 @@ Get openSNP users.
 }
 \examples{
 \donttest{
-# just the list
-data <- users(df = FALSE)
-data
-
 # get a data.frame of the users data
 data <- users(df = TRUE)
 data[[1]] # users with links to genome data

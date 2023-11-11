@@ -25,8 +25,6 @@ the characteristic by id (parameter = "id") or name (parameter =
 \examples{
 \donttest{
 # Get all data
-allphenotypes(df = TRUE)
-
 # Output a list, then call the characteristic of interest by 'id' or
 # 'characteristic'
 datalist <- allphenotypes()
