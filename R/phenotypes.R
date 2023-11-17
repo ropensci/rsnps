@@ -7,14 +7,13 @@
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return List of phenotypes for specified user(s) from openSNP.
 #'
-#' @examples \donttest{
+#' @examplesIf !rsnps:::is_rcmd_check()
 #' phenotypes(userid = 1)
 #' phenotypes(userid = "1,6,8", df = TRUE)
 #' phenotypes(userid = "1-8", df = TRUE)
 #'
 #' # pass on curl options
 #' phenotypes(1, verbose = TRUE)
-#' }
 phenotypes <- function(userid = NA, df = FALSE, ...) {
   url2 <- paste0(paste0(osnp_base(), "phenotypes/json/"), userid, ".json")
   

@@ -5,12 +5,11 @@
 #' @param df Return data.frame (`TRUE`) or not (`FALSE`). Default: `FALSE`
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return List of openSNP users, their ID numbers, and genome data if available.
-#' @examples \donttest{
+#' @examplesIf !rsnps:::is_rcmd_check()
 #' # get a data.frame of the users data
 #' data <- users(df = TRUE)
 #' data[[1]] # users with links to genome data
 #' data[[2]] # users without links to genome data
-#' }
 users <- function(df = FALSE, ...) {
   
 

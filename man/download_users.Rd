@@ -23,13 +23,13 @@ returned in R.
 Download openSNP user files.
 }
 \examples{
-\donttest{
+\dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Download a single user file, by id
 download_users(id = 14)
 
 # Download a single user file, by user name
 download_users(name = "kevinmcc")
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other opensnp-fxns: 

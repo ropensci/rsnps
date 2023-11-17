@@ -29,7 +29,7 @@ the characteristic by id (parameter = "id") or
 name (parameter = "characteristic").
 }
 \examples{
-\donttest{
+\dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get all data
 ## get just the metadata
 annotations(snp = "rs7903146", output = "metadata")
@@ -42,7 +42,7 @@ annotations(snp = "rs7903146", output = "snpedia")
 
 ## get all annotations
 annotations(snp = "rs7903146", output = "all")
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other opensnp-fxns: 

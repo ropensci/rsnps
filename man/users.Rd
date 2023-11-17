@@ -18,12 +18,12 @@ List of openSNP users, their ID numbers, and genome data if available.
 Get openSNP users.
 }
 \examples{
-\donttest{
+\dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # get a data.frame of the users data
 data <- users(df = TRUE)
 data[[1]] # users with links to genome data
 data[[2]] # users without links to genome data
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other opensnp-fxns: 

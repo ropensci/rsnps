@@ -23,7 +23,7 @@ the characteristic by id (parameter = "id") or name (parameter =
 "characteristic").
 }
 \examples{
-\donttest{
+\dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get all data
 # Output a list, then call the characteristic of interest by 'id' or
 # 'characteristic'
@@ -31,7 +31,7 @@ datalist <- allphenotypes()
 names(datalist) # get list of all characteristics you can call
 datalist[["ADHD"]] # get data.frame for 'ADHD'
 datalist[c("mouth size", "SAT Writing")] # get data.frame for 'ADHD'
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other opensnp-fxns: 

@@ -27,14 +27,14 @@ Get all openSNP known variations and all users sharing that phenotype for
 one phenotype(-ID).
 }
 \examples{
-\donttest{
+\dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 phenotypes_byid(phenotypeid = 12, return_ = "desc")
 phenotypes_byid(phenotypeid = 12, return_ = "knownvars")
 phenotypes_byid(phenotypeid = 12, return_ = "users")
 
 # pass on curl options
 phenotypes_byid(phenotypeid = 12, return_ = "desc", verbose = TRUE)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other opensnp-fxns: 

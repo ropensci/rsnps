@@ -8,15 +8,13 @@
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return List of description of phenotype, list of known variants, or
 #' data.frame of variants for each user with that phenotype retrieved from openSNP.
-#'
-#' @examples \donttest{
+#' @examplesIf !rsnps:::is_rcmd_check()
 #' phenotypes_byid(phenotypeid = 12, return_ = "desc")
 #' phenotypes_byid(phenotypeid = 12, return_ = "knownvars")
 #' phenotypes_byid(phenotypeid = 12, return_ = "users")
 #'
 #' # pass on curl options
 #' phenotypes_byid(phenotypeid = 12, return_ = "desc", verbose = TRUE)
-#' }
 phenotypes_byid <- function(phenotypeid = NA,
                             return_ = c("description", "knownvars", "users"), ...) {
   url2 <- paste0(
