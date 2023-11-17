@@ -13,7 +13,6 @@
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return data.frame of openSNP phenotypes, variants and users per phenotype, or list if `df=FALSE`
 #' @examplesIf !rsnps:::is_rcmd_check()
-#' # Get all data
 #' # Output a list, then call the characteristic of interest by 'id' or
 #' # 'characteristic'
 #' datalist <- allphenotypes()

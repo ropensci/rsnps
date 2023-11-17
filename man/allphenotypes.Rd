@@ -24,7 +24,6 @@ the characteristic by id (parameter = "id") or name (parameter =
 }
 \examples{
 \dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-# Get all data
 # Output a list, then call the characteristic of interest by 'id' or
 # 'characteristic'
 datalist <- allphenotypes()
