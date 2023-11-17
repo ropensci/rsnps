@@ -30,6 +30,7 @@
 #'
 #' @examplesIf !rsnps:::is_rcmd_check()
 #' # get a data.frame of the users data
+#' data <- users(df = TRUE)
 #' mydata <- fetch_genotypes(
 #'   url = data[[1]][1, "genotypes.download_url"],
 #'   file = "~/myfile.txt"

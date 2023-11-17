@@ -47,6 +47,7 @@ Internally, we use \code{\link[=download.file]{download.file()}} to download eac
 \examples{
 \dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # get a data.frame of the users data
+data <- users(df = TRUE)
 mydata <- fetch_genotypes(
   url = data[[1]][1, "genotypes.download_url"],
   file = "~/myfile.txt"
