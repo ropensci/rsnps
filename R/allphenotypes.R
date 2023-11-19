@@ -14,7 +14,7 @@
 #' @return data.frame of openSNP phenotypes, variants and users per phenotype, or list if `df=FALSE`
 #' @examplesIf !rsnps:::is_rcmd_check()
 #' # Output a list, then call the characteristic of interest by 'id' or
-#' # 'characteristic'
+#'  'characteristic'
 #' datalist <- allphenotypes()
 #' names(datalist) # get list of all characteristics you can call
 #' datalist[["ADHD"]] # get data.frame for 'ADHD'
