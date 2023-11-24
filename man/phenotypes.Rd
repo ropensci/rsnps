@@ -20,20 +20,14 @@ List of phenotypes for specified user(s) from openSNP.
 Get openSNP phenotype data for one or multiple users.
 }
 \examples{
-\dontrun{
+\dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 phenotypes(userid = 1)
 phenotypes(userid = "1,6,8", df = TRUE)
 phenotypes(userid = "1-8", df = TRUE)
 
-# coerce to data.frame
-library(plyr)
-df <- ldply(phenotypes(userid = "1-8", df = TRUE))
-head(df)
-tail(df)
-
 # pass on curl options
 phenotypes(1, verbose = TRUE)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other opensnp-fxns: 

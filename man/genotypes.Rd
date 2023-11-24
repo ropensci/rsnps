@@ -23,11 +23,11 @@ certain SNP.
 Get openSNP genotype data for one or multiple users.
 }
 \examples{
-\dontrun{
+\dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 genotypes(snp = "rs9939609", userid = 1)
 genotypes("rs9939609", userid = "1,6,8", df = TRUE)
 genotypes("rs9939609", userid = "1-2", df = FALSE)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other opensnp-fxns: 

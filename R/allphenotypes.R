@@ -12,17 +12,13 @@
 #' number_of_users are replicated in the data.frame. Default: `FALSE`
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return data.frame of openSNP phenotypes, variants and users per phenotype, or list if `df=FALSE`
-#' @examples \dontrun{
-#' # Get all data
-#' allphenotypes(df = TRUE)
-#'
+#' @examplesIf !rsnps:::is_rcmd_check()
 #' # Output a list, then call the characteristic of interest by 'id' or
-#' # 'characteristic'
+#'  'characteristic'
 #' datalist <- allphenotypes()
 #' names(datalist) # get list of all characteristics you can call
 #' datalist[["ADHD"]] # get data.frame for 'ADHD'
 #' datalist[c("mouth size", "SAT Writing")] # get data.frame for 'ADHD'
-#' }
 allphenotypes <- function(df = FALSE, ...) {
   tryCatch(
     {

@@ -28,10 +28,9 @@
 #' Internally, we use [download.file()] to download each file, then
 #' [read.table()] to read the file to a data.frame.
 #'
-#' @examples \dontrun{
+#' @examplesIf !rsnps:::is_rcmd_check()
 #' # get a data.frame of the users data
 #' data <- users(df = TRUE)
-#' head(data[[1]]) # users with links to genome data
 #' mydata <- fetch_genotypes(
 #'   url = data[[1]][1, "genotypes.download_url"],
 #'   file = "~/myfile.txt"
@@ -42,7 +41,6 @@
 #'
 #' # Or read in data later separately
 #' read.table("~/myfile.txt", nrows = 10)
-#' }
 fetch_genotypes <- function(url, rows = 100, filepath = NULL, quiet = TRUE, ...) {
   if (is.null(filepath)) filepath <- tempfile(fileext = ".txt")
   

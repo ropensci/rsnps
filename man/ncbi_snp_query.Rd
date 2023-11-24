@@ -62,14 +62,14 @@ If users want to set curl options when querying for the SNPs they can do so by u
 httr::set_config/httr::with_config
 }
 \examples{
-\dontrun{
+\dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
 ## SNPs not found, microsatellite
 SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 ncbi_snp_query(SNPs)
 # ncbi_snp_query("123456") ##invalid: must prefix with 'rs'
 ncbi_snp_query("rs420358")
-ncbi_snp_query("rs332") # warning that its merged into another, try that
+ncbi_snp_query("rs332") # warning that its merged into another
 ncbi_snp_query("rs121909001")
 ncbi_snp_query("rs1837253")
 ncbi_snp_query("rs1209415715")
@@ -77,8 +77,7 @@ ncbi_snp_query("rs111068718")
 ncbi_snp_query(snps = "rs9970807")
 
 ncbi_snp_query("rs121909001")
-ncbi_snp_query("rs121909001", verbose = TRUE)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 \url{https://www.ncbi.nlm.nih.gov/projects/SNP/}

@@ -30,9 +30,10 @@ variables for the path to the file saved. Alternatively, you can supply
 the path.
 }
 \examples{
-\dontrun{
+\dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+download_users(name = "kevinmcc")
 dat <- read_users(name = "kevinmcc")
 head(dat)
-dat <- read_users(id = 285)
-}
+\dontshow{\}) # examplesIf}
 }

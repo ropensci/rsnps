@@ -45,10 +45,9 @@ Internally, we use \code{\link[=download.file]{download.file()}} to download eac
 \code{\link[=read.table]{read.table()}} to read the file to a data.frame.
 }
 \examples{
-\dontrun{
+\dontshow{if (!rsnps:::is_rcmd_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # get a data.frame of the users data
 data <- users(df = TRUE)
-head(data[[1]]) # users with links to genome data
 mydata <- fetch_genotypes(
   url = data[[1]][1, "genotypes.download_url"],
   file = "~/myfile.txt"
@@ -59,7 +58,7 @@ mydata
 
 # Or read in data later separately
 read.table("~/myfile.txt", nrows = 10)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other opensnp-fxns: 

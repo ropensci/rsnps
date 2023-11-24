@@ -8,17 +8,13 @@
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return File downloaded to directory you specify (or default), nothing
 #' returned in R.
-#' @examples \dontrun{
+#' @examplesIf !rsnps:::is_rcmd_check()
 #' # Download a single user file, by id
 #' download_users(id = 14)
 #'
 #' # Download a single user file, by user name
 #' download_users(name = "kevinmcc")
-#'
-#' # Download many user files
-#' lapply(c(14, 22), function(x) download_users(id = x))
-#' read_users(id = 14, nrows = 5)
-#' }
+
 download_users <- function(name = NULL, id = NULL, dir = "~/", ...) {
   if (is.null(name) && is.null(id)) {
     stop("You must specify one of name or id", call. = FALSE)
@@ -65,11 +61,12 @@ get_write <- function(x, y, ...) {
 #' variables for the path to the file saved. Alternatively, you can supply
 #' the path.
 #' @return A data.frame with openSNP user files retrieved from local storage
-#' @examples \dontrun{
+#' @examplesIf !rsnps:::is_rcmd_check()
+#' 
+#' download_users(name = "kevinmcc")
 #' dat <- read_users(name = "kevinmcc")
 #' head(dat)
-#' dat <- read_users(id = 285)
-#' }
+
 read_users <- function(name = NULL, id = NULL, path = NULL, ...) {
   if (is.null(name) && is.null(id) && is.null(path)) {
     stop("You must specify one of name, id, or path", call. = FALSE)

@@ -211,14 +211,14 @@ get_gene_names <- function(primary_info) {
 #' If users want to set curl options when querying for the SNPs they can do so by using
 #'  httr::set_config/httr::with_config
 #'
-#' @examples \dontrun{
+#' @examplesIf !rsnps:::is_rcmd_check()
 #' ## an example with both merged SNPs, non-SNV SNPs, regular SNPs,
 #' ## SNPs not found, microsatellite
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
 #' ncbi_snp_query(SNPs)
 #' # ncbi_snp_query("123456") ##invalid: must prefix with 'rs'
 #' ncbi_snp_query("rs420358")
-#' ncbi_snp_query("rs332") # warning that its merged into another, try that
+#' ncbi_snp_query("rs332") # warning that its merged into another
 #' ncbi_snp_query("rs121909001")
 #' ncbi_snp_query("rs1837253")
 #' ncbi_snp_query("rs1209415715")
@@ -226,8 +226,6 @@ get_gene_names <- function(primary_info) {
 #' ncbi_snp_query(snps = "rs9970807")
 #'
 #' ncbi_snp_query("rs121909001")
-#' ncbi_snp_query("rs121909001", verbose = TRUE)
-#' }
 ncbi_snp_query <- function(snps) {
   
   ## NCBI moved to https but not using http v.2. The setting of the version

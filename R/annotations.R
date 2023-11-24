@@ -13,7 +13,7 @@
 #' 		metadata for the response.
 #' @param ... Curl options passed on to [crul::HttpClient]
 #' @return data.frame of openSNP phenotypes from specified source
-#' @examples \dontrun{
+#' @examplesIf !rsnps:::is_rcmd_check()
 #' # Get all data
 #' ## get just the metadata
 #' annotations(snp = "rs7903146", output = "metadata")
@@ -26,7 +26,7 @@
 #'
 #' ## get all annotations
 #' annotations(snp = "rs7903146", output = "all")
-#' }
+
 annotations <- function(snp = NA,
                         output = c("all", "plos", "mendeley", "snpedia", "metadata"), ...) {
   url <- paste0(osnp_base(), "snps/json/annotation/", snp, ".json")

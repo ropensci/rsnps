@@ -8,11 +8,10 @@
 #' @param ... Curl options passed on to [crul::HttpClient]]
 #' @return List (or data.frame) of genotypes for specified user(s) at a
 #' certain SNP.
-#' @examples \dontrun{
+#' @examplesIf !rsnps:::is_rcmd_check()
 #' genotypes(snp = "rs9939609", userid = 1)
 #' genotypes("rs9939609", userid = "1,6,8", df = TRUE)
 #' genotypes("rs9939609", userid = "1-2", df = FALSE)
-#' }
 genotypes <- function(snp = NA, userid = NA, df = FALSE, ...) {
   url2 <- paste0(paste0(osnp_base(), "snps/json/"), snp, "/", userid, ".json")
   
